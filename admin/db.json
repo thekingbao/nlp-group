@@ -7,7 +7,7 @@
     "address": "Tòa nhà Innovation, Công viên phần mềm Quang Trung, Q.12, TP.HCM",
     "facebook": "https://facebook.com/nlpgroup",
     "youtube": "https://youtube.com/@nlpgroup",
-    "zalo": "https://zalo.me/0333864000"
+    "zalo": "https://zalo.me/0944086788"
   },
   "pages": [
     {
@@ -250,8 +250,9 @@
   ],
   "settings": {
     "phone":            "0333.864.000",
-    "zalo":             "https://zalo.me/0333864000",
+    "zalo":             "https://zalo.me/0944086788",
     "email":            "contact@nlpgroup.com.vn",
+    "google_maps_key":  "",
     "google_tag":       "",
     "fb_pixel":         "",
     "zalo_oa_id":       "",

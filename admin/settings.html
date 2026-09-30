@@ -76,6 +76,11 @@
                     <div class="panel-header"><h2><i class="fa-solid fa-chart-bar" style="color:#3b82d4;margin-right:.4rem"></i>Tracking & Analytics</h2></div>
                     <div class="panel-body" style="padding:1.25rem">
                         <div class="setting-row">
+                            <label class="setting-label"><i class="fa-brands fa-google fa-fw" style="color:#4285f4"></i> Google Maps API Key</label>
+                            <input type="text" id="s_gmaps_key" class="form-input" placeholder="AIzaSy...">
+                            <p class="setting-hint">Cần có key để bản đồ tìm trạm sạc hoạt động. <a href="https://console.cloud.google.com/apis/credentials" target="_blank" style="color:#3b82d4">Lấy key tại Google Cloud Console →</a></p>
+                        </div>
+                        <div class="setting-row">
                             <label class="setting-label"><img src="https://www.google.com/favicon.ico" style="width:14px;margin-right:6px;vertical-align:middle"> Google Analytics 4 ID</label>
                             <input type="text" id="s_ga_tag" class="form-input" placeholder="G-XXXXXXXXXX">
                             <p class="setting-hint">Điền GA4 Measurement ID để bật tracking events tự động trên toàn site.</p>
@@ -175,9 +180,10 @@ async function loadSettings() {
         document.getElementById('s_addr_hcm').value = s.address_hcm || '';
         document.getElementById('s_addr_hn').value  = s.address_hn  || '';
         document.getElementById('s_license').value  = s.business_license || '';
-        document.getElementById('s_ga_tag').value   = s.google_tag || '';
-        document.getElementById('s_fb_pixel').value = s.fb_pixel  || '';
-        document.getElementById('s_zalo_oa').value  = s.zalo_oa_id|| '';
+        document.getElementById('s_gmaps_key').value = s.google_maps_key || '';
+        document.getElementById('s_ga_tag').value    = s.google_tag || '';
+        document.getElementById('s_fb_pixel').value  = s.fb_pixel  || '';
+        document.getElementById('s_zalo_oa').value   = s.zalo_oa_id|| '';
         const maint = s.maintenance || false;
         document.getElementById('s_maintenance').checked = maint;
         document.getElementById('maintenanceLabel').textContent = maint ? 'Bật' : 'Tắt';
@@ -199,6 +205,7 @@ function saveSettings() {
         address_hcm:      document.getElementById('s_addr_hcm').value.trim(),
         address_hn:       document.getElementById('s_addr_hn').value.trim(),
         business_license: document.getElementById('s_license').value.trim(),
+        google_maps_key:  document.getElementById('s_gmaps_key').value.trim(),
         google_tag:       document.getElementById('s_ga_tag').value.trim(),
         fb_pixel:         document.getElementById('s_fb_pixel').value.trim(),
         zalo_oa_id:       document.getElementById('s_zalo_oa').value.trim(),
@@ -207,12 +214,26 @@ function saveSettings() {
     // Also update site.email
     if (db.site) db.site.email = db.settings.email;
 
+    // Also generate nlp-config.js for draft/tmt-egreen
+    const cfg = db.settings;
+    const configJs = `/**\n * NLP-EGREEN – Site Configuration (auto-generated)\n * Cập nhật: ${new Date().toLocaleString('vi-VN')}\n */\nwindow.NLP_CONFIG = {\n    siteName:       '${cfg.phone ? 'NLP-EGREEN' : 'NLP-EGREEN'}',\n    phone:          '${cfg.phone || ''}',\n    email:          '${cfg.email || ''}',\n    zalo:           '${cfg.zalo || ''}',\n    googleMapsKey:  '${cfg.google_maps_key || ''}',\n    ga4Id:          '${cfg.google_tag || ''}',\n    fbPixelId:      '${cfg.fb_pixel || ''}',\n    zaloOaId:       '${cfg.zalo_oa_id || ''}',\n    maintenance:    ${cfg.maintenance ? 'true' : 'false'},\n    _v: '${new Date().toISOString()}'\n};\n/* Auto-inject GA4 */\n(function(){\n    var gid = window.NLP_CONFIG.ga4Id;\n    if (!gid) return;\n    var s = document.createElement('script'); s.async = true;\n    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gid;\n    document.head.appendChild(s);\n    window.dataLayer = window.dataLayer || [];\n    window.gtag = function(){ dataLayer.push(arguments); };\n    gtag('js', new Date()); gtag('config', gid);\n})();\n`;
+
+    // Download db.json
     const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     a.download = 'db.json';
     a.click();
-    showAlert('✅ Đã xuất db.json với cài đặt mới. Thay thế file admin/db.json và commit lên GitHub.', 'success');
+
+    // Download nlp-config.js
+    setTimeout(() => {
+        const b2 = new Blob([configJs], { type: 'application/javascript' });
+        const a2 = document.createElement('a');
+        a2.href = URL.createObjectURL(b2);
+        a2.download = 'nlp-config.js';
+        a2.click();
+        showAlert('✅ Đã xuất db.json + nlp-config.js. Đặt nlp-config.js vào draft/tmt-egreen/ và commit lên GitHub.', 'success');
+    }, 300);
 }
 
 function showAlert(msg, type) {

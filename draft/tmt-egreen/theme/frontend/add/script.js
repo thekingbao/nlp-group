@@ -1,4 +1,4 @@
-var TMT_FUNCTION = (function () {
+﻿var TMT_FUNCTION = (function () {
     var initAddress = function () {
         var listSelectProvince = document.querySelectorAll(
             "select[name=province]"
@@ -365,7 +365,7 @@ TMT_FUNCTION.init();
             };
         } catch
         {
-            return null;
+                        return { source: 'default', lat: 21.0278, lng: 105.8342, city: 'Ha Noi', region: 'Ha Noi', country: 'Vietnam' };
         }
     }
 

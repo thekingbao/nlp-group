@@ -5,6 +5,11 @@ var MAP_INIT = (function() {
                 resolve();
                 return;
             }
+            if (!apiKey) {
+                console.warn('[NLP-EGREEN] Google Maps API key chưa được cấu hình. Vào Admin > Cài đặt để thêm key.');
+                reject(new Error('Missing Google Maps API key'));
+                return;
+            }
             const script = document.createElement('script');
             script.type = 'text/javascript';
             script.async = true;
@@ -39,21 +44,26 @@ var MAP_INIT = (function() {
         });
     };
     return {
-        init:function(){
+        init: function() {
             initMap();
         },
         loadJSMap: function(apiKey) {
-            // PHẢI return Promise ra ngoài
             return loadJSMap(apiKey);
         }
     };
 })();
+
 MAP_INIT.init();
-MAP_INIT.loadJSMap('AIzaSyAroJbDC8tULXcBZGpmiM134Hm1T8Bfknk')
-    .then(() => {
-        MapShowroom.initAll();
-    })
-    .catch((err) => {
-        console.error('Google Maps load failed:', err);
-    });
-    
+
+// Đọc API key từ window.NLP_CONFIG (được inject bởi nlp-config.js)
+// Để thay đổi key: vào Admin > Cài đặt Site > Google Maps API Key
+(function() {
+    var apiKey = (window.NLP_CONFIG && window.NLP_CONFIG.googleMapsKey) || '';
+    MAP_INIT.loadJSMap(apiKey)
+        .then(function() {
+            MapShowroom.initAll();
+        })
+        .catch(function(err) {
+            console.warn('[NLP-EGREEN] Google Maps không tải được:', err.message || err);
+        });
+})();

@@ -252,7 +252,7 @@ nlpgroup.com.vn/
   ],
   "settings": {
     "phone": "0333.864.000",
-    "zalo": "https://zalo.me/0333864000",
+    "zalo": "https://zalo.me/0944086788",
     "email": "contact@nlpgroup.com.vn",   // ← Đổi từ muabandien.com
     "google_tag": "G-XXXXXXXXXX",          // ← Điền GA4 ID thực
     "fb_pixel": "",
