@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCTC – NLP Group Admin</title>
+    <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <style>
+        .fin-tabs{display:flex;gap:.25rem;border-bottom:2px solid var(--admin-border);margin-bottom:1.25rem;flex-wrap:wrap}
+        .fin-tab{padding:.5rem 1rem;border:none;background:none;cursor:pointer;font-size:.82rem;font-weight:600;color:#57606a;border-bottom:2px solid transparent;margin-bottom:-2px;border-radius:.375rem .375rem 0 0;transition:color .15s,border-color .15s}
+        .fin-tab:hover{color:#0f172a;background:#f7f8fa}
+        .fin-tab.active{color:#16a34a;border-bottom-color:#16a34a;background:#f0fdf4}
+        .fin-pane{display:none}.fin-pane.active{display:block}
+        .report-table{width:100%;border-collapse:collapse;font-size:.855rem}
+        .report-table th{background:#f7f8fa;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#57606a;padding:.65rem 1rem;text-align:left;border-bottom:2px solid var(--admin-border)}
+        .report-table td{padding:.6rem 1rem;border-bottom:1px solid #f3f4f6;vertical-align:middle}
+        .report-table tr:last-child td{border-bottom:none}
+        .report-table tr.section-head td{background:#f0fdf4;font-weight:700;color:#0f172a;font-size:.82rem}
+        .report-table tr.total-row td{background:#dcfce7;font-weight:800;font-size:.9rem;border-top:2px solid #16a34a}
+        .report-table tr.subtotal td{background:#f7f8fa;font-weight:600}
+        .num-pos{color:#16a34a;font-weight:700;text-align:right}
+        .num-neg{color:#ef4444;font-weight:700;text-align:right}
+        .num-neutral{text-align:right;font-weight:600}
+        .report-header{background:#0f172a;color:#fff;border-radius:.75rem;padding:1.25rem 1.5rem;margin-bottom:1.25rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap}
+        .report-header h3{font-size:.95rem;font-weight:700;color:#fff;margin:0}
+        .report-header p{font-size:.72rem;color:#94a3b8;margin:.2rem 0 0}
+        .legal-note{background:#fef9c3;border:1px solid #fde68a;border-left:4px solid #f59e0b;border-radius:.5rem;padding:.75rem 1rem;font-size:.75rem;color:#92400e;margin-top:1rem}
+        .kpi-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.25rem}
+        .kpi-box{background:#fff;border:1.5px solid var(--admin-border);border-radius:.75rem;padding:.875rem 1rem;text-align:center}
+        .kpi-box .kv{font-size:1.3rem;font-weight:900;line-height:1}
+        .kpi-box .kl{font-size:.7rem;color:var(--admin-muted);margin-top:.2rem}
+        .tariff-row{display:flex;align-items:center;gap:1rem;padding:.75rem 1rem;border-bottom:1px solid #f3f4f6;font-size:.85rem}
+        .tariff-dot{width:.75rem;height:.75rem;border-radius:50%;flex-shrink:0}
+        @media(max-width:768px){.kpi-4{grid-template-columns:1fr 1fr}}
+    </style>
+</head>
+<body>
+<div class="admin-layout">
+
+    <aside class="admin-sidebar" id="sidebar">
+        <div class="brand">NLP <span>GROUP</span> <span style="font-size:.6rem;font-weight:400;color:#57606a;margin-left:4px">Business Suite</span></div>
+        <nav>
+            <div class="nav-section">Dashboard</div>
+            <a href="index.html"><i class="fa-solid fa-gauge-high fa-fw"></i> Tổng quan</a>
+            <div class="nav-section">Kinh doanh</div>
+            <a href="leads.html"><i class="fa-solid fa-user-group fa-fw"></i> Leads & CRM</a>
+            <a href="stations.html"><i class="fa-solid fa-charging-station fa-fw"></i> Trạm sạc</a>
+            <a href="partners.html"><i class="fa-solid fa-handshake fa-fw"></i> Đối tác</a>
+            <a href="nfc.html"><i class="fa-solid fa-id-card fa-fw"></i> NFC Manager</a>
+            <div class="nav-section">Tài chính</div>
+            <a href="finance.html" class="active"><i class="fa-solid fa-chart-pie fa-fw"></i> BCTC (B01–B09)</a>
+            <a href="employees.html"><i class="fa-solid fa-users-gear fa-fw"></i> HR & Thuế TNCN</a>
+            <div class="nav-section">Nội dung</div>
+            <a href="pages.html"><i class="fa-solid fa-file-lines fa-fw"></i> Quản lý trang</a>
+            <div class="nav-section">Hệ thống</div>
+            <a href="settings.html"><i class="fa-solid fa-gear fa-fw"></i> Cài đặt</a>
+            <div style="flex:1"></div>
+            <div class="nav-section">Tài khoản</div>
+            <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i> Xem site</a>
+            <a href="#" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Đăng xuất</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <div style="display:flex;align-items:center;gap:.75rem">
+                <button id="sidebarToggle" style="display:none;background:none;border:none;font-size:1.1rem;cursor:pointer;color:#57606a"><i class="fa-solid fa-bars"></i></button>
+                <div>
+                    <h1 style="margin:0"><i class="fa-solid fa-chart-pie" style="color:#7c3aed"></i> Báo cáo Tài chính</h1>
+                    <p style="margin:0;font-size:.72rem;color:#57606a">Chuẩn mực Thông tư 133/2016/TT-BTC · Doanh nghiệp vừa và nhỏ Việt Nam</p>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <select id="periodSel" class="form-select" style="padding:.35rem .65rem;font-size:.82rem;width:auto" onchange="loadDB()">
+                    <option value="2026-Q3">Quý III/2026</option>
+                    <option value="2026-Q2">Quý II/2026</option>
+                    <option value="2026-Q1">Quý I/2026</option>
+                </select>
+                <button class="btn btn-secondary btn-sm" onclick="printReport()"><i class="fa-solid fa-print"></i> In</button>
+                <button class="btn btn-primary btn-sm" onclick="exportAll()"><i class="fa-solid fa-file-word"></i> Xuất tất cả</button>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <div id="adminAlert" class="alert"></div>
+
+            <!-- KPI overview -->
+            <div class="kpi-4">
+                <div class="kpi-box" style="border-top:3px solid #16a34a"><div class="kv" id="kvRev" style="color:#16a34a">–</div><div class="kl">📈 Doanh thu thuần</div></div>
+                <div class="kpi-box" style="border-top:3px solid #3b82f6"><div class="kv" id="kvProfit" style="color:#3b82f6">–</div><div class="kl">💰 Lợi nhuận sau thuế</div></div>
+                <div class="kpi-box" style="border-top:3px solid #7c3aed"><div class="kv" id="kvAsset" style="color:#7c3aed">–</div><div class="kl">🏦 Tổng tài sản</div></div>
+                <div class="kpi-box" style="border-top:3px solid #0d9488"><div class="kv" id="kvCash" style="color:#0d9488">–</div><div class="kl">💵 Tiền cuối kỳ</div></div>
+            </div>
+
+            <!-- Report tabs -->
+            <div class="fin-tabs">
+                <button class="fin-tab active" onclick="switchTab('b01')">📊 B01 — Tình hình Tài chính</button>
+                <button class="fin-tab" onclick="switchTab('b02')">📈 B02 — Kết quả HĐKD</button>
+                <button class="fin-tab" onclick="switchTab('b03')">💸 B03 — Lưu chuyển Tiền tệ</button>
+                <button class="fin-tab" onclick="switchTab('b09')">📝 B09 — Thuyết minh</button>
+                <button class="fin-tab" onclick="switchTab('tariff')">⚡ Biểu phí điện</button>
+            </div>
+
+            <!-- B01 -->
+            <div id="pane-b01" class="fin-pane active">
+                <div class="report-header">
+                    <div><h3>BÁO CÁO TÌNH HÌNH TÀI CHÍNH (B01-DNN)</h3><p>Tại ngày lập báo cáo · Đơn vị: Đồng Việt Nam (VNĐ) · Thông tư 133/2016/TT-BTC</p></div>
+                    <button class="btn btn-secondary btn-sm" onclick="exportBCTC('B01')"><i class="fa-solid fa-file-word"></i> Xuất B01</button>
+                </div>
+                <div class="admin-panel"><table class="report-table" id="b01Table"></table></div>
+            </div>
+
+            <!-- B02 -->
+            <div id="pane-b02" class="fin-pane">
+                <div class="report-header">
+                    <div><h3>BÁO CÁO KẾT QUẢ HOẠT ĐỘNG KINH DOANH (B02-DNN)</h3><p>Năm tài chính · Đơn vị: VNĐ · Thông tư 133/2016/TT-BTC</p></div>
+                    <button class="btn btn-secondary btn-sm" onclick="exportBCTC('B02')"><i class="fa-solid fa-file-word"></i> Xuất B02</button>
+                </div>
+                <div class="admin-panel"><table class="report-table" id="b02Table"></table></div>
+            </div>
+
+            <!-- B03 -->
+            <div id="pane-b03" class="fin-pane">
+                <div class="report-header">
+                    <div><h3>BÁO CÁO LƯU CHUYỂN TIỀN TỆ (B03-DNN)</h3><p>Theo phương pháp trực tiếp · Đơn vị: VNĐ · Thông tư 133/2016/TT-BTC</p></div>
+                    <button class="btn btn-secondary btn-sm" onclick="exportBCTC('B03')"><i class="fa-solid fa-file-word"></i> Xuất B03</button>
+                </div>
+                <div class="admin-panel"><table class="report-table" id="b03Table"></table></div>
+            </div>
+
+            <!-- B09 -->
+            <div id="pane-b09" class="fin-pane">
+                <div class="report-header">
+                    <div><h3>BẢN THUYẾT MINH BÁO CÁO TÀI CHÍNH (B09-DNN)</h3><p>Áp dụng cho doanh nghiệp hoạt động liên tục · Thông tư 133/2016/TT-BTC</p></div>
+                    <button class="btn btn-secondary btn-sm" onclick="exportBCTC('B09')"><i class="fa-solid fa-file-word"></i> Xuất B09</button>
+                </div>
+                <div class="admin-panel" style="padding:1.25rem">
+                    <div id="b09Content"></div>
+                </div>
+            </div>
+
+            <!-- Tariff -->
+            <div id="pane-tariff" class="fin-pane">
+                <div class="report-header">
+                    <div><h3>BIỂU GIÁ ĐIỆN SẠC XE ĐIỆN</h3><p>Hiệu lực từ 15/07/2026 · Áp dụng tại tất cả trạm sạc NLP-EGREEN</p></div>
+                </div>
+                <div class="admin-panel">
+                    <div id="tariffTable"></div>
+                </div>
+                <div class="legal-note">
+                    <strong>⚠️ Cơ sở pháp lý:</strong> Giá điện được áp dụng theo Quyết định của Bộ Công Thương và EVN về biểu giá điện thương phẩm. Mức giá trên là giá bán lẻ điện (đã bao gồm thuế VAT 8%) áp dụng cho hoạt động sạc xe điện thương mại. Doanh nghiệp cần đăng ký giá với cơ quan có thẩm quyền khi điều chỉnh.
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="../js/admin.js"></script>
+<script>
+let DB = {};
+
+async function loadDB() {
+    const r = await fetch('../admin/db.json?' + Date.now());
+    DB = await r.json();
+    renderAll();
+}
+
+function renderAll() {
+    const fin = DB.finance || {};
+    const b01 = fin.b01 || {};
+    const b02 = fin.b02 || {};
+    const b03 = fin.b03_truc_tiep || {};
+
+    // KPIs
+    g('kvRev').textContent    = fmtB(b02.doanh_thu_thuan);
+    g('kvProfit').textContent = fmtB(b02.loi_nhuan_sau_thue);
+    g('kvAsset').textContent  = fmtB((b01.tai_san_ngan_han||0)+(b01.tai_san_dai_han||0));
+    g('kvCash').textContent   = fmtB(b03.tien_cuoi_ky);
+
+    renderB01(b01);
+    renderB02(b02);
+    renderB03(b03);
+    renderB09(fin);
+    renderTariff();
+}
+
+function renderB01(d) {
+    const rows = [
+        {type:'head', label:'A. TÀI SẢN NGẮN HẠN', ms:'100', val: d.tai_san_ngan_han},
+        {type:'item', label:'I. Tiền và các khoản tương đương tiền', ms:'110', val: d.tien_va_tuong_duong},
+        {type:'item', label:'II. Các khoản đầu tư tài chính ngắn hạn', ms:'120', val: 0},
+        {type:'item', label:'III. Các khoản phải thu ngắn hạn', ms:'130', val: d.phai_thu_kh},
+        {type:'item', label:'  1. Phải thu ngắn hạn của khách hàng', ms:'131', val: d.phai_thu_kh},
+        {type:'item', label:'IV. Hàng tồn kho', ms:'140', val: d.hang_ton_kho},
+        {type:'item', label:'V. Tài sản ngắn hạn khác', ms:'150', val: 0},
+        {type:'head', label:'B. TÀI SẢN DÀI HẠN', ms:'200', val: d.tai_san_dai_han},
+        {type:'item', label:'I. Các khoản phải thu dài hạn', ms:'210', val: 0},
+        {type:'item', label:'II. Tài sản cố định', ms:'220', val: (d.tscd_nguyen_gia||0)+(d.tscd_hao_mon||0)},
+        {type:'item', label:'  1. Tài sản cố định hữu hình — Nguyên giá', ms:'221', val: d.tscd_nguyen_gia},
+        {type:'item', label:'  2. Hao mòn lũy kế (*)', ms:'222', val: d.tscd_hao_mon},
+        {type:'item', label:'III. Bất động sản đầu tư', ms:'230', val: 0},
+        {type:'item', label:'IV. Tài sản dài hạn khác', ms:'260', val: 0},
+        {type:'total', label:'TỔNG CỘNG TÀI SẢN', ms:'270', val: (d.tai_san_ngan_han||0)+(d.tai_san_dai_han||0)},
+        {type:'spacer'},
+        {type:'head', label:'C. NỢ PHẢI TRẢ', ms:'300', val: d.no_phai_tra},
+        {type:'item', label:'I. Nợ ngắn hạn', ms:'310', val: d.no_ngan_han},
+        {type:'item', label:'II. Nợ dài hạn', ms:'330', val: d.no_dai_han},
+        {type:'head', label:'D. VỐN CHỦ SỞ HỮU', ms:'400', val: d.von_chu_so_huu},
+        {type:'item', label:'I. Vốn góp của chủ sở hữu', ms:'410', val: d.von_gop},
+        {type:'item', label:'II. Lợi nhuận sau thuế chưa phân phối', ms:'421', val: d.loi_nhuan_chua_pp},
+        {type:'total', label:'TỔNG CỘNG NGUỒN VỐN', ms:'440', val: (d.no_phai_tra||0)+(d.von_chu_so_huu||0)},
+    ];
+    g('b01Table').innerHTML = buildTableHeader(['Chỉ tiêu','Mã số','Số cuối năm (VNĐ)','Số đầu năm (VNĐ)']) +
+        '<tbody>' + rows.map(r => buildReportRow(r)).join('') + '</tbody>';
+}
+
+function renderB02(d) {
+    const rows = [
+        {type:'item', label:'1. Doanh thu bán hàng và cung cấp dịch vụ', ms:'01', val: d.doanh_thu_thuan},
+        {type:'item', label:'2. Các khoản giảm trừ doanh thu', ms:'02', val: 0},
+        {type:'subtotal', label:'3. Doanh thu thuần về bán hàng (01-02)', ms:'10', val: d.doanh_thu_thuan},
+        {type:'item', label:'4. Giá vốn hàng bán', ms:'11', val: -d.gia_von},
+        {type:'subtotal', label:'5. Lợi nhuận gộp về bán hàng (10-11)', ms:'20', val: d.loi_nhuan_gop},
+        {type:'item', label:'6. Doanh thu hoạt động tài chính', ms:'21', val: d.doanh_thu_tc},
+        {type:'item', label:'7. Chi phí tài chính', ms:'22', val: -d.chi_phi_tc},
+        {type:'item', label:'8. Chi phí bán hàng', ms:'25', val: -d.chi_phi_ban_hang},
+        {type:'item', label:'9. Chi phí quản lý doanh nghiệp', ms:'26', val: -d.chi_phi_quan_ly},
+        {type:'subtotal', label:'10. Lợi nhuận thuần từ hoạt động kinh doanh', ms:'30', val: d.loi_nhuan_thuan},
+        {type:'item', label:'11. Thu nhập khác', ms:'31', val: 0},
+        {type:'item', label:'12. Chi phí khác', ms:'32', val: 0},
+        {type:'item', label:'13. Lợi nhuận khác (31-32)', ms:'40', val: 0},
+        {type:'subtotal', label:'14. Tổng lợi nhuận kế toán trước thuế', ms:'50', val: d.loi_nhuan_truoc_thue},
+        {type:'item', label:'15. Chi phí thuế TNDN hiện hành', ms:'51', val: -d.thue_tndn},
+        {type:'total', label:'16. Lợi nhuận sau thuế thu nhập doanh nghiệp', ms:'60', val: d.loi_nhuan_sau_thue},
+    ];
+    g('b02Table').innerHTML = buildTableHeader(['Chỉ tiêu','Mã số','Năm nay (VNĐ)','Năm trước (VNĐ)']) +
+        '<tbody>' + rows.map(r => buildReportRow(r)).join('') + '</tbody>';
+}
+
+function renderB03(d) {
+    const rows = [
+        {type:'head', label:'I. LƯU CHUYỂN TIỀN TỪ HOẠT ĐỘNG KINH DOANH', ms:'', val: null},
+        {type:'item', label:'1. Tiền thu từ bán hàng, cung cấp dịch vụ', ms:'01', val: d.thu_tu_kh},
+        {type:'item', label:'2. Tiền chi trả cho người cung cấp hàng hóa', ms:'02', val: d.tra_ncc},
+        {type:'item', label:'3. Tiền chi trả cho người lao động', ms:'03', val: d.tra_nv},
+        {type:'item', label:'4. Tiền chi nộp thuế TNDN', ms:'04', val: d.tra_thue},
+        {type:'subtotal', label:'Lưu chuyển tiền thuần từ hoạt động KD', ms:'20', val: d.lctt_kinh_doanh},
+        {type:'head', label:'II. LƯU CHUYỂN TIỀN TỪ HOẠT ĐỘNG ĐẦU TƯ', ms:'', val: null},
+        {type:'item', label:'1. Tiền chi mua sắm TSCĐ', ms:'21', val: d.mua_tscd},
+        {type:'subtotal', label:'Lưu chuyển tiền thuần từ hoạt động đầu tư', ms:'30', val: d.lctt_dau_tu},
+        {type:'head', label:'III. LƯU CHUYỂN TIỀN TỪ HOẠT ĐỘNG TÀI CHÍNH', ms:'', val: null},
+        {type:'item', label:'1. Tiền thu từ đi vay', ms:'31', val: d.vay_ngan_hang},
+        {type:'item', label:'2. Tiền chi trả nợ gốc vay', ms:'32', val: d.tra_no_vay},
+        {type:'subtotal', label:'Lưu chuyển tiền thuần từ hoạt động tài chính', ms:'40', val: d.lctt_tai_chinh},
+        {type:'spacer'},
+        {type:'item', label:'Tiền và tương đương tiền đầu kỳ', ms:'60', val: d.tien_dau_ky},
+        {type:'total', label:'Tiền và tương đương tiền cuối kỳ', ms:'70', val: d.tien_cuoi_ky},
+    ];
+    g('b03Table').innerHTML = buildTableHeader(['Chỉ tiêu','Mã số','Năm nay (VNĐ)','Năm trước (VNĐ)']) +
+        '<tbody>' + rows.map(r => buildReportRow(r)).join('') + '</tbody>';
+}
+
+function renderB09(fin) {
+    const b01 = fin.b01||{}, b02 = fin.b02||{};
+    g('b09Content').innerHTML = `
+    <div style="font-size:.85rem;line-height:1.9;color:#1f2328">
+        <h3 style="font-size:1rem;margin-bottom:.75rem">I. Đặc điểm hoạt động của doanh nghiệp</h3>
+        <p><strong>1. Hình thức sở hữu vốn:</strong> Công ty Cổ phần (CTCP)</p>
+        <p><strong>2. Lĩnh vực kinh doanh:</strong> Năng lượng tái tạo — Điện mặt trời áp mái và Trạm sạc xe điện</p>
+        <p><strong>3. Ngành nghề kinh doanh:</strong> Sản xuất, phân phối điện năng từ năng lượng tái tạo; Lắp đặt và vận hành hệ thống trạm sạc xe điện; Nhượng quyền khai thác trạm sạc công cộng</p>
+        <hr style="border:none;border-top:1px solid var(--admin-border);margin:1rem 0">
+        <h3 style="font-size:1rem;margin-bottom:.75rem">II. Kỳ kế toán và đơn vị tiền tệ</h3>
+        <p><strong>1. Kỳ kế toán năm:</strong> Bắt đầu 01/01/2026 — kết thúc 31/12/2026. Báo cáo này là số liệu tích lũy đến hết Quý III (30/09/2026).</p>
+        <p><strong>2. Đơn vị tiền tệ:</strong> Đồng Việt Nam (VNĐ)</p>
+        <hr style="border:none;border-top:1px solid var(--admin-border);margin:1rem 0">
+        <h3 style="font-size:1rem;margin-bottom:.75rem">III. Chuẩn mực và chế độ kế toán áp dụng</h3>
+        <p>Doanh nghiệp tuân thủ <strong>Thông tư 133/2016/TT-BTC</strong> (Chế độ kế toán doanh nghiệp vừa và nhỏ), hệ thống <strong>Chuẩn mực Kế toán Việt Nam (VAS)</strong> và các quy định pháp luật hiện hành về kế toán.</p>
+        <hr style="border:none;border-top:1px solid var(--admin-border);margin:1rem 0">
+        <h3 style="font-size:1rem;margin-bottom:.75rem">IV. Thông tin bổ sung — Bảng CĐKT</h3>
+        <table class="report-table" style="margin-bottom:.75rem">
+            <thead><tr><th>Khoản mục</th><th class="num-neutral">Số cuối kỳ (VNĐ)</th><th class="num-neutral">Tỷ trọng</th></tr></thead>
+            <tbody>
+                <tr><td>Tiền và tương đương tiền</td><td class="num-pos">${fmtFull(b01.tien_va_tuong_duong)}</td><td style="text-align:right">${pct(b01.tien_va_tuong_duong,(b01.tai_san_ngan_han||0)+(b01.tai_san_dai_han||0))}</td></tr>
+                <tr><td>Phải thu khách hàng</td><td class="num-neutral">${fmtFull(b01.phai_thu_kh)}</td><td style="text-align:right">${pct(b01.phai_thu_kh,(b01.tai_san_ngan_han||0)+(b01.tai_san_dai_han||0))}</td></tr>
+                <tr><td>Hàng tồn kho</td><td class="num-neutral">${fmtFull(b01.hang_ton_kho)}</td><td style="text-align:right">${pct(b01.hang_ton_kho,(b01.tai_san_ngan_han||0)+(b01.tai_san_dai_han||0))}</td></tr>
+                <tr><td>TSCĐ (giá trị còn lại)</td><td class="num-neutral">${fmtFull((b01.tscd_nguyen_gia||0)+(b01.tscd_hao_mon||0))}</td><td style="text-align:right">${pct((b01.tscd_nguyen_gia||0)+(b01.tscd_hao_mon||0),(b01.tai_san_ngan_han||0)+(b01.tai_san_dai_han||0))}</td></tr>
+            </tbody>
+        </table>
+        <hr style="border:none;border-top:1px solid var(--admin-border);margin:1rem 0">
+        <h3 style="font-size:1rem;margin-bottom:.75rem">V. Thông tin bổ sung — KQHĐKD</h3>
+        <p><strong>Tỷ suất lợi nhuận gộp:</strong> ${pct(b02.loi_nhuan_gop, b02.doanh_thu_thuan)} &nbsp;|&nbsp; <strong>Tỷ suất lợi nhuận sau thuế:</strong> ${pct(b02.loi_nhuan_sau_thue, b02.doanh_thu_thuan)}</p>
+        <p><strong>Chi phí bán hàng/Doanh thu:</strong> ${pct(b02.chi_phi_ban_hang, b02.doanh_thu_thuan)} &nbsp;|&nbsp; <strong>Chi phí QLDN/Doanh thu:</strong> ${pct(b02.chi_phi_quan_ly, b02.doanh_thu_thuan)}</p>
+        <p><strong>Thuế TNDN:</strong> Áp dụng mức thuế suất 20% theo Luật Thuế TNDN 14/2008/QH12.</p>
+        <hr style="border:none;border-top:1px solid var(--admin-border);margin:1rem 0">
+        <h3 style="font-size:1rem;margin-bottom:.75rem">VI–VIII. Thông tin khác</h3>
+        <p>Doanh nghiệp không có các khoản nợ tiềm tàng trọng yếu, không có sự kiện trọng yếu phát sinh sau ngày kết thúc kỳ kế toán cần trình bày trong kỳ này.</p>
+    </div>`;
+}
+
+function renderTariff() {
+    const tariffsHTML = `
+    <div class="tariff-row" style="background:#f0fdf4;border-bottom:2px solid var(--admin-border)">
+        <div class="tariff-dot" style="background:#16a34a"></div>
+        <div style="flex:1"><strong>Giờ thấp điểm</strong><br><span style="font-size:.75rem;color:#57606a">22:00 – 06:00 hàng ngày</span></div>
+        <div style="font-weight:900;font-size:1.1rem;color:#16a34a">3.651 đ/kWh</div>
+        <div style="font-size:.78rem;color:#57606a;text-align:right">50kWh = 182.550đ</div>
+    </div>
+    <div class="tariff-row" style="border-bottom:1px solid #f3f4f6">
+        <div class="tariff-dot" style="background:#f59e0b"></div>
+        <div style="flex:1"><strong>Giờ bình thường</strong><br><span style="font-size:.75rem;color:#57606a">Các khung giờ còn lại trong ngày</span></div>
+        <div style="font-weight:900;font-size:1.1rem;color:#f59e0b">4.984 đ/kWh</div>
+        <div style="font-size:.78rem;color:#57606a;text-align:right">50kWh = 249.200đ</div>
+    </div>
+    <div class="tariff-row" style="border-bottom:1px solid #f3f4f6">
+        <div class="tariff-dot" style="background:#ef4444"></div>
+        <div style="flex:1"><strong>Giờ cao điểm</strong><br><span style="font-size:.75rem;color:#57606a">09:30–11:30 và 17:00–20:00 (T2–T7)</span></div>
+        <div style="font-weight:900;font-size:1.1rem;color:#ef4444">7.436 đ/kWh</div>
+        <div style="font-size:.78rem;color:#57606a;text-align:right">50kWh = 371.800đ</div>
+    </div>
+    <div style="padding:.75rem 1rem;background:#f7f8fa;font-size:.75rem;color:#57606a;border-top:1px solid var(--admin-border)">
+        Hiệu lực từ: <strong>15/07/2026</strong> · Giá đã bao gồm VAT 8% · Nguồn: EVN / Bộ Công Thương
+    </div>`;
+    g('tariffTable').innerHTML = tariffsHTML;
+}
+
+/* ── Helpers ── */
+function buildTableHeader(cols) {
+    return `<thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>`;
+}
+function buildReportRow(r) {
+    if(r.type === 'spacer') return '<tr><td colspan="4" style="padding:.25rem;background:#f7f8fa"></td></tr>';
+    const indent = r.label?.startsWith('  ') ? 'padding-left:1.75rem' : '';
+    const cls    = r.type === 'total' ? 'total-row' : r.type === 'head' ? 'section-head' : r.type === 'subtotal' ? 'subtotal' : '';
+    const numCls = (r.val||0) < 0 ? 'num-neg' : 'num-pos';
+    return `<tr class="${cls}">
+        <td style="${indent}">${r.label||''}</td>
+        <td style="text-align:center;color:#57606a;font-size:.78rem">${r.ms||''}</td>
+        <td class="${numCls}">${r.val !== null && r.val !== undefined ? fmtFull(r.val) : ''}</td>
+        <td class="num-neutral" style="color:#9ca3af">–</td>
+    </tr>`;
+}
+function fmtFull(n) { return (Math.round(n||0)).toLocaleString('vi-VN'); }
+function fmtB(n)    { const v=Math.abs(n||0); return (n<0?'(':'')+(v>=1e9?(v/1e9).toFixed(2)+'T':v>=1e6?(v/1e6).toFixed(1)+'M':v.toLocaleString('vi-VN')+'đ')+(n<0?')':''); }
+function pct(a,b)   { return b ? (a/b*100).toFixed(1)+'%' : '–'; }
+function g(id)      { return document.getElementById(id); }
+function switchTab(name) {
+    document.querySelectorAll('.fin-pane').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.fin-tab').forEach(b=>b.classList.remove('active'));
+    g('pane-'+name)?.classList.add('active');
+    document.querySelectorAll('.fin-tab').forEach(b=>{ if(b.getAttribute('onclick')?.includes(name)) b.classList.add('active'); });
+}
+function exportBCTC(type) { showAlert(`📄 Xuất ${type} → file .docx chuẩn TT133. Tính năng cần backend Node.js + docx.js để tạo file thực.`, 'success'); }
+function exportAll()  { showAlert('📦 Xuất tất cả BCTC (B01+B02+B03+B09) vào một file ZIP. Cần backend.', 'success'); }
+function printReport(){ window.print(); }
+function showAlert(msg,type='success') {
+    const el=g('adminAlert'); el.className='alert alert-'+type; el.textContent=msg; el.style.display='block';
+    setTimeout(()=>el.style.display='none',5000);
+}
+function doLogout() { localStorage.removeItem('nlpgroup_admin_auth'); window.location.href='login.html'; }
+document.addEventListener('DOMContentLoaded',()=>{
+    const btn=g('sidebarToggle'); if(btn){btn.style.display='block';btn.addEventListener('click',()=>g('sidebar').classList.toggle('open'));}
+    loadDB();
+});
+</script>
+</body>
+</html>

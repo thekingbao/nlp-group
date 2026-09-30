@@ -10,244 +10,151 @@
     "zalo": "https://zalo.me/0944086788"
   },
   "pages": [
-    {
-      "id": "pg_home",
-      "title": "Trang chủ",
-      "slug": "trang-chu",
-      "url": "/",
-      "status": "active",
-      "meta_title": "NLP Group – Giải pháp Năng lượng mặt trời & Trạm sạc xe điện",
-      "meta_desc": "NLP Group cung cấp giải pháp điện mặt trời và trạm sạc xe điện B2B/B2C tại Việt Nam. Tiết kiệm 40-70% hóa đơn điện.",
-      "canonical": "https://nlpgroup.com.vn/",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_ve-chung-toi",
-      "title": "Về chúng tôi",
-      "slug": "ve-chung-toi",
-      "url": "/pages/ve-chung-toi/",
-      "status": "active",
-      "meta_title": "Về chúng tôi – NLP Group | Tiên phong năng lượng sạch",
-      "meta_desc": "NLP Group – đơn vị tiên phong cung cấp giải pháp điện mặt trời và trạm sạc xe điện từ 2018. 1.000+ dự án, 50+ kỹ sư.",
-      "canonical": "https://nlpgroup.com.vn/pages/ve-chung-toi/",
-      "updated_at": "2026-10-01T00:00:00.000Z"
-    },
-    {
-      "id": "pg_doi-tac",
-      "title": "Đăng ký Đối tác",
-      "slug": "dang-ky-doi-tac",
-      "url": "/pages/doi-tac/",
-      "status": "active",
-      "meta_title": "Đăng ký Đối tác – Hoa hồng 15-25% | NLP Group",
-      "meta_desc": "Trở thành đối tác NLP Group – nhận hoa hồng 15-25%, hỗ trợ kỹ thuật, độc quyền khu vực. Đăng ký miễn phí.",
-      "canonical": "https://nlpgroup.com.vn/pages/doi-tac/",
-      "updated_at": "2026-10-01T00:00:00.000Z"
-    },
-    {
-      "id": "pg_dmt",
-      "title": "Điện mặt trời",
-      "slug": "dien-mat-troi",
-      "url": "/pages/dien-mat-troi/",
-      "status": "active",
-      "meta_title": "Điện mặt trời – Biến tần Hòa lưới & Hybrid | NLP Group",
-      "meta_desc": "Hệ thống điện mặt trời áp mái cho hộ gia đình, nhà xưởng, khách sạn. Biến tần DEYE, SOLIS chính hãng.",
-      "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_bien-tan-hoa-luoi",
-      "title": "Biến tần Hòa lưới",
-      "slug": "bien-tan-hoa-luoi",
-      "url": "/pages/dien-mat-troi/bien-tan-hoa-luoi/",
-      "status": "active",
-      "meta_title": "Biến tần Hòa lưới DEYE & SOLIS | NLP Group",
-      "meta_desc": "Biến tần hòa lưới 1 pha và 3 pha, công suất 3kW đến 100kW.",
-      "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/bien-tan-hoa-luoi/",
-      "parent": "pg_dmt",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_bien-tan-hybrid",
-      "title": "Biến tần Hybrid",
-      "slug": "bien-tan-hybrid",
-      "url": "/pages/dien-mat-troi/bien-tan-hybrid/",
-      "status": "active",
-      "meta_title": "Biến tần Hybrid – Lưu trữ điện thông minh | NLP Group",
-      "meta_desc": "Biến tần Hybrid kết hợp pin lưu trữ Lithium. Tự cấp điện ban đêm, hoạt động khi mất lưới.",
-      "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/bien-tan-hybrid/",
-      "parent": "pg_dmt",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_tam-pin",
-      "title": "Tấm pin Solar",
-      "slug": "tam-pin-solar",
-      "url": "/pages/dien-mat-troi/tam-pin-solar/",
-      "status": "active",
-      "meta_title": "Tấm pin năng lượng mặt trời Mono PERC & TOPCon | NLP Group",
-      "meta_desc": "Tấm pin Mono PERC, TOPCon hiệu suất cao. Chứng nhận IEC, bảo hành 25 năm.",
-      "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/tam-pin-solar/",
-      "parent": "pg_dmt",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_pin-luu-tru",
-      "title": "Pin Lưu trữ",
-      "slug": "pin-luu-tru",
-      "url": "/pages/dien-mat-troi/pin-luu-tru/",
-      "status": "active",
-      "meta_title": "Pin lưu trữ Lithium LiFePO4 | NLP Group",
-      "meta_desc": "Pin lưu trữ LiFePO4, dung lượng 5kWh – 100kWh. An toàn, chu kỳ > 6.000 lần.",
-      "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/pin-luu-tru/",
-      "parent": "pg_dmt",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_tru-sac",
-      "title": "Trụ sạc ô tô điện",
-      "slug": "tru-sac-o-to-dien",
-      "url": "/pages/tru-sac/",
-      "status": "active",
-      "meta_title": "Trụ sạc ô tô điện DC & AC | NLP Group",
-      "meta_desc": "Trạm sạc nhanh DC 120kW/240kW và sạc AC thông minh. ROI 2–3 năm.",
-      "canonical": "https://nlpgroup.com.vn/pages/tru-sac/",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_tru-sac-dc",
-      "title": "Trụ sạc DC 120kW / 240kW",
-      "slug": "tru-sac-dc",
-      "url": "/pages/tru-sac/tru-sac-dc/",
-      "status": "active",
-      "meta_title": "Trụ sạc DC 120kW 240kW siêu nhanh | NLP Group",
-      "meta_desc": "Trụ sạc DC 120kW và 240kW. Sạc đầy 80% pin xe điện trong 30 phút.",
-      "canonical": "https://nlpgroup.com.vn/pages/tru-sac/tru-sac-dc/",
-      "parent": "pg_tru-sac",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_tru-sac-ac",
-      "title": "Trụ sạc AC 7/11/22 kW",
-      "slug": "tru-sac-ac",
-      "url": "/pages/tru-sac/tru-sac-ac/",
-      "status": "active",
-      "meta_title": "Trụ sạc AC 7kW 11kW 22kW sạc qua đêm | NLP Group",
-      "meta_desc": "Trụ sạc AC thông minh cho nhà ở, căn hộ, văn phòng. Thanh toán app.",
-      "canonical": "https://nlpgroup.com.vn/pages/tru-sac/tru-sac-ac/",
-      "parent": "pg_tru-sac",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_dich-vu",
-      "title": "Dịch vụ",
-      "slug": "dich-vu",
-      "url": "/pages/dich-vu/",
-      "status": "active",
-      "meta_title": "Dịch vụ lắp đặt Thuê–Mua & Trả chậm 0% | NLP Group",
-      "meta_desc": "Điện mặt trời Thuê – Mua và mua trả chậm không lãi suất. Lắp đặt toàn quốc.",
-      "canonical": "https://nlpgroup.com.vn/pages/dich-vu/",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_thue-mua",
-      "title": "Điện mặt trời Thuê – Mua",
-      "slug": "thue-mua-dien-mat-troi",
-      "url": "/pages/dich-vu/thue-mua/",
-      "status": "active",
-      "meta_title": "Điện mặt trời Thuê – Mua (0 đồng vốn) | NLP Group",
-      "meta_desc": "Lắp điện mặt trời không cần vốn, trả phí dùng điện thấp hơn EVN.",
-      "canonical": "https://nlpgroup.com.vn/pages/dich-vu/thue-mua/",
-      "parent": "pg_dich-vu",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_tra-cham",
-      "title": "Mua trả chậm 0% lãi suất",
-      "slug": "mua-tra-cham-0-lai",
-      "url": "/pages/dich-vu/tra-cham/",
-      "status": "active",
-      "meta_title": "Mua điện mặt trời trả góp 0% lãi suất | NLP Group",
-      "meta_desc": "Trả góp 0% lãi suất 12–24 tháng. Sở hữu hệ thống ngay từ ngày đầu.",
-      "canonical": "https://nlpgroup.com.vn/pages/dich-vu/tra-cham/",
-      "parent": "pg_dich-vu",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_tin-tuc",
-      "title": "Tin tức & Kiến thức",
-      "slug": "tin-tuc",
-      "url": "/pages/tin-tuc/",
-      "status": "active",
-      "meta_title": "Tin tức năng lượng mặt trời & xe điện | NLP Group",
-      "meta_desc": "Cập nhật chính sách NĐ 135/2024, công nghệ solar và xu hướng xe điện tại Việt Nam.",
-      "canonical": "https://nlpgroup.com.vn/pages/tin-tuc/",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    },
-    {
-      "id": "pg_lien-he",
-      "title": "Liên hệ",
-      "slug": "lien-he",
-      "url": "/pages/lien-he/",
-      "status": "active",
-      "meta_title": "Liên hệ NLP Group – Tư vấn miễn phí 24/7",
-      "meta_desc": "Liên hệ NLP Group để được tư vấn miễn phí về điện mặt trời và trạm sạc xe điện.",
-      "canonical": "https://nlpgroup.com.vn/pages/lien-he/",
-      "updated_at": "2026-09-25T00:00:00.000Z"
-    }
+    { "id": "pg_home",            "title": "Trang chủ",                    "slug": "trang-chu",               "url": "/",                                              "status": "active", "meta_title": "NLP Group – Giải pháp Năng lượng mặt trời & Trạm sạc xe điện",    "meta_desc": "NLP Group cung cấp giải pháp điện mặt trời và trạm sạc xe điện B2B/B2C tại Việt Nam.",            "canonical": "https://nlpgroup.com.vn/",                                          "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_ve-chung-toi",    "title": "Về chúng tôi",                 "slug": "ve-chung-toi",            "url": "/pages/ve-chung-toi/",                           "status": "active", "meta_title": "Về chúng tôi – NLP Group",                                           "meta_desc": "NLP Group – tiên phong cung cấp giải pháp điện mặt trời và trạm sạc từ 2018.",                "canonical": "https://nlpgroup.com.vn/pages/ve-chung-toi/",                       "updated_at": "2026-10-01T00:00:00.000Z" },
+    { "id": "pg_doi-tac",         "title": "Đăng ký Đối tác",              "slug": "dang-ky-doi-tac",         "url": "/pages/doi-tac/",                                "status": "active", "meta_title": "Đăng ký Đối tác – Hoa hồng 15-25% | NLP Group",                     "meta_desc": "Trở thành đối tác NLP Group – nhận hoa hồng 15-25%.",                                        "canonical": "https://nlpgroup.com.vn/pages/doi-tac/",                            "updated_at": "2026-10-01T00:00:00.000Z" },
+    { "id": "pg_dmt",             "title": "Điện mặt trời",                "slug": "dien-mat-troi",           "url": "/pages/dien-mat-troi/",                          "status": "active", "meta_title": "Điện mặt trời – Biến tần Hòa lưới & Hybrid | NLP Group",           "meta_desc": "Hệ thống điện mặt trời áp mái. Biến tần DEYE, SOLIS chính hãng.",                           "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/",                      "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_bien-tan-hoa-luoi","title": "Biến tần Hòa lưới",          "slug": "bien-tan-hoa-luoi",       "url": "/pages/dien-mat-troi/bien-tan-hoa-luoi/",        "status": "active", "meta_title": "Biến tần Hòa lưới DEYE & SOLIS | NLP Group",                       "meta_desc": "Biến tần hòa lưới 3kW–100kW.",                                                               "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/bien-tan-hoa-luoi/",   "parent": "pg_dmt", "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_bien-tan-hybrid", "title": "Biến tần Hybrid",              "slug": "bien-tan-hybrid",         "url": "/pages/dien-mat-troi/bien-tan-hybrid/",          "status": "active", "meta_title": "Biến tần Hybrid – Lưu trữ điện thông minh | NLP Group",             "meta_desc": "Biến tần Hybrid kết hợp pin lưu trữ Lithium.",                                               "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/bien-tan-hybrid/",      "parent": "pg_dmt", "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_tam-pin",         "title": "Tấm pin Solar",                "slug": "tam-pin-solar",           "url": "/pages/dien-mat-troi/tam-pin-solar/",            "status": "active", "meta_title": "Tấm pin Mono PERC & TOPCon | NLP Group",                            "meta_desc": "Tấm pin hiệu suất cao, bảo hành 25 năm.",                                                    "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/tam-pin-solar/",        "parent": "pg_dmt", "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_pin-luu-tru",     "title": "Pin Lưu trữ",                  "slug": "pin-luu-tru",             "url": "/pages/dien-mat-troi/pin-luu-tru/",              "status": "active", "meta_title": "Pin lưu trữ Lithium LiFePO4 | NLP Group",                           "meta_desc": "Pin LiFePO4, 5kWh–100kWh, >6.000 chu kỳ.",                                                   "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/pin-luu-tru/",          "parent": "pg_dmt", "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_tru-sac",         "title": "Trụ sạc ô tô điện",           "slug": "tru-sac-o-to-dien",       "url": "/pages/tru-sac/",                                "status": "active", "meta_title": "Trụ sạc ô tô điện DC & AC | NLP Group",                             "meta_desc": "Trạm sạc nhanh DC 120kW/240kW và AC thông minh.",                                            "canonical": "https://nlpgroup.com.vn/pages/tru-sac/",                            "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_tru-sac-dc",      "title": "Trụ sạc DC 120kW / 240kW",    "slug": "tru-sac-dc",              "url": "/pages/tru-sac/tru-sac-dc/",                     "status": "active", "meta_title": "Trụ sạc DC 120kW 240kW siêu nhanh | NLP Group",                     "meta_desc": "Sạc đầy 80% pin xe điện trong 30 phút.",                                                     "canonical": "https://nlpgroup.com.vn/pages/tru-sac/tru-sac-dc/",                "parent": "pg_tru-sac", "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_tru-sac-ac",      "title": "Trụ sạc AC 7/11/22 kW",       "slug": "tru-sac-ac",              "url": "/pages/tru-sac/tru-sac-ac/",                     "status": "active", "meta_title": "Trụ sạc AC 7kW 11kW 22kW | NLP Group",                             "meta_desc": "Trụ sạc AC thông minh cho nhà ở, văn phòng.",                                                "canonical": "https://nlpgroup.com.vn/pages/tru-sac/tru-sac-ac/",                "parent": "pg_tru-sac", "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_dich-vu",         "title": "Dịch vụ",                      "slug": "dich-vu",                 "url": "/pages/dich-vu/",                                "status": "active", "meta_title": "Dịch vụ lắp đặt Thuê–Mua & Trả chậm 0% | NLP Group",             "meta_desc": "Điện mặt trời Thuê–Mua và mua trả chậm không lãi suất.",                                    "canonical": "https://nlpgroup.com.vn/pages/dich-vu/",                            "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_thue-mua",        "title": "Điện mặt trời Thuê – Mua",     "slug": "thue-mua-dien-mat-troi",  "url": "/pages/dich-vu/thue-mua/",                       "status": "active", "meta_title": "Điện mặt trời Thuê – Mua (0 đồng vốn) | NLP Group",               "meta_desc": "Lắp điện mặt trời không cần vốn.",                                                           "canonical": "https://nlpgroup.com.vn/pages/dich-vu/thue-mua/",                  "parent": "pg_dich-vu", "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_tra-cham",        "title": "Mua trả chậm 0% lãi suất",    "slug": "mua-tra-cham-0-lai",      "url": "/pages/dich-vu/tra-cham/",                       "status": "active", "meta_title": "Mua điện mặt trời trả góp 0% lãi suất | NLP Group",               "meta_desc": "Trả góp 0% lãi suất 12–24 tháng.",                                                           "canonical": "https://nlpgroup.com.vn/pages/dich-vu/tra-cham/",                  "parent": "pg_dich-vu", "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_tin-tuc",         "title": "Tin tức & Kiến thức",          "slug": "tin-tuc",                 "url": "/pages/tin-tuc/",                                "status": "active", "meta_title": "Tin tức năng lượng mặt trời & xe điện | NLP Group",                "meta_desc": "Cập nhật chính sách NĐ 135/2024 và công nghệ solar.",                                        "canonical": "https://nlpgroup.com.vn/pages/tin-tuc/",                            "updated_at": "2026-09-25T00:00:00.000Z" },
+    { "id": "pg_lien-he",         "title": "Liên hệ",                      "slug": "lien-he",                 "url": "/pages/lien-he/",                                "status": "active", "meta_title": "Liên hệ NLP Group – Tư vấn miễn phí 24/7",                         "meta_desc": "Liên hệ NLP Group để được tư vấn miễn phí.",                                                 "canonical": "https://nlpgroup.com.vn/pages/lien-he/",                            "updated_at": "2026-09-25T00:00:00.000Z" }
   ],
   "products": [
-    { "id": "pr_deye6kw",   "name": "DEYE Hybrid 6kW 1P",  "brand": "DEYE",  "type": "inverter-hybrid", "tag": "BÁN CHẠY", "status": "active" },
-    { "id": "pr_deye10kw",  "name": "DEYE Hybrid 10kW 3P", "brand": "DEYE",  "type": "inverter-hybrid",                   "status": "active" },
-    { "id": "pr_solis6kw",  "name": "SOLIS Hybrid 6kW",    "brand": "SOLIS", "type": "inverter-hybrid",                   "status": "active" },
-    { "id": "pr_solis10kw", "name": "SOLIS Hybrid 10kW 3P","brand": "SOLIS", "type": "inverter-hybrid",                   "status": "active" },
-    { "id": "pr_dc120kw",   "name": "Trụ sạc DC 120kW",    "brand": "NLP",   "type": "ev-charger-dc",                     "status": "active" },
-    { "id": "pr_dc240kw",   "name": "Trụ sạc DC 240kW",    "brand": "NLP",   "type": "ev-charger-dc",                     "status": "active" },
-    { "id": "pr_ac22kw",    "name": "Trụ sạc AC 22kW",     "brand": "NLP",   "type": "ev-charger-ac",                     "status": "active" }
+    { "id": "pr_deye6kw",   "name": "DEYE Hybrid 6kW 1P",  "brand": "DEYE",  "type": "inverter-hybrid", "tag": "BÁN CHẠY", "price_vnd": 18500000, "status": "active" },
+    { "id": "pr_deye10kw",  "name": "DEYE Hybrid 10kW 3P", "brand": "DEYE",  "type": "inverter-hybrid",                   "price_vnd": 28000000, "status": "active" },
+    { "id": "pr_solis6kw",  "name": "SOLIS Hybrid 6kW",    "brand": "SOLIS", "type": "inverter-hybrid",                   "price_vnd": 17000000, "status": "active" },
+    { "id": "pr_solis10kw", "name": "SOLIS Hybrid 10kW 3P","brand": "SOLIS", "type": "inverter-hybrid",                   "price_vnd": 26500000, "status": "active" },
+    { "id": "pr_dc120kw",   "name": "Trụ sạc DC 120kW",    "brand": "NLP",   "type": "ev-charger-dc",                     "price_vnd": 320000000,"status": "active" },
+    { "id": "pr_dc240kw",   "name": "Trụ sạc DC 240kW",    "brand": "NLP",   "type": "ev-charger-dc",                     "price_vnd": 580000000,"status": "active" },
+    { "id": "pr_ac22kw",    "name": "Trụ sạc AC 22kW",     "brand": "NLP",   "type": "ev-charger-ac",                     "price_vnd": 45000000, "status": "active" }
   ],
   "posts": [
-    {
-      "id": "post_001",
-      "title": "NĐ 135/2024 nói gì về tự sản tự tiêu điện mặt trời?",
-      "slug": "nd-135-2024-tu-san-tu-tieu",
-      "excerpt": "Nghị định 135/2024/NĐ-CP mở ra cơ hội cho doanh nghiệp tự sản xuất và tự tiêu thụ điện mặt trời mà không cần đấu nối lưới điện quốc gia.",
-      "category": "chinh-sach",
-      "published_at": "2026-01-05",
-      "status": "draft"
-    },
-    {
-      "id": "post_002",
-      "title": "DEYE vs SOLIS: Biến tần nào tốt hơn cho gia đình Việt?",
-      "slug": "deye-vs-solis-bien-tan-tot-hon",
-      "excerpt": "So sánh chi tiết giữa DEYE và SOLIS về độ bền, hiệu suất, giá cả và chính sách bảo hành để giúp bạn đưa ra quyết định đúng đắn.",
-      "category": "kien-thuc",
-      "published_at": "2026-01-08",
-      "status": "draft"
-    }
+    { "id": "post_001", "title": "NĐ 135/2024 nói gì về tự sản tự tiêu điện mặt trời?",             "slug": "nd-135-2024-dien-mat-troi-tu-san-tu-tieu",   "excerpt": "Nghị định 135/2024/NĐ-CP mở ra cơ hội cho doanh nghiệp tự sản xuất và tự tiêu thụ điện mặt trời.", "category": "chinh-sach", "published_at": "2024-11-22", "status": "active", "url": "/pages/tin-tuc/nd-135-2024-dien-mat-troi-tu-san-tu-tieu/" },
+    { "id": "post_002", "title": "DEYE vs SOLIS 2026: So sánh chi tiết biến tần Hybrid 6kW và 10kW", "slug": "deye-vs-solis-2026",                          "excerpt": "So sánh chi tiết DEYE và SOLIS về hiệu suất MPPT, tính năng lưu trữ, giá thành và ứng dụng.",       "category": "cong-nghe",  "published_at": "2026-06-10", "status": "active", "url": "/pages/tin-tuc/deye-vs-solis-2026/" },
+    { "id": "post_003", "title": "Biểu giá điện sạc xe mới nhất 2026: 3.651đ – 7.436đ/kWh",         "slug": "bieu-gia-dien-sac-xe-2026",                  "excerpt": "Từ 15/07/2026, giá điện sạc xe điện áp dụng 3 khung giờ: thấp điểm 3.651đ, bình thường 4.984đ, cao điểm 7.436đ/kWh.", "category": "thi-truong", "published_at": "2026-07-15", "status": "active", "url": "/pages/tin-tuc/bieu-gia-dien-sac-xe-2026/" },
+    { "id": "post_004", "title": "Case study: Khách sạn 4 sao tại Đà Nẵng tiết kiệm 68% hóa đơn điện sau 14 tháng", "slug": "case-study-khach-san-da-nang", "excerpt": "Công trình 120 kWp lắp trên mái khách sạn 8 tầng tại Đà Nẵng. Sau 14 tháng, tỷ lệ tự dùng đạt 82%, tiết kiệm 68 triệu đồng/tháng.", "category": "du-an",     "published_at": "2026-05-05", "status": "active", "url": "/pages/tin-tuc/case-study-khach-san-da-nang/" },
+    { "id": "post_005", "title": "Đầu tư trạm sạc xe điện DC 120kW: ROI thực tế sau 18 tháng vận hành", "slug": "roi-tram-sac-dc-120kw",               "excerpt": "Phân tích tài chính từ 12 trạm sạc NLP-EGREEN đang vận hành: doanh thu thực, chi phí điện, bảo trì và thời gian hoàn vốn.", "category": "xe-dien",    "published_at": "2026-04-20", "status": "active", "url": "/pages/tin-tuc/roi-tram-sac-dc-120kw/" },
+    { "id": "post_006", "title": "Pin lưu trữ Lithium LiFePO4 cho hệ Solar Hybrid: Tất cả những gì bạn cần biết", "slug": "pin-lithium-lifepo4-solar-hybrid", "excerpt": "LiFePO4 hay NMC? Dung lượng bao nhiêu là đủ? Tuổi thọ thực tế 10-15 năm? Kỹ sư NLP Group giải đáp toàn bộ câu hỏi.", "category": "cong-nghe",  "published_at": "2026-03-12", "status": "active", "url": "/pages/tin-tuc/pin-lithium-lifepo4-solar-hybrid/" }
   ],
   "projects": [
-    {
-      "id": "pj_001",
-      "title": "Nhà máy Dệt may ABC – Bình Dương",
-      "power_kwp": 500,
-      "type": "industrial",
-      "year": 2024,
-      "monthly_saving": 85000000,
-      "lat": 10.9804,
-      "lng": 106.6519,
-      "status": "active"
-    },
-    {
-      "id": "pj_002",
-      "title": "Khách sạn Grand Palace – TP.HCM",
-      "power_kwp": 120,
-      "type": "commercial",
-      "year": 2024,
-      "monthly_saving": 25000000,
-      "lat": 10.7769,
-      "lng": 106.7009,
-      "status": "active"
-    }
+    { "id": "pj_001", "title": "Nhà máy Dệt may ABC – Bình Dương",       "power_kwp": 500, "type": "industrial",  "year": 2024, "monthly_saving": 85000000, "lat": 10.9804, "lng": 106.6519, "status": "active" },
+    { "id": "pj_002", "title": "Khách sạn Grand Palace – TP.HCM",         "power_kwp": 120, "type": "commercial",  "year": 2024, "monthly_saving": 25000000, "lat": 10.7769, "lng": 106.7009, "status": "active" },
+    { "id": "pj_003", "title": "Kho lạnh Đồng Nai – Big C Logistics",      "power_kwp": 800, "type": "industrial",  "year": 2025, "monthly_saving": 135000000,"lat": 10.9477, "lng": 107.0059,"status": "active" },
+    { "id": "pj_004", "title": "Trường học Quốc tế Hà Nội",                "power_kwp": 80,  "type": "education",   "year": 2025, "monthly_saving": 18000000, "lat": 21.0285, "lng": 105.8542,"status": "active" },
+    { "id": "pj_005", "title": "Resort Mũi Né – Bình Thuận",               "power_kwp": 200, "type": "hospitality", "year": 2026, "monthly_saving": 42000000, "lat": 10.9333, "lng": 108.2833,"status": "active" }
   ],
+  "stations": [
+    { "id": "st_001", "name": "Trạm HCM – Quận 7 (Phú Mỹ Hưng)",        "province": "TP.HCM",   "type": "dc",  "power": "120kW", "ports": 2, "status": "online",       "partner_id": "pt_001", "lat": 10.7297, "lng": 106.7210, "address": "Đường Nguyễn Lương Bằng, Q.7, TP.HCM",       "revenue_month": 28500000,  "sessions_today": 47 },
+    { "id": "st_002", "name": "Trạm HCM – Tân Bình (Sân Bay)",           "province": "TP.HCM",   "type": "dc",  "power": "240kW", "ports": 4, "status": "online",       "partner_id": "pt_002", "lat": 10.7971, "lng": 106.6614, "address": "Đường Cộng Hòa, Q. Tân Bình, TP.HCM",       "revenue_month": 52000000,  "sessions_today": 89 },
+    { "id": "st_003", "name": "Trạm Hà Nội – Cầu Giấy",                  "province": "Hà Nội",   "type": "dc",  "power": "120kW", "ports": 2, "status": "online",       "partner_id": "pt_003", "lat": 21.0353, "lng": 105.7916, "address": "Đường Trần Duy Hưng, Q. Cầu Giấy, Hà Nội", "revenue_month": 31000000,  "sessions_today": 52 },
+    { "id": "st_004", "name": "Trạm Hà Nội – Hoàng Mai",                 "province": "Hà Nội",   "type": "dc",  "power": "240kW", "ports": 4, "status": "maintenance",  "partner_id": "pt_003", "lat": 20.9851, "lng": 105.8539, "address": "Đường Lĩnh Nam, Q. Hoàng Mai, Hà Nội",       "revenue_month": 0,          "sessions_today": 0 },
+    { "id": "st_005", "name": "Trạm Đà Nẵng – Trung tâm",                "province": "Đà Nẵng",  "type": "dc",  "power": "120kW", "ports": 2, "status": "online",       "partner_id": "pt_004", "lat": 16.0544, "lng": 108.2022, "address": "Đường Bạch Đằng, Q. Hải Châu, Đà Nẵng",     "revenue_month": 19500000,  "sessions_today": 33 },
+    { "id": "st_006", "name": "Trạm Cần Thơ – Ninh Kiều",                "province": "Cần Thơ",  "type": "ac",  "power": "22kW",  "ports": 4, "status": "online",       "partner_id": "pt_005", "lat": 10.0341, "lng": 105.7836, "address": "Đường Hai Bà Trưng, Q. Ninh Kiều, Cần Thơ", "revenue_month": 8200000,   "sessions_today": 18 },
+    { "id": "st_007", "name": "Trạm Nha Trang – Vincom",                 "province": "Khánh Hòa","type": "dc",  "power": "120kW", "ports": 2, "status": "offline",      "partner_id": "pt_006", "lat": 12.2477, "lng": 109.1900, "address": "Vincom Plaza Nha Trang, Khánh Hòa",           "revenue_month": 0,          "sessions_today": 0 },
+    { "id": "st_008", "name": "Trạm Hải Phòng – Lê Chân",               "province": "Hải Phòng","type": "ac",  "power": "22kW",  "ports": 2, "status": "online",       "partner_id": "pt_007", "lat": 20.8449, "lng": 106.6881, "address": "Đường Trần Phú, Q. Lê Chân, Hải Phòng",      "revenue_month": 6500000,   "sessions_today": 12 }
+  ],
+  "nfc_cards": [
+    { "id": "nfc_001", "uid": "A1B2C3D4",  "user_name": "Nguyễn Văn An",   "user_phone": "0901234567", "card_type": "user",     "status": "active",  "issued_at": "2026-03-01", "expires_at": "2027-03-01", "wallet_balance": 250000,  "total_sessions": 87,  "total_kwh": 1240.5 },
+    { "id": "nfc_002", "uid": "E5F6A7B8",  "user_name": "Trần Thị Bích",   "user_phone": "0912345678", "card_type": "user",     "status": "active",  "issued_at": "2026-04-15", "expires_at": "2027-04-15", "wallet_balance": 80000,   "total_sessions": 34,  "total_kwh": 512.0 },
+    { "id": "nfc_003", "uid": "C9D0E1F2",  "user_name": "Lê Minh Quân",    "user_phone": "0923456789", "card_type": "partner",  "status": "active",  "issued_at": "2026-02-20", "expires_at": "2027-02-20", "wallet_balance": 500000,  "total_sessions": 215, "total_kwh": 3100.0 },
+    { "id": "nfc_004", "uid": "G3H4I5J6",  "user_name": "Phạm Thu Hà",     "user_phone": "0934567890", "card_type": "employee", "status": "blocked", "issued_at": "2026-01-10", "expires_at": "2027-01-10", "wallet_balance": 0,       "total_sessions": 12,  "total_kwh": 180.0 },
+    { "id": "nfc_005", "uid": "K7L8M9N0",  "user_name": "Hoàng Đức Long",  "user_phone": "0945678901", "card_type": "user",     "status": "active",  "issued_at": "2026-06-01", "expires_at": "2027-06-01", "wallet_balance": 1200000, "total_sessions": 156, "total_kwh": 2280.0 }
+  ],
+  "charging_sessions": [
+    { "id": "cs_001", "station_id": "st_001", "nfc_uid": "A1B2C3D4", "user_name": "Nguyễn Văn An",  "started_at": "2026-10-15T08:23:00", "ended_at": "2026-10-15T09:01:00", "energy_kwh": 32.5, "amount_vnd": 162000, "tariff": "normal",  "ocpp_txn_id": 10041 },
+    { "id": "cs_002", "station_id": "st_002", "nfc_uid": "K7L8M9N0", "user_name": "Hoàng Đức Long", "started_at": "2026-10-15T10:45:00", "ended_at": "2026-10-15T11:12:00", "energy_kwh": 58.0, "amount_vnd": 431000, "tariff": "peak",    "ocpp_txn_id": 10042 },
+    { "id": "cs_003", "station_id": "st_003", "nfc_uid": "E5F6A7B8", "user_name": "Trần Thị Bích",  "started_at": "2026-10-15T14:30:00", "ended_at": "2026-10-15T14:58:00", "energy_kwh": 24.0, "amount_vnd": 89600,  "tariff": "offpeak", "ocpp_txn_id": 10043 },
+    { "id": "cs_004", "station_id": "st_001", "nfc_uid": "C9D0E1F2", "user_name": "Lê Minh Quân",   "started_at": "2026-10-15T17:15:00", "ended_at": "2026-10-15T17:52:00", "energy_kwh": 45.5, "amount_vnd": 338000, "tariff": "peak",    "ocpp_txn_id": 10044 },
+    { "id": "cs_005", "station_id": "st_005", "nfc_uid": "A1B2C3D4", "user_name": "Nguyễn Văn An",  "started_at": "2026-10-14T20:10:00", "ended_at": "2026-10-14T20:45:00", "energy_kwh": 28.0, "amount_vnd": 102200, "tariff": "offpeak", "ocpp_txn_id": 10040 }
+  ],
+  "employees": [
+    { "id": "emp_001", "name": "Nguyễn Văn Hùng",   "position": "Giám đốc điều hành",     "department": "Ban lãnh đạo",     "salary_gross": 45000000, "dependants": 2, "contract": "full-time",   "start_date": "2018-01-01", "status": "active", "phone": "0901111111", "email": "hung@nlpgroup.com.vn" },
+    { "id": "emp_002", "name": "Trần Thị Lan",       "position": "Kế toán trưởng",          "department": "Tài chính – Kế toán","salary_gross": 22000000, "dependants": 1, "contract": "full-time",   "start_date": "2019-03-15", "status": "active", "phone": "0902222222", "email": "lan@nlpgroup.com.vn" },
+    { "id": "emp_003", "name": "Lê Thanh Phong",     "position": "Kỹ sư trưởng Solar",      "department": "Kỹ thuật",          "salary_gross": 28000000, "dependants": 1, "contract": "full-time",   "start_date": "2020-06-01", "status": "active", "phone": "0903333333", "email": "phong@nlpgroup.com.vn" },
+    { "id": "emp_004", "name": "Phạm Minh Đức",      "position": "Kỹ sư EV / Trạm sạc",    "department": "Kỹ thuật",          "salary_gross": 25000000, "dependants": 0, "contract": "full-time",   "start_date": "2021-09-01", "status": "active", "phone": "0904444444", "email": "duc@nlpgroup.com.vn" },
+    { "id": "emp_005", "name": "Hoàng Thị Mai",      "position": "Nhân viên kinh doanh",    "department": "Kinh doanh",        "salary_gross": 15000000, "dependants": 0, "contract": "full-time",   "start_date": "2022-04-01", "status": "active", "phone": "0905555555", "email": "mai@nlpgroup.com.vn" },
+    { "id": "emp_006", "name": "Vũ Quốc Bảo",        "position": "Nhân viên kinh doanh",    "department": "Kinh doanh",        "salary_gross": 14500000, "dependants": 1, "contract": "full-time",   "start_date": "2023-02-01", "status": "active", "phone": "0906666666", "email": "bao@nlpgroup.com.vn" },
+    { "id": "emp_007", "name": "Nguyễn Thị Thu",     "position": "Hành chính – Nhân sự",   "department": "Hành chính",        "salary_gross": 12000000, "dependants": 0, "contract": "full-time",   "start_date": "2022-08-15", "status": "active", "phone": "0907777777", "email": "thu@nlpgroup.com.vn" }
+  ],
+  "partners": [
+    { "id": "pt_001", "name": "Công ty TNHH Sạc Nhanh Phương Nam",  "contact": "Nguyễn Thế Anh",  "phone": "0908111222", "province": "TP.HCM",    "stations": 1, "investment": 320000000, "profit_share": 80, "joined_at": "2026-02-01", "revenue_total": 285000000, "status": "active" },
+    { "id": "pt_002", "name": "Hợp tác xã Vận tải Tân Bình",         "contact": "Trần Văn Minh",   "phone": "0909222333", "province": "TP.HCM",    "stations": 2, "investment": 900000000, "profit_share": 80, "joined_at": "2026-01-15", "revenue_total": 520000000, "status": "active" },
+    { "id": "pt_003", "name": "DNTN Phúc Lộc EV",                    "contact": "Lê Phúc Lộc",     "phone": "0910333444", "province": "Hà Nội",    "stations": 2, "investment": 580000000, "profit_share": 80, "joined_at": "2026-03-10", "revenue_total": 310000000, "status": "active" },
+    { "id": "pt_004", "name": "Công ty CP Năng lượng Đà Nẵng",       "contact": "Phạm Thị Cúc",    "phone": "0911444555", "province": "Đà Nẵng",   "stations": 1, "investment": 320000000, "profit_share": 80, "joined_at": "2026-04-05", "revenue_total": 195000000, "status": "active" },
+    { "id": "pt_005", "name": "Hộ kinh doanh Thành Phát",             "contact": "Võ Văn Thành",    "phone": "0912555666", "province": "Cần Thơ",   "stations": 1, "investment": 45000000,  "profit_share": 80, "joined_at": "2026-05-20", "revenue_total": 82000000,  "status": "active" },
+    { "id": "pt_006", "name": "Khách sạn Biển Xanh Nha Trang",       "contact": "Trần Hải Yến",    "phone": "0913666777", "province": "Khánh Hòa", "stations": 1, "investment": 320000000, "profit_share": 80, "joined_at": "2026-06-01", "revenue_total": 0,          "status": "inactive" },
+    { "id": "pt_007", "name": "Công ty TNHH Dịch vụ Hải Long",       "contact": "Nguyễn Hải Long", "phone": "0914777888", "province": "Hải Phòng", "stations": 1, "investment": 45000000,  "profit_share": 80, "joined_at": "2026-07-01", "revenue_total": 65000000,  "status": "active" }
+  ],
+  "finance": {
+    "period": "2026-Q3",
+    "currency": "VND",
+    "b01": {
+      "tai_san_ngan_han":   4250000000,
+      "tien_va_tuong_duong":1200000000,
+      "phai_thu_kh":        1850000000,
+      "hang_ton_kho":        950000000,
+      "tai_san_dai_han":   12800000000,
+      "tscd_nguyen_gia":   15000000000,
+      "tscd_hao_mon":      -2200000000,
+      "no_phai_tra":        5800000000,
+      "no_ngan_han":        2300000000,
+      "no_dai_han":         3500000000,
+      "von_chu_so_huu":    11250000000,
+      "von_gop":           10000000000,
+      "loi_nhuan_chua_pp":  1250000000
+    },
+    "b02": {
+      "doanh_thu_thuan":    8640000000,
+      "gia_von":            5184000000,
+      "loi_nhuan_gop":      3456000000,
+      "chi_phi_ban_hang":    864000000,
+      "chi_phi_quan_ly":     576000000,
+      "loi_nhuan_thuan":    2016000000,
+      "doanh_thu_tc":        120000000,
+      "chi_phi_tc":          240000000,
+      "loi_nhuan_truoc_thue":1896000000,
+      "thue_tndn":           379200000,
+      "loi_nhuan_sau_thue": 1516800000
+    },
+    "b03_truc_tiep": {
+      "thu_tu_kh":          8200000000,
+      "tra_ncc":           -4900000000,
+      "tra_nv":            -1560000000,
+      "tra_thue":           -420000000,
+      "lctt_kinh_doanh":    1320000000,
+      "mua_tscd":          -2100000000,
+      "lctt_dau_tu":       -2100000000,
+      "vay_ngan_hang":      1500000000,
+      "tra_no_vay":         -800000000,
+      "lctt_tai_chinh":      700000000,
+      "tien_dau_ky":         980000000,
+      "tien_cuoi_ky":        900000000
+    },
+    "tncn_rates": [
+      { "bac": 1, "tu": 0,         "den": 5000000,  "thue_suat": 5,  "mo_ta": "Bậc 1 — ≤ 5 triệu" },
+      { "bac": 2, "tu": 5000001,   "den": 10000000, "thue_suat": 10, "mo_ta": "Bậc 2 — 5–10 triệu" },
+      { "bac": 3, "tu": 10000001,  "den": 18000000, "thue_suat": 15, "mo_ta": "Bậc 3 — 10–18 triệu" },
+      { "bac": 4, "tu": 18000001,  "den": 32000000, "thue_suat": 20, "mo_ta": "Bậc 4 — 18–32 triệu" },
+      { "bac": 5, "tu": 32000001,  "den": 52000000, "thue_suat": 25, "mo_ta": "Bậc 5 — 32–52 triệu" },
+      { "bac": 6, "tu": 52000001,  "den": 80000000, "thue_suat": 30, "mo_ta": "Bậc 6 — 52–80 triệu" },
+      { "bac": 7, "tu": 80000001,  "den": 999999999,"thue_suat": 35, "mo_ta": "Bậc 7 — > 80 triệu"  }
+    ],
+    "giam_tru": {
+      "ban_than": 11000000,
+      "phu_thuoc": 4400000,
+      "bhxh_rate": 0.08,
+      "bhyt_rate": 0.015,
+      "bhtn_rate": 0.01
+    }
+  },
   "settings": {
     "phone":            "0333.864.000",
     "zalo":             "https://zalo.me/0944086788",

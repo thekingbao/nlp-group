@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR & Thuế TNCN – NLP Group Admin</title>
+    <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <style>
+        .tncn-pos{color:#16a34a;font-weight:600}
+        .tncn-zero{color:#9ca3af}
+        .tncn-neg{color:#ef4444;font-weight:600}
+        .bac-badge{display:inline-block;width:1.4rem;height:1.4rem;border-radius:50%;background:#7c3aed;color:#fff;font-size:.65rem;font-weight:700;text-align:center;line-height:1.4rem}
+        .dept-tag{display:inline-block;font-size:.7rem;font-weight:600;padding:.1rem .45rem;border-radius:.25rem;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
+        .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;margin-bottom:1.25rem}
+        .kpi-box{background:#fff;border:1.5px solid var(--admin-border);border-radius:.75rem;padding:.875rem 1rem;text-align:center}
+        .kpi-box .kv{font-size:1.3rem;font-weight:900;line-height:1}
+        .kpi-box .kl{font-size:.68rem;color:var(--admin-muted);margin-top:.2rem}
+        .calc-box{background:#f7f8fa;border:1.5px solid var(--admin-border);border-radius:.75rem;padding:1.25rem;margin-bottom:1rem}
+        .rate-bar{display:flex;align-items:center;gap:.75rem;padding:.5rem 0;border-bottom:1px solid #f3f4f6;font-size:.82rem}
+        .rate-swatch{width:1rem;height:1rem;border-radius:.25rem;flex-shrink:0}
+        .tfoot-row td{background:#f0fdf4;font-weight:700;border-top:2px solid #16a34a;font-size:.85rem}
+        @media(max-width:900px){.kpi-row{grid-template-columns:repeat(3,1fr)}}
+        @media(max-width:600px){.kpi-row{grid-template-columns:1fr 1fr}}
+    </style>
+</head>
+<body>
+<div class="admin-layout">
+
+    <aside class="admin-sidebar" id="sidebar">
+        <div class="brand">NLP <span>GROUP</span> <span style="font-size:.6rem;font-weight:400;color:#57606a;margin-left:4px">Business Suite</span></div>
+        <nav>
+            <div class="nav-section">Dashboard</div>
+            <a href="index.html"><i class="fa-solid fa-gauge-high fa-fw"></i> Tổng quan</a>
+            <div class="nav-section">Kinh doanh</div>
+            <a href="leads.html"><i class="fa-solid fa-user-group fa-fw"></i> Leads & CRM</a>
+            <a href="stations.html"><i class="fa-solid fa-charging-station fa-fw"></i> Trạm sạc</a>
+            <a href="partners.html"><i class="fa-solid fa-handshake fa-fw"></i> Đối tác</a>
+            <a href="nfc.html"><i class="fa-solid fa-id-card fa-fw"></i> NFC Manager</a>
+            <div class="nav-section">Tài chính</div>
+            <a href="finance.html"><i class="fa-solid fa-chart-pie fa-fw"></i> BCTC (B01–B09)</a>
+            <a href="employees.html" class="active"><i class="fa-solid fa-users-gear fa-fw"></i> HR & Thuế TNCN</a>
+            <div class="nav-section">Nội dung</div>
+            <a href="pages.html"><i class="fa-solid fa-file-lines fa-fw"></i> Quản lý trang</a>
+            <div class="nav-section">Hệ thống</div>
+            <a href="settings.html"><i class="fa-solid fa-gear fa-fw"></i> Cài đặt</a>
+            <div style="flex:1"></div>
+            <div class="nav-section">Tài khoản</div>
+            <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i> Xem site</a>
+            <a href="#" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Đăng xuất</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <div style="display:flex;align-items:center;gap:.75rem">
+                <button id="sidebarToggle" style="display:none;background:none;border:none;font-size:1.1rem;cursor:pointer;color:#57606a"><i class="fa-solid fa-bars"></i></button>
+                <div>
+                    <h1 style="margin:0"><i class="fa-solid fa-users-gear" style="color:#7c3aed"></i> HR & Thuế TNCN</h1>
+                    <p style="margin:0;font-size:.72rem;color:#57606a">Luật Thuế TNCN 04/2007/QH12 · Biểu thuế lũy tiến 7 bậc · Tháng 10/2026</p>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <select id="monthSel" class="form-select" style="padding:.35rem .65rem;font-size:.82rem;width:auto">
+                    <option>Tháng 10/2026</option>
+                    <option>Tháng 9/2026</option>
+                    <option>Tháng 8/2026</option>
+                </select>
+                <button class="btn btn-secondary btn-sm" onclick="exportExcel()"><i class="fa-solid fa-file-excel"></i> Xuất Excel</button>
+                <button class="btn btn-primary btn-sm" onclick="openNewEmp()"><i class="fa-solid fa-user-plus"></i> Thêm NV</button>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <div id="adminAlert" class="alert"></div>
+
+            <!-- KPIs -->
+            <div class="kpi-row">
+                <div class="kpi-box" style="border-top:3px solid #7c3aed"><div class="kv" id="kEmp" style="color:#7c3aed">–</div><div class="kl">👥 Tổng nhân viên</div></div>
+                <div class="kpi-box" style="border-top:3px solid #0f172a"><div class="kv" id="kGross" style="color:#0f172a">–</div><div class="kl">💼 Tổng lương Gross</div></div>
+                <div class="kpi-box" style="border-top:3px solid #ef4444"><div class="kv" id="kTNCN" style="color:#ef4444">–</div><div class="kl">🧾 Tổng thuế TNCN</div></div>
+                <div class="kpi-box" style="border-top:3px solid #16a34a"><div class="kv" id="kNet" style="color:#16a34a">–</div><div class="kl">💵 Tổng lương Net</div></div>
+                <div class="kpi-box" style="border-top:3px solid #3b82f6"><div class="kv" id="kBH" style="color:#3b82f6">–</div><div class="kl">🏥 Tổng BHXH/YT/TN</div></div>
+            </div>
+
+            <!-- Bảng lương TNCN -->
+            <div class="admin-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-table" style="color:#7c3aed;margin-right:.4rem"></i> Bảng lương & Tính thuế TNCN</h2>
+                    <div style="display:flex;gap:.5rem">
+                        <select id="filterDept" class="form-select" style="padding:.3rem .6rem;font-size:.82rem;width:auto" onchange="renderPayroll()">
+                            <option value="">Tất cả phòng ban</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="overflow-x:auto">
+                    <table id="payrollTable">
+                        <thead><tr>
+                            <th>Họ tên</th><th>Chức vụ / Phòng ban</th>
+                            <th style="text-align:right">Lương Gross</th>
+                            <th style="text-align:right">BHXH(8%)</th>
+                            <th style="text-align:right">BHYT(1.5%)</th>
+                            <th style="text-align:right">BHTN(1%)</th>
+                            <th style="text-align:right">Giảm trừ GT</th>
+                            <th style="text-align:right">TN chịu thuế</th>
+                            <th style="text-align:right">Thuế TNCN</th>
+                            <th style="text-align:right">Lương Net</th>
+                            <th style="text-align:center">Bậc</th>
+                            <th></th>
+                        </tr></thead>
+                        <tbody id="payrollBody"></tbody>
+                        <tfoot id="payrollFoot"></tfoot>
+                    </table>
+                </div>
+                <div style="padding:.75rem 1rem;background:#f0fdf4;font-size:.72rem;color:#166534;border-top:1px solid var(--admin-border)">
+                    <strong>Cơ sở pháp lý:</strong>
+                    Luật Thuế TNCN 04/2007/QH12 (sửa đổi bổ sung 2012, 2014) ·
+                    Nghị định 65/2013/NĐ-CP · Thông tư 111/2013/TT-BTC ·
+                    Giảm trừ bản thân: <strong>11.000.000 đ/tháng</strong> ·
+                    Giảm trừ người phụ thuộc: <strong>4.400.000 đ/người/tháng</strong> ·
+                    BHXH tối đa tính trên <strong>20 lần lương cơ sở</strong>
+                </div>
+            </div>
+
+            <!-- Biểu thuế lũy tiến -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                <div class="admin-panel">
+                    <div class="panel-header"><h2><i class="fa-solid fa-percent" style="color:#ef4444;margin-right:.4rem"></i> Biểu thuế TNCN lũy tiến (7 bậc)</h2></div>
+                    <div id="ratesTable"></div>
+                </div>
+
+                <!-- TNCN Calculator -->
+                <div class="calc-box">
+                    <h3 style="font-size:.9rem;font-weight:700;margin-bottom:1rem"><i class="fa-solid fa-calculator" style="color:#7c3aed;margin-right:.4rem"></i> Tính thuế TNCN nhanh</h3>
+                    <div class="form-group">
+                        <label class="form-label">Lương Gross (VNĐ/tháng)</label>
+                        <input id="calcGross" class="form-input" type="number" value="28000000" step="500000" oninput="calcQuick()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Số người phụ thuộc</label>
+                        <input id="calcDep" class="form-input" type="number" value="1" min="0" max="10" oninput="calcQuick()">
+                    </div>
+                    <div id="calcResult" style="font-size:.82rem;line-height:2"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal thêm nhân viên -->
+<div class="modal-overlay" id="empModal">
+    <div class="modal-box" style="max-width:520px">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-user-plus" style="color:#7c3aed;margin-right:.4rem"></i> Thêm nhân viên mới</h3>
+            <button onclick="closeEmp()" style="background:none;border:none;cursor:pointer;font-size:1.1rem"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                <div class="form-group" style="grid-column:1/-1">
+                    <label class="form-label">Họ tên đầy đủ *</label>
+                    <input id="empName" class="form-input" type="text" placeholder="Nguyễn Văn A">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Chức vụ *</label>
+                    <input id="empPos" class="form-input" type="text" placeholder="Kỹ sư Solar">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phòng ban</label>
+                    <select id="empDept" class="form-select">
+                        <option>Kỹ thuật</option>
+                        <option>Kinh doanh</option>
+                        <option>Tài chính – Kế toán</option>
+                        <option>Hành chính</option>
+                        <option>Ban lãnh đạo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Lương Gross (VNĐ/tháng) *</label>
+                    <input id="empSalary" class="form-input" type="number" placeholder="15000000" step="500000">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Số người phụ thuộc</label>
+                    <input id="empDep" class="form-input" type="number" value="0" min="0" max="10">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input id="empEmail" class="form-input" type="email" placeholder="nv@nlpgroup.com.vn">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Số điện thoại</label>
+                    <input id="empPhone" class="form-input" type="tel" placeholder="09xx xxx xxx">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="closeEmp()" class="btn btn-secondary">Huỷ</button>
+            <button onclick="saveEmp()" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu nhân viên</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/admin.js"></script>
+<script>
+let DB = {};
+
+async function loadDB() {
+    const r = await fetch('../admin/db.json?' + Date.now());
+    DB = await r.json();
+    buildDeptFilter();
+    renderPayroll();
+    renderRates();
+    calcQuick();
+}
+
+function calcTNCN(gross, dep) {
+    const gt = DB.finance?.giam_tru || { ban_than:11000000, phu_thuoc:4400000, bhxh_rate:0.08, bhyt_rate:0.015, bhtn_rate:0.01 };
+    const maxBH = 36000000;
+    const base  = Math.min(gross, maxBH);
+    const bhxh  = base * gt.bhxh_rate;
+    const bhyt  = base * gt.bhyt_rate;
+    const bhtn  = base * gt.bhtn_rate;
+    const bh    = bhxh + bhyt + bhtn;
+    const giam  = gt.ban_than + dep * gt.phu_thuoc;
+    const tnct  = Math.max(0, gross - bh - giam);
+    let thue = 0, bac = 0;
+    const rates = DB.finance?.tncn_rates || [];
+    let remaining = tnct;
+    for(const rt of rates) {
+        const band = rt.den - rt.tu;
+        if(remaining <= 0) break;
+        const chunk = Math.min(remaining, band);
+        thue += chunk * rt.thue_suat / 100;
+        if(chunk > 0) bac = rt.bac;
+        remaining -= chunk;
+    }
+    return { gross, bhxh, bhyt, bhtn, bh, giam, tnct, thue: Math.round(thue), net: Math.round(gross - bh - thue), bac };
+}
+
+function buildDeptFilter() {
+    const emps  = DB.employees || [];
+    const depts = [...new Set(emps.map(e => e.department))];
+    const sel   = g('filterDept');
+    if(sel.options.length === 1) depts.forEach(d => { const o=document.createElement('option'); o.value=d; o.textContent=d; sel.appendChild(o); });
+}
+
+function renderPayroll() {
+    const emps   = DB.employees || [];
+    const deptF  = g('filterDept')?.value || '';
+    const filtered = emps.filter(e => !deptF || e.department === deptF);
+    let tGross=0, tTNCN=0, tNet=0, tBH=0;
+
+    g('payrollBody').innerHTML = filtered.map(e => {
+        const t = calcTNCN(e.salary_gross, e.dependants);
+        tGross += t.gross; tTNCN += t.thue; tNet += t.net; tBH += t.bh;
+        const taxColor = t.thue > 0 ? '#ef4444' : '#9ca3af';
+        return `<tr>
+            <td><strong>${e.name}</strong></td>
+            <td><span style="font-size:.78rem">${e.position}</span><br><span class="dept-tag">${e.department}</span></td>
+            <td style="text-align:right;font-weight:700">${fmt(t.gross)}</td>
+            <td style="text-align:right;font-size:.78rem;color:#ef4444">${fmt(t.bhxh)}</td>
+            <td style="text-align:right;font-size:.78rem;color:#ef4444">${fmt(t.bhyt)}</td>
+            <td style="text-align:right;font-size:.78rem;color:#ef4444">${fmt(t.bhtn)}</td>
+            <td style="text-align:right;font-size:.78rem;color:#7c3aed">${fmt(t.giam)}<br><span style="font-size:.68rem;color:#9ca3af">${e.dependants} PT</span></td>
+            <td style="text-align:right">${fmt(t.tnct)}</td>
+            <td style="text-align:right;color:${taxColor};font-weight:700">${t.thue > 0 ? fmt(t.thue) : '–'}</td>
+            <td style="text-align:right;font-weight:800;color:#16a34a">${fmt(t.net)}</td>
+            <td style="text-align:center">${t.thue > 0 ? `<span class="bac-badge">${t.bac}</span>` : '–'}</td>
+            <td><button class="btn btn-secondary btn-sm" onclick="showPayslip('${e.id}')"><i class="fa-solid fa-file-invoice"></i></button></td>
+        </tr>`;
+    }).join('') || '<tr><td colspan="12" style="text-align:center;padding:2rem;color:#9ca3af">Không có nhân viên.</td></tr>';
+
+    g('payrollFoot').innerHTML = `<tr class="tfoot-row">
+        <td colspan="2" style="font-weight:700">TỔNG CỘNG (${filtered.length} NV)</td>
+        <td style="text-align:right">${fmt(tGross)}</td>
+        <td colspan="3" style="text-align:right;color:#ef4444">${fmt(tBH)}</td>
+        <td></td><td></td>
+        <td style="text-align:right;color:#ef4444;font-weight:700">${fmt(tTNCN)}</td>
+        <td style="text-align:right;color:#16a34a;font-weight:800">${fmt(tNet)}</td>
+        <td colspan="2"></td>
+    </tr>`;
+
+    g('kEmp').textContent  = emps.length;
+    g('kGross').textContent= fmtShort(emps.reduce((a,e)=>a+e.salary_gross,0));
+    g('kTNCN').textContent = fmtShort(emps.reduce((a,e)=>a+calcTNCN(e.salary_gross,e.dependants).thue,0));
+    g('kNet').textContent  = fmtShort(emps.reduce((a,e)=>a+calcTNCN(e.salary_gross,e.dependants).net,0));
+    g('kBH').textContent   = fmtShort(emps.reduce((a,e)=>a+calcTNCN(e.salary_gross,e.dependants).bh,0));
+}
+
+function renderRates() {
+    const rates = DB.finance?.tncn_rates || [];
+    const colors = ['#16a34a','#84cc16','#f59e0b','#f97316','#ef4444','#dc2626','#b91c1c'];
+    g('ratesTable').innerHTML = rates.map((r,i) => `
+    <div class="rate-bar">
+        <div class="rate-swatch" style="background:${colors[i]}"></div>
+        <div style="flex:1">
+            <strong>${r.mo_ta}</strong>
+        </div>
+        <div style="font-weight:800;font-size:.9rem;color:${colors[i]};width:3rem;text-align:right">${r.thue_suat}%</div>
+    </div>`).join('');
+}
+
+function calcQuick() {
+    const gross = parseFloat(g('calcGross')?.value || 0);
+    const dep   = parseInt(g('calcDep')?.value   || 0);
+    if(!gross) return;
+    const t = calcTNCN(gross, dep);
+    const el = g('calcResult');
+    if(!el) return;
+    el.innerHTML = `
+        <div style="background:#fff;border:1.5px solid var(--admin-border);border-radius:.5rem;padding:.875rem;font-size:.82rem">
+            <div style="display:grid;grid-template-columns:1fr auto;gap:.2rem .75rem">
+                <span style="color:#57606a">Lương Gross</span><strong>${fmt(t.gross)}</strong>
+                <span style="color:#ef4444">— BHXH (8%)</span><span style="color:#ef4444">(${fmt(t.bhxh)})</span>
+                <span style="color:#ef4444">— BHYT (1.5%)</span><span style="color:#ef4444">(${fmt(t.bhyt)})</span>
+                <span style="color:#ef4444">— BHTN (1%)</span><span style="color:#ef4444">(${fmt(t.bhtn)})</span>
+                <span style="color:#7c3aed">— Giảm trừ gia cảnh</span><span style="color:#7c3aed">(${fmt(t.giam)})</span>
+                <span style="color:#57606a;border-top:1px dashed #e5e7eb;padding-top:.2rem">TN tính thuế</span>
+                <strong style="border-top:1px dashed #e5e7eb;padding-top:.2rem">${fmt(t.tnct)}</strong>
+                <span style="color:#ef4444;font-weight:600">Thuế TNCN ${t.bac > 0 ? '(Bậc '+t.bac+')' : ''}</span>
+                <span style="color:#ef4444;font-weight:700">${t.thue > 0 ? fmt(t.thue) : '0'}</span>
+            </div>
+            <div style="margin-top:.75rem;background:#f0fdf4;border-radius:.375rem;padding:.6rem .875rem;display:flex;justify-content:space-between;align-items:center">
+                <span style="font-weight:700;color:#0f172a">Lương NET nhận:</span>
+                <strong style="font-size:1rem;color:#16a34a">${fmt(t.net)}</strong>
+            </div>
+        </div>`;
+}
+
+function showPayslip(id) {
+    const e = (DB.employees||[]).find(x=>x.id===id);
+    if(!e) return;
+    const t = calcTNCN(e.salary_gross, e.dependants);
+    showAlert(`📋 Phiếu lương ${e.name}: Gross ${fmt(e.salary_gross)} → Net ${fmt(t.net)} | Thuế TNCN ${fmt(t.thue)}`, 'success');
+}
+function exportExcel() { showAlert('📊 Xuất bảng lương → file .xlsx. Cần backend Node.js + ExcelJS để tạo file thực.', 'success'); }
+function openNewEmp()  { g('empModal').style.display='flex'; }
+function closeEmp()    { g('empModal').style.display='none'; }
+function saveEmp() {
+    const name = g('empName').value.trim();
+    const sal  = parseFloat(g('empSalary').value);
+    if(!name || !sal) { alert('Vui lòng điền họ tên và lương.'); return; }
+    closeEmp();
+    showAlert(`✅ Nhân viên "${name}" đã được thêm vào hệ thống. (Demo — cần backend để lưu vĩnh viễn)`, 'success');
+}
+
+function g(id)        { return document.getElementById(id); }
+function fmt(n)       { return Math.round(n||0).toLocaleString('vi-VN') + ' đ'; }
+function fmtShort(n)  { return n>=1e9?(n/1e9).toFixed(1)+'T':n>=1e6?(n/1e6).toFixed(1)+'M':fmt(n); }
+function showAlert(msg,type='success') {
+    const el=g('adminAlert'); el.className='alert alert-'+type; el.textContent=msg; el.style.display='block';
+    setTimeout(()=>el.style.display='none',5000);
+}
+function doLogout() { localStorage.removeItem('nlpgroup_admin_auth'); window.location.href='login.html'; }
+document.addEventListener('DOMContentLoaded',()=>{
+    const btn=g('sidebarToggle'); if(btn){btn.style.display='block';btn.addEventListener('click',()=>g('sidebar').classList.toggle('open'));}
+    loadDB();
+});
+</script>
+</body>
+</html>

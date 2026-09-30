@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đối tác – NLP Group Admin</title>
+    <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <style>
+        .dot{display:inline-block;width:.5rem;height:.5rem;border-radius:50%;margin-right:.3rem}
+        .dot-green{background:#16a34a}.dot-red{background:#ef4444}.dot-yellow{background:#f59e0b}
+        .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;margin-bottom:1.25rem}
+        .kpi-box{background:#fff;border:1.5px solid var(--admin-border);border-radius:.75rem;padding:.875rem 1rem;text-align:center}
+        .kpi-box .kv{font-size:1.3rem;font-weight:900;line-height:1}
+        .kpi-box .kl{font-size:.68rem;color:var(--admin-muted);margin-top:.2rem}
+        .roi-panel{background:#f7f8fa;border:1.5px solid var(--admin-border);border-radius:.75rem;padding:1.25rem}
+        .roi-result{background:#fff;border:1.5px solid #bbf7d0;border-radius:.75rem;padding:1rem;font-size:.82rem}
+        .roi-row{display:flex;justify-content:space-between;align-items:baseline;padding:.3rem 0;border-bottom:1px solid #f0f0f0;font-size:.82rem}
+        .roi-row:last-child{border:none;font-weight:800;font-size:.9rem;padding-top:.5rem}
+        .payback-bar{height:.5rem;border-radius:9999px;background:#e5e7eb;margin:.5rem 0;overflow:hidden}
+        .payback-fill{height:100%;border-radius:9999px;background:linear-gradient(90deg,#16a34a,#22c55e);transition:width .4s}
+        @media(max-width:900px){.kpi-row{grid-template-columns:repeat(3,1fr)}}
+    </style>
+</head>
+<body>
+<div class="admin-layout">
+
+    <aside class="admin-sidebar" id="sidebar">
+        <div class="brand">NLP <span>GROUP</span> <span style="font-size:.6rem;font-weight:400;color:#57606a;margin-left:4px">Business Suite</span></div>
+        <nav>
+            <div class="nav-section">Dashboard</div>
+            <a href="index.html"><i class="fa-solid fa-gauge-high fa-fw"></i> Tổng quan</a>
+            <div class="nav-section">Kinh doanh</div>
+            <a href="leads.html"><i class="fa-solid fa-user-group fa-fw"></i> Leads & CRM</a>
+            <a href="stations.html"><i class="fa-solid fa-charging-station fa-fw"></i> Trạm sạc</a>
+            <a href="partners.html" class="active"><i class="fa-solid fa-handshake fa-fw"></i> Đối tác</a>
+            <a href="nfc.html"><i class="fa-solid fa-id-card fa-fw"></i> NFC Manager</a>
+            <div class="nav-section">Tài chính</div>
+            <a href="finance.html"><i class="fa-solid fa-chart-pie fa-fw"></i> BCTC (B01–B09)</a>
+            <a href="employees.html"><i class="fa-solid fa-users-gear fa-fw"></i> HR & Thuế TNCN</a>
+            <div class="nav-section">Nội dung</div>
+            <a href="pages.html"><i class="fa-solid fa-file-lines fa-fw"></i> Quản lý trang</a>
+            <div class="nav-section">Hệ thống</div>
+            <a href="settings.html"><i class="fa-solid fa-gear fa-fw"></i> Cài đặt</a>
+            <div style="flex:1"></div>
+            <div class="nav-section">Tài khoản</div>
+            <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i> Xem site</a>
+            <a href="#" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Đăng xuất</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <div style="display:flex;align-items:center;gap:.75rem">
+                <button id="sidebarToggle" style="display:none;background:none;border:none;font-size:1.1rem;cursor:pointer;color:#57606a"><i class="fa-solid fa-bars"></i></button>
+                <div>
+                    <h1 style="margin:0"><i class="fa-solid fa-handshake" style="color:#16a34a"></i> Đối tác Nhượng quyền</h1>
+                    <p style="margin:0;font-size:.72rem;color:#57606a">Mô hình chia sẻ 80% lợi nhuận · Đối soát & thanh toán hàng tuần</p>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-secondary btn-sm" onclick="loadDB()"><i class="fa-solid fa-rotate-right"></i> Làm mới</button>
+                <button class="btn btn-primary btn-sm" onclick="openNewPartner()"><i class="fa-solid fa-plus"></i> Thêm đối tác</button>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <div id="adminAlert" class="alert"></div>
+
+            <!-- KPIs -->
+            <div class="kpi-row">
+                <div class="kpi-box" style="border-top:3px solid #16a34a"><div class="kv" id="kPTotal" style="color:#16a34a">–</div><div class="kl">🤝 Tổng đối tác</div></div>
+                <div class="kpi-box" style="border-top:3px solid #3b82f6"><div class="kv" id="kPActive" style="color:#3b82f6">–</div><div class="kl">✅ Đang hoạt động</div></div>
+                <div class="kpi-box" style="border-top:3px solid #7c3aed"><div class="kv" id="kPInvest" style="color:#7c3aed">–</div><div class="kl">💰 Tổng vốn đầu tư</div></div>
+                <div class="kpi-box" style="border-top:3px solid #0d9488"><div class="kv" id="kPRevTotal" style="color:#0d9488">–</div><div class="kl">📈 Tổng doanh thu</div></div>
+                <div class="kpi-box" style="border-top:3px solid #f97316"><div class="kv" id="kPShare" style="color:#f97316">–</div><div class="kl">💸 80% đã thanh toán ĐT</div></div>
+            </div>
+
+            <!-- Partners table -->
+            <div class="admin-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-list" style="color:#16a34a;margin-right:.4rem"></i> Danh sách đối tác (<span id="ptCount">0</span>)</h2>
+                    <div style="display:flex;gap:.5rem">
+                        <select id="filterProvince" class="form-select" style="padding:.3rem .6rem;font-size:.82rem;width:auto" onchange="renderPartners()">
+                            <option value="">Tất cả tỉnh</option>
+                        </select>
+                        <select id="filterStatus" class="form-select" style="padding:.3rem .6rem;font-size:.82rem;width:auto" onchange="renderPartners()">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="overflow-x:auto">
+                    <table>
+                        <thead><tr>
+                            <th>Tên đối tác</th><th>Người liên hệ</th><th>Tỉnh</th>
+                            <th style="text-align:center">Trạm</th>
+                            <th style="text-align:right">Vốn đầu tư</th>
+                            <th style="text-align:center">Chia sẻ LN</th>
+                            <th style="text-align:right">Tổng DT</th>
+                            <th style="text-align:right">80% cho ĐT</th>
+                            <th>Ngày tham gia</th>
+                            <th>Trạng thái</th>
+                            <th></th>
+                        </tr></thead>
+                        <tbody id="ptBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ROI Calculator + Partner performance -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                <!-- ROI Calculator -->
+                <div class="roi-panel">
+                    <h3 style="font-size:.9rem;font-weight:700;margin-bottom:1rem"><i class="fa-solid fa-calculator" style="color:#f97316;margin-right:.4rem"></i> ROI Calculator — Trạm sạc DC</h3>
+                    <div class="form-group">
+                        <label class="form-label">Loại trạm đầu tư</label>
+                        <select id="roiModel" class="form-select" onchange="calcROI()">
+                            <option value="dc120">DC 120kW (2 cổng) — 320 triệu</option>
+                            <option value="dc240">DC 240kW (4 cổng) — 580 triệu</option>
+                            <option value="ac22">AC 22kW (4 cổng) — 45 triệu</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Số phiên sạc trung bình / ngày</label>
+                        <input id="roiSessions" class="form-input" type="number" value="20" min="1" oninput="calcROI()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">kWh trung bình / phiên</label>
+                        <input id="roiKwh" class="form-input" type="number" value="35" min="5" oninput="calcROI()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Giá điện bình quân (đ/kWh)</label>
+                        <input id="roiPrice" class="form-input" type="number" value="4984" oninput="calcROI()">
+                    </div>
+                    <div id="roiResult" class="roi-result"></div>
+                </div>
+
+                <!-- Top performers -->
+                <div class="admin-panel" style="margin:0">
+                    <div class="panel-header"><h2><i class="fa-solid fa-trophy" style="color:#f59e0b;margin-right:.4rem"></i> Bảng xếp hạng đối tác</h2></div>
+                    <div id="rankBody" style="padding:.5rem 0"></div>
+                </div>
+            </div>
+
+            <!-- Weekly payout preview -->
+            <div class="admin-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-money-bill-transfer" style="color:#0d9488;margin-right:.4rem"></i> Đối soát thanh toán tuần này</h2>
+                    <button class="btn btn-secondary btn-sm" onclick="exportPayout()"><i class="fa-solid fa-file-excel"></i> Xuất bảng TT</button>
+                </div>
+                <div style="overflow-x:auto">
+                    <table>
+                        <thead><tr><th>Đối tác</th><th>Tỉnh</th><th style="text-align:right">DT tuần (est.)</th><th style="text-align:right">80% thanh toán</th><th style="text-align:right">Số trạm</th><th>Trạng thái TT</th></tr></thead>
+                        <tbody id="payoutBody"></tbody>
+                    </table>
+                </div>
+                <div style="padding:.75rem 1rem;background:#f0fdf4;font-size:.72rem;color:#166534;border-top:1px solid var(--admin-border)">
+                    <strong>Quy trình đối soát:</strong> Thứ Hai hàng tuần → Hệ thống tổng hợp doanh thu OCPP → Tính 80% → Chuyển khoản tự động hoặc xuất file thanh toán → Đối tác nhận báo cáo qua app NLP INVESTOR
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal thêm đối tác -->
+<div class="modal-overlay" id="ptModal">
+    <div class="modal-box" style="max-width:540px">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-handshake" style="color:#16a34a;margin-right:.4rem"></i> Thêm đối tác mới</h3>
+            <button onclick="closePt()" style="background:none;border:none;cursor:pointer;font-size:1.1rem"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                <div class="form-group" style="grid-column:1/-1">
+                    <label class="form-label">Tên doanh nghiệp / Hộ kinh doanh *</label>
+                    <input id="ptName" class="form-input" type="text" placeholder="Công ty TNHH ABC">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Người liên hệ *</label>
+                    <input id="ptContact" class="form-input" type="text" placeholder="Nguyễn Văn A">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Số điện thoại *</label>
+                    <input id="ptPhone" class="form-input" type="tel" placeholder="09xx xxx xxx">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tỉnh / Thành phố *</label>
+                    <input id="ptProvince" class="form-input" type="text" placeholder="TP.HCM">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Loại trạm đầu tư</label>
+                    <select id="ptModel" class="form-select">
+                        <option value="320000000">DC 120kW — 320 triệu</option>
+                        <option value="580000000">DC 240kW — 580 triệu</option>
+                        <option value="45000000">AC 22kW — 45 triệu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Số trạm đăng ký</label>
+                    <input id="ptStations" class="form-input" type="number" value="1" min="1">
+                </div>
+            </div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:.5rem;padding:.75rem;font-size:.75rem;color:#166534">
+                <strong>Điều khoản chuẩn:</strong> Chia sẻ <strong>80% lợi nhuận/kWh</strong> · Thanh toán hàng tuần · Bảo hành thiết bị 5 năm · Hỗ trợ kỹ thuật 24/7 · App NLP INVESTOR miễn phí
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="closePt()" class="btn btn-secondary">Huỷ</button>
+            <button onclick="savePt()" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Ký hợp đồng</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/admin.js"></script>
+<script>
+let DB = {};
+const MODELS = {
+    dc120: { label: 'DC 120kW', invest: 320000000, ports: 2 },
+    dc240: { label: 'DC 240kW', invest: 580000000, ports: 4 },
+    ac22:  { label: 'AC 22kW',  invest: 45000000,  ports: 4 },
+};
+
+async function loadDB() {
+    const r = await fetch('../admin/db.json?' + Date.now());
+    DB = await r.json();
+    buildFilters();
+    renderKPI();
+    renderPartners();
+    renderRanking();
+    renderPayout();
+    calcROI();
+}
+
+function buildFilters() {
+    const pts   = DB.partners || [];
+    const provs = [...new Set(pts.map(p=>p.province))];
+    const sel   = g('filterProvince');
+    if(sel.options.length===1) provs.forEach(p=>{ const o=document.createElement('option'); o.value=p; o.textContent=p; sel.appendChild(o); });
+}
+
+function renderKPI() {
+    const pts = DB.partners || [];
+    const act = pts.filter(p=>p.status==='active');
+    const totalRev   = pts.reduce((a,p)=>a+p.revenue_total,0);
+    const totalInv   = pts.reduce((a,p)=>a+p.investment*p.stations,0);
+    const totalShare = Math.round(totalRev * 0.8);
+    g('kPTotal').textContent   = pts.length;
+    g('kPActive').textContent  = act.length;
+    g('kPInvest').textContent  = fmtShort(totalInv);
+    g('kPRevTotal').textContent= fmtShort(totalRev);
+    g('kPShare').textContent   = fmtShort(totalShare);
+}
+
+function renderPartners() {
+    const pts    = DB.partners || [];
+    const provF  = g('filterProvince')?.value || '';
+    const statF  = g('filterStatus')?.value   || '';
+    const f = pts.filter(p => (!provF||p.province===provF) && (!statF||p.status===statF));
+    g('ptCount').textContent = f.length;
+    g('ptBody').innerHTML = f.map(p => {
+        const share80 = Math.round(p.revenue_total * 0.8);
+        const sc = p.status==='active' ? 'dot-green' : 'dot-red';
+        const sl = p.status==='active' ? 'Active' : 'Inactive';
+        // payback months
+        const monthlyEst = p.revenue_total > 0 ? p.revenue_total / Math.max(1, Math.ceil((new Date()-new Date(p.joined_at))/(1000*60*60*24*30))) : 0;
+        const payback = monthlyEst > 0 ? (p.investment * p.stations / (monthlyEst * 0.8)).toFixed(1) : '–';
+        return `<tr>
+            <td><strong>${p.name}</strong></td>
+            <td>${p.contact}<br><a href="tel:${p.phone}" style="color:#3b82f6;font-size:.78rem">${p.phone}</a></td>
+            <td>${p.province}</td>
+            <td style="text-align:center;font-weight:700">${p.stations}</td>
+            <td style="text-align:right">${fmtShort(p.investment * p.stations)}</td>
+            <td style="text-align:center;font-weight:700;color:#7c3aed">${p.profit_share}%</td>
+            <td style="text-align:right;font-weight:700">${p.revenue_total > 0 ? fmtShort(p.revenue_total) : '<span style="color:#9ca3af">–</span>'}</td>
+            <td style="text-align:right;font-weight:700;color:#16a34a">${share80 > 0 ? fmtShort(share80) : '<span style="color:#9ca3af">–</span>'}</td>
+            <td style="font-size:.78rem">${p.joined_at}</td>
+            <td><span class="dot ${sc}"></span><span style="font-size:.78rem;font-weight:600">${sl}</span></td>
+            <td>
+                <button class="btn btn-secondary btn-sm" onclick="viewPartner('${p.id}')" title="Chi tiết"><i class="fa-solid fa-eye"></i></button>
+                <button class="btn btn-primary btn-sm" onclick="sendPayout('${p.id}')" title="Gửi thanh toán"><i class="fa-solid fa-money-bill"></i></button>
+            </td>
+        </tr>`;
+    }).join('') || '<tr><td colspan="11" style="text-align:center;padding:2rem;color:#9ca3af">Không có đối tác.</td></tr>';
+}
+
+function renderRanking() {
+    const pts = (DB.partners||[]).filter(p=>p.revenue_total>0)
+        .sort((a,b)=>b.revenue_total-a.revenue_total).slice(0,5);
+    const max = pts[0]?.revenue_total || 1;
+    g('rankBody').innerHTML = pts.map((p,i) => {
+        const pct = Math.round(p.revenue_total/max*100);
+        const medals = ['🥇','🥈','🥉','4️⃣','5️⃣'];
+        return `<div style="padding:.6rem 1rem;border-bottom:1px solid #f3f4f6">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem;font-size:.82rem">
+                <span>${medals[i]} <strong>${p.name.substring(0,28)}</strong></span>
+                <span style="color:#16a34a;font-weight:700">${fmtShort(p.revenue_total)}</span>
+            </div>
+            <div style="height:.35rem;background:#e5e7eb;border-radius:9999px;overflow:hidden">
+                <div style="height:100%;width:${pct}%;background:#16a34a;border-radius:9999px"></div>
+            </div>
+        </div>`;
+    }).join('') || '<div style="padding:1.5rem;text-align:center;color:#9ca3af">Chưa có dữ liệu.</div>';
+}
+
+function renderPayout() {
+    const pts = (DB.partners||[]).filter(p=>p.status==='active'&&p.revenue_total>0);
+    g('payoutBody').innerHTML = pts.map(p => {
+        const months  = Math.max(1, Math.ceil((new Date()-new Date(p.joined_at))/(1000*60*60*24*30)));
+        const weekEst = Math.round(p.revenue_total / months / 4);
+        const pay80   = Math.round(weekEst * 0.8);
+        return `<tr>
+            <td><strong>${p.name}</strong></td>
+            <td>${p.province}</td>
+            <td style="text-align:right">${fmtShort(weekEst)}</td>
+            <td style="text-align:right;font-weight:700;color:#16a34a">${fmtShort(pay80)}</td>
+            <td style="text-align:center">${p.stations}</td>
+            <td><span style="background:#dcfce7;color:#15803d;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:9999px">Chờ duyệt</span></td>
+        </tr>`;
+    }).join('') || '<tr><td colspan="6" style="text-align:center;padding:1.5rem;color:#9ca3af">Không có đối tác cần thanh toán.</td></tr>';
+}
+
+function calcROI() {
+    const model   = MODELS[g('roiModel')?.value || 'dc120'];
+    const sessions= parseFloat(g('roiSessions')?.value || 20);
+    const kwh     = parseFloat(g('roiKwh')?.value     || 35);
+    const price   = parseFloat(g('roiPrice')?.value   || 4984);
+    const revDay  = sessions * kwh * price;
+    const revMo   = revDay * 30;
+    const share80 = revMo * 0.8;
+    const payback = model.invest / share80;
+    const roi12   = (share80 * 12 / model.invest * 100).toFixed(1);
+    const pctFill = Math.min(100, Math.round(100 / payback * 12));
+    const el = g('roiResult');
+    if(!el) return;
+    el.innerHTML = `
+        <div style="font-weight:700;color:#16a34a;margin-bottom:.75rem">📊 ${model.label} — Vốn đầu tư: ${fmtShort(model.invest)}</div>
+        <div class="roi-row"><span>Doanh thu / ngày</span><strong>${fmtShort(revDay)}</strong></div>
+        <div class="roi-row"><span>Doanh thu / tháng</span><strong>${fmtShort(revMo)}</strong></div>
+        <div class="roi-row"><span style="color:#7c3aed">80% cho đối tác / tháng</span><strong style="color:#7c3aed">${fmtShort(share80)}</strong></div>
+        <div class="roi-row"><span style="color:#7c3aed">80% cho đối tác / năm</span><strong style="color:#7c3aed">${fmtShort(share80*12)}</strong></div>
+        <div class="roi-row" style="border-bottom:1px dashed #e5e7eb">
+            <span>Thời gian hoàn vốn</span>
+            <strong style="color:${payback<=24?'#16a34a':'#f59e0b'}">${payback.toFixed(1)} tháng</strong>
+        </div>
+        <div style="margin:.5rem 0">
+            <div style="display:flex;justify-content:space-between;font-size:.75rem;color:#57606a;margin-bottom:.25rem">
+                <span>Tiến độ hoàn vốn (12 tháng)</span><span>${pctFill}%</span>
+            </div>
+            <div class="payback-bar"><div class="payback-fill" style="width:${pctFill}%"></div></div>
+        </div>
+        <div class="roi-row"><span><strong>ROI năm 1</strong></span><strong style="font-size:1rem;color:#16a34a">${roi12}%</strong></div>`;
+}
+
+function viewPartner(id) {
+    const p = (DB.partners||[]).find(x=>x.id===id);
+    if(!p) return;
+    showAlert(`👤 ${p.name} · ${p.province} · Doanh thu: ${fmtShort(p.revenue_total)} · 80% = ${fmtShort(Math.round(p.revenue_total*.8))}`, 'success');
+}
+function sendPayout(id) {
+    const p = (DB.partners||[]).find(x=>x.id===id);
+    if(!p) return;
+    showAlert(`💸 Đã gửi yêu cầu thanh toán cho ${p.name}. (Demo — cần backend payment gateway)`, 'success');
+}
+function exportPayout() { showAlert('📊 Xuất bảng đối soát thanh toán → file .xlsx. Cần backend.', 'success'); }
+function openNewPartner() { g('ptModal').style.display='flex'; }
+function closePt()        { g('ptModal').style.display='none'; }
+function savePt() {
+    const name = g('ptName').value.trim();
+    if(!name) { alert('Vui lòng điền tên đối tác.'); return; }
+    closePt();
+    showAlert(`✅ Đối tác "${name}" đã được thêm. (Demo — cần backend để lưu vĩnh viễn)`, 'success');
+}
+
+function g(id)        { return document.getElementById(id); }
+function fmtShort(n)  { const v=Math.abs(n||0); return (n<0?'-':'')+(v>=1e9?(v/1e9).toFixed(2)+'T':v>=1e6?(v/1e6).toFixed(1)+'M':v.toLocaleString('vi-VN')+'đ'); }
+function showAlert(msg,type='success') {
+    const el=g('adminAlert'); el.className='alert alert-'+type; el.textContent=msg; el.style.display='block';
+    setTimeout(()=>el.style.display='none',5000);
+}
+function doLogout() { localStorage.removeItem('nlpgroup_admin_auth'); window.location.href='login.html'; }
+document.addEventListener('DOMContentLoaded',()=>{
+    const btn=g('sidebarToggle'); if(btn){btn.style.display='block';btn.addEventListener('click',()=>g('sidebar').classList.toggle('open'));}
+    loadDB();
+});
+</script>
+</body>
+</html>

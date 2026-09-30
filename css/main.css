@@ -125,3 +125,54 @@
 .fab-phone { background: #16a34a; bottom: 9rem; }
 .fab-zalo  { background: #0068ff; bottom: 5rem; }
 @media (min-width: 768px) { .fab-btn { bottom: 2rem; } .fab-phone { bottom: 5.5rem; } .fab-zalo { bottom: 2rem; } }
+
+/* ── WOW.js / Scroll reveal helpers ───────────────── */
+.wow { visibility: hidden; }
+[data-wow-duration] { animation-duration: var(--wow-duration, .8s); }
+
+/* ── Swiper overrides ─────────────────────────────── */
+.swiper-pagination-bullet { background: #16a34a !important; opacity: .4; }
+.swiper-pagination-bullet-active { opacity: 1 !important; background: #16a34a !important; }
+.swiper-button-next,
+.swiper-button-prev { color: #16a34a !important; }
+.swiper-button-next::after,
+.swiper-button-prev::after { font-size: 1.2rem !important; }
+
+/* ── Station map page ─────────────────────────────── */
+#station-map { width: 100%; height: 500px; border-radius: 1.25rem; overflow: hidden; }
+@media (max-width: 767px) { #station-map { height: 320px; } }
+
+/* ── Pricing table highlight ──────────────────────── */
+.tariff-peak  { color: #dc2626; font-weight: 800; }
+.tariff-norm  { color: #f59e0b; font-weight: 700; }
+.tariff-off   { color: #16a34a; font-weight: 700; }
+.pricing-card-featured {
+    border: 2px solid #16a34a;
+    box-shadow: 0 0 0 6px rgba(22,163,74,.08);
+}
+
+/* ── App page badges ──────────────────────────────── */
+.store-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    background: #1f2328;
+    color: #fff;
+    border-radius: .75rem;
+    padding: .75rem 1.4rem;
+    font-size: .85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+    border: 1.5px solid #374151;
+}
+.store-badge:hover { background: #16a34a; border-color: #16a34a; transform: translateY(-2px); }
+.store-badge i { font-size: 1.8rem; }
+
+/* ── Blog card ────────────────────────────────────── */
+.blog-card { transition: transform .25s, box-shadow .25s; }
+.blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.08); }
+
+/* ── Mobile sticky bar adjustments when present ───── */
+body.has-mobile-bar .fab-phone { bottom: 10rem; }
+body.has-mobile-bar .fab-zalo  { bottom: 6.5rem; }

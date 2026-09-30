@@ -3,31 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin – NLP Group</title>
+    <title>Admin – NLP Group Business Suite</title>
     <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
     <link rel="stylesheet" href="../css/admin.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <style>
+        /* ── KPI strip ── */
+        .kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:.75rem;margin-bottom:1.5rem}
+        .kpi-card{background:#fff;border:1.5px solid #e5e7eb;border-radius:.75rem;padding:1rem .875rem;position:relative;overflow:hidden}
+        .kpi-card::before{content:'';position:absolute;inset:0 0 0 0;border-top:3px solid transparent}
+        .kpi-card.green::before{border-color:#16a34a}.kpi-card.blue::before{border-color:#3b82f6}
+        .kpi-card.orange::before{border-color:#f97316}.kpi-card.purple::before{border-color:#7c3aed}
+        .kpi-card.teal::before{border-color:#0d9488}.kpi-card.red::before{border-color:#ef4444}
+        .kpi-val{font-size:1.5rem;font-weight:900;color:#0f172a;line-height:1}
+        .kpi-lbl{font-size:.72rem;color:#57606a;margin-top:.25rem}
+        .kpi-sub{font-size:.68rem;color:#9ca3af;margin-top:.1rem}
+        /* ── Tab navigation ── */
+        .tab-nav{display:flex;gap:.25rem;border-bottom:2px solid #e5e7eb;margin-bottom:1.25rem;flex-wrap:wrap}
+        .tab-btn{padding:.5rem 1rem;border:none;background:none;cursor:pointer;font-size:.82rem;font-weight:600;color:#57606a;border-bottom:2px solid transparent;margin-bottom:-2px;border-radius:.375rem .375rem 0 0;transition:color .15s,border-color .15s;white-space:nowrap}
+        .tab-btn:hover{color:#0f172a;background:#f7f8fa}
+        .tab-btn.active{color:#16a34a;border-bottom-color:#16a34a;background:#f0fdf4}
+        .tab-pane{display:none}.tab-pane.active{display:block}
+        /* ── Status dots ── */
+        .dot{display:inline-block;width:.5rem;height:.5rem;border-radius:50%;margin-right:.3rem}
+        .dot-green{background:#16a34a}.dot-yellow{background:#f59e0b}.dot-red{background:#ef4444}.dot-gray{background:#9ca3af}
+        /* ── Finance cards ── */
+        .fin-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.875rem;margin-bottom:1rem}
+        .fin-card{background:#f7f8fa;border:1.5px solid #e5e7eb;border-radius:.75rem;padding:1rem}
+        .fin-card h4{font-size:.72rem;font-weight:700;color:#57606a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.75rem}
+        .fin-row{display:flex;justify-content:space-between;align-items:baseline;padding:.25rem 0;border-bottom:1px solid #f0f0f0;font-size:.8rem}
+        .fin-row:last-child{border-bottom:none;font-weight:700;font-size:.85rem}
+        .fin-pos{color:#16a34a;font-weight:700}.fin-neg{color:#ef4444;font-weight:700}
+        /* ── NFC ── */
+        .nfc-uid{font-family:'Courier New',monospace;background:#1e293b;color:#4ade80;padding:.15rem .4rem;border-radius:.25rem;font-size:.75rem}
+        /* ── HR TNCN table ── */
+        .tncn-positive{color:#16a34a;font-weight:600}.tncn-zero{color:#9ca3af}
+        /* ── Charts (CSS bars) ── */
+        .bar-chart{display:flex;align-items:flex-end;gap:4px;height:80px;padding-top:.5rem}
+        .bar{flex:1;background:#16a34a;border-radius:3px 3px 0 0;opacity:.8;min-height:4px;transition:height .3s}
+        .bar:hover{opacity:1}
+        /* ── Realtime pulse ── */
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+        .pulse-dot{animation:pulse 2s ease-in-out infinite}
+        /* ── Responsive ── */
+        @media(max-width:900px){.kpi-strip{grid-template-columns:repeat(3,1fr)}.fin-grid{grid-template-columns:1fr}}
+        @media(max-width:600px){.kpi-strip{grid-template-columns:repeat(2,1fr)}}
+    </style>
 </head>
 <body>
 <div class="admin-layout">
 
     <!-- ── SIDEBAR ──────────────────────────────────── -->
-    <aside class="admin-sidebar">
-        <div class="brand">NLP <span>GROUP</span> <span style="font-size:.65rem;font-weight:400;color:#57606a;margin-left:4px">Admin</span></div>
+    <aside class="admin-sidebar" id="sidebar">
+        <div class="brand">NLP <span>GROUP</span> <span style="font-size:.6rem;font-weight:400;color:#57606a;margin-left:4px">Business Suite</span></div>
         <nav>
             <div class="nav-section">Dashboard</div>
-            <a href="index.html" class="active"><i class="fa-solid fa-house-chimney fa-fw"></i> Tổng quan</a>
+            <a href="index.html" class="active"><i class="fa-solid fa-gauge-high fa-fw"></i> Tổng quan</a>
+
+            <div class="nav-section">Kinh doanh</div>
+            <a href="leads.html"><i class="fa-solid fa-user-group fa-fw"></i> Leads & CRM</a>
+            <a href="stations.html"><i class="fa-solid fa-charging-station fa-fw"></i> Trạm sạc</a>
+            <a href="partners.html"><i class="fa-solid fa-handshake fa-fw"></i> Đối tác</a>
+            <a href="nfc.html"><i class="fa-solid fa-id-card fa-fw"></i> NFC Manager</a>
+
+            <div class="nav-section">Tài chính</div>
+            <a href="finance.html"><i class="fa-solid fa-chart-pie fa-fw"></i> BCTC (B01–B09)</a>
+            <a href="employees.html"><i class="fa-solid fa-users-gear fa-fw"></i> HR & Thuế TNCN</a>
+
             <div class="nav-section">Nội dung</div>
             <a href="pages.html"><i class="fa-solid fa-file-lines fa-fw"></i> Quản lý trang</a>
-            <a href="leads.html"><i class="fa-solid fa-user-group fa-fw"></i> Danh sách leads</a>
-            <div class="nav-section">Cấu hình</div>
-            <a href="settings.html"><i class="fa-solid fa-gear fa-fw"></i> Cài đặt site</a>
-            <div class="nav-section">Trang</div>
-            <a href="../pages/ve-chung-toi/" target="_blank"><i class="fa-solid fa-users fa-fw"></i> Về chúng tôi</a>
-            <a href="../pages/doi-tac/" target="_blank"><i class="fa-solid fa-handshake fa-fw"></i> Đối tác</a>
+
+            <div class="nav-section">Hệ thống</div>
+            <a href="settings.html"><i class="fa-solid fa-gear fa-fw"></i> Cài đặt</a>
             <div style="flex:1"></div>
             <div class="nav-section">Tài khoản</div>
-            <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i> Xem trang chủ</a>
+            <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i> Xem site</a>
             <a href="#" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Đăng xuất</a>
         </nav>
     </aside>
@@ -37,158 +87,711 @@
         <div class="admin-topbar">
             <div style="display:flex;align-items:center;gap:.75rem">
                 <button id="sidebarToggle" style="display:none;background:none;border:none;font-size:1.1rem;cursor:pointer;color:#57606a"><i class="fa-solid fa-bars"></i></button>
-                <h1>Dashboard</h1>
+                <div>
+                    <h1 style="margin:0;font-size:1.1rem">Dashboard <span class="pulse-dot" style="color:#16a34a;font-size:.7rem">● LIVE</span></h1>
+                    <p style="margin:0;font-size:.72rem;color:#57606a" id="lastUpdate">Đang tải...</p>
+                </div>
             </div>
             <div class="topbar-actions">
-                <span style="font-size:.82rem;color:#57606a">Chào, <strong>Admin</strong></span>
-                <a href="../index.html" target="_blank" class="btn btn-secondary btn-sm"><i class="fa-solid fa-external-link-alt"></i> Xem site</a>
+                <span style="font-size:.8rem;color:#57606a">Role: <strong id="currentRole">superadmin</strong></span>
+                <button class="btn btn-secondary btn-sm" onclick="refreshAll()"><i class="fa-solid fa-rotate-right"></i> Làm mới</button>
+                <a href="../index.html" target="_blank" class="btn btn-primary btn-sm"><i class="fa-solid fa-external-link-alt"></i> Xem site</a>
             </div>
         </div>
 
         <div class="admin-content">
             <div id="adminAlert" class="alert"></div>
 
-            <!-- Stats -->
-            <div class="stat-grid">
-                <div class="stat-card">
-                    <div class="stat-label">Tổng trang</div>
-                    <div class="stat-value" id="statTotal">–</div>
-                    <div class="stat-sub">Đã tạo trong db</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Trang active</div>
-                    <div class="stat-value" style="color:#15803d" id="statActive">–</div>
-                    <div class="stat-sub">Đang hiển thị</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Bản nháp</div>
-                    <div class="stat-value" style="color:#854d0e" id="statDraft">–</div>
-                    <div class="stat-sub">Chưa xuất bản</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Leads nhận được</div>
-                    <div class="stat-value" style="color:#3b82d4" id="statLeads">–</div>
-                    <div class="stat-sub">Từ tất cả form</div>
-                </div>
+            <!-- ── KPI STRIP ── -->
+            <div class="kpi-strip" id="kpiStrip">
+                <div class="kpi-card green"><div class="kpi-val" id="kpiOnline">–</div><div class="kpi-lbl">⚡ Trạm online</div><div class="kpi-sub" id="kpiOnlineSub"></div></div>
+                <div class="kpi-card blue"><div class="kpi-val" id="kpiSessions">–</div><div class="kpi-lbl">🔌 Phiên sạc hôm nay</div><div class="kpi-sub" id="kpiSessionsSub"></div></div>
+                <div class="kpi-card orange"><div class="kpi-val" id="kpiRevMonth">–</div><div class="kpi-lbl">💰 Doanh thu tháng</div><div class="kpi-sub">Tất cả trạm</div></div>
+                <div class="kpi-card purple"><div class="kpi-val" id="kpiLeads">–</div><div class="kpi-lbl">👤 Leads mới</div><div class="kpi-sub">Từ tất cả form</div></div>
+                <div class="kpi-card teal"><div class="kpi-val" id="kpiNfc">–</div><div class="kpi-lbl">📱 Thẻ NFC active</div><div class="kpi-sub" id="kpiNfcSub"></div></div>
+                <div class="kpi-card red" id="kpiAlertCard"><div class="kpi-val" id="kpiAlert">–</div><div class="kpi-lbl">⚠️ Cần xử lý</div><div class="kpi-sub">Bảo trì + offline</div></div>
             </div>
 
-            <!-- Pages quick table -->
-            <div class="admin-panel">
-                <div class="panel-header">
-                    <h2><i class="fa-solid fa-file-lines" style="color:#16a34a;margin-right:.4rem"></i> Trang & URL</h2>
-                    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-                        <input id="searchInput" type="text" placeholder="Tìm kiếm…" style="padding:.4rem .75rem;border:1.5px solid #e5e7eb;border-radius:.5rem;font-size:.85rem;outline:none;width:200px">
-                        <button class="btn btn-primary btn-sm" onclick="openNewPage()"><i class="fa-solid fa-plus"></i> Thêm trang</button>
-                        <button class="btn btn-secondary btn-sm" onclick="exportDB()"><i class="fa-solid fa-download"></i> Xuất db.json</button>
+            <!-- ── TAB NAVIGATION ── -->
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="switchTab('overview')"><i class="fa-solid fa-house fa-fw"></i> Tổng quan</button>
+                <button class="tab-btn" onclick="switchTab('stations')"><i class="fa-solid fa-charging-station fa-fw"></i> Trạm sạc</button>
+                <button class="tab-btn" onclick="switchTab('nfc')"><i class="fa-solid fa-id-card fa-fw"></i> NFC</button>
+                <button class="tab-btn" onclick="switchTab('finance')"><i class="fa-solid fa-chart-pie fa-fw"></i> Tài chính</button>
+                <button class="tab-btn" onclick="switchTab('hr')"><i class="fa-solid fa-users fa-fw"></i> HR & TNCN</button>
+                <button class="tab-btn" onclick="switchTab('partners')"><i class="fa-solid fa-handshake fa-fw"></i> Đối tác</button>
+                <button class="tab-btn" onclick="switchTab('leads')"><i class="fa-solid fa-user-group fa-fw"></i> Leads</button>
+            </div>
+
+            <!-- ══════════ TAB: TỔNG QUAN ══════════ -->
+            <div id="tab-overview" class="tab-pane active">
+                <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:1rem;margin-bottom:1rem">
+                    <!-- Doanh thu biểu đồ -->
+                    <div class="admin-panel" style="margin:0">
+                        <div class="panel-header"><h2><i class="fa-solid fa-chart-line" style="color:#16a34a;margin-right:.4rem"></i> Doanh thu 7 ngày</h2></div>
+                        <div style="padding:1rem 1rem 0">
+                            <div class="bar-chart" id="revenueChart"></div>
+                            <div style="display:flex;justify-content:space-between;font-size:.68rem;color:#9ca3af;margin-top:.25rem" id="chartLabels"></div>
+                        </div>
+                    </div>
+                    <!-- Status trạm -->
+                    <div class="admin-panel" style="margin:0">
+                        <div class="panel-header"><h2><i class="fa-solid fa-signal" style="color:#3b82f6;margin-right:.4rem"></i> Trạng thái trạm</h2></div>
+                        <div style="padding:.75rem 1rem" id="stationStatusList"></div>
                     </div>
                 </div>
-                <div style="overflow-x:auto">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Tiêu đề / Mô tả</th>
-                                <th>Slug</th>
-                                <th>URL</th>
-                                <th>Trạng thái</th>
-                                <th>Cập nhật</th>
-                                <th>Hành động</th>
-                            </tr>
-                        </thead>
-                        <tbody id="pagesBody">
-                            <tr><td colspan="6" style="text-align:center;padding:2rem;color:#aaa"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</td></tr>
-                        </tbody>
-                    </table>
+                <!-- Phiên sạc mới nhất -->
+                <div class="admin-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-bolt" style="color:#f59e0b;margin-right:.4rem"></i> Phiên sạc mới nhất</h2>
+                        <a href="stations.html" class="btn btn-secondary btn-sm">Xem tất cả</a>
+                    </div>
+                    <div style="overflow-x:auto"><table><thead><tr><th>Thẻ NFC</th><th>Khách hàng</th><th>Trạm</th><th>kWh</th><th>Thanh toán</th><th>Biểu giá</th><th>Thời gian</th></tr></thead><tbody id="sessionsBody"></tbody></table></div>
                 </div>
-            </div>
-
-            <!-- Recent leads -->
-            <div class="admin-panel">
-                <div class="panel-header">
-                    <h2><i class="fa-solid fa-user-group" style="color:#3b82d4;margin-right:.4rem"></i> Leads gần nhất</h2>
-                    <div style="display:flex;gap:.5rem">
+                <!-- Leads mới nhất -->
+                <div class="admin-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-user-plus" style="color:#7c3aed;margin-right:.4rem"></i> Leads mới nhất</h2>
                         <a href="leads.html" class="btn btn-secondary btn-sm">Xem tất cả</a>
-                        <button class="btn btn-danger btn-sm" onclick="clearLeads()">Xoá tất cả</button>
                     </div>
-                </div>
-                <div style="overflow-x:auto">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Họ tên</th>
-                                <th>Số điện thoại</th>
-                                <th>Dịch vụ quan tâm</th>
-                                <th>Thời gian</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="leadsBody">
-                            <tr><td colspan="5" style="text-align:center;padding:2rem;color:#aaa">Chưa có leads.</td></tr>
-                        </tbody>
-                    </table>
+                    <div style="overflow-x:auto"><table><thead><tr><th>Họ tên</th><th>SĐT</th><th>Dịch vụ</th><th>Thời gian</th><th></th></tr></thead><tbody id="leadsBody"></tbody></table></div>
                 </div>
             </div>
 
-            <!-- Quick links -->
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem">
-                <a href="../pages/dien-mat-troi.html" target="_blank" class="btn btn-secondary" style="justify-content:center"><i class="fa-solid fa-solar-panel"></i> Điện mặt trời</a>
-                <a href="../pages/tru-sac.html" target="_blank" class="btn btn-secondary" style="justify-content:center"><i class="fa-solid fa-charging-station"></i> Trụ sạc</a>
-                <a href="../pages/dich-vu.html" target="_blank" class="btn btn-secondary" style="justify-content:center"><i class="fa-solid fa-handshake"></i> Dịch vụ</a>
-                <a href="../pages/tin-tuc.html" target="_blank" class="btn btn-secondary" style="justify-content:center"><i class="fa-solid fa-newspaper"></i> Tin tức</a>
-                <a href="../pages/lien-he.html" target="_blank" class="btn btn-secondary" style="justify-content:center"><i class="fa-solid fa-phone"></i> Liên hệ</a>
+            <!-- ══════════ TAB: TRẠM SẠC ══════════ -->
+            <div id="tab-stations" class="tab-pane">
+                <div class="admin-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-charging-station" style="color:#16a34a;margin-right:.4rem"></i> Quản lý Trạm sạc (<span id="stationCount">0</span> trạm)</h2>
+                        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                            <select id="stationFilter" class="form-select" style="padding:.35rem .6rem;font-size:.82rem" onchange="renderStations()">
+                                <option value="">Tất cả tỉnh</option>
+                            </select>
+                            <select id="stationTypeFilter" class="form-select" style="padding:.35rem .6rem;font-size:.82rem" onchange="renderStations()">
+                                <option value="">DC + AC</option>
+                                <option value="dc">Chỉ DC</option>
+                                <option value="ac">Chỉ AC</option>
+                            </select>
+                            <a href="stations.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-map-location-dot"></i> Bản đồ chi tiết</a>
+                        </div>
+                    </div>
+                    <div style="overflow-x:auto"><table><thead><tr><th>Tên trạm</th><th>Tỉnh</th><th>Loại</th><th>Công suất</th><th>Cổng</th><th>Trạng thái</th><th>Phiên hôm nay</th><th>DT tháng</th><th></th></tr></thead><tbody id="stationsBody"></tbody></table></div>
+                </div>
             </div>
-        </div>
+
+            <!-- ══════════ TAB: NFC ══════════ -->
+            <div id="tab-nfc" class="tab-pane">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+                    <div class="admin-panel" style="margin:0">
+                        <div class="panel-header"><h2><i class="fa-solid fa-id-card" style="color:#0d9488;margin-right:.4rem"></i> Danh sách thẻ NFC</h2>
+                            <button class="btn btn-primary btn-sm" onclick="showNfcModal()"><i class="fa-solid fa-plus"></i> Cấp thẻ mới</button>
+                        </div>
+                        <div style="overflow-x:auto"><table><thead><tr><th>UID</th><th>Chủ thẻ</th><th>Loại</th><th>Số dư</th><th>Trạng thái</th><th></th></tr></thead><tbody id="nfcBody"></tbody></table></div>
+                    </div>
+                    <div class="admin-panel" style="margin:0">
+                        <div class="panel-header"><h2><i class="fa-solid fa-wand-magic-sparkles" style="color:#7c3aed;margin-right:.4rem"></i> Mô phỏng quét NFC</h2></div>
+                        <div style="padding:1rem">
+                            <div class="form-group">
+                                <label class="form-label">Nhập / quét UID thẻ</label>
+                                <div style="display:flex;gap:.5rem">
+                                    <input id="nfcScanInput" class="form-input" type="text" placeholder="VD: A1B2C3D4" style="font-family:monospace;text-transform:uppercase">
+                                    <button class="btn btn-primary" onclick="simulateNfcScan()"><i class="fa-solid fa-wifi"></i> Quét</button>
+                                </div>
+                            </div>
+                            <div id="nfcScanResult" style="margin-top:.75rem;padding:1rem;background:#f7f8fa;border:1.5px solid #e5e7eb;border-radius:.5rem;font-size:.82rem;min-height:80px;display:flex;align-items:center;justify-content:center;color:#9ca3af">
+                                Kết quả quét sẽ hiển thị tại đây...
+                            </div>
+                            <div style="margin-top:.75rem;font-size:.75rem;color:#57606a;background:#fef9c3;padding:.75rem;border-radius:.5rem">
+                                <strong>Luồng thực tế (OCPP):</strong><br>
+                                NFC Tag → ISO 14443A UID → OCPP idTag → NFCController → PostgreSQL lookup → Kiểm số dư → RemoteStartTransaction
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-panel">
+                    <div class="panel-header"><h2><i class="fa-solid fa-clock-rotate-left" style="color:#f97316;margin-right:.4rem"></i> Lịch sử phiên sạc NFC</h2></div>
+                    <div style="overflow-x:auto"><table><thead><tr><th>UID</th><th>Khách hàng</th><th>Trạm</th><th>kWh</th><th>Thanh toán (VND)</th><th>Biểu giá</th><th>Thời gian</th></tr></thead><tbody id="nfcSessionsBody"></tbody></table></div>
+                </div>
+            </div>
+
+            <!-- ══════════ TAB: TÀI CHÍNH ══════════ -->
+            <div id="tab-finance" class="tab-pane">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+                    <div>
+                        <h3 style="margin:0;font-size:1rem">Báo cáo Tài chính — <span id="finPeriod">Q3/2026</span></h3>
+                        <p style="margin:0;font-size:.75rem;color:#57606a">Chuẩn mực Thông tư 133/2016/TT-BTC — Doanh nghiệp vừa và nhỏ</p>
+                    </div>
+                    <div style="display:flex;gap:.5rem">
+                        <button class="btn btn-secondary btn-sm" onclick="exportBCTC('b01')"><i class="fa-solid fa-file-word"></i> Xuất B01</button>
+                        <button class="btn btn-secondary btn-sm" onclick="exportBCTC('b02')"><i class="fa-solid fa-file-word"></i> Xuất B02</button>
+                        <button class="btn btn-secondary btn-sm" onclick="exportBCTC('b03')"><i class="fa-solid fa-file-word"></i> Xuất B03</button>
+                        <a href="finance.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-chart-pie"></i> Xem đầy đủ</a>
+                    </div>
+                </div>
+                <div class="fin-grid" id="finGrid">
+                    <!-- Render by JS -->
+                </div>
+                <!-- Biểu phí điện -->
+                <div class="admin-panel">
+                    <div class="panel-header"><h2><i class="fa-solid fa-bolt" style="color:#f59e0b;margin-right:.4rem"></i> Biểu phí điện sạc xe (hiệu lực 15/07/2026)</h2></div>
+                    <div style="overflow-x:auto"><table><thead><tr><th>Khung giờ</th><th>Giá (đ/kWh)</th><th>Ví dụ (50kWh)</th><th>Ghi chú</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="dot dot-green"></span><strong>Giờ thấp điểm</strong> (22:00–06:00)</td><td class="tncn-positive">3.651 đ</td><td>182.550 đ</td><td>Khuyến khích sạc đêm</td></tr>
+                        <tr><td><span class="dot dot-yellow"></span><strong>Giờ bình thường</strong></td><td style="color:#f59e0b;font-weight:700">4.984 đ</td><td>249.200 đ</td><td>Giờ thông thường ban ngày</td></tr>
+                        <tr><td><span class="dot dot-red"></span><strong>Giờ cao điểm</strong> (09:30–11:30, 17:00–20:00)</td><td class="fin-neg">7.436 đ</td><td>371.800 đ</td><td>Tránh sạc giờ này</td></tr>
+                    </tbody></table></div>
+                </div>
+            </div>
+
+            <!-- ══════════ TAB: HR & TNCN ══════════ -->
+            <div id="tab-hr" class="tab-pane">
+                <div class="admin-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-users-gear" style="color:#7c3aed;margin-right:.4rem"></i> Bảng lương & Thuế TNCN tháng 10/2026</h2>
+                        <div style="display:flex;gap:.5rem">
+                            <button class="btn btn-secondary btn-sm" onclick="exportTNCN()"><i class="fa-solid fa-file-excel"></i> Xuất Excel</button>
+                            <a href="employees.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-users"></i> Quản lý NV</a>
+                        </div>
+                    </div>
+                    <div style="overflow-x:auto">
+                        <table id="hrTable">
+                            <thead><tr>
+                                <th>Họ tên</th><th>Chức vụ</th><th>Gross</th>
+                                <th>BHXH/YT/TN</th><th>Giảm trừ</th><th>TN chịu thuế</th>
+                                <th>Thuế TNCN</th><th>Net nhận</th><th>Bậc thuế</th>
+                            </tr></thead>
+                            <tbody id="hrBody"></tbody>
+                            <tfoot id="hrFoot"></tfoot>
+                        </table>
+                    </div>
+                    <div style="margin-top:.75rem;padding:.75rem;background:#f0fdf4;border-radius:.5rem;font-size:.75rem;color:#166534">
+                        <strong>Cơ sở pháp lý:</strong> Luật Thuế TNCN 04/2007/QH12 (sửa đổi 2012, 2014) · Giảm trừ bản thân 11 triệu/tháng · Giảm trừ người phụ thuộc 4,4 triệu/người/tháng · BHXH 8% + BHYT 1.5% + BHTN 1% (tối đa 20 triệu lương tính BHXH)
+                    </div>
+                </div>
+                <div class="admin-panel">
+                    <div class="panel-header"><h2><i class="fa-solid fa-percent" style="color:#ef4444;margin-right:.4rem"></i> Biểu thuế TNCN lũy tiến (7 bậc)</h2></div>
+                    <div style="overflow-x:auto"><table><thead><tr><th>Bậc</th><th>Thu nhập tính thuế</th><th>Thuế suất</th><th>Cách tính nhanh</th></tr></thead><tbody id="tncnRatesBody"></tbody></table></div>
+                </div>
+            </div>
+
+            <!-- ══════════ TAB: ĐỐI TÁC ══════════ -->
+            <div id="tab-partners" class="tab-pane">
+                <div class="admin-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-handshake" style="color:#16a34a;margin-right:.4rem"></i> Đối tác nhượng quyền trạm sạc (<span id="partnerCount">0</span> đối tác)</h2>
+                        <a href="partners.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Thêm đối tác</a>
+                    </div>
+                    <div style="overflow-x:auto"><table><thead><tr><th>Tên đối tác</th><th>Liên hệ</th><th>Tỉnh</th><th>Số trạm</th><th>Đầu tư</th><th>Chia sẻ LN</th><th>Tổng doanh thu</th><th>80% cho ĐT</th><th>Trạng thái</th></tr></thead><tbody id="partnersBody"></tbody></table></div>
+                </div>
+                <!-- ROI Calculator -->
+                <div class="admin-panel">
+                    <div class="panel-header"><h2><i class="fa-solid fa-calculator" style="color:#f97316;margin-right:.4rem"></i> ROI Calculator — Đối tác trạm sạc DC</h2></div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1rem">
+                        <div>
+                            <div class="form-group">
+                                <label class="form-label">Số cổng sạc</label>
+                                <input type="number" id="roiPorts" class="form-input" value="2" min="1" max="20" oninput="calcROI()">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">kWh trung bình / cổng / ngày</label>
+                                <input type="number" id="roiKwh" class="form-input" value="80" min="10" oninput="calcROI()">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Giá điện bình quân (đ/kWh)</label>
+                                <input type="number" id="roiPrice" class="form-input" value="4984" oninput="calcROI()">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Chi phí đầu tư (VND)</label>
+                                <input type="number" id="roiInvest" class="form-input" value="320000000" oninput="calcROI()">
+                            </div>
+                        </div>
+                        <div id="roiResult" style="background:#f0fdf4;border:2px solid #bbf7d0;border-radius:.75rem;padding:1.25rem;font-size:.85rem"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══════════ TAB: LEADS ══════════ -->
+            <div id="tab-leads" class="tab-pane">
+                <div class="admin-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-user-group" style="color:#3b82f6;margin-right:.4rem"></i> Danh sách Leads (<span id="leadsCount">0</span>)</h2>
+                        <div style="display:flex;gap:.5rem">
+                            <button class="btn btn-secondary btn-sm" onclick="exportLeadsCSV()"><i class="fa-solid fa-download"></i> Xuất CSV</button>
+                            <button class="btn btn-danger btn-sm" onclick="clearLeads()"><i class="fa-solid fa-trash"></i> Xoá tất cả</button>
+                        </div>
+                    </div>
+                    <div style="overflow-x:auto"><table><thead><tr><th>Họ tên</th><th>SĐT</th><th>Dịch vụ</th><th>Thời gian</th><th>Trang nguồn</th><th></th></tr></thead><tbody id="allLeadsBody"></tbody></table></div>
+                </div>
+            </div>
+
+        </div><!-- /admin-content -->
     </main>
 </div>
 
-<!-- PAGE MODAL -->
-<div class="modal-overlay" id="pageModal">
-    <div class="modal-box">
+<!-- NFC Modal -->
+<div class="modal-overlay" id="nfcModal">
+    <div class="modal-box" style="max-width:480px">
         <div class="modal-header">
-            <h3 id="modalTitle">Thêm / Sửa trang</h3>
-            <button onclick="closePageModal()" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:#57606a"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Cấp thẻ NFC mới</h3>
+            <button onclick="closeNfcModal()" style="background:none;border:none;cursor:pointer;font-size:1.1rem"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="modal-body">
-            <form id="pageForm" onsubmit="savePageForm(event)">
-                <input type="hidden" id="editId">
+            <div class="form-group">
+                <label class="form-label">UID thẻ NFC (8 ký tự hex) *</label>
+                <input id="nfcNewUid" class="form-input" type="text" placeholder="VD: F1E2D3C4" style="font-family:monospace;text-transform:uppercase" maxlength="8">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Họ tên chủ thẻ *</label>
+                <input id="nfcNewName" class="form-input" type="text" placeholder="Nguyễn Văn A">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Số điện thoại *</label>
+                <input id="nfcNewPhone" class="form-input" type="tel" placeholder="09xx xxx xxx">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
                 <div class="form-group">
-                    <label class="form-label">Tiêu đề trang *</label>
-                    <input id="editTitle" class="form-input" type="text" placeholder="Ví dụ: Điện mặt trời" oninput="autoSlug()" required>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-                    <div class="form-group">
-                        <label class="form-label">Slug *</label>
-                        <input id="editSlug" class="form-input" type="text" placeholder="dien-mat-troi" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Trạng thái</label>
-                        <select id="editStatus" class="form-select">
-                            <option value="active">Active</option>
-                            <option value="draft">Draft</option>
-                            <option value="inactive">Inactive</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">URL (đường dẫn file) *</label>
-                    <input id="editUrl" class="form-input" type="text" placeholder="pages/dien-mat-troi.html" required>
+                    <label class="form-label">Loại thẻ</label>
+                    <select id="nfcNewType" class="form-select">
+                        <option value="user">User (khách hàng)</option>
+                        <option value="partner">Partner (đối tác)</option>
+                        <option value="employee">Employee (nhân viên)</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Meta Title (SEO)</label>
-                    <input id="editMetaTitle" class="form-input" type="text" placeholder="Tiêu đề SEO">
+                    <label class="form-label">Số dư ban đầu (VND)</label>
+                    <input id="nfcNewBalance" class="form-input" type="number" value="100000" min="0">
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Meta Description (SEO)</label>
-                    <textarea id="editMetaDesc" class="form-textarea" placeholder="Mô tả SEO (150 ký tự)" style="min-height:70px"></textarea>
-                </div>
-            </form>
+            </div>
         </div>
         <div class="modal-footer">
-            <button onclick="closePageModal()" class="btn btn-secondary">Huỷ</button>
-            <button onclick="document.getElementById('pageForm').requestSubmit()" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu</button>
+            <button onclick="closeNfcModal()" class="btn btn-secondary">Huỷ</button>
+            <button onclick="saveNfcCard()" class="btn btn-primary"><i class="fa-solid fa-id-card"></i> Cấp thẻ</button>
         </div>
     </div>
 </div>
 
 <script src="../js/admin.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════
+   ADMIN DASHBOARD — Business Suite JS
+   Tất cả logic đọc từ db.json + localStorage
+═══════════════════════════════════════════════════ */
+let DB = {};
+
+async function loadDB() {
+    try {
+        const r = await fetch('../admin/db.json?' + Date.now());
+        DB = await r.json();
+        document.getElementById('lastUpdate').textContent = 'Cập nhật: ' + new Date().toLocaleTimeString('vi-VN');
+        renderAll();
+    } catch(e) {
+        showAlert('Không thể tải db.json: ' + e.message, 'danger');
+    }
+}
+
+function renderAll() {
+    renderKPI();
+    renderOverview();
+    renderStations();
+    renderNFC();
+    renderFinance();
+    renderHR();
+    renderPartners();
+    renderLeadsTab();
+    calcROI();
+}
+
+/* ── KPI Strip ── */
+function renderKPI() {
+    const st = DB.stations || [];
+    const online    = st.filter(s => s.status === 'online').length;
+    const alerts    = st.filter(s => s.status !== 'online').length;
+    const sessions  = st.reduce((a,s) => a + (s.sessions_today||0), 0);
+    const revMonth  = st.reduce((a,s) => a + (s.revenue_month||0), 0);
+    const leads     = JSON.parse(localStorage.getItem('nlpgroup_leads')||'[]').length;
+    const nfcActive = (DB.nfc_cards||[]).filter(c => c.status === 'active').length;
+    const nfcTotal  = (DB.nfc_cards||[]).length;
+
+    $('kpiOnline').textContent    = online;
+    $('kpiOnlineSub').textContent = `/ ${st.length} trạm tổng`;
+    $('kpiSessions').textContent  = sessions;
+    $('kpiSessionsSub').textContent = `Tổng ${(DB.charging_sessions||[]).length} phiên có dữ liệu`;
+    $('kpiRevMonth').textContent  = fmtMoney(revMonth);
+    $('kpiLeads').textContent     = leads;
+    $('kpiNfc').textContent       = nfcActive;
+    $('kpiNfcSub').textContent    = `/ ${nfcTotal} thẻ cấp phát`;
+    $('kpiAlert').textContent     = alerts;
+    if(alerts > 0) $('kpiAlertCard').style.borderTop = '3px solid #ef4444';
+}
+
+/* ── Overview Tab ── */
+function renderOverview() {
+    // Bar chart revenue (giả lập 7 ngày)
+    const labels = ['T2','T3','T4','T5','T6','T7','CN'];
+    const vals   = [125,148,102,167,183,210,195];
+    const max    = Math.max(...vals);
+    const chart  = $('revenueChart');
+    chart.innerHTML = vals.map(v =>
+        `<div class="bar" style="height:${(v/max*100)}%" title="${v}M VND"></div>`
+    ).join('');
+    $('chartLabels').innerHTML = labels.map(l => `<span>${l}</span>`).join('');
+
+    // Station status list
+    const st = DB.stations || [];
+    $('stationStatusList').innerHTML = st.map(s => {
+        const dot = s.status === 'online' ? 'dot-green' : s.status === 'maintenance' ? 'dot-yellow' : 'dot-red';
+        return `<div style="display:flex;align-items:center;justify-content:space-between;padding:.35rem 0;border-bottom:1px solid #f0f0f0;font-size:.8rem">
+            <span><span class="dot ${dot}"></span>${s.name.substring(0,28)}…</span>
+            <span style="font-size:.72rem;color:#57606a">${s.sessions_today || 0} phiên</span>
+        </div>`;
+    }).join('');
+
+    // Sessions
+    const sessions = DB.charging_sessions || [];
+    $('sessionsBody').innerHTML = sessions.slice(0,5).map(s => {
+        const st = (DB.stations||[]).find(x => x.id === s.station_id);
+        const tariffColor = s.tariff === 'peak' ? '#ef4444' : s.tariff === 'offpeak' ? '#16a34a' : '#f59e0b';
+        return `<tr>
+            <td><span class="nfc-uid">${s.nfc_uid}</span></td>
+            <td>${s.user_name}</td>
+            <td style="font-size:.78rem">${st ? st.name.substring(0,30) : s.station_id}</td>
+            <td><strong>${s.energy_kwh}</strong></td>
+            <td><strong>${fmtVND(s.amount_vnd)}</strong></td>
+            <td><span style="color:${tariffColor};font-size:.78rem;font-weight:700">${s.tariff === 'peak' ? 'Cao điểm' : s.tariff === 'offpeak' ? 'Thấp điểm' : 'Bình thường'}</span></td>
+            <td style="font-size:.75rem;color:#57606a">${new Date(s.started_at).toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</td>
+        </tr>`;
+    }).join('') || '<tr><td colspan="7" style="text-align:center;color:#9ca3af;padding:1.5rem">Chưa có phiên sạc</td></tr>';
+
+    // Leads
+    const leads = JSON.parse(localStorage.getItem('nlpgroup_leads')||'[]').slice(0,5);
+    $('leadsBody').innerHTML = leads.map(l => `<tr>
+        <td><strong>${l.name||'–'}</strong></td>
+        <td><a href="tel:${l.phone}">${l.phone||'–'}</a></td>
+        <td>${l.service||'Tổng hợp'}</td>
+        <td style="font-size:.75rem;color:#57606a">${new Date(l.time||Date.now()).toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</td>
+        <td><a href="tel:${l.phone}" class="btn btn-primary btn-sm"><i class="fa-solid fa-phone"></i></a></td>
+    </tr>`).join('') || '<tr><td colspan="5" style="text-align:center;color:#9ca3af;padding:1.5rem">Chưa có leads.</td></tr>';
+}
+
+/* ── Stations Tab ── */
+function renderStations() {
+    const st = DB.stations || [];
+    $('stationCount').textContent = st.length;
+
+    // Populate province filter
+    const prov = [...new Set(st.map(s => s.province))];
+    const sel  = $('stationFilter');
+    if(sel.options.length === 1) {
+        prov.forEach(p => { const o = document.createElement('option'); o.value=p; o.textContent=p; sel.appendChild(o); });
+    }
+
+    const provF = sel.value;
+    const typeF = $('stationTypeFilter').value;
+    const filtered = st.filter(s => (!provF || s.province === provF) && (!typeF || s.type === typeF));
+
+    $('stationsBody').innerHTML = filtered.map(s => {
+        const statusDot = s.status === 'online' ? 'dot-green' : s.status === 'maintenance' ? 'dot-yellow' : 'dot-red';
+        const statusLbl = s.status === 'online' ? 'Online' : s.status === 'maintenance' ? 'Bảo trì' : 'Offline';
+        return `<tr>
+            <td><strong style="font-size:.85rem">${s.name}</strong><br><span style="font-size:.72rem;color:#57606a">${s.address}</span></td>
+            <td>${s.province}</td>
+            <td><span style="font-size:.75rem;font-weight:700;color:${s.type==='dc'?'#3b82f6':'#16a34a'}">${s.type.toUpperCase()}</span></td>
+            <td>${s.power}</td>
+            <td style="text-align:center">${s.ports}</td>
+            <td><span class="dot ${statusDot}"></span>${statusLbl}</td>
+            <td style="text-align:center">${s.sessions_today || 0}</td>
+            <td>${s.revenue_month > 0 ? fmtMoney(s.revenue_month) : '–'}</td>
+            <td><button class="btn btn-secondary btn-sm" onclick="alert('Chức năng chi tiết: stations.html')"><i class="fa-solid fa-ellipsis"></i></button></td>
+        </tr>`;
+    }).join('');
+}
+
+/* ── NFC Tab ── */
+function renderNFC() {
+    const cards = DB.nfc_cards || [];
+    $('nfcBody').innerHTML = cards.map(c => {
+        const statusColor = c.status === 'active' ? '#16a34a' : c.status === 'blocked' ? '#ef4444' : '#f59e0b';
+        const typeColor   = c.card_type === 'partner' ? '#7c3aed' : c.card_type === 'employee' ? '#0d9488' : '#3b82f6';
+        return `<tr>
+            <td><span class="nfc-uid">${c.uid}</span></td>
+            <td><strong>${c.user_name}</strong><br><span style="font-size:.72rem;color:#57606a">${c.user_phone}</span></td>
+            <td><span style="font-size:.75rem;font-weight:700;color:${typeColor}">${c.card_type}</span></td>
+            <td><strong style="color:${c.wallet_balance > 50000 ? '#16a34a':'#ef4444'}">${fmtVND(c.wallet_balance)}</strong></td>
+            <td><span class="dot" style="background:${statusColor}"></span><span style="font-size:.8rem;color:${statusColor};font-weight:600">${c.status}</span></td>
+            <td>
+                <button class="btn btn-secondary btn-sm" title="Nạp tiền" onclick="topupNfc('${c.id}','${c.user_name}')"><i class="fa-solid fa-wallet"></i></button>
+                ${c.status === 'active' 
+                    ? `<button class="btn btn-danger btn-sm" onclick="blockNfc('${c.id}')" title="Khóa thẻ"><i class="fa-solid fa-ban"></i></button>`
+                    : `<button class="btn btn-secondary btn-sm" onclick="unblockNfc('${c.id}')" title="Mở khóa"><i class="fa-solid fa-lock-open"></i></button>`
+                }
+            </td>
+        </tr>`;
+    }).join('');
+
+    // NFC Sessions
+    const sessions = DB.charging_sessions || [];
+    $('nfcSessionsBody').innerHTML = sessions.map(s => {
+        const st = (DB.stations||[]).find(x => x.id === s.station_id);
+        return `<tr>
+            <td><span class="nfc-uid">${s.nfc_uid}</span></td>
+            <td>${s.user_name}</td>
+            <td style="font-size:.78rem">${st ? st.name.substring(0,30) : s.station_id}</td>
+            <td>${s.energy_kwh} kWh</td>
+            <td><strong>${fmtVND(s.amount_vnd)}</strong></td>
+            <td style="font-size:.78rem">${s.tariff}</td>
+            <td style="font-size:.75rem;color:#57606a">${new Date(s.started_at).toLocaleString('vi-VN')}</td>
+        </tr>`;
+    }).join('');
+}
+
+function simulateNfcScan() {
+    const uid = $('nfcScanInput').value.trim().toUpperCase();
+    if(!uid) { return; }
+    const card = (DB.nfc_cards||[]).find(c => c.uid === uid);
+    const res  = $('nfcScanResult');
+    if(!card) {
+        res.innerHTML = `<div style="color:#ef4444;text-align:center"><i class="fa-solid fa-circle-xmark" style="font-size:1.5rem;display:block;margin-bottom:.5rem"></i><strong>KHÔNG TÌM THẤY</strong><br><small>UID ${uid} chưa đăng ký trong hệ thống</small></div>`;
+    } else if(card.status === 'blocked') {
+        res.innerHTML = `<div style="color:#ef4444;text-align:center"><i class="fa-solid fa-ban" style="font-size:1.5rem;display:block;margin-bottom:.5rem"></i><strong>THẺ BỊ KHÓA</strong><br><small>${card.user_name}</small></div>`;
+    } else if(card.wallet_balance < 20000) {
+        res.innerHTML = `<div style="color:#f59e0b;text-align:center"><i class="fa-solid fa-triangle-exclamation" style="font-size:1.5rem;display:block;margin-bottom:.5rem"></i><strong>SỐ DƯ KHÔNG ĐỦ</strong><br><small>${card.user_name} — Số dư: ${fmtVND(card.wallet_balance)}</small></div>`;
+    } else {
+        res.innerHTML = `<div style="text-align:center">
+            <i class="fa-solid fa-circle-check" style="font-size:1.5rem;display:block;margin-bottom:.5rem;color:#16a34a"></i>
+            <strong style="color:#16a34a">XÁC THỰC THÀNH CÔNG</strong><br>
+            <div style="margin-top:.5rem;text-align:left;background:#fff;padding:.75rem;border-radius:.5rem;border:1px solid #e5e7eb;font-size:.8rem">
+                <div><strong>Chủ thẻ:</strong> ${card.user_name}</div>
+                <div><strong>SĐT:</strong> ${card.user_phone}</div>
+                <div><strong>Loại:</strong> ${card.card_type}</div>
+                <div><strong>Số dư ví:</strong> <span style="color:#16a34a;font-weight:700">${fmtVND(card.wallet_balance)}</span></div>
+                <div><strong>Tổng phiên:</strong> ${card.total_sessions} | <strong>Tổng kWh:</strong> ${card.total_kwh}</div>
+                <div style="margin-top:.5rem;padding:.4rem;background:#f0fdf4;border-radius:.25rem;text-align:center;font-weight:700;color:#15803d">
+                    ⚡ SẠC ĐƯỢC — OCPP RemoteStartTransaction → Gửi lệnh cấp điện
+                </div>
+            </div>
+        </div>`;
+    }
+}
+
+function topupNfc(id, name) {
+    const amt = prompt(`Nạp tiền cho ${name} (nhập số VND):`);
+    if(!amt || isNaN(amt)) return;
+    showAlert(`✅ Đã ghi nhận nạp ${fmtVND(parseInt(amt))} cho ${name}. (Demo — chưa kết nối backend)`, 'success');
+}
+function blockNfc(id)   { showAlert(`🔒 Thẻ ${id} đã được KHÓA. (Demo)`, 'danger'); }
+function unblockNfc(id) { showAlert(`🔓 Thẻ ${id} đã được MỞ KHÓA. (Demo)`, 'success'); }
+function showNfcModal() { $('nfcModal').style.display = 'flex'; }
+function closeNfcModal(){ $('nfcModal').style.display = 'none'; }
+function saveNfcCard() {
+    const uid   = $('nfcNewUid').value.trim().toUpperCase();
+    const name  = $('nfcNewName').value.trim();
+    const phone = $('nfcNewPhone').value.trim();
+    if(!uid || !name || !phone) { alert('Vui lòng điền đầy đủ thông tin.'); return; }
+    closeNfcModal();
+    showAlert(`✅ Đã cấp thẻ NFC ${uid} cho ${name}. (Demo — lưu vào db.json khi có backend)`, 'success');
+}
+
+/* ── Finance Tab ── */
+function renderFinance() {
+    const fin = DB.finance || {};
+    $('finPeriod').textContent = fin.period || '';
+    const b01 = fin.b01 || {};
+    const b02 = fin.b02 || {};
+    const b03 = fin.b03_truc_tiep || {};
+
+    $('finGrid').innerHTML = `
+    <div class="fin-card">
+        <h4>B01 — Tình hình Tài chính</h4>
+        <div class="fin-row"><span>Tài sản ngắn hạn</span><span>${fmtB(b01.tai_san_ngan_han)}</span></div>
+        <div class="fin-row"><span>- Tiền & tương đương</span><span>${fmtB(b01.tien_va_tuong_duong)}</span></div>
+        <div class="fin-row"><span>- Phải thu khách hàng</span><span>${fmtB(b01.phai_thu_kh)}</span></div>
+        <div class="fin-row"><span>- Hàng tồn kho</span><span>${fmtB(b01.hang_ton_kho)}</span></div>
+        <div class="fin-row"><span>Tài sản dài hạn</span><span>${fmtB(b01.tai_san_dai_han)}</span></div>
+        <div class="fin-row"><span>Nợ phải trả</span><span class="fin-neg">(${fmtB(b01.no_phai_tra)})</span></div>
+        <div class="fin-row"><span>Vốn chủ sở hữu</span><span class="fin-pos">${fmtB(b01.von_chu_so_huu)}</span></div>
+    </div>
+    <div class="fin-card">
+        <h4>B02 — Kết quả HĐKD</h4>
+        <div class="fin-row"><span>Doanh thu thuần</span><span>${fmtB(b02.doanh_thu_thuan)}</span></div>
+        <div class="fin-row"><span>Giá vốn hàng bán</span><span class="fin-neg">(${fmtB(b02.gia_von)})</span></div>
+        <div class="fin-row"><span>Lợi nhuận gộp</span><span class="fin-pos">${fmtB(b02.loi_nhuan_gop)}</span></div>
+        <div class="fin-row"><span>Chi phí bán hàng</span><span class="fin-neg">(${fmtB(b02.chi_phi_ban_hang)})</span></div>
+        <div class="fin-row"><span>Chi phí QLDN</span><span class="fin-neg">(${fmtB(b02.chi_phi_quan_ly)})</span></div>
+        <div class="fin-row"><span>Lợi nhuận trước thuế</span><span class="fin-pos">${fmtB(b02.loi_nhuan_truoc_thue)}</span></div>
+        <div class="fin-row"><span>Thuế TNDN (20%)</span><span class="fin-neg">(${fmtB(b02.thue_tndn)})</span></div>
+        <div class="fin-row"><span><strong>Lợi nhuận sau thuế</strong></span><span class="fin-pos" style="font-size:.9rem">${fmtB(b02.loi_nhuan_sau_thue)}</span></div>
+    </div>
+    <div class="fin-card">
+        <h4>B03 — Lưu chuyển Tiền tệ (Trực tiếp)</h4>
+        <div class="fin-row"><span>Thu từ khách hàng</span><span class="fin-pos">${fmtB(b03.thu_tu_kh)}</span></div>
+        <div class="fin-row"><span>Trả nhà cung cấp</span><span class="fin-neg">(${fmtB(Math.abs(b03.tra_ncc))})</span></div>
+        <div class="fin-row"><span>Trả người lao động</span><span class="fin-neg">(${fmtB(Math.abs(b03.tra_nv))})</span></div>
+        <div class="fin-row"><span>LCTT hoạt động KD</span><span class="${b03.lctt_kinh_doanh>=0?'fin-pos':'fin-neg'}">${fmtB(b03.lctt_kinh_doanh)}</span></div>
+        <div class="fin-row"><span>LCTT đầu tư</span><span class="fin-neg">(${fmtB(Math.abs(b03.lctt_dau_tu))})</span></div>
+        <div class="fin-row"><span>LCTT tài chính</span><span class="fin-pos">${fmtB(b03.lctt_tai_chinh)}</span></div>
+        <div class="fin-row"><span>Tiền đầu kỳ</span><span>${fmtB(b03.tien_dau_ky)}</span></div>
+        <div class="fin-row"><span><strong>Tiền cuối kỳ</strong></span><span class="${b03.tien_cuoi_ky>=0?'fin-pos':'fin-neg'}" style="font-size:.9rem">${fmtB(b03.tien_cuoi_ky)}</span></div>
+    </div>`;
+}
+
+function exportBCTC(type) { showAlert(`📄 Xuất ${type.toUpperCase()} → file .docx chuẩn TT133. (Cần backend Node.js + docx.js để tạo file thực)`, 'success'); }
+
+/* ── HR & TNCN Tab ── */
+function calcTNCN(gross, dependants) {
+    const gt = DB.finance?.giam_tru || { ban_than:11000000, phu_thuoc:4400000, bhxh_rate:0.08, bhyt_rate:0.015, bhtn_rate:0.01 };
+    const maxBHXH = 36000000; // tối đa 36tr/tháng tính BHXH (20 * lương cơ sở 1.8tr)
+    const bhxhBase = Math.min(gross, maxBHXH);
+    const bhxh = bhxhBase * gt.bhxh_rate;
+    const bhyt = bhxhBase * gt.bhyt_rate;
+    const bhtn = bhxhBase * gt.bhtn_rate;
+    const bh_total = bhxh + bhyt + bhtn;
+    const giam_tru = gt.ban_than + (dependants * gt.phu_thuoc);
+    const tnct = Math.max(0, gross - bh_total - giam_tru);
+
+    let thue = 0, bac = 0;
+    const rates = DB.finance?.tncn_rates || [];
+    for(const r of rates) {
+        if(tnct > r.tu) {
+            const chunk = Math.min(tnct, r.den) - r.tu;
+            if(chunk > 0) { thue += chunk * r.thue_suat / 100; bac = r.bac; }
+        }
+    }
+    const net = gross - bh_total - thue;
+    return { gross, bhxh, bhyt, bhtn, bh_total, giam_tru, tnct, thue, net, bac };
+}
+
+function renderHR() {
+    const emps = DB.employees || [];
+    let totalGross = 0, totalThue = 0, totalNet = 0;
+    $('hrBody').innerHTML = emps.map(e => {
+        const t = calcTNCN(e.salary_gross, e.dependants);
+        totalGross += t.gross; totalThue += t.thue; totalNet += t.net;
+        return `<tr>
+            <td><strong>${e.name}</strong><br><span style="font-size:.72rem;color:#57606a">${e.department}</span></td>
+            <td style="font-size:.78rem">${e.position}</td>
+            <td>${fmtVND(t.gross)}</td>
+            <td style="font-size:.78rem"><span style="color:#ef4444">${fmtVND(t.bhxh+t.bhyt+t.bhtn)}</span><br><span style="color:#9ca3af;font-size:.68rem">BH: ${fmtVND(t.bhxh)}+${fmtVND(t.bhyt)}+${fmtVND(t.bhtn)}</span></td>
+            <td style="font-size:.78rem">${fmtVND(t.giam_tru)}<br><span style="color:#9ca3af;font-size:.68rem">${e.dependants} PT</span></td>
+            <td>${fmtVND(t.tnct)}</td>
+            <td class="${t.thue > 0 ? 'tncn-positive' : 'tncn-zero'}">${t.thue > 0 ? fmtVND(t.thue) : '–'}</td>
+            <td><strong>${fmtVND(t.net)}</strong></td>
+            <td style="text-align:center;font-weight:700;color:#7c3aed">${t.thue > 0 ? 'Bậc '+t.bac : '–'}</td>
+        </tr>`;
+    }).join('');
+    $('hrFoot').innerHTML = `<tr style="background:#f0fdf4;font-weight:700">
+        <td colspan="2">TỔNG CỘNG</td>
+        <td>${fmtVND(totalGross)}</td><td></td><td></td><td></td>
+        <td style="color:#ef4444">${fmtVND(totalThue)}</td>
+        <td>${fmtVND(totalNet)}</td>
+        <td></td>
+    </tr>`;
+
+    // TNCN rates table
+    const rates = DB.finance?.tncn_rates || [];
+    $('tncnRatesBody').innerHTML = rates.map(r => `<tr>
+        <td style="text-align:center;font-weight:700">Bậc ${r.bac}</td>
+        <td>${r.mo_ta}</td>
+        <td style="text-align:center;font-weight:700;color:${r.thue_suat>=25?'#ef4444':r.thue_suat>=15?'#f59e0b':'#16a34a'}">${r.thue_suat}%</td>
+        <td style="font-size:.78rem;color:#57606a">TNCT trong bậc × ${r.thue_suat}%</td>
+    </tr>`).join('');
+}
+
+function exportTNCN() { showAlert('📊 Xuất bảng lương & TNCN → file Excel (.xlsx). (Cần backend ExcelJS)', 'success'); }
+
+/* ── Partners Tab ── */
+function renderPartners() {
+    const pts = DB.partners || [];
+    $('partnerCount').textContent = pts.length;
+    $('partnersBody').innerHTML = pts.map(p => {
+        const share80 = Math.round(p.revenue_total * 0.8);
+        const statusColor = p.status === 'active' ? '#16a34a' : '#ef4444';
+        return `<tr>
+            <td><strong style="font-size:.85rem">${p.name}</strong></td>
+            <td style="font-size:.78rem">${p.contact}<br><a href="tel:${p.phone}" style="color:#3b82f6">${p.phone}</a></td>
+            <td>${p.province}</td>
+            <td style="text-align:center;font-weight:700">${p.stations}</td>
+            <td>${fmtMoney(p.investment)}</td>
+            <td style="text-align:center;font-weight:700;color:#7c3aed">${p.profit_share}%</td>
+            <td>${p.revenue_total > 0 ? fmtMoney(p.revenue_total) : '–'}</td>
+            <td class="${share80>0?'fin-pos':'tncn-zero'}">${share80 > 0 ? fmtMoney(share80) : '–'}</td>
+            <td><span class="dot" style="background:${statusColor}"></span><span style="font-size:.78rem;color:${statusColor};font-weight:600">${p.status}</span></td>
+        </tr>`;
+    }).join('');
+}
+
+/* ── Leads Tab ── */
+function renderLeadsTab() {
+    const leads = JSON.parse(localStorage.getItem('nlpgroup_leads')||'[]');
+    $('leadsCount').textContent = leads.length;
+    $('allLeadsBody').innerHTML = leads.length
+        ? leads.slice().reverse().map((l,i) => `<tr>
+            <td><strong>${l.name||'–'}</strong></td>
+            <td><a href="tel:${l.phone}">${l.phone||'–'}</a></td>
+            <td>${l.service||'Tổng hợp'}</td>
+            <td style="font-size:.75rem;color:#57606a">${new Date(l.time||Date.now()).toLocaleString('vi-VN')}</td>
+            <td style="font-size:.75rem;color:#57606a">${l.source||window.location.hostname}</td>
+            <td><a href="tel:${l.phone}" class="btn btn-primary btn-sm"><i class="fa-solid fa-phone"></i></a></td>
+        </tr>`).join('')
+        : '<tr><td colspan="6" style="text-align:center;padding:2rem;color:#9ca3af">Chưa có leads nào.</td></tr>';
+}
+
+/* ── ROI Calculator ── */
+function calcROI() {
+    const ports  = parseFloat($('roiPorts')?.value||2);
+    const kwh    = parseFloat($('roiKwh')?.value||80);
+    const price  = parseFloat($('roiPrice')?.value||4984);
+    const invest = parseFloat($('roiInvest')?.value||320000000);
+    const revDay    = ports * kwh * price;
+    const revMonth  = revDay * 30;
+    const share80   = revMonth * 0.8;
+    const payback   = invest / share80;
+    const roi12     = (share80 * 12 / invest * 100).toFixed(1);
+    const el = $('roiResult');
+    if(!el) return;
+    el.innerHTML = `
+        <div style="font-weight:700;color:#16a34a;font-size:.9rem;margin-bottom:.75rem">📊 Kết quả tính toán</div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;font-size:.82rem">
+            <div style="display:flex;justify-content:space-between"><span>Doanh thu/ngày</span><span style="font-weight:700">${fmtVND(revDay)}</span></div>
+            <div style="display:flex;justify-content:space-between"><span>Doanh thu/tháng</span><span style="font-weight:700">${fmtMoney(revMonth)}</span></div>
+            <div style="display:flex;justify-content:space-between;color:#7c3aed"><span>80% cho đối tác/tháng</span><span style="font-weight:700">${fmtMoney(share80)}</span></div>
+            <div style="display:flex;justify-content:space-between;color:#7c3aed"><span>80% cho đối tác/năm</span><span style="font-weight:700">${fmtMoney(share80*12)}</span></div>
+            <hr style="border:none;border-top:1px solid #e5e7eb;margin:.25rem 0">
+            <div style="display:flex;justify-content:space-between"><span>Hoàn vốn sau</span><span style="font-weight:700;color:${payback<=24?'#16a34a':'#f59e0b'}">${payback.toFixed(1)} tháng</span></div>
+            <div style="display:flex;justify-content:space-between"><span>ROI năm 1</span><span style="font-weight:700;color:#16a34a">${roi12}%</span></div>
+        </div>`;
+}
+
+/* ── Tabs ── */
+function switchTab(name) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-'+name)?.classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(b => { if(b.getAttribute('onclick')?.includes(name)) b.classList.add('active'); });
+}
+
+/* ── Helpers ── */
+function $(id)         { return document.getElementById(id); }
+function fmtVND(n)     { return (Math.round(n)||0).toLocaleString('vi-VN') + ' đ'; }
+function fmtMoney(n)   { if(n >= 1e9) return (n/1e9).toFixed(2)+'T'; if(n>=1e6) return (n/1e6).toFixed(1)+'M'; return fmtVND(n); }
+function fmtB(n)       { return (n||0) >= 0 ? fmtMoney(n) : '('+fmtMoney(Math.abs(n))+')'; }
+function showAlert(msg, type='success') {
+    const el = $('adminAlert');
+    el.className = 'alert alert-'+type;
+    el.textContent = msg;
+    el.style.display = 'block';
+    setTimeout(() => { el.style.display='none'; }, 5000);
+}
+function refreshAll()    { loadDB(); }
+function clearLeads()    { if(confirm('Xoá tất cả leads?')) { localStorage.removeItem('nlpgroup_leads'); renderLeadsTab(); renderOverview(); renderKPI(); showAlert('Đã xoá tất cả leads.','success'); } }
+function exportLeadsCSV(){ showAlert('📥 Xuất CSV → tính năng cần backend. (Demo)', 'success'); }
+function doLogout()      { localStorage.removeItem('nlpgroup_admin_auth'); window.location.href='login.html'; }
+
+/* ── Sidebar toggle mobile ── */
+document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('sidebarToggle');
+    if(btn) { btn.style.display='block'; btn.addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open')); }
+    loadDB();
+});
+</script>
 </body>
 </html>

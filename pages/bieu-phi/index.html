@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biểu Phí Sạc Điện Xe Điện – NLP-EGREEN | NLP Group</title>
+    <meta name="description" content="Biểu phí sạc điện xe điện NLP-EGREEN áp dụng từ 15/07/2026. Giờ thấp điểm 3.651đ/kWh, bình thường 4.984đ/kWh, cao điểm 7.436đ/kWh. Tính chi phí sạc cho xe của bạn.">
+    <meta name="keywords" content="biểu phí sạc xe điện, giá điện sạc, NLP EGREEN, kWh, CCS2, phí sạc ô tô điện">
+    <meta property="og:title" content="Biểu Phí Sạc Điện – NLP-EGREEN">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nlpgroup.com.vn/pages/bieu-phi/">
+    <link rel="icon" type="image/x-icon"       href="../../favicon_io/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon_io/favicon-32x32.png">
+    <link rel="apple-touch-icon"               href="../../favicon_io/apple-touch-icon.png">
+    <link rel="manifest"                        href="../../favicon_io/site.webmanifest">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'] }, colors: { solar: { 50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d' }, dark:'#0f172a' } } } }
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://nlpgroup.com.vn"},
+        {"@type":"ListItem","position":2,"name":"Biểu phí sạc","item":"https://nlpgroup.com.vn/pages/bieu-phi/"}
+    ]}
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+
+<nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+        <a href="../../index.html" class="text-xl font-black text-dark tracking-tighter">NLP <span class="text-solar-600">GROUP</span></a>
+        <div class="hidden md:flex space-x-6 items-center text-sm font-semibold text-gray-600">
+            <a href="../tru-sac/"              class="hover:text-solar-600">Trụ sạc</a>
+            <a href="../tim-kiem-tram-sac/"    class="hover:text-solar-600">Tìm trạm sạc</a>
+            <a href="../app/"                  class="hover:text-solar-600">Ứng dụng</a>
+            <a href="../lien-he/"              class="hover:text-solar-600">Liên hệ</a>
+            <a href="../doi-tac/" class="bg-solar-600 hover:bg-solar-700 text-white px-4 py-1.5 rounded-full">🤝 Đối tác</a>
+        </div>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600"><i class="fa-solid fa-bars text-xl"></i></button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-2">
+        <a href="../tru-sac/"           class="block py-2 font-medium text-gray-700">Trụ sạc</a>
+        <a href="../tim-kiem-tram-sac/" class="block py-2 font-medium text-gray-700">Tìm trạm sạc</a>
+        <a href="../app/"               class="block py-2 font-medium text-gray-700">Ứng dụng</a>
+        <a href="../lien-he/"           class="block py-2 font-medium text-gray-700">Liên hệ</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="pt-24 pb-16 bg-dark text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <nav class="breadcrumb justify-center mb-6">
+            <a href="../../index.html">Trang chủ</a><span>/</span>
+            <span class="text-gray-400">Biểu phí sạc điện</span>
+        </nav>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-solar-400 text-xs font-bold uppercase tracking-wider mb-4">
+            <i class="fa-solid fa-bolt"></i> Áp dụng từ 15/07/2026
+        </div>
+        <h1 class="text-3xl md:text-5xl font-black mb-4">Biểu Phí Sạc Điện</h1>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">Giá sạc điện NLP-EGREEN theo biểu giá bán lẻ điện EVN, chia 3 khung giờ. Sạc giờ thấp điểm để tiết kiệm tối đa.</p>
+    </div>
+</section>
+
+<!-- TARIFF TABLE -->
+<section class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- Off-peak -->
+            <div class="rounded-2xl border-2 border-green-200 p-8 text-center bg-green-50">
+                <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">🌙</div>
+                <div class="text-xs font-bold text-green-600 uppercase tracking-wider mb-3">Giờ Thấp Điểm</div>
+                <div class="text-5xl font-black tariff-off mb-1">3.651</div>
+                <div class="text-lg text-gray-500 mb-4">đ/kWh</div>
+                <div class="bg-white rounded-xl p-3 text-xs text-gray-600 font-medium">
+                    <div class="font-bold text-gray-700 mb-1">Khung giờ:</div>
+                    <div>22:00 – 06:00 hàng ngày</div>
+                </div>
+                <div class="mt-4 text-xs text-green-600 font-semibold">✅ Tiết kiệm nhất – Sạc ban đêm</div>
+            </div>
+
+            <!-- Normal -->
+            <div class="rounded-2xl border-2 border-solar-600 p-8 text-center bg-solar-50 shadow-lg pricing-card-featured relative">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-solar-600 text-white text-xs font-bold px-4 py-1 rounded-full">PHỔ BIẾN NHẤT</div>
+                <div class="w-14 h-14 bg-solar-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">☀️</div>
+                <div class="text-xs font-bold text-solar-600 uppercase tracking-wider mb-3">Giờ Bình Thường</div>
+                <div class="text-5xl font-black tariff-norm mb-1">4.984</div>
+                <div class="text-lg text-gray-500 mb-4">đ/kWh</div>
+                <div class="bg-white rounded-xl p-3 text-xs text-gray-600 font-medium">
+                    <div class="font-bold text-gray-700 mb-1">Khung giờ:</div>
+                    <div>06:00–09:30 | 11:30–17:00</div>
+                    <div>20:00–22:00</div>
+                </div>
+                <div class="mt-4 text-xs text-solar-600 font-semibold">⚡ Thích hợp sạc ban ngày</div>
+            </div>
+
+            <!-- Peak -->
+            <div class="rounded-2xl border-2 border-red-200 p-8 text-center bg-red-50">
+                <div class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">⚡</div>
+                <div class="text-xs font-bold text-red-600 uppercase tracking-wider mb-3">Giờ Cao Điểm</div>
+                <div class="text-5xl font-black tariff-peak mb-1">7.436</div>
+                <div class="text-lg text-gray-500 mb-4">đ/kWh</div>
+                <div class="bg-white rounded-xl p-3 text-xs text-gray-600 font-medium">
+                    <div class="font-bold text-gray-700 mb-1">Khung giờ:</div>
+                    <div>09:30 – 11:30</div>
+                    <div>17:00 – 20:00</div>
+                </div>
+                <div class="mt-4 text-xs text-red-500 font-semibold">⚠️ Hạn chế sạc giờ này</div>
+            </div>
+        </div>
+
+        <!-- Weekly table -->
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200 mb-12">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Biểu giá chi tiết theo giờ trong ngày</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-gray-200">
+                            <th class="text-left py-3 px-3 font-bold text-gray-500 uppercase tracking-wider text-xs">Khung giờ</th>
+                            <th class="text-center py-3 px-3 font-bold text-gray-500 uppercase tracking-wider text-xs">Ngày thường</th>
+                            <th class="text-center py-3 px-3 font-bold text-gray-500 uppercase tracking-wider text-xs">Ngày cuối tuần</th>
+                            <th class="text-center py-3 px-3 font-bold text-gray-500 uppercase tracking-wider text-xs">Mức giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-100"><td class="py-3 px-3">22:00 – 06:00</td><td class="text-center py-3 px-3">Thấp điểm</td><td class="text-center py-3 px-3">Thấp điểm</td><td class="text-center py-3 px-3 tariff-off">3.651 đ/kWh</td></tr>
+                        <tr class="border-b border-gray-100"><td class="py-3 px-3">06:00 – 09:30</td><td class="text-center py-3 px-3">Bình thường</td><td class="text-center py-3 px-3">Bình thường</td><td class="text-center py-3 px-3 tariff-norm">4.984 đ/kWh</td></tr>
+                        <tr class="border-b border-gray-100"><td class="py-3 px-3">09:30 – 11:30</td><td class="text-center py-3 px-3">Cao điểm</td><td class="text-center py-3 px-3">Bình thường</td><td class="text-center py-3 px-3 tariff-peak">7.436 / 4.984 đ</td></tr>
+                        <tr class="border-b border-gray-100"><td class="py-3 px-3">11:30 – 17:00</td><td class="text-center py-3 px-3">Bình thường</td><td class="text-center py-3 px-3">Bình thường</td><td class="text-center py-3 px-3 tariff-norm">4.984 đ/kWh</td></tr>
+                        <tr class="border-b border-gray-100"><td class="py-3 px-3">17:00 – 20:00</td><td class="text-center py-3 px-3">Cao điểm</td><td class="text-center py-3 px-3">Bình thường</td><td class="text-center py-3 px-3 tariff-peak">7.436 / 4.984 đ</td></tr>
+                        <tr class="border-b border-gray-100"><td class="py-3 px-3">20:00 – 22:00</td><td class="text-center py-3 px-3">Bình thường</td><td class="text-center py-3 px-3">Bình thường</td><td class="text-center py-3 px-3 tariff-norm">4.984 đ/kWh</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-gray-400 mt-3">* Nguồn: Quyết định điều chỉnh giá bán lẻ điện EVN, hiệu lực từ 15/07/2026. Giá chưa bao gồm phụ phí dịch vụ cổng sạc.</p>
+        </div>
+
+        <!-- Cost calculator -->
+        <div class="bg-dark rounded-2xl p-8 text-white">
+            <h3 class="text-2xl font-black mb-2">Tính Chi Phí Sạc Xe của Bạn</h3>
+            <p class="text-gray-400 mb-6 text-sm">Nhập dung lượng pin và % cần sạc để ước tính chi phí</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Dung lượng pin (kWh)</label>
+                    <input type="number" id="batteryKwh" value="60" min="10" max="200" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 outline-none focus:border-solar-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">% cần sạc thêm</label>
+                    <input type="number" id="chargePercent" value="60" min="1" max="100" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 outline-none focus:border-solar-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Khung giờ sạc</label>
+                    <select id="tariffTier" class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white outline-none focus:border-solar-500 text-sm">
+                        <option value="3651">🌙 Thấp điểm (3.651đ)</option>
+                        <option value="4984" selected>☀️ Bình thường (4.984đ)</option>
+                        <option value="7436">⚡ Cao điểm (7.436đ)</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="calcChargeCost()" class="w-full md:w-auto bg-solar-600 hover:bg-solar-500 text-white px-8 py-3 rounded-xl font-bold transition-colors mb-6">Tính ngay</button>
+            <div id="chargeResult" class="hidden bg-white/10 rounded-xl p-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div><div class="text-2xl font-black text-solar-400" id="resKwh">—</div><div class="text-xs text-gray-400 mt-1">kWh cần sạc</div></div>
+                <div><div class="text-2xl font-black text-solar-400" id="resCost">—</div><div class="text-xs text-gray-400 mt-1">Tổng tiền</div></div>
+                <div><div class="text-2xl font-black text-solar-400" id="resTime">—</div><div class="text-xs text-gray-400 mt-1">Thời gian (120kW)</div></div>
+                <div><div class="text-2xl font-black text-solar-400" id="resKm">—</div><div class="text-xs text-gray-400 mt-1">km đi được</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INVEST SECTION -->
+<section class="py-16 bg-solar-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-black mb-4">Đầu Tư Trạm Sạc – Chia Sẻ 80% Doanh Thu</h2>
+        <p class="text-solar-100 text-lg mb-8 max-w-2xl mx-auto">Sở hữu trạm sạc NLP-EGREEN tại địa điểm của bạn. Doanh thu từ phí sạc chia 80:20 (bạn:NLP), thanh toán hàng tuần.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="../doi-tac/" class="bg-white text-solar-700 font-bold px-8 py-3 rounded-xl hover:bg-solar-50 transition-colors shadow-lg">
+                🤝 Đăng ký làm Đối tác
+            </a>
+            <a href="../tim-kiem-tram-sac/" class="bg-white/20 hover:bg-white/30 text-white font-bold px-8 py-3 rounded-xl transition-colors border border-white/30">
+                📍 Xem bản đồ trạm sạc
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-dark text-gray-400 py-8 border-t-4 border-solar-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-sm">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <span class="font-black text-white">NLP <span class="text-solar-500">GROUP</span></span>
+            <p>&copy; 2026 NLP GROUP. Hotline: <a href="tel:0944086788" class="text-solar-400 font-bold">0333.864.000</a></p>
+            <div class="flex gap-4">
+                <a href="../../index.html" class="hover:text-white">Trang chủ</a>
+                <a href="../lien-he/" class="hover:text-white">Liên hệ</a>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 pt-4 flex flex-wrap justify-center gap-4 text-xs text-gray-500">
+            <a href="../dieu-khoan/" class="hover:text-white transition-colors">Điều khoản sử dụng</a>
+            <a href="../bao-mat/"    class="hover:text-white transition-colors">Chính sách bảo mật</a>
+            <a href="../tin-tuc/"   class="hover:text-white transition-colors">Tin tức</a>
+            <a href="../lien-he/"   class="hover:text-white transition-colors">Liên hệ</a>
+        </div>
+    </div>
+</footer>
+
+<div class="mobile-cta-bar md:hidden">
+    <a href="tel:0944086788" class="flex-1 flex items-center justify-center gap-2 bg-solar-600 text-white font-bold py-3 rounded-xl text-sm"><i class="fa-solid fa-phone"></i> Gọi ngay</a>
+    <a href="https://zalo.me/0944086788" target="_blank" class="flex-1 flex items-center justify-center gap-2 bg-[#0068ff] text-white font-bold py-3 rounded-xl text-sm"><i class="fa-solid fa-comment-dots"></i> Zalo</a>
+    <a href="../tim-kiem-tram-sac/" class="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white font-bold py-3 rounded-xl text-sm"><i class="fa-solid fa-map-location-dot"></i> Tìm trạm</a>
+</div>
+
+<script src="../../js/main.js"></script>
+<script>
+function calcChargeCost() {
+    const kwh = parseFloat(document.getElementById('batteryKwh').value) || 60;
+    const pct = parseFloat(document.getElementById('chargePercent').value) / 100 || 0.6;
+    const rate = parseFloat(document.getElementById('tariffTier').value) || 4984;
+    const needed = kwh * pct;
+    const cost = needed * rate;
+    const timeMin = Math.round((needed / 120) * 60);
+    const km = Math.round(needed * 6);
+
+    const fmt = new Intl.NumberFormat('vi-VN');
+    document.getElementById('resKwh').textContent = needed.toFixed(1) + ' kWh';
+    document.getElementById('resCost').textContent = fmt.format(Math.round(cost)) + ' đ';
+    document.getElementById('resTime').textContent = timeMin + ' phút';
+    document.getElementById('resKm').textContent = '~' + km + ' km';
+    document.getElementById('chargeResult').classList.remove('hidden');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trạm sạc – NLP Group Admin</title>
+    <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <style>
+        .dot{display:inline-block;width:.5rem;height:.5rem;border-radius:50%;margin-right:.3rem;flex-shrink:0}
+        .dot-green{background:#16a34a}.dot-yellow{background:#f59e0b}.dot-red{background:#ef4444}
+        #stationMap{height:380px;border-radius:.5rem;border:1.5px solid var(--admin-border)}
+        .status-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1.25rem}
+        .status-box{background:#fff;border:1.5px solid var(--admin-border);border-radius:.75rem;padding:.875rem 1rem;text-align:center}
+        .status-box .sv{font-size:1.6rem;font-weight:900;line-height:1}
+        .status-box .sl{font-size:.72rem;color:var(--admin-muted);margin-top:.2rem}
+        .nfc-uid{font-family:'Courier New',monospace;background:#1e293b;color:#4ade80;padding:.15rem .4rem;border-radius:.25rem;font-size:.75rem}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+        .live{animation:pulse 2s ease-in-out infinite;color:#16a34a;font-size:.7rem;font-weight:700}
+    </style>
+</head>
+<body>
+<div class="admin-layout">
+
+    <aside class="admin-sidebar" id="sidebar">
+        <div class="brand">NLP <span>GROUP</span> <span style="font-size:.6rem;font-weight:400;color:#57606a;margin-left:4px">Business Suite</span></div>
+        <nav>
+            <div class="nav-section">Dashboard</div>
+            <a href="index.html"><i class="fa-solid fa-gauge-high fa-fw"></i> Tổng quan</a>
+            <div class="nav-section">Kinh doanh</div>
+            <a href="leads.html"><i class="fa-solid fa-user-group fa-fw"></i> Leads & CRM</a>
+            <a href="stations.html" class="active"><i class="fa-solid fa-charging-station fa-fw"></i> Trạm sạc</a>
+            <a href="partners.html"><i class="fa-solid fa-handshake fa-fw"></i> Đối tác</a>
+            <a href="nfc.html"><i class="fa-solid fa-id-card fa-fw"></i> NFC Manager</a>
+            <div class="nav-section">Tài chính</div>
+            <a href="finance.html"><i class="fa-solid fa-chart-pie fa-fw"></i> BCTC (B01–B09)</a>
+            <a href="employees.html"><i class="fa-solid fa-users-gear fa-fw"></i> HR & Thuế TNCN</a>
+            <div class="nav-section">Nội dung</div>
+            <a href="pages.html"><i class="fa-solid fa-file-lines fa-fw"></i> Quản lý trang</a>
+            <div class="nav-section">Hệ thống</div>
+            <a href="settings.html"><i class="fa-solid fa-gear fa-fw"></i> Cài đặt</a>
+            <div style="flex:1"></div>
+            <div class="nav-section">Tài khoản</div>
+            <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i> Xem site</a>
+            <a href="#" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Đăng xuất</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <div style="display:flex;align-items:center;gap:.75rem">
+                <button id="sidebarToggle" style="display:none;background:none;border:none;font-size:1.1rem;cursor:pointer;color:#57606a"><i class="fa-solid fa-bars"></i></button>
+                <div>
+                    <h1 style="margin:0">⚡ Quản lý Trạm sạc <span class="live">● LIVE</span></h1>
+                    <p style="margin:0;font-size:.72rem;color:#57606a">OCPP 1.6 · CCS2 · Realtime monitoring</p>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-secondary btn-sm" onclick="refreshAll()"><i class="fa-solid fa-rotate-right"></i> Làm mới</button>
+                <button class="btn btn-primary btn-sm" onclick="openAddStation()"><i class="fa-solid fa-plus"></i> Thêm trạm</button>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <div id="adminAlert" class="alert"></div>
+
+            <!-- Status strip -->
+            <div class="status-strip">
+                <div class="status-box" style="border-top:3px solid #16a34a">
+                    <div class="sv" id="stOnline" style="color:#16a34a">–</div>
+                    <div class="sl">🟢 Online</div>
+                </div>
+                <div class="status-box" style="border-top:3px solid #f59e0b">
+                    <div class="sv" id="stMaintain" style="color:#f59e0b">–</div>
+                    <div class="sl">🟡 Bảo trì</div>
+                </div>
+                <div class="status-box" style="border-top:3px solid #ef4444">
+                    <div class="sv" id="stOffline" style="color:#ef4444">–</div>
+                    <div class="sl">🔴 Offline</div>
+                </div>
+            </div>
+
+            <!-- Map + filters -->
+            <div class="admin-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-map-location-dot" style="color:#3b82f6;margin-right:.4rem"></i> Bản đồ trạm sạc toàn quốc</h2>
+                    <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                        <select id="filterProv" class="form-select" style="padding:.3rem .6rem;font-size:.82rem;width:auto" onchange="applyFilters()">
+                            <option value="">Tất cả tỉnh</option>
+                        </select>
+                        <select id="filterType" class="form-select" style="padding:.3rem .6rem;font-size:.82rem;width:auto" onchange="applyFilters()">
+                            <option value="">DC + AC</option>
+                            <option value="dc">Chỉ DC</option>
+                            <option value="ac">Chỉ AC</option>
+                        </select>
+                        <select id="filterStatus" class="form-select" style="padding:.3rem .6rem;font-size:.82rem;width:auto" onchange="applyFilters()">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="online">Online</option>
+                            <option value="maintenance">Bảo trì</option>
+                            <option value="offline">Offline</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="padding:1rem"><div id="stationMap"></div></div>
+            </div>
+
+            <!-- Station table -->
+            <div class="admin-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-list" style="color:#16a34a;margin-right:.4rem"></i> Danh sách trạm (<span id="stationCount">0</span>)</h2>
+                    <input id="searchSt" type="text" placeholder="Tìm trạm..." class="form-input" style="width:220px;padding:.35rem .7rem" oninput="applyFilters()">
+                </div>
+                <div style="overflow-x:auto">
+                    <table>
+                        <thead><tr>
+                            <th>Tên trạm & Địa chỉ</th>
+                            <th>Tỉnh</th><th>Loại</th><th>Công suất</th><th>Cổng</th>
+                            <th>Trạng thái</th><th>Phiên hôm nay</th><th>DT tháng</th>
+                            <th>Đối tác</th><th></th>
+                        </tr></thead>
+                        <tbody id="stBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sessions -->
+            <div class="admin-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-bolt" style="color:#f59e0b;margin-right:.4rem"></i> Phiên sạc gần nhất</h2>
+                    <div style="font-size:.78rem;color:var(--admin-muted)">Biểu giá: <span style="color:#16a34a;font-weight:700">Thấp điểm 3.651đ</span> · <span style="color:#f59e0b;font-weight:700">BT 4.984đ</span> · <span style="color:#ef4444;font-weight:700">Cao điểm 7.436đ</span> /kWh</div>
+                </div>
+                <div style="overflow-x:auto">
+                    <table>
+                        <thead><tr><th>Thẻ NFC</th><th>Khách hàng</th><th>Trạm</th><th>kWh</th><th>Thanh toán</th><th>Biểu giá</th><th>Bắt đầu</th><th>Kết thúc</th></tr></thead>
+                        <tbody id="sessBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal thêm/sửa trạm -->
+<div class="modal-overlay" id="stModal">
+    <div class="modal-box" style="max-width:560px">
+        <div class="modal-header">
+            <h3 id="stModalTitle">Thêm trạm sạc mới</h3>
+            <button onclick="closeStModal()" style="background:none;border:none;cursor:pointer;font-size:1.1rem"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                <div class="form-group" style="grid-column:1/-1">
+                    <label class="form-label">Tên trạm *</label>
+                    <input id="stName" class="form-input" type="text" placeholder="VD: Trạm HCM – Quận 1">
+                </div>
+                <div class="form-group" style="grid-column:1/-1">
+                    <label class="form-label">Địa chỉ</label>
+                    <input id="stAddress" class="form-input" type="text" placeholder="Số nhà, đường, quận/huyện, tỉnh/TP">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tỉnh/Thành *</label>
+                    <input id="stProv" class="form-input" type="text" placeholder="TP.HCM">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Loại trạm</label>
+                    <select id="stType" class="form-select">
+                        <option value="dc">DC (sạc nhanh)</option>
+                        <option value="ac">AC (sạc thông thường)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Công suất</label>
+                    <select id="stPower" class="form-select">
+                        <option value="30kW">30 kW</option>
+                        <option value="60kW">60 kW</option>
+                        <option value="120kW" selected>120 kW</option>
+                        <option value="240kW">240 kW</option>
+                        <option value="22kW">22 kW (AC)</option>
+                        <option value="11kW">11 kW (AC)</option>
+                        <option value="7kW">7 kW (AC)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Số cổng sạc</label>
+                    <input id="stPorts" class="form-input" type="number" value="2" min="1" max="20">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Vĩ độ (lat)</label>
+                    <input id="stLat" class="form-input" type="number" step="0.0001" placeholder="10.7769">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Kinh độ (lng)</label>
+                    <input id="stLng" class="form-input" type="number" step="0.0001" placeholder="106.7009">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="closeStModal()" class="btn btn-secondary">Huỷ</button>
+            <button onclick="saveStation()" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Lưu trạm</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+let DB = {}, MAP = null, markers = [];
+
+async function loadDB() {
+    const r = await fetch('../admin/db.json?' + Date.now());
+    DB = await r.json();
+    renderAll();
+}
+
+function renderAll() {
+    const st = DB.stations || [];
+    const online   = st.filter(s => s.status === 'online').length;
+    const maintain = st.filter(s => s.status === 'maintenance').length;
+    const offline  = st.filter(s => s.status === 'offline').length;
+    g('stOnline').textContent   = online;
+    g('stMaintain').textContent = maintain;
+    g('stOffline').textContent  = offline;
+
+    // Province filter populate
+    const provs = [...new Set(st.map(s => s.province))];
+    const sel = g('filterProv');
+    if(sel.options.length === 1) provs.forEach(p => { const o = document.createElement('option'); o.value=p; o.textContent=p; sel.appendChild(o); });
+
+    applyFilters();
+    renderMap(st);
+    renderSessions();
+}
+
+function applyFilters() {
+    const st     = DB.stations || [];
+    const prov   = g('filterProv')?.value   || '';
+    const type   = g('filterType')?.value   || '';
+    const status = g('filterStatus')?.value || '';
+    const q      = (g('searchSt')?.value || '').toLowerCase();
+    const f = st.filter(s =>
+        (!prov   || s.province === prov) &&
+        (!type   || s.type === type) &&
+        (!status || s.status === status) &&
+        (!q      || s.name.toLowerCase().includes(q) || s.province.toLowerCase().includes(q))
+    );
+    g('stationCount').textContent = f.length;
+    g('stBody').innerHTML = f.map(s => {
+        const dot = s.status === 'online' ? 'dot-green' : s.status === 'maintenance' ? 'dot-yellow' : 'dot-red';
+        const statusLbl = s.status === 'online' ? 'Online' : s.status === 'maintenance' ? 'Bảo trì' : 'Offline';
+        const partner = (DB.partners || []).find(p => p.id === s.partner_id);
+        return `<tr>
+            <td><strong style="font-size:.85rem">${s.name}</strong><br><span style="font-size:.72rem;color:#57606a">${s.address || '–'}</span></td>
+            <td>${s.province}</td>
+            <td><span style="font-weight:700;font-size:.78rem;color:${s.type==='dc'?'#3b82f6':'#16a34a'}">${s.type.toUpperCase()}</span></td>
+            <td><strong>${s.power}</strong></td>
+            <td style="text-align:center">${s.ports}</td>
+            <td><span class="dot ${dot}"></span>${statusLbl}</td>
+            <td style="text-align:center;font-weight:700">${s.sessions_today || 0}</td>
+            <td style="font-weight:700;color:#16a34a">${s.revenue_month > 0 ? fmtMoney(s.revenue_month) : '<span style="color:#9ca3af">–</span>'}</td>
+            <td style="font-size:.78rem">${partner ? partner.name.substring(0,22) + '…' : '<span style="color:#9ca3af">–</span>'}</td>
+            <td>
+                <button class="btn btn-secondary btn-sm" onclick="editStation('${s.id}')" title="Sửa"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn btn-secondary btn-sm" onclick="pingStation('${s.id}')" title="Ping OCPP"><i class="fa-solid fa-wifi"></i></button>
+            </td>
+        </tr>`;
+    }).join('') || '<tr><td colspan="10" style="text-align:center;padding:2rem;color:#9ca3af">Không có trạm nào khớp.</td></tr>';
+}
+
+function renderMap(stations) {
+    if(!MAP) {
+        MAP = L.map('stationMap').setView([16.0, 106.5], 6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution:'© OpenStreetMap' }).addTo(MAP);
+    }
+    markers.forEach(m => MAP.removeLayer(m));
+    markers = [];
+    stations.forEach(s => {
+        if(!s.lat || !s.lng) return;
+        const color = s.status === 'online' ? '#16a34a' : s.status === 'maintenance' ? '#f59e0b' : '#ef4444';
+        const icon = L.divIcon({
+            html: `<div style="background:${color};width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>`,
+            className: '', iconSize: [14,14], iconAnchor: [7,7]
+        });
+        const m = L.marker([s.lat, s.lng], {icon}).addTo(MAP)
+            .bindPopup(`<strong>${s.name}</strong><br>${s.type.toUpperCase()} ${s.power} · ${s.ports} cổng<br><span style="color:${color};font-weight:700">${s.status}</span><br><small>${s.address||''}</small>`);
+        markers.push(m);
+    });
+}
+
+function renderSessions() {
+    const sess = DB.charging_sessions || [];
+    g('sessBody').innerHTML = sess.map(s => {
+        const st = (DB.stations||[]).find(x => x.id === s.station_id);
+        const tc = s.tariff === 'peak' ? '#ef4444' : s.tariff === 'offpeak' ? '#16a34a' : '#f59e0b';
+        const tl = s.tariff === 'peak' ? 'Cao điểm' : s.tariff === 'offpeak' ? 'Thấp điểm' : 'Bình thường';
+        return `<tr>
+            <td><span class="nfc-uid">${s.nfc_uid}</span></td>
+            <td>${s.user_name}</td>
+            <td style="font-size:.78rem">${st ? st.name.substring(0,28) : s.station_id}</td>
+            <td><strong>${s.energy_kwh} kWh</strong></td>
+            <td><strong>${fmtVND(s.amount_vnd)}</strong></td>
+            <td><span style="color:${tc};font-weight:700;font-size:.78rem">${tl}</span></td>
+            <td style="font-size:.75rem">${fmt(s.started_at)}</td>
+            <td style="font-size:.75rem">${fmt(s.ended_at)}</td>
+        </tr>`;
+    }).join('') || '<tr><td colspan="8" style="text-align:center;padding:2rem;color:#9ca3af">Chưa có phiên sạc.</td></tr>';
+}
+
+function pingStation(id) {
+    const s = (DB.stations||[]).find(x=>x.id===id);
+    showAlert(`📡 OCPP Ping → ${s?.name}: ${s?.status === 'online' ? '✅ Phản hồi OK (32ms)' : '❌ Không phản hồi'}`, s?.status==='online'?'success':'danger');
+}
+function editStation(id) { showAlert('🔧 Chức năng sửa trạm — sẽ mở form chỉnh sửa (cần backend lưu db.json).', 'success'); }
+function openAddStation() { g('stModal').style.display='flex'; }
+function closeStModal()   { g('stModal').style.display='none'; }
+function saveStation() {
+    const name = g('stName').value.trim();
+    if(!name) { alert('Vui lòng nhập tên trạm.'); return; }
+    closeStModal();
+    showAlert(`✅ Trạm "${name}" đã được ghi nhận. Cần backend để lưu vào db.json vĩnh viễn.`, 'success');
+}
+function refreshAll() { loadDB(); }
+
+function g(id)       { return document.getElementById(id); }
+function fmtVND(n)   { return (n||0).toLocaleString('vi-VN') + ' đ'; }
+function fmtMoney(n) { return n>=1e6 ? (n/1e6).toFixed(1)+'M' : fmtVND(n); }
+function fmt(d)      { return d ? new Date(d).toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '–'; }
+function showAlert(msg, type='success') {
+    const el = g('adminAlert'); el.className='alert alert-'+type; el.textContent=msg; el.style.display='block';
+    setTimeout(()=>el.style.display='none', 5000);
+}
+function doLogout() { localStorage.removeItem('nlpgroup_admin_auth'); window.location.href='login.html'; }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btn = g('sidebarToggle');
+    if(btn){ btn.style.display='block'; btn.addEventListener('click',()=>g('sidebar').classList.toggle('open')); }
+    loadDB();
+});
+</script>
+</body>
+</html>

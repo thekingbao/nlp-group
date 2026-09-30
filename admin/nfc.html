@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFC Manager – NLP Group Admin</title>
+    <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <style>
+        .nfc-uid{font-family:'Courier New',monospace;background:#1e293b;color:#4ade80;padding:.2rem .5rem;border-radius:.3rem;font-size:.78rem;letter-spacing:.05em}
+        .card-type-user{color:#3b82f6;font-weight:700;font-size:.75rem}
+        .card-type-partner{color:#7c3aed;font-weight:700;font-size:.75rem}
+        .card-type-employee{color:#0d9488;font-weight:700;font-size:.75rem}
+        .status-active{color:#16a34a;font-weight:700}.status-blocked{color:#ef4444;font-weight:700}.status-expired{color:#f59e0b;font-weight:700}
+        .dot{display:inline-block;width:.45rem;height:.45rem;border-radius:50%;margin-right:.3rem}
+        .scan-box{background:#0f172a;border-radius:.75rem;padding:1.5rem;margin-bottom:1rem}
+        .scan-input-row{display:flex;gap:.75rem;align-items:center}
+        .scan-input{background:#1e293b;border:1.5px solid #334155;border-radius:.5rem;color:#e2e8f0;font-family:'Courier New',monospace;font-size:1.1rem;letter-spacing:.12em;padding:.6rem 1rem;flex:1;outline:none;text-transform:uppercase}
+        .scan-input:focus{border-color:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.2)}
+        .scan-result{min-height:100px;border-radius:.5rem;padding:1rem;display:flex;align-items:center;justify-content:center;text-align:center;font-size:.85rem;border:1.5px solid #1e293b;background:#1e293b;color:#94a3b8;margin-top:1rem}
+        .ocpp-note{margin-top:.75rem;padding:.75rem;background:#0f2a1a;border-radius:.5rem;font-size:.72rem;color:#4ade80;line-height:1.7}
+        .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.25rem}
+        .kpi-box{background:#fff;border:1.5px solid var(--admin-border);border-radius:.75rem;padding:.875rem 1rem;text-align:center}
+        .kpi-box .kv{font-size:1.5rem;font-weight:900;line-height:1}.kpi-box .kl{font-size:.72rem;color:var(--admin-muted);margin-top:.2rem}
+        @media(max-width:640px){.kpi-row{grid-template-columns:1fr 1fr}}
+    </style>
+</head>
+<body>
+<div class="admin-layout">
+
+    <aside class="admin-sidebar" id="sidebar">
+        <div class="brand">NLP <span>GROUP</span> <span style="font-size:.6rem;font-weight:400;color:#57606a;margin-left:4px">Business Suite</span></div>
+        <nav>
+            <div class="nav-section">Dashboard</div>
+            <a href="index.html"><i class="fa-solid fa-gauge-high fa-fw"></i> Tổng quan</a>
+            <div class="nav-section">Kinh doanh</div>
+            <a href="leads.html"><i class="fa-solid fa-user-group fa-fw"></i> Leads & CRM</a>
+            <a href="stations.html"><i class="fa-solid fa-charging-station fa-fw"></i> Trạm sạc</a>
+            <a href="partners.html"><i class="fa-solid fa-handshake fa-fw"></i> Đối tác</a>
+            <a href="nfc.html" class="active"><i class="fa-solid fa-id-card fa-fw"></i> NFC Manager</a>
+            <div class="nav-section">Tài chính</div>
+            <a href="finance.html"><i class="fa-solid fa-chart-pie fa-fw"></i> BCTC (B01–B09)</a>
+            <a href="employees.html"><i class="fa-solid fa-users-gear fa-fw"></i> HR & Thuế TNCN</a>
+            <div class="nav-section">Nội dung</div>
+            <a href="pages.html"><i class="fa-solid fa-file-lines fa-fw"></i> Quản lý trang</a>
+            <div class="nav-section">Hệ thống</div>
+            <a href="settings.html"><i class="fa-solid fa-gear fa-fw"></i> Cài đặt</a>
+            <div style="flex:1"></div>
+            <div class="nav-section">Tài khoản</div>
+            <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i> Xem site</a>
+            <a href="#" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Đăng xuất</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <div style="display:flex;align-items:center;gap:.75rem">
+                <button id="sidebarToggle" style="display:none;background:none;border:none;font-size:1.1rem;cursor:pointer;color:#57606a"><i class="fa-solid fa-bars"></i></button>
+                <div>
+                    <h1 style="margin:0"><i class="fa-solid fa-id-card" style="color:#0d9488"></i> NFC Card Manager</h1>
+                    <p style="margin:0;font-size:.72rem;color:#57606a">ISO 14443A · MIFARE Classic 1K · OCPP idTag Authentication</p>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-secondary btn-sm" onclick="loadDB()"><i class="fa-solid fa-rotate-right"></i> Làm mới</button>
+                <button class="btn btn-primary btn-sm" onclick="openNewCard()"><i class="fa-solid fa-plus"></i> Cấp thẻ mới</button>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <div id="adminAlert" class="alert"></div>
+
+            <!-- KPIs -->
+            <div class="kpi-row">
+                <div class="kpi-box" style="border-top:3px solid #16a34a"><div class="kv" id="kpiActive" style="color:#16a34a">–</div><div class="kl">✅ Thẻ active</div></div>
+                <div class="kpi-box" style="border-top:3px solid #ef4444"><div class="kv" id="kpiBlocked" style="color:#ef4444">–</div><div class="kl">🚫 Thẻ bị khóa</div></div>
+                <div class="kpi-box" style="border-top:3px solid #3b82f6"><div class="kv" id="kpiTotalSess" style="color:#3b82f6">–</div><div class="kl">🔌 Tổng phiên sạc</div></div>
+                <div class="kpi-box" style="border-top:3px solid #7c3aed"><div class="kv" id="kpiTotalKwh" style="color:#7c3aed">–</div><div class="kl">⚡ Tổng kWh tiêu thụ</div></div>
+            </div>
+
+            <!-- NFC Scanner simulator -->
+            <div class="scan-box">
+                <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4ade80;margin-bottom:.75rem">
+                    📱 NFC TERMINAL SIMULATOR — OCPP 1.6 idTag Flow
+                </div>
+                <div class="scan-input-row">
+                    <input id="scanUid" class="scan-input" type="text" placeholder="NHẬP UID (VD: A1B2C3D4)" maxlength="8"
+                        oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')doScan()">
+                    <button class="btn btn-primary" onclick="doScan()"><i class="fa-solid fa-wifi"></i> QUÉT</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('scanUid').value='A1B2C3D4';doScan()">
+                        <i class="fa-solid fa-flask"></i> Demo
+                    </button>
+                </div>
+                <div id="scanResult" class="scan-result">
+                    <span>Quét thẻ NFC để xem kết quả xác thực...</span>
+                </div>
+                <div class="ocpp-note">
+                    <strong>Luồng OCPP thực tế:</strong><br>
+                    1. Người dùng chạm thẻ NFC vào đầu đọc ACR122U tại trụ sạc<br>
+                    2. Reader đọc UID ISO 14443A → gửi OCPP <code>Authorize.req{idTag: "UID"}</code> lên Central System<br>
+                    3. NFCController tra cứu <code>nfc_cards</code> PostgreSQL → kiểm tra status + wallet_balance<br>
+                    4. Trả về <code>Authorize.conf{idTagInfo:{status:"Accepted"}}</code> → trụ sạc cấp điện<br>
+                    5. Ghi nhận <code>StartTransaction</code> → realtime log vào <code>charging_sessions</code>
+                </div>
+            </div>
+
+            <!-- Cards table -->
+            <div class="admin-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-credit-card" style="color:#0d9488;margin-right:.4rem"></i> Danh sách thẻ NFC (<span id="cardCount">0</span>)</h2>
+                    <div style="display:flex;gap:.5rem">
+                        <select id="filterCardType" class="form-select" style="padding:.3rem .6rem;font-size:.82rem;width:auto" onchange="renderCards()">
+                            <option value="">Tất cả loại</option>
+                            <option value="user">User</option>
+                            <option value="partner">Partner</option>
+                            <option value="employee">Employee</option>
+                        </select>
+                        <select id="filterCardStatus" class="form-select" style="padding:.3rem .6rem;font-size:.82rem;width:auto" onchange="renderCards()">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="active">Active</option>
+                            <option value="blocked">Blocked</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="overflow-x:auto">
+                    <table>
+                        <thead><tr>
+                            <th>UID Thẻ</th><th>Chủ thẻ</th><th>SĐT</th><th>Loại</th>
+                            <th>Số dư ví</th><th>Phiên sạc</th><th>Tổng kWh</th>
+                            <th>Cấp phát</th><th>Hết hạn</th><th>Trạng thái</th><th></th>
+                        </tr></thead>
+                        <tbody id="cardsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sessions history -->
+            <div class="admin-panel">
+                <div class="panel-header">
+                    <h2><i class="fa-solid fa-clock-rotate-left" style="color:#f97316;margin-right:.4rem"></i> Lịch sử phiên sạc qua NFC</h2>
+                </div>
+                <div style="overflow-x:auto">
+                    <table>
+                        <thead><tr><th>UID</th><th>Khách hàng</th><th>Trạm sạc</th><th>Năng lượng</th><th>Thanh toán</th><th>Biểu giá</th><th>OCPP Txn ID</th><th>Bắt đầu</th><th>Kết thúc</th></tr></thead>
+                        <tbody id="sessBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal cấp thẻ mới -->
+<div class="modal-overlay" id="cardModal">
+    <div class="modal-box" style="max-width:460px">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-id-card" style="color:#0d9488;margin-right:.4rem"></i> Cấp thẻ NFC mới</h3>
+            <button onclick="closeCard()" style="background:none;border:none;cursor:pointer;font-size:1.1rem"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="form-label">UID thẻ NFC * <span style="font-size:.72rem;color:#57606a">(8 ký tự hex — đọc từ đầu đọc ACR122U)</span></label>
+                <input id="newUid" class="form-input" type="text" placeholder="VD: F1E2D3C4" style="font-family:monospace;text-transform:uppercase;letter-spacing:.08em" maxlength="8">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                <div class="form-group">
+                    <label class="form-label">Họ tên chủ thẻ *</label>
+                    <input id="newName" class="form-input" type="text" placeholder="Nguyễn Văn A">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Số điện thoại *</label>
+                    <input id="newPhone" class="form-input" type="tel" placeholder="09xx xxx xxx">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Loại thẻ</label>
+                    <select id="newType" class="form-select">
+                        <option value="user">👤 User (khách hàng)</option>
+                        <option value="partner">🤝 Partner (đối tác)</option>
+                        <option value="employee">🏢 Employee (nhân viên)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nạp tiền ban đầu (VND)</label>
+                    <input id="newBalance" class="form-input" type="number" value="100000" min="0" step="10000">
+                </div>
+            </div>
+            <div style="padding:.75rem;background:#f0fdf4;border-radius:.5rem;font-size:.75rem;color:#166534">
+                <strong>Quy trình phát thẻ:</strong> Đặt thẻ MIFARE lên đầu đọc ACR122U → hệ thống tự đọc UID → gán tài khoản → kích hoạt trong 30 giây
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="closeCard()" class="btn btn-secondary">Huỷ</button>
+            <button onclick="saveCard()" class="btn btn-primary"><i class="fa-solid fa-id-card"></i> Cấp thẻ</button>
+        </div>
+    </div>
+</div>
+
+<script src="../js/admin.js"></script>
+<script>
+let DB = {};
+
+async function loadDB() {
+    const r = await fetch('../admin/db.json?' + Date.now());
+    DB = await r.json();
+    renderKPI();
+    renderCards();
+    renderSessions();
+}
+
+function renderKPI() {
+    const cards = DB.nfc_cards || [];
+    const sess  = DB.charging_sessions || [];
+    g('kpiActive').textContent  = cards.filter(c => c.status === 'active').length;
+    g('kpiBlocked').textContent = cards.filter(c => c.status === 'blocked').length;
+    g('kpiTotalSess').textContent = sess.length;
+    g('kpiTotalKwh').textContent = sess.reduce((a,s)=>a+s.energy_kwh,0).toFixed(1);
+    g('cardCount').textContent  = cards.length;
+}
+
+function renderCards() {
+    const cards  = DB.nfc_cards || [];
+    const typeF  = g('filterCardType')?.value   || '';
+    const statusF= g('filterCardStatus')?.value || '';
+    const f = cards.filter(c => (!typeF||c.card_type===typeF) && (!statusF||c.status===statusF));
+    g('cardsBody').innerHTML = f.map(c => `<tr>
+        <td><span class="nfc-uid">${c.uid}</span></td>
+        <td><strong>${c.user_name}</strong></td>
+        <td><a href="tel:${c.user_phone}" style="color:#3b82f6">${c.user_phone}</a></td>
+        <td><span class="card-type-${c.card_type}">${c.card_type.toUpperCase()}</span></td>
+        <td><strong style="color:${c.wallet_balance>=50000?'#16a34a':'#ef4444'}">${fmtVND(c.wallet_balance)}</strong></td>
+        <td style="text-align:center">${c.total_sessions}</td>
+        <td>${c.total_kwh} kWh</td>
+        <td style="font-size:.75rem">${c.issued_at}</td>
+        <td style="font-size:.75rem;color:${new Date(c.expires_at)<new Date()?'#ef4444':'#57606a'}">${c.expires_at}</td>
+        <td><span class="status-${c.status}">● ${c.status.toUpperCase()}</span></td>
+        <td>
+            <button class="btn btn-secondary btn-sm" onclick="topup('${c.id}','${c.user_name}')" title="Nạp tiền"><i class="fa-solid fa-wallet"></i></button>
+            ${c.status==='active'
+                ? `<button class="btn btn-danger btn-sm" onclick="blockCard('${c.uid}')" title="Khóa thẻ"><i class="fa-solid fa-ban"></i></button>`
+                : `<button class="btn btn-secondary btn-sm" onclick="unblockCard('${c.uid}')" title="Mở khóa"><i class="fa-solid fa-lock-open"></i></button>`
+            }
+        </td>
+    </tr>`).join('') || '<tr><td colspan="11" style="text-align:center;padding:2rem;color:#9ca3af">Không có thẻ nào.</td></tr>';
+}
+
+function renderSessions() {
+    const sess = DB.charging_sessions || [];
+    g('sessBody').innerHTML = sess.map(s => {
+        const st = (DB.stations||[]).find(x=>x.id===s.station_id);
+        const tc = s.tariff==='peak'?'#ef4444':s.tariff==='offpeak'?'#16a34a':'#f59e0b';
+        const tl = s.tariff==='peak'?'Cao điểm':s.tariff==='offpeak'?'Thấp điểm':'Bình thường';
+        return `<tr>
+            <td><span class="nfc-uid">${s.nfc_uid}</span></td>
+            <td>${s.user_name}</td>
+            <td style="font-size:.78rem">${st?st.name.substring(0,30):s.station_id}</td>
+            <td><strong>${s.energy_kwh} kWh</strong></td>
+            <td><strong>${fmtVND(s.amount_vnd)}</strong></td>
+            <td><span style="color:${tc};font-weight:700;font-size:.78rem">${tl}</span></td>
+            <td style="font-family:monospace;font-size:.78rem">#${s.ocpp_txn_id}</td>
+            <td style="font-size:.75rem">${fmt(s.started_at)}</td>
+            <td style="font-size:.75rem">${fmt(s.ended_at)}</td>
+        </tr>`;
+    }).join('') || '<tr><td colspan="9" style="text-align:center;padding:2rem;color:#9ca3af">Chưa có lịch sử.</td></tr>';
+}
+
+function doScan() {
+    const uid  = g('scanUid').value.trim().toUpperCase();
+    if(!uid)   { showAlert('Vui lòng nhập UID thẻ.','danger'); return; }
+    const card = (DB.nfc_cards||[]).find(c=>c.uid===uid);
+    const res  = g('scanResult');
+    if(!card) {
+        res.style.cssText='background:#1a0505;border-color:#7f1d1d;color:#fca5a5';
+        res.innerHTML=`<div><div style="font-size:2rem;margin-bottom:.5rem">❌</div><div style="font-weight:700;color:#ef4444">KHÔNG TÌM THẤY</div><div style="font-size:.78rem;margin-top:.25rem">UID <strong>${uid}</strong> chưa được đăng ký<br><span style="color:#94a3b8">OCPP → Authorize.conf {status: "Invalid"}</span></div></div>`;
+    } else if(card.status==='blocked') {
+        res.style.cssText='background:#1a0505;border-color:#7f1d1d;color:#fca5a5';
+        res.innerHTML=`<div><div style="font-size:2rem;margin-bottom:.5rem">🚫</div><div style="font-weight:700;color:#ef4444">THẺ BỊ KHÓA</div><div style="font-size:.78rem;margin-top:.25rem">${card.user_name} — ${card.user_phone}<br><span style="color:#94a3b8">OCPP → Authorize.conf {status: "Blocked"}</span></div></div>`;
+    } else if(card.wallet_balance < 20000) {
+        res.style.cssText='background:#1a0e00;border-color:#78350f;color:#fcd34d';
+        res.innerHTML=`<div><div style="font-size:2rem;margin-bottom:.5rem">⚠️</div><div style="font-weight:700;color:#f59e0b">SỐ DƯ KHÔNG ĐỦ</div><div style="font-size:.78rem;margin-top:.25rem">${card.user_name} — Số dư: <strong>${fmtVND(card.wallet_balance)}</strong><br><span style="color:#94a3b8">OCPP → Authorize.conf {status: "NoCredit"}</span></div></div>`;
+    } else {
+        res.style.cssText='background:#0a1a0a;border-color:#166534;color:#86efac';
+        res.innerHTML=`<div style="text-align:left;width:100%">
+            <div style="text-align:center;margin-bottom:.75rem"><span style="font-size:1.8rem">✅</span> <span style="font-weight:700;color:#4ade80;font-size:.95rem">XÁC THỰC THÀNH CÔNG</span></div>
+            <div style="background:#0f172a;border-radius:.5rem;padding:.875rem;font-size:.82rem;display:grid;grid-template-columns:1fr 1fr;gap:.35rem .75rem">
+                <span style="color:#94a3b8">Chủ thẻ:</span><strong style="color:#e2e8f0">${card.user_name}</strong>
+                <span style="color:#94a3b8">SĐT:</span><span style="color:#e2e8f0">${card.user_phone}</span>
+                <span style="color:#94a3b8">Loại thẻ:</span><span style="color:#c084fc;font-weight:700">${card.card_type.toUpperCase()}</span>
+                <span style="color:#94a3b8">Số dư ví:</span><strong style="color:#4ade80">${fmtVND(card.wallet_balance)}</strong>
+                <span style="color:#94a3b8">Tổng phiên:</span><span style="color:#e2e8f0">${card.total_sessions}</span>
+                <span style="color:#94a3b8">Tổng kWh:</span><span style="color:#e2e8f0">${card.total_kwh}</span>
+            </div>
+            <div style="margin-top:.75rem;background:#16a34a;border-radius:.375rem;padding:.5rem;text-align:center;font-weight:700;color:#fff;font-size:.82rem">
+                ⚡ OCPP → Authorize.conf {status: "Accepted"} → RemoteStartTransaction
+            </div>
+        </div>`;
+    }
+}
+
+function topup(id, name) {
+    const amt = prompt(`Nạp tiền vào ví cho "${name}" (VND):`);
+    if(!amt || isNaN(amt) || parseInt(amt) <= 0) return;
+    showAlert(`✅ Nạp ${fmtVND(parseInt(amt))} vào ví của ${name}. (Cần backend để lưu vĩnh viễn)`, 'success');
+}
+function blockCard(uid)   { if(confirm(`Khóa thẻ ${uid}?`)) showAlert(`🔒 Thẻ ${uid} đã bị KHÓA — OCPP sẽ từ chối xác thực.`, 'danger'); }
+function unblockCard(uid) { showAlert(`🔓 Thẻ ${uid} đã được MỞ KHÓA.`, 'success'); }
+function openNewCard()    { g('cardModal').style.display='flex'; }
+function closeCard()      { g('cardModal').style.display='none'; }
+function saveCard() {
+    const uid  = g('newUid').value.trim().toUpperCase();
+    const name = g('newName').value.trim();
+    const phone= g('newPhone').value.trim();
+    if(!uid||uid.length<6||!name||!phone) { alert('Vui lòng điền đầy đủ thông tin. UID phải tối thiểu 6 ký tự hex.'); return; }
+    closeCard();
+    showAlert(`✅ Thẻ NFC ${uid} đã được cấp cho ${name}. OCPP idTag đã đăng ký.`, 'success');
+}
+
+function g(id)       { return document.getElementById(id); }
+function fmtVND(n)   { return (n||0).toLocaleString('vi-VN')+'đ'; }
+function fmt(d)      { return d ? new Date(d).toLocaleString('vi-VN',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}) : '–'; }
+function showAlert(msg,type='success') {
+    const el=g('adminAlert'); el.className='alert alert-'+type; el.textContent=msg; el.style.display='block';
+    setTimeout(()=>el.style.display='none',5000);
+}
+function doLogout() { localStorage.removeItem('nlpgroup_admin_auth'); window.location.href='login.html'; }
+document.addEventListener('DOMContentLoaded',()=>{
+    const btn=g('sidebarToggle'); if(btn){btn.style.display='block';btn.addEventListener('click',()=>g('sidebar').classList.toggle('open'));}
+    loadDB();
+});
+</script>
+</body>
+</html>

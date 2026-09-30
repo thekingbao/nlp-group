@@ -21,6 +21,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
     <script>
         tailwind.config = {
@@ -152,6 +154,7 @@
                     </div>
 
                     <!-- Extra links -->
+                    <a href="pages/du-an/" class="text-sm font-semibold text-gray-600 hover:text-solar-600 transition-colors">Dự án</a>
                     <a href="pages/tin-tuc/" class="text-sm font-semibold text-gray-600 hover:text-solar-600 transition-colors">Tin tức</a>
                     <a href="pages/lien-he/" class="text-sm font-semibold text-gray-600 hover:text-solar-600 transition-colors">Liên hệ</a>
                     <a href="pages/doi-tac/" class="text-sm font-semibold text-white bg-solar-600 hover:bg-solar-700 px-4 py-1.5 rounded-full transition-colors shadow-md shadow-solar-500/30">🤝 Đối tác</a>
@@ -189,6 +192,7 @@
                 <div class="px-3 py-2 mt-2 text-sm font-bold text-gray-400 uppercase tracking-wider">Dịch vụ</div>
                 <a href="pages/dich-vu/thue-mua/"          class="block pl-6 py-2 text-base font-medium text-gray-600 hover:text-solar-600">Thuê – Mua</a>
                 <a href="pages/dich-vu/tra-cham/"          class="block pl-6 py-2 text-base font-medium text-gray-600 hover:text-solar-600">Mua trả chậm</a>
+                <a href="pages/du-an/"             class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-solar-50 rounded-lg">Dự án</a>
                 <a href="pages/tin-tuc/"           class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-solar-50 rounded-lg">Tin tức</a>
                 <a href="pages/lien-he/"           class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-solar-50 rounded-lg">Liên hệ</a>
                 <a href="pages/doi-tac/"           class="block px-3 py-3 text-base font-medium text-solar-600 font-bold hover:bg-solar-50 rounded-lg">🤝 Đăng ký Đối tác</a>
@@ -435,10 +439,10 @@
         </div>
     </section>
 
-    <!-- ── PRODUCTS ───────────────────────────────────── -->
+    <!-- ── PRODUCTS (Swiper slider on mobile, grid on desktop) ── -->
     <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">
                 <div class="max-w-2xl">
                     <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Thiết bị Inverter chính hãng</p>
                     <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Biến tần Hybrid — Trái tim của hệ thống</h2>
@@ -449,95 +453,151 @@
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Product 1: Deye 6kW -->
-                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all group relative product-card">
-                    <div class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">BÁN CHẠY</div>
-                    <div class="aspect-square bg-gray-50 relative p-6 flex items-center justify-center">
-                        <img src="https://placehold.co/400x400/f3f4f6/1f2937?text=DEYE+Hybrid%0A6kW" alt="Deye Hybrid 6kW" class="object-contain w-full h-full">
+            <!-- Swiper -->
+            <div class="swiper product-swiper">
+                <div class="swiper-wrapper pb-10">
+                    <!-- Product 1: Deye 6kW -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all group relative product-card h-full">
+                            <div class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">BÁN CHẠY</div>
+                            <div class="aspect-square bg-gray-50 p-6 flex items-center justify-center">
+                                <img src="https://placehold.co/400x400/f3f4f6/1f2937?text=DEYE+Hybrid+6kW" alt="Deye Hybrid 6kW" class="object-contain w-full h-full">
+                            </div>
+                            <div class="p-6">
+                                <p class="text-xs text-gray-500 font-bold tracking-widest mb-1">DEYE</p>
+                                <h3 class="text-lg font-black text-gray-900 mb-3">Biến tần Hybrid 6kW 1 Pha</h3>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">MPPT kép</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">Wi-Fi App</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-sm text-gray-400 line-through">26.000.000đ</p>
+                                    <p class="text-2xl font-black text-solar-600">Liên hệ báo giá</p>
+                                </div>
+                                <button onclick="openModal()" class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2.5 rounded-lg font-semibold transition-colors mb-2">Nhận ưu đãi</button>
+                                <a href="pages/dien-mat-troi/bien-tan-hybrid/" class="block text-center text-sm text-gray-500 hover:text-solar-600"><i class="fa-solid fa-info-circle"></i> Chi tiết</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-xs text-gray-500 font-bold tracking-widest mb-1">DEYE</p>
-                        <h3 class="text-lg font-black text-gray-900 mb-3 line-clamp-1">Biến tần Hybrid 6kW 1 Pha</h3>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">MPPT kép</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">Wi-Fi App</span>
+                    <!-- Product 2: Deye 10kW -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all group relative product-card h-full">
+                            <div class="aspect-square bg-gray-50 p-6 flex items-center justify-center">
+                                <img src="https://placehold.co/400x400/f3f4f6/1f2937?text=DEYE+Hybrid+10kW+3P" alt="Deye Hybrid 10kW 3P" class="object-contain w-full h-full">
+                            </div>
+                            <div class="p-6">
+                                <p class="text-xs text-gray-500 font-bold tracking-widest mb-1">DEYE</p>
+                                <h3 class="text-lg font-black text-gray-900 mb-3">Biến tần Hybrid 10kW 3 Pha</h3>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">3-phase</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">Cho Xưởng</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-sm text-transparent select-none">-</p>
+                                    <p class="text-2xl font-black text-solar-600">Liên hệ báo giá</p>
+                                </div>
+                                <button onclick="openModal()" class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2.5 rounded-lg font-semibold transition-colors mb-2">Nhận báo giá</button>
+                                <a href="pages/dien-mat-troi/bien-tan-hybrid/" class="block text-center text-sm text-gray-500 hover:text-solar-600"><i class="fa-solid fa-info-circle"></i> Chi tiết</a>
+                            </div>
                         </div>
-                        <div class="mb-4">
-                            <p class="text-sm text-gray-400 line-through">26.000.000đ</p>
-                            <p class="text-2xl font-black text-solar-600">Liên hệ báo giá</p>
+                    </div>
+                    <!-- Product 3: Solis 6kW -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all group relative product-card h-full">
+                            <div class="aspect-square bg-gray-50 p-6 flex items-center justify-center">
+                                <img src="https://placehold.co/400x400/f3f4f6/1f2937?text=SOLIS+Hybrid+6kW" alt="Solis Hybrid 6kW" class="object-contain w-full h-full">
+                            </div>
+                            <div class="p-6">
+                                <p class="text-xs text-gray-500 font-bold tracking-widest mb-1">SOLIS</p>
+                                <h3 class="text-lg font-black text-gray-900 mb-3">Biến tần Hybrid 6kW</h3>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">IP65</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">Tối ưu giá</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-sm text-transparent select-none">-</p>
+                                    <p class="text-2xl font-black text-solar-600">Liên hệ báo giá</p>
+                                </div>
+                                <button onclick="openModal()" class="w-full border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white py-2 rounded-lg font-semibold transition-colors mb-2">Tư vấn chọn mẫu</button>
+                                <a href="pages/dien-mat-troi/bien-tan-hoa-luoi/" class="block text-center text-sm text-gray-500 hover:text-solar-600"><i class="fa-solid fa-info-circle"></i> Chi tiết</a>
+                            </div>
                         </div>
-                        <button onclick="openModal()" class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2.5 rounded-lg font-semibold transition-colors mb-2">Nhận ưu đãi</button>
-                        <a href="pages/dien-mat-troi/bien-tan-hybrid/" class="block text-center text-sm text-gray-500 hover:text-solar-600"><i class="fa-solid fa-info-circle"></i> Chi tiết sản phẩm</a>
+                    </div>
+                    <!-- Product 4: Solis 10kW -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all group relative product-card h-full">
+                            <div class="aspect-square bg-gray-50 p-6 flex items-center justify-center">
+                                <img src="https://placehold.co/400x400/f3f4f6/1f2937?text=SOLIS+Hybrid+10kW" alt="Solis Hybrid 10kW" class="object-contain w-full h-full">
+                            </div>
+                            <div class="p-6">
+                                <p class="text-xs text-gray-500 font-bold tracking-widest mb-1">SOLIS</p>
+                                <h3 class="text-lg font-black text-gray-900 mb-3">Biến tần Hybrid 10kW 3P</h3>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">3-phase</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">IP65</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-sm text-transparent select-none">-</p>
+                                    <p class="text-2xl font-black text-solar-600">Liên hệ báo giá</p>
+                                </div>
+                                <button onclick="openModal()" class="w-full border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white py-2 rounded-lg font-semibold transition-colors mb-2">Tư vấn chọn mẫu</button>
+                                <a href="pages/dien-mat-troi/bien-tan-hoa-luoi/" class="block text-center text-sm text-gray-500 hover:text-solar-600"><i class="fa-solid fa-info-circle"></i> Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 5: DC Charger 120kW -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all group relative product-card h-full">
+                            <div class="absolute top-4 left-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10">NLP-EGREEN</div>
+                            <div class="aspect-square bg-gray-50 p-6 flex items-center justify-center">
+                                <img src="https://placehold.co/400x400/f3f4f6/7c3aed?text=DC+Charger%0A120kW" alt="Trụ sạc DC 120kW" class="object-contain w-full h-full">
+                            </div>
+                            <div class="p-6">
+                                <p class="text-xs text-gray-500 font-bold tracking-widest mb-1">NLP-EGREEN</p>
+                                <h3 class="text-lg font-black text-gray-900 mb-3">Trụ sạc DC Nhanh 120kW</h3>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded font-medium">CCS2</span>
+                                    <span class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded font-medium">30 phút</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-sm text-transparent select-none">-</p>
+                                    <p class="text-2xl font-black text-purple-600">Liên hệ báo giá</p>
+                                </div>
+                                <button onclick="openModal()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-lg font-semibold transition-colors mb-2">Tư vấn đầu tư</button>
+                                <a href="pages/tru-sac/tru-sac-dc/" class="block text-center text-sm text-gray-500 hover:text-purple-600"><i class="fa-solid fa-info-circle"></i> Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product 6: DC Charger 240kW -->
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all group relative product-card h-full">
+                            <div class="aspect-square bg-gray-50 p-6 flex items-center justify-center">
+                                <img src="https://placehold.co/400x400/f3f4f6/7c3aed?text=DC+Charger%0A240kW" alt="Trụ sạc DC 240kW" class="object-contain w-full h-full">
+                            </div>
+                            <div class="p-6">
+                                <p class="text-xs text-gray-500 font-bold tracking-widest mb-1">NLP-EGREEN</p>
+                                <h3 class="text-lg font-black text-gray-900 mb-3">Trụ sạc DC Ultra 240kW</h3>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded font-medium">2 súng</span>
+                                    <span class="px-2 py-1 bg-purple-50 text-purple-700 text-xs rounded font-medium">IoT App</span>
+                                </div>
+                                <div class="mb-4">
+                                    <p class="text-sm text-transparent select-none">-</p>
+                                    <p class="text-2xl font-black text-purple-600">Liên hệ báo giá</p>
+                                </div>
+                                <button onclick="openModal()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2.5 rounded-lg font-semibold transition-colors mb-2">Tư vấn đầu tư</button>
+                                <a href="pages/tru-sac/tru-sac-dc/" class="block text-center text-sm text-gray-500 hover:text-purple-600"><i class="fa-solid fa-info-circle"></i> Chi tiết</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Product 2: Deye 10kW -->
-                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all group relative product-card">
-                    <div class="aspect-square bg-gray-50 relative p-6 flex items-center justify-center">
-                        <img src="https://placehold.co/400x400/f3f4f6/1f2937?text=DEYE+Hybrid%0A10kW+3P" alt="Deye Hybrid 10kW 3P" class="object-contain w-full h-full">
-                    </div>
-                    <div class="p-6">
-                        <p class="text-xs text-gray-500 font-bold tracking-widest mb-1">DEYE</p>
-                        <h3 class="text-lg font-black text-gray-900 mb-3 line-clamp-1">Biến tần Hybrid 10kW 3 Pha</h3>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">3-phase</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">Cho Xưởng</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-sm text-transparent select-none">-</p>
-                            <p class="text-2xl font-black text-solar-600">Liên hệ báo giá</p>
-                        </div>
-                        <button onclick="openModal()" class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2.5 rounded-lg font-semibold transition-colors mb-2">Nhận báo giá</button>
-                        <a href="pages/dien-mat-troi/bien-tan-hybrid/" class="block text-center text-sm text-gray-500 hover:text-solar-600"><i class="fa-solid fa-info-circle"></i> Chi tiết sản phẩm</a>
-                    </div>
-                </div>
-
-                <!-- Product 3: Solis 6kW -->
-                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all group relative product-card">
-                    <div class="aspect-square bg-gray-50 relative p-6 flex items-center justify-center">
-                        <img src="https://placehold.co/400x400/f3f4f6/1f2937?text=SOLIS+Hybrid%0A6kW" alt="Solis Hybrid 6kW" class="object-contain w-full h-full">
-                    </div>
-                    <div class="p-6">
-                        <p class="text-xs text-gray-500 font-bold tracking-widest mb-1">SOLIS</p>
-                        <h3 class="text-lg font-black text-gray-900 mb-3 line-clamp-1">Biến tần Hybrid 6kW</h3>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">IP65</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">Tối ưu giá</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-sm text-transparent select-none">-</p>
-                            <p class="text-2xl font-black text-solar-600">Liên hệ báo giá</p>
-                        </div>
-                        <button onclick="openModal()" class="w-full border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white py-2 rounded-lg font-semibold transition-colors mb-2">Tư vấn chọn mẫu</button>
-                        <a href="pages/dien-mat-troi/bien-tan-hoa-luoi/" class="block text-center text-sm text-gray-500 hover:text-solar-600"><i class="fa-solid fa-info-circle"></i> Chi tiết sản phẩm</a>
-                    </div>
-                </div>
-
-                <!-- Product 4: Solis 10kW -->
-                <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all group relative product-card">
-                    <div class="aspect-square bg-gray-50 relative p-6 flex items-center justify-center">
-                        <img src="https://placehold.co/400x400/f3f4f6/1f2937?text=SOLIS+Hybrid%0A10kW" alt="Solis Hybrid 10kW" class="object-contain w-full h-full">
-                    </div>
-                    <div class="p-6">
-                        <p class="text-xs text-gray-500 font-bold tracking-widest mb-1">SOLIS</p>
-                        <h3 class="text-lg font-black text-gray-900 mb-3 line-clamp-1">Biến tần Hybrid 10kW 3P</h3>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">3-phase</span>
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium">IP65</span>
-                        </div>
-                        <div class="mb-4">
-                            <p class="text-sm text-transparent select-none">-</p>
-                            <p class="text-2xl font-black text-solar-600">Liên hệ báo giá</p>
-                        </div>
-                        <button onclick="openModal()" class="w-full border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white py-2 rounded-lg font-semibold transition-colors mb-2">Tư vấn chọn mẫu</button>
-                        <a href="pages/dien-mat-troi/bien-tan-hoa-luoi/" class="block text-center text-sm text-gray-500 hover:text-solar-600"><i class="fa-solid fa-info-circle"></i> Chi tiết sản phẩm</a>
-                    </div>
-                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
 
             <!-- DEYE vs SOLIS -->
-            <div class="mt-12 bg-blue-50 rounded-2xl p-6 border border-blue-100 flex items-start gap-4">
+            <div class="mt-12 bg-blue-50 rounded-2xl p-6 border border-blue-100 flex items-start gap-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.6s">
                 <div class="text-3xl text-blue-500"><i class="fa-regular fa-lightbulb"></i></div>
                 <div>
                     <h4 class="text-lg font-bold text-gray-900 mb-1">DEYE vs SOLIS — Nên chọn hãng nào?</h4>
@@ -547,6 +607,30 @@
                         <em>Để có lựa chọn chính xác, kỹ sư NLP Group cần khảo sát biểu đồ phụ tải thực tế của bạn.</em>
                     </p>
                     <a href="pages/dien-mat-troi/" class="inline-block mt-3 text-sm text-solar-600 font-semibold hover:underline">Xem đầy đủ danh mục sản phẩm →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── STATS BAR ────────────────────────────────────── -->
+    <section class="py-14 bg-solar-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+                <div class="wow animate__animated animate__fadeInUp" data-wow-delay="0s" data-wow-duration="0.6s">
+                    <div class="text-4xl md:text-5xl font-black mb-2">1.000+</div>
+                    <div class="text-sm font-semibold text-solar-100 uppercase tracking-wider">Công trình hoàn thành</div>
+                </div>
+                <div class="wow animate__animated animate__fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.6s">
+                    <div class="text-4xl md:text-5xl font-black mb-2">50 MWp</div>
+                    <div class="text-sm font-semibold text-solar-100 uppercase tracking-wider">Tổng công suất lắp đặt</div>
+                </div>
+                <div class="wow animate__animated animate__fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.6s">
+                    <div class="text-4xl md:text-5xl font-black mb-2">24+</div>
+                    <div class="text-sm font-semibold text-solar-100 uppercase tracking-wider">Tỉnh thành có trạm sạc</div>
+                </div>
+                <div class="wow animate__animated animate__fadeInUp" data-wow-delay="0.3s" data-wow-duration="0.6s">
+                    <div class="text-4xl md:text-5xl font-black mb-2">30.000</div>
+                    <div class="text-sm font-semibold text-solar-100 uppercase tracking-wider">Mục tiêu cột sạc 2030</div>
                 </div>
             </div>
         </div>
@@ -708,7 +792,9 @@
                 <div class="flex gap-4">
                     <a href="pages/dieu-khoan/"   class="hover:text-white">Điều khoản</a>
                     <a href="pages/bao-mat/"       class="hover:text-white">Bảo mật</a>
-                    <a href="admin/login.html"         class="hover:text-white">Admin</a>
+                    <a href="pages/tin-tuc/"       class="hover:text-white">Tin tức</a>
+                    <a href="pages/lien-he/"       class="hover:text-white">Liên hệ</a>
+                    <a href="admin/login.html"     class="hover:text-white">Admin</a>
                 </div>
             </div>
         </div>
@@ -761,11 +847,56 @@
         </div>
     </div>
 
-    <!-- FAB Buttons -->
-    <a href="tel:0333864000"                    class="fab-btn fab-phone" title="Gọi ngay"><i class="fa-solid fa-phone"></i></a>
-    <a href="https://zalo.me/0944086788" target="_blank" class="fab-btn fab-zalo"  title="Chat Zalo"><i class="fa-solid fa-comment-dots"></i></a>
+    <!-- ── MOBILE STICKY BAR ──────────────────────────── -->
+    <div class="mobile-cta-bar md:hidden">
+        <a href="tel:0333864000" class="flex-1 flex items-center justify-center gap-2 bg-solar-600 text-white font-bold py-3 rounded-xl text-sm shadow-md shadow-solar-500/30" onclick="trackEvent('bam_goi_hotline',{vi_tri_nut:'mobile_sticky'})">
+            <i class="fa-solid fa-phone"></i> Gọi ngay
+        </a>
+        <a href="https://zalo.me/0944086788" target="_blank" rel="noopener" class="flex-1 flex items-center justify-center gap-2 bg-[#0068ff] text-white font-bold py-3 rounded-xl text-sm shadow" onclick="trackEvent('bam_chat_zalo',{vi_tri_nut:'mobile_sticky'})">
+            <i class="fa-solid fa-comment-dots"></i> Zalo
+        </a>
+        <button onclick="openModal()" class="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white font-bold py-3 rounded-xl text-sm shadow" onclick="trackEvent('bam_mo_modal',{vi_tri_nut:'mobile_sticky'})">
+            <i class="fa-solid fa-bolt"></i> Tư vấn
+        </button>
+    </div>
+
+    <!-- FAB Buttons (desktop only) -->
+    <a href="tel:0333864000"                    class="fab-btn fab-phone hidden md:flex" title="Gọi ngay"><i class="fa-solid fa-phone"></i></a>
+    <a href="https://zalo.me/0944086788" target="_blank" class="fab-btn fab-zalo hidden md:flex"  title="Chat Zalo"><i class="fa-solid fa-comment-dots"></i></a>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        // Register PWA Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('[SW] Registered:', reg.scope))
+                    .catch(err => console.warn('[SW] Registration failed:', err));
+            });
+        }
+    </script>
+    <script>
+        // Init WOW.js
+        new WOW({ offset: 80, mobile: false }).init();
+
+        // Init Swiper product slider
+        new Swiper('.product-swiper', {
+            slidesPerView: 1.2,
+            spaceBetween: 16,
+            grabCursor: true,
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            breakpoints: {
+                640:  { slidesPerView: 2.1 },
+                1024: { slidesPerView: 4, spaceBetween: 24 }
+            }
+        });
+
+        // Mobile body class
+        if (window.innerWidth < 768) document.body.classList.add('has-mobile-bar');
+    </script>
 </body>
 </html>
