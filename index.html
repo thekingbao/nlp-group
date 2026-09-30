@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -49,6 +49,47 @@
             }
         }
     </script>
+    <!-- Schema.org: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "NLP Group",
+      "url": "https://nlpgroup.com.vn",
+      "logo": "https://nlpgroup.com.vn/favicon_io/android-chrome-512x512.png",
+      "description": "Tiên phong cung cấp giải pháp Năng lượng mặt trời áp mái & Trạm sạc xe điện thông minh B2B/B2C tại Việt Nam.",
+      "foundingDate": "2018",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Tòa nhà Innovation, Công viên phần mềm Quang Trung",
+        "addressLocality": "Quận 12",
+        "addressRegion": "TP. Hồ Chí Minh",
+        "addressCountry": "VN"
+      },
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+84-333-864-000",
+        "contactType": "customer service",
+        "availableLanguage": "Vietnamese"
+      }],
+      "sameAs": [
+        "https://facebook.com/nlpgroup",
+        "https://youtube.com/@nlpgroup"
+      ]
+    }
+    </script>
+    <!-- Schema.org: WebPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "NLP Group – Giải pháp Năng lượng mặt trời & Trạm sạc xe điện",
+      "url": "https://nlpgroup.com.vn",
+      "description": "NLP Group cung cấp giải pháp điện mặt trời áp mái và trạm sạc xe điện B2B/B2C toàn quốc.",
+      "inLanguage": "vi",
+      "publisher": { "@type": "Organization", "name": "NLP Group" }
+    }
+    </script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
 
@@ -66,7 +107,8 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#gioi-thieu" class="text-sm font-semibold text-gray-600 hover:text-solar-600 transition-colors">Giới thiệu</a>
+                    <a href="pages/ve-chung-toi/" class="text-sm font-semibold text-gray-600 hover:text-solar-600 transition-colors">Về chúng tôi</a>
+                    <a href="#gioi-thieu" class="text-sm font-semibold text-gray-600 hover:text-solar-600 transition-colors">Giải pháp</a>
 
                     <!-- Điện mặt trời dropdown -->
                     <div class="relative group">
@@ -112,6 +154,7 @@
                     <!-- Extra links -->
                     <a href="pages/tin-tuc/" class="text-sm font-semibold text-gray-600 hover:text-solar-600 transition-colors">Tin tức</a>
                     <a href="pages/lien-he/" class="text-sm font-semibold text-gray-600 hover:text-solar-600 transition-colors">Liên hệ</a>
+                    <a href="pages/doi-tac/" class="text-sm font-semibold text-white bg-solar-600 hover:bg-solar-700 px-4 py-1.5 rounded-full transition-colors shadow-md shadow-solar-500/30">🤝 Đối tác</a>
                 </div>
 
                 <!-- CTA -->
@@ -133,7 +176,8 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full">
             <div class="px-4 pt-2 pb-6 space-y-1 shadow-xl">
-                <a href="#gioi-thieu"           class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-solar-50 hover:text-solar-600 rounded-lg">Giới thiệu</a>
+                <a href="pages/ve-chung-toi/"   class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-solar-50 hover:text-solar-600 rounded-lg">Về chúng tôi</a>
+                <a href="#gioi-thieu"           class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-solar-50 hover:text-solar-600 rounded-lg">Giải pháp</a>
                 <div class="px-3 py-2 text-sm font-bold text-gray-400 uppercase tracking-wider">Điện mặt trời</div>
                 <a href="pages/dien-mat-troi/bien-tan-hoa-luoi/" class="block pl-6 py-2 text-base font-medium text-gray-600 hover:text-solar-600">Biến tần Hòa lưới</a>
                 <a href="pages/dien-mat-troi/bien-tan-hybrid/"   class="block pl-6 py-2 text-base font-medium text-gray-600 hover:text-solar-600">Biến tần Hybrid</a>
@@ -147,6 +191,7 @@
                 <a href="pages/dich-vu/tra-cham/"          class="block pl-6 py-2 text-base font-medium text-gray-600 hover:text-solar-600">Mua trả chậm</a>
                 <a href="pages/tin-tuc/"           class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-solar-50 rounded-lg">Tin tức</a>
                 <a href="pages/lien-he/"           class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-solar-50 rounded-lg">Liên hệ</a>
+                <a href="pages/doi-tac/"           class="block px-3 py-3 text-base font-medium text-solar-600 font-bold hover:bg-solar-50 rounded-lg">🤝 Đăng ký Đối tác</a>
                 <div class="mt-4 px-3">
                     <button onclick="openModal()" class="w-full bg-solar-600 text-white px-4 py-3 rounded-xl font-semibold flex justify-center items-center gap-2 shadow-lg shadow-solar-500/30">
                         <i class="fa-solid fa-phone"></i> Gọi ngay: 0333.864.000
@@ -651,7 +696,7 @@
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-envelope text-solar-500"></i>
-                            <a href="mailto:contact@muabandien.com" class="hover:text-solar-400 transition-colors">contact@muabandien.com</a>
+                            <a href="mailto:contact@nlpgroup.com.vn" class="hover:text-solar-400 transition-colors">contact@nlpgroup.com.vn</a>
                         </li>
                     </ul>
                 </div>

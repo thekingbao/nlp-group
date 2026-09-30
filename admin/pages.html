@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Trang – NLP Group Admin</title>
+    <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+</head>
+<body>
+<div class="admin-layout">
+    <aside class="admin-sidebar">
+        <div class="brand">NLP <span>GROUP</span> <span style="font-size:.65rem;font-weight:400;color:#57606a;margin-left:4px">Admin</span></div>
+        <nav>
+            <div class="nav-section">Dashboard</div>
+            <a href="index.html"><i class="fa-solid fa-house-chimney fa-fw"></i> Tổng quan</a>
+            <div class="nav-section">Nội dung</div>
+            <a href="pages.html" class="active"><i class="fa-solid fa-file-lines fa-fw"></i> Quản lý trang</a>
+            <a href="leads.html"><i class="fa-solid fa-user-group fa-fw"></i> Danh sách leads</a>
+            <div class="nav-section">Cấu hình</div>
+            <a href="settings.html"><i class="fa-solid fa-gear fa-fw"></i> Cài đặt site</a>
+            <div style="flex:1"></div>
+            <div class="nav-section">Tài khoản</div>
+            <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i> Xem trang chủ</a>
+            <a href="#" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Đăng xuất</a>
+        </nav>
+    </aside>
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <div style="display:flex;align-items:center;gap:.75rem">
+                <button id="sidebarToggle" style="display:none;background:none;border:none;font-size:1.1rem;cursor:pointer;color:#57606a"><i class="fa-solid fa-bars"></i></button>
+                <h1><i class="fa-solid fa-file-lines" style="color:#16a34a;margin-right:.5rem"></i>Quản lý trang & URL</h1>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-primary btn-sm" onclick="openNewPage()"><i class="fa-solid fa-plus"></i> Thêm trang</button>
+                <button class="btn btn-secondary btn-sm" onclick="exportDB()"><i class="fa-solid fa-download"></i> Xuất db.json</button>
+            </div>
+        </div>
+        <div class="admin-content">
+            <div id="adminAlert" class="alert"></div>
+
+            <!-- Search + filter -->
+            <div class="admin-panel" style="margin-bottom:1rem">
+                <div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center">
+                    <input id="searchInput" type="text" placeholder="Tìm theo tên / slug / URL…"
+                           oninput="renderTable()" style="padding:.5rem .875rem;border:1.5px solid #e5e7eb;border-radius:.5rem;font-size:.85rem;outline:none;flex:1;min-width:200px">
+                    <select id="statusFilter" onchange="renderTable()" style="padding:.5rem .75rem;border:1.5px solid #e5e7eb;border-radius:.5rem;font-size:.85rem;background:#fff;outline:none">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="active">Active</option>
+                        <option value="draft">Draft</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="admin-panel">
+                <table class="admin-table" id="pagesTable">
+                    <thead>
+                        <tr>
+                            <th style="width:30px">#</th>
+                            <th>Tiêu đề trang</th>
+                            <th>Slug</th>
+                            <th>URL</th>
+                            <th>Trạng thái</th>
+                            <th>Cập nhật</th>
+                            <th style="width:110px">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pagesBody">
+                        <tr><td colspan="7" style="text-align:center;color:#57606a;padding:2rem">Đang tải...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal thêm/sửa trang -->
+<div id="pageModal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center">
+    <div style="background:#fff;border-radius:1rem;padding:2rem;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.2)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+            <h2 id="modalTitle" style="font-size:1.1rem;font-weight:700;color:#1f2328">Thêm trang mới</h2>
+            <button onclick="closeModal()" style="background:none;border:none;font-size:1.25rem;cursor:pointer;color:#57606a">✕</button>
+        </div>
+        <form id="pageForm" onsubmit="savePage(event)">
+            <input type="hidden" id="f_id">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+                <div>
+                    <label class="form-label">Tiêu đề *</label>
+                    <input type="text" id="f_title" required class="form-input" placeholder="Điện mặt trời">
+                </div>
+                <div>
+                    <label class="form-label">Slug *</label>
+                    <input type="text" id="f_slug" required class="form-input" placeholder="dien-mat-troi">
+                </div>
+            </div>
+            <div style="margin-bottom:1rem">
+                <label class="form-label">URL (đường dẫn) *</label>
+                <input type="text" id="f_url" required class="form-input" placeholder="/pages/dien-mat-troi/">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+                <div>
+                    <label class="form-label">Trạng thái</label>
+                    <select id="f_status" class="form-input" style="background:#fff">
+                        <option value="active">Active</option>
+                        <option value="draft">Draft</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Trang cha (tùy chọn)</label>
+                    <select id="f_parent" class="form-input" style="background:#fff">
+                        <option value="">-- Không có --</option>
+                    </select>
+                </div>
+            </div>
+            <div style="margin-bottom:1rem">
+                <label class="form-label">Meta Title (SEO)</label>
+                <input type="text" id="f_meta_title" class="form-input" placeholder="Tiêu đề hiển thị trên Google">
+            </div>
+            <div style="margin-bottom:1.5rem">
+                <label class="form-label">Meta Description (SEO)</label>
+                <textarea id="f_meta_desc" rows="3" class="form-input" style="resize:vertical" placeholder="Mô tả ngắn 150-160 ký tự..."></textarea>
+            </div>
+            <div style="display:flex;gap:.75rem;justify-content:flex-end">
+                <button type="button" onclick="closeModal()" class="btn btn-secondary">Hủy</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Lưu trang</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+.form-label { display:block; font-size:.8rem; font-weight:600; color:#1f2328; margin-bottom:.35rem }
+.form-input { width:100%; padding:.55rem .75rem; border:1.5px solid #e5e7eb; border-radius:.5rem; font-size:.875rem; outline:none; transition:border-color .2s; box-sizing:border-box }
+.form-input:focus { border-color:#16a34a }
+</style>
+
+<script src="../js/admin.js"></script>
+<script>
+/* ── Pages Admin Logic ── */
+let db = null;
+
+async function loadData() {
+    try {
+        const r = await fetch('../admin/db.json?t=' + Date.now());
+        db = await r.json();
+        renderTable();
+        populateParentSelect();
+    } catch(e) {
+        showAlert('Không tải được db.json: ' + e.message, 'error');
+    }
+}
+
+function renderTable() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const sf = document.getElementById('statusFilter').value;
+    const pages = (db?.pages || []).filter(p => {
+        const matchQ = !q || p.title.toLowerCase().includes(q) || p.slug.includes(q) || p.url.includes(q);
+        const matchS = !sf || p.status === sf;
+        return matchQ && matchS;
+    });
+
+    const tbody = document.getElementById('pagesBody');
+    if (!pages.length) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#57606a;padding:2rem">Không tìm thấy trang nào</td></tr>';
+        return;
+    }
+
+    tbody.innerHTML = pages.map((p, i) => `
+        <tr>
+            <td style="color:#57606a;font-size:.8rem">${i+1}</td>
+            <td style="font-weight:600">${p.title}</td>
+            <td><code style="background:#f6f8fa;padding:2px 6px;border-radius:4px;font-size:.8rem">${p.slug}</code></td>
+            <td><a href="${p.url}" target="_blank" style="color:#3b82d4;font-size:.82rem">${p.url}</a></td>
+            <td><span class="badge badge-${p.status === 'active' ? 'success' : p.status === 'draft' ? 'warning' : 'gray'}">${p.status}</span></td>
+            <td style="font-size:.8rem;color:#57606a">${(p.updated_at||'').slice(0,10)}</td>
+            <td>
+                <button onclick="editPage('${p.id}')" class="btn btn-secondary btn-sm" style="margin-right:4px"><i class="fa-solid fa-pen"></i></button>
+                <button onclick="deletePage('${p.id}')" class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border:none"><i class="fa-solid fa-trash"></i></button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function populateParentSelect(excludeId) {
+    const sel = document.getElementById('f_parent');
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">-- Không có --</option>';
+    (db?.pages || []).filter(p => p.id !== excludeId).forEach(p => {
+        const o = document.createElement('option');
+        o.value = p.id;
+        o.textContent = p.title;
+        sel.appendChild(o);
+    });
+    sel.value = cur;
+}
+
+function openNewPage() {
+    document.getElementById('modalTitle').textContent = 'Thêm trang mới';
+    document.getElementById('pageForm').reset();
+    document.getElementById('f_id').value = '';
+    populateParentSelect();
+    document.getElementById('pageModal').style.display = 'flex';
+}
+
+function editPage(id) {
+    const p = db.pages.find(x => x.id === id);
+    if (!p) return;
+    document.getElementById('modalTitle').textContent = 'Chỉnh sửa: ' + p.title;
+    document.getElementById('f_id').value          = p.id;
+    document.getElementById('f_title').value       = p.title;
+    document.getElementById('f_slug').value        = p.slug;
+    document.getElementById('f_url').value         = p.url;
+    document.getElementById('f_status').value      = p.status;
+    document.getElementById('f_meta_title').value  = p.meta_title || '';
+    document.getElementById('f_meta_desc').value   = p.meta_desc  || '';
+    populateParentSelect(id);
+    document.getElementById('f_parent').value      = p.parent || '';
+    document.getElementById('pageModal').style.display = 'flex';
+}
+
+function savePage(e) {
+    e.preventDefault();
+    const id = document.getElementById('f_id').value;
+    const page = {
+        id:         id || 'pg_' + Date.now(),
+        title:      document.getElementById('f_title').value.trim(),
+        slug:       document.getElementById('f_slug').value.trim().toLowerCase().replace(/\s+/g, '-'),
+        url:        document.getElementById('f_url').value.trim(),
+        status:     document.getElementById('f_status').value,
+        meta_title: document.getElementById('f_meta_title').value.trim(),
+        meta_desc:  document.getElementById('f_meta_desc').value.trim(),
+        parent:     document.getElementById('f_parent').value || undefined,
+        updated_at: new Date().toISOString()
+    };
+    if (!page.parent) delete page.parent;
+
+    if (id) {
+        const idx = db.pages.findIndex(p => p.id === id);
+        if (idx !== -1) db.pages[idx] = page;
+    } else {
+        db.pages.push(page);
+    }
+
+    closeModal();
+    renderTable();
+    showAlert('✅ Đã lưu trang "' + page.title + '". Nhấn "Xuất db.json" để tải về và cập nhật file.', 'success');
+}
+
+function deletePage(id) {
+    const p = db.pages.find(x => x.id === id);
+    if (!p) return;
+    if (!confirm(`Xóa trang "${p.title}"?`)) return;
+    db.pages = db.pages.filter(x => x.id !== id);
+    renderTable();
+    showAlert('🗑️ Đã xóa trang "' + p.title + '". Xuất db.json để cập nhật.', 'success');
+}
+
+function closeModal() {
+    document.getElementById('pageModal').style.display = 'none';
+}
+
+function exportDB() {
+    const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'db.json';
+    a.click();
+    showAlert('📥 Đã xuất db.json – thay thế file admin/db.json trong dự án và commit lên GitHub.', 'success');
+}
+
+function showAlert(msg, type) {
+    const el = document.getElementById('adminAlert');
+    el.className = 'alert alert-' + (type === 'error' ? 'danger' : 'success');
+    el.textContent = msg;
+    el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 6000);
+}
+
+// Close modal on backdrop click
+document.getElementById('pageModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+document.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>

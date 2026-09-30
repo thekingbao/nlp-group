@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Leads – NLP Group Admin</title>
+    <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+</head>
+<body>
+<div class="admin-layout">
+    <aside class="admin-sidebar">
+        <div class="brand">NLP <span>GROUP</span> <span style="font-size:.65rem;font-weight:400;color:#57606a;margin-left:4px">Admin</span></div>
+        <nav>
+            <div class="nav-section">Dashboard</div>
+            <a href="index.html"><i class="fa-solid fa-house-chimney fa-fw"></i> Tổng quan</a>
+            <div class="nav-section">Nội dung</div>
+            <a href="pages.html"><i class="fa-solid fa-file-lines fa-fw"></i> Quản lý trang</a>
+            <a href="leads.html" class="active"><i class="fa-solid fa-user-group fa-fw"></i> Danh sách leads</a>
+            <div class="nav-section">Cấu hình</div>
+            <a href="settings.html"><i class="fa-solid fa-gear fa-fw"></i> Cài đặt site</a>
+            <div style="flex:1"></div>
+            <div class="nav-section">Tài khoản</div>
+            <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i> Xem trang chủ</a>
+            <a href="#" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Đăng xuất</a>
+        </nav>
+    </aside>
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <div style="display:flex;align-items:center;gap:.75rem">
+                <h1><i class="fa-solid fa-user-group" style="color:#3b82d4;margin-right:.5rem"></i>Danh sách Leads</h1>
+            </div>
+            <div class="topbar-actions">
+                <span id="leadCount" style="font-size:.85rem;color:#57606a"></span>
+                <button class="btn btn-primary btn-sm" onclick="exportCSV()"><i class="fa-solid fa-file-csv"></i> Xuất CSV</button>
+                <button class="btn btn-secondary btn-sm" onclick="clearLeads()" style="color:#dc2626"><i class="fa-solid fa-trash"></i> Xóa tất cả</button>
+            </div>
+        </div>
+        <div class="admin-content">
+            <div id="adminAlert" class="alert"></div>
+
+            <!-- Stats -->
+            <div class="stat-grid" style="margin-bottom:1.5rem">
+                <div class="stat-card">
+                    <div class="stat-label">Tổng leads</div>
+                    <div class="stat-value" id="sTotalLeads">0</div>
+                    <div class="stat-sub">Tất cả form</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Leads Solar</div>
+                    <div class="stat-value" style="color:#15803d" id="sSolarLeads">0</div>
+                    <div class="stat-sub">Điện mặt trời</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Leads EV</div>
+                    <div class="stat-value" style="color:#7c3aed" id="sEvLeads">0</div>
+                    <div class="stat-sub">Trạm sạc</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Đối tác</div>
+                    <div class="stat-value" style="color:#0284c7" id="sPartnerLeads">0</div>
+                    <div class="stat-sub">Đăng ký đối tác</div>
+                </div>
+            </div>
+
+            <!-- Filter -->
+            <div class="admin-panel" style="margin-bottom:1rem">
+                <div style="display:flex;gap:.75rem;flex-wrap:wrap;align-items:center">
+                    <input id="searchInput" type="text" placeholder="Tìm theo tên / số điện thoại…"
+                           oninput="renderLeads()" style="padding:.5rem .875rem;border:1.5px solid #e5e7eb;border-radius:.5rem;font-size:.85rem;outline:none;flex:1;min-width:200px">
+                    <select id="typeFilter" onchange="renderLeads()" style="padding:.5rem .75rem;border:1.5px solid #e5e7eb;border-radius:.5rem;font-size:.85rem;background:#fff;outline:none">
+                        <option value="">Tất cả loại</option>
+                        <option value="lead">Lead tư vấn</option>
+                        <option value="partner">Đối tác</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="admin-panel">
+                <table class="admin-table" id="leadsTable">
+                    <thead>
+                        <tr>
+                            <th style="width:30px">#</th>
+                            <th>Họ tên</th>
+                            <th>SĐT</th>
+                            <th>Dịch vụ / Loại</th>
+                            <th>Tỉnh/Thành</th>
+                            <th>Trang nguồn</th>
+                            <th>Thời gian</th>
+                            <th style="width:70px">Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadsBody">
+                        <tr><td colspan="8" style="text-align:center;color:#57606a;padding:2rem">Đang tải...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="../js/admin.js"></script>
+<script>
+let allLeads = [];
+
+function loadLeads() {
+    allLeads = JSON.parse(localStorage.getItem('nlpgroup_leads') || '[]');
+    updateStats();
+    renderLeads();
+}
+
+function updateStats() {
+    document.getElementById('sTotalLeads').textContent = allLeads.length;
+    document.getElementById('sSolarLeads').textContent = allLeads.filter(l =>
+        (l.service||'').toLowerCase().includes('solar') ||
+        (l.service||'').toLowerCase().includes('mặt trời') ||
+        (l.type||'') === 'lead'
+    ).length;
+    document.getElementById('sEvLeads').textContent = allLeads.filter(l =>
+        (l.service||'').toLowerCase().includes('sạc') ||
+        (l.service||'').toLowerCase().includes('ev')
+    ).length;
+    document.getElementById('sPartnerLeads').textContent = allLeads.filter(l => l.type === 'partner').length;
+    document.getElementById('leadCount').textContent = allLeads.length + ' bản ghi';
+}
+
+function renderLeads() {
+    const q  = document.getElementById('searchInput').value.toLowerCase();
+    const tf = document.getElementById('typeFilter').value;
+    const leads = allLeads.filter(l => {
+        const matchQ = !q || (l.name||'').toLowerCase().includes(q) || (l.phone||'').includes(q);
+        const matchT = !tf || (l.type||'lead') === tf;
+        return matchQ && matchT;
+    });
+
+    const tbody = document.getElementById('leadsBody');
+    if (!leads.length) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#57606a;padding:2rem">Chưa có leads nào</td></tr>';
+        return;
+    }
+
+    tbody.innerHTML = leads.map((l, i) => `
+        <tr>
+            <td style="color:#57606a;font-size:.8rem">${i+1}</td>
+            <td style="font-weight:600">${escHtml(l.name || '—')}</td>
+            <td><a href="tel:${escHtml(l.phone||'')}" style="color:#3b82d4;font-weight:600">${escHtml(l.phone || '—')}</a></td>
+            <td>
+                <span class="badge badge-${l.type === 'partner' ? 'info' : 'success'}" style="font-size:.72rem">
+                    ${l.type === 'partner' ? 'Đối tác' : 'Tư vấn'}
+                </span>
+                <span style="font-size:.8rem;color:#57606a;margin-left:.35rem">${escHtml(l.service || l.partner_type || '')}</span>
+            </td>
+            <td style="font-size:.82rem;color:#57606a">${escHtml(l.province || l.district || '—')}</td>
+            <td><code style="font-size:.75rem;background:#f6f8fa;padding:2px 5px;border-radius:3px">${escHtml(l.source || '—')}</code></td>
+            <td style="font-size:.78rem;color:#57606a;white-space:nowrap">${formatDate(l.time)}</td>
+            <td><button onclick="deleteLead(${allLeads.indexOf(l)})" class="btn btn-sm" style="background:#fee2e2;color:#dc2626;border:none"><i class="fa-solid fa-trash"></i></button></td>
+        </tr>
+    `).join('');
+}
+
+function deleteLead(idx) {
+    if (!confirm('Xóa lead này?')) return;
+    allLeads.splice(idx, 1);
+    localStorage.setItem('nlpgroup_leads', JSON.stringify(allLeads));
+    loadLeads();
+}
+
+function clearLeads() {
+    if (!confirm('Xóa TẤT CẢ leads? Không thể hoàn tác.')) return;
+    localStorage.removeItem('nlpgroup_leads');
+    allLeads = [];
+    loadLeads();
+    showAlert('🗑️ Đã xóa toàn bộ leads.', 'success');
+}
+
+function exportCSV() {
+    if (!allLeads.length) { showAlert('Không có leads để xuất.', 'error'); return; }
+    const headers = ['#','Tên','SĐT','Email','Dịch vụ','Loại đối tác','Tỉnh/Thành','Quận/Huyện','Công ty','Trang nguồn','Thời gian'];
+    const rows = allLeads.map((l,i) => [
+        i+1,
+        l.name||'', l.phone||'', l.email||'',
+        l.service||'', l.partner_type||'',
+        l.province||'', l.district||'', l.company||'',
+        l.source||'', l.time||''
+    ]);
+    const csv = [headers, ...rows].map(r => r.map(c => '"' + String(c).replace(/"/g,'""') + '"').join(',')).join('\r\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = `nlpgroup_leads_${new Date().toISOString().slice(0,10)}.csv`; a.click();
+    showAlert('📥 Đã xuất ' + allLeads.length + ' leads ra CSV.', 'success');
+}
+
+function formatDate(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleDateString('vi-VN') + ' ' + d.toLocaleTimeString('vi-VN', {hour:'2-digit',minute:'2-digit'});
+}
+
+function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function showAlert(msg, type) {
+    const el = document.getElementById('adminAlert');
+    el.className = 'alert alert-' + (type === 'error' ? 'danger' : 'success');
+    el.textContent = msg; el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+document.addEventListener('DOMContentLoaded', loadLeads);
+</script>
+</body>
+</html>

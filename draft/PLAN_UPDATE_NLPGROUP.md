@@ -1,6 +1,6 @@
 # PLAN UPDATE — nlpgroup.com.vn
 **Phiên bản:** v1.0 | **Cập nhật:** 2026-01-10  
-**Nguồn tham khảo:** `draft/tmt-egreen/` (tmt-egreen.com)  
+**Nguồn tham khảo:** `draft/TMT-EGREEN/` (TMT-EGREEN.com)  
 **Mục tiêu:** Nâng cấp toàn diện giao diện, UX, tính năng và hạ tầng kỹ thuật của `nlpgroup.com.vn` để đạt chuẩn thương mại thực tiễn B2B/B2C có thể kinh doanh.
 
 ---
@@ -28,9 +28,9 @@
 | Admin | `admin/index.html` | ✅ Có – cần hoàn thiện |
 | 404 | `404.html` | ✅ Có |
 
-### 1.2 Thiếu so với tmt-egreen (Gap Analysis)
+### 1.2 Thiếu so với TMT-EGREEN (Gap Analysis)
 
-| Chức năng | tmt-egreen | nlpgroup | Ưu tiên |
+| Chức năng | TMT-EGREEN | nlpgroup | Ưu tiên |
 |-----------|-----------|---------|---------|
 | Trang "Về chúng tôi" + Timeline | ✅ | ❌ | P1 |
 | Trang Đăng ký đối tác nhượng quyền | ✅ | ❌ | P1 |
@@ -59,7 +59,7 @@
 - **Path:** `pages/ve-chung-toi/index.html`
 - **Nội dung:** Hero banner, Timeline công ty NLP Group, Đội ngũ lãnh đạo, Sứ mệnh/Tầm nhìn, Số liệu ấn tượng (số dự án, kWp lắp đặt, khách hàng)
 - **Style học từ tmt:** Hero fullscreen với overlay tối, timeline dạng alternating left/right, glassmorphism numbers overlay
-- **Học từ:** `draft/tmt-egreen/ve-chung-toi.html`
+- **Học từ:** `draft/TMT-EGREEN/ve-chung-toi.html`
 - **Slug DB:** `ve-chung-toi`
 - **Navbar:** Thêm link "Về chúng tôi" vào menu chính
 
@@ -106,13 +106,13 @@
 - **CSS:** `https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css`
 - **Áp dụng:** Tất cả section cards dùng `class="wow fadeIn"` / `wow fadeInLeft` với `data-wow-delay`
 - **File:** Khởi tạo `new WOW().init()` trong `js/main.js`
-- **Học từ:** `draft/tmt-egreen/index.html` section stats, benefit cards
+- **Học từ:** `draft/TMT-EGREEN/index.html` section stats, benefit cards
 
 #### T2.2 – Swiper Product Slider
 - **CDN:** `swiper-bundle.min.js` + `swiper-bundle.min.css`
 - **Vị trí:** Section sản phẩm trang chủ (4 cards inverter) → chuyển thành Swiper trên mobile (1 card/slide)
 - **Config:** `slidesPerView: 1.2`, `spaceBetween: 16`, breakpoints desktop `slidesPerView: 4`
-- **Học từ:** `draft/tmt-egreen/` swiper gallery trụ sạc
+- **Học từ:** `draft/TMT-EGREEN/` swiper gallery trụ sạc
 
 #### T2.3 – Nâng cấp Hero Section
 - **Thay ảnh Unsplash placeholder** → ảnh thực dự án NLP Group (hoặc stock có bản quyền tương đối)
@@ -127,7 +127,7 @@
 - **Cải thiện:** Icon xã hội có brand color chính xác (Facebook blue, YouTube red, TikTok black/pink)
 
 #### T2.5 – Mobile UX Improvements
-- **Sticky bottom bar mobile:** Giống tmt-egreen – thanh cố định dưới màn hình mobile với: [Gọi ngay] [Chat Zalo] [Tư vấn]
+- **Sticky bottom bar mobile:** Giống TMT-EGREEN – thanh cố định dưới màn hình mobile với: [Gọi ngay] [Chat Zalo] [Tư vấn]
 - **Touch-friendly:** Tăng kích thước vùng tap các link menu mobile ≥ 44px
 - **Swipe gesture:** Dropdown menu mobile có animation slide-down mượt
 - **Performance:** Lazy load ảnh bằng `loading="lazy"` trên tất cả `<img>`
@@ -150,7 +150,7 @@
 - **Path:** `pages/du-an/index.html` (trang mới)
 - **Chức năng:** Marker các dự án NLP Group đã lắp đặt toàn quốc (dùng `db.json` hoặc GeoJSON inline)
 - **Popup marker:** Ảnh dự án, công suất, khách hàng, năm lắp đặt
-- **Học từ:** `draft/tmt-egreen/tim-kiem-tram-sac-gan-nhat.html`
+- **Học từ:** `draft/TMT-EGREEN/tim-kiem-tram-sac-gan-nhat.html`
 
 #### T3.2 – Trang Dự án / Case Studies
 - **Path:** `pages/du-an/index.html`
@@ -267,7 +267,7 @@ nlpgroup.com.vn/
 
 ---
 
-## 4. STYLE GUIDE (Học từ tmt-egreen)
+## 4. STYLE GUIDE (Học từ TMT-EGREEN)
 
 ### 4.1 Màu sắc (giữ nguyên NLP Group identity)
 ```css
@@ -328,7 +328,7 @@ nlpgroup.com.vn/
 
 ---
 
-## 5. GA4 TRACKING PLAN (học tmt-egreen)
+## 5. GA4 TRACKING PLAN (học TMT-EGREEN)
 
 ### Events cần implement
 

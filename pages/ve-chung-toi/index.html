@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về chúng tôi – NLP Group | Tiên phong Năng lượng mặt trời & Trạm sạc xe điện</title>
+    <meta name="description" content="NLP Group – đơn vị tiên phong cung cấp giải pháp điện mặt trời áp mái và trạm sạc xe điện thông minh B2B/B2C toàn quốc từ 2018. Đội ngũ 50+ kỹ sư, 1.000+ dự án.">
+    <meta name="keywords" content="NLP Group, về chúng tôi, công ty điện mặt trời, trạm sạc xe điện, nlpgroup.com.vn">
+    <meta property="og:title" content="Về chúng tôi – NLP Group">
+    <meta property="og:description" content="Tiên phong giải pháp Năng lượng mặt trời & Trạm sạc xe điện thông minh B2B/B2C tại Việt Nam.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nlpgroup.com.vn/pages/ve-chung-toi/">
+    <meta property="og:image" content="https://nlpgroup.com.vn/favicon_io/android-chrome-512x512.png">
+    <link rel="canonical" href="https://nlpgroup.com.vn/pages/ve-chung-toi/">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon"       href="../../favicon_io/favicon.ico">
+    <link rel="apple-touch-icon"               href="../../favicon_io/apple-touch-icon.png">
+    <link rel="manifest"                        href="../../favicon_io/site.webmanifest">
+    <!-- Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter','sans-serif'] },
+                    colors: {
+                        solar: { 50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d',900:'#14532d' },
+                        dark: '#0f172a'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Schema.org Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "NLP Group",
+      "url": "https://nlpgroup.com.vn",
+      "logo": "https://nlpgroup.com.vn/favicon_io/android-chrome-512x512.png",
+      "description": "Tiên phong cung cấp giải pháp Năng lượng mặt trời & Trạm sạc xe điện thông minh B2B/B2C tại Việt Nam",
+      "foundingDate": "2018",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Tòa nhà Innovation, Công viên phần mềm Quang Trung",
+        "addressLocality": "Quận 12",
+        "addressRegion": "TP. Hồ Chí Minh",
+        "addressCountry": "VN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+84-333-864-000",
+        "contactType": "customer service",
+        "availableLanguage": "Vietnamese"
+      },
+      "sameAs": [
+        "https://facebook.com/nlpgroup",
+        "https://youtube.com/@nlpgroup"
+      ]
+    }
+    </script>
+    <!-- BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://nlpgroup.com.vn"},
+        {"@type":"ListItem","position":2,"name":"Về chúng tôi","item":"https://nlpgroup.com.vn/pages/ve-chung-toi/"}
+      ]
+    }
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-white">
+
+    <!-- ── NAVBAR ────────────────────────────────────── -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="../../index.html" class="text-2xl font-black text-dark tracking-tighter">NLP <span class="text-solar-600">GROUP</span></a>
+                <div class="hidden md:flex space-x-6 items-center text-sm font-semibold text-gray-600">
+                    <a href="../../index.html#gioi-thieu" class="hover:text-solar-600 transition-colors">Giới thiệu</a>
+                    <a href="../../pages/dien-mat-troi/" class="hover:text-solar-600 transition-colors">Điện mặt trời</a>
+                    <a href="../../pages/tru-sac/" class="hover:text-solar-600 transition-colors">Trụ sạc</a>
+                    <a href="../../pages/tin-tuc/" class="hover:text-solar-600 transition-colors">Tin tức</a>
+                    <a href="../../pages/lien-he/" class="hover:text-solar-600 transition-colors">Liên hệ</a>
+                    <button onclick="openModal()" class="bg-solar-600 hover:bg-solar-700 text-white px-5 py-2 rounded-full font-semibold transition-colors shadow-lg shadow-solar-500/30">Tư vấn ngay</button>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600 p-2"><i class="fa-solid fa-bars text-xl"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="../../index.html" class="block py-2 text-gray-700 font-medium hover:text-solar-600">Trang chủ</a>
+                <a href="../../pages/dien-mat-troi/" class="block py-2 text-gray-700 font-medium hover:text-solar-600">Điện mặt trời</a>
+                <a href="../../pages/tru-sac/" class="block py-2 text-gray-700 font-medium hover:text-solar-600">Trụ sạc</a>
+                <a href="../../pages/lien-he/" class="block py-2 text-gray-700 font-medium hover:text-solar-600">Liên hệ</a>
+                <button onclick="openModal()" class="w-full bg-solar-600 text-white py-3 rounded-xl font-semibold mt-2">Tư vấn miễn phí</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── HERO ──────────────────────────────────────── -->
+    <section class="relative pt-16 min-h-[420px] flex items-center overflow-hidden bg-dark">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2072&auto=format&fit=crop"
+                 alt="NLP Group – Đội ngũ kỹ sư năng lượng mặt trời"
+                 class="w-full h-full object-cover opacity-30" loading="eager" fetchpriority="high">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/40 to-dark/80 z-[1]"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 py-24 text-center">
+            <!-- Breadcrumb -->
+            <div class="flex items-center justify-center gap-2 text-xs text-gray-400 mb-6 font-medium uppercase tracking-wider">
+                <a href="../../index.html" class="hover:text-white transition-colors">Trang chủ</a>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                <span class="text-solar-400">Về chúng tôi</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                Chúng tôi là <span class="text-transparent bg-clip-text bg-gradient-to-r from-solar-400 to-yellow-400">NLP Group</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Từ năm 2018, chúng tôi không ngừng xây dựng hạ tầng năng lượng sạch cho hàng nghìn doanh nghiệp và gia đình Việt Nam — góp phần tạo ra một tương lai <strong class="text-white">độc lập về năng lượng</strong>.
+            </p>
+        </div>
+    </section>
+
+    <!-- ── STATS ─────────────────────────────────────── -->
+    <section class="bg-solar-600 py-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+                <div>
+                    <p class="text-4xl md:text-5xl font-black">1.000+</p>
+                    <p class="text-sm font-semibold mt-1 text-solar-100">Dự án đã lắp đặt</p>
+                </div>
+                <div>
+                    <p class="text-4xl md:text-5xl font-black">50+</p>
+                    <p class="text-sm font-semibold mt-1 text-solar-100">Kỹ sư & Chuyên gia</p>
+                </div>
+                <div>
+                    <p class="text-4xl md:text-5xl font-black">50 MWp</p>
+                    <p class="text-sm font-semibold mt-1 text-solar-100">Tổng công suất lắp đặt</p>
+                </div>
+                <div>
+                    <p class="text-4xl md:text-5xl font-black">6 Năm</p>
+                    <p class="text-sm font-semibold mt-1 text-solar-100">Kinh nghiệm thực chiến</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── MISSION & VISION ──────────────────────────── -->
+    <section class="py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Sứ mệnh</p>
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6">Năng lượng sạch — <br>Quyền kiểm soát của bạn</h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        Chúng tôi tin rằng mọi doanh nghiệp và gia đình đều xứng đáng được tiếp cận năng lượng sạch, ổn định với chi phí hợp lý. NLP Group không bán thiết bị — chúng tôi thiết kế <strong>giải pháp năng lượng tối ưu hóa dòng tiền</strong> cho từng mô hình kinh doanh.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-solar-100 flex items-center justify-center text-solar-600 mt-0.5 shrink-0"><i class="fa-solid fa-check text-xs"></i></div><p class="text-gray-700">Tư vấn độc lập — không phụ thuộc bất kỳ hãng nào</p></div>
+                        <div class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-solar-100 flex items-center justify-center text-solar-600 mt-0.5 shrink-0"><i class="fa-solid fa-check text-xs"></i></div><p class="text-gray-700">Khảo sát thực địa miễn phí, thiết kế theo tải thực tế</p></div>
+                        <div class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-solar-100 flex items-center justify-center text-solar-600 mt-0.5 shrink-0"><i class="fa-solid fa-check text-xs"></i></div><p class="text-gray-700">Bảo hành toàn diện 10 năm, giám sát 24/7 qua app</p></div>
+                        <div class="flex items-start gap-3"><div class="w-6 h-6 rounded-full bg-solar-100 flex items-center justify-center text-solar-600 mt-0.5 shrink-0"><i class="fa-solid fa-check text-xs"></i></div><p class="text-gray-700">Đúng chuẩn pháp lý NĐ 135/2024 từ ngày đầu tiên</p></div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square rounded-3xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=800&auto=format&fit=crop"
+                             alt="Hệ thống điện mặt trời NLP Group" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-solar-600 text-white rounded-2xl p-5 shadow-xl text-center">
+                        <p class="text-3xl font-black">25</p>
+                        <p class="text-xs font-bold text-solar-100 uppercase">Năm bảo hành tấm pin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── TIMELINE ───────────────────────────────────── -->
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16">
+                <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Hành trình phát triển</p>
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900">Từng bước xây dựng<br>hệ sinh thái năng lượng sạch</h2>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical line -->
+                <div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-solar-200 hidden md:block"></div>
+
+                <div class="space-y-12">
+                    <!-- 2018 -->
+                    <div class="relative flex flex-col md:flex-row items-center gap-6 md:gap-0">
+                        <div class="md:w-1/2 md:pr-16 md:text-right">
+                            <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <p class="text-solar-600 font-black text-xl mb-1">2018</p>
+                                <h3 class="font-bold text-gray-900 mb-2">Thành lập NLP Group</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Ra đời với sứ mệnh mang điện mặt trời đến từng mái nhà. Lắp đặt 50 hệ thống đầu tiên cho hộ gia đình khu vực TP.HCM.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-solar-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10 hidden md:flex">18</div>
+                        <div class="md:w-1/2 md:pl-16 hidden md:block"></div>
+                    </div>
+
+                    <!-- 2020 -->
+                    <div class="relative flex flex-col md:flex-row items-center gap-6 md:gap-0">
+                        <div class="md:w-1/2 md:pr-16 hidden md:block"></div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-solar-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10 hidden md:flex">20</div>
+                        <div class="md:w-1/2 md:pl-16">
+                            <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <p class="text-solar-600 font-black text-xl mb-1">2020</p>
+                                <h3 class="font-bold text-gray-900 mb-2">Mở rộng B2B – Nhà xưởng & Khách sạn</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Ký hợp đồng lắp đặt loạt dự án công nghiệp đầu tiên tại Bình Dương, Đồng Nai. Tổng công suất vượt 5 MWp. Trở thành đại lý chính thức DEYE tại Việt Nam.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2022 -->
+                    <div class="relative flex flex-col md:flex-row items-center gap-6 md:gap-0">
+                        <div class="md:w-1/2 md:pr-16 md:text-right">
+                            <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <p class="text-solar-600 font-black text-xl mb-1">2022</p>
+                                <h3 class="font-bold text-gray-900 mb-2">Ra mắt mảng Trụ sạc xe điện</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Nhận thấy xu hướng xe điện bùng nổ, NLP Group tiên phong nghiên cứu và triển khai trụ sạc DC 120kW đầu tiên tại bãi đỗ xe thương mại.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-solar-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10 hidden md:flex">22</div>
+                        <div class="md:w-1/2 md:pl-16 hidden md:block"></div>
+                    </div>
+
+                    <!-- 2024 -->
+                    <div class="relative flex flex-col md:flex-row items-center gap-6 md:gap-0">
+                        <div class="md:w-1/2 md:pr-16 hidden md:block"></div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-10 h-10 bg-solar-600 rounded-full flex items-center justify-center text-white font-bold text-sm z-10 hidden md:flex">24</div>
+                        <div class="md:w-1/2 md:pl-16">
+                            <div class="bg-white rounded-2xl p-6 border border-solar-100 shadow-md bg-solar-50">
+                                <p class="text-solar-600 font-black text-xl mb-1">2024 – Nay</p>
+                                <h3 class="font-bold text-gray-900 mb-2">Hệ sinh thái năng lượng toàn diện</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Tổng công suất vượt 50 MWp. Ra mắt mô hình Thuê–Mua 0 đồng vốn. NĐ 135/2024 mở cửa cho tự sản tự tiêu — NLP Group dẫn đầu hỗ trợ doanh nghiệp chuyển đổi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── VALUES ────────────────────────────────────── -->
+    <section class="py-24 bg-dark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <img src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=1920&auto=format&fit=crop" alt="" class="w-full h-full object-cover" loading="lazy">
+        </div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="text-center mb-16">
+                <p class="text-solar-400 font-bold uppercase tracking-wider text-sm mb-2">Giá trị cốt lõi</p>
+                <h2 class="text-3xl md:text-4xl font-black text-white">Những nguyên tắc<br>không bao giờ thay đổi</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-2xl p-8 text-center">
+                    <div class="w-14 h-14 bg-solar-500/20 rounded-full flex items-center justify-center mx-auto mb-5 text-solar-400 text-2xl"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Trung thực tuyệt đối</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Báo giá minh bạch, cam kết số liệu thực tế. Không hứa hẹn ROI không thực tế chỉ để chốt hợp đồng.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-2xl p-8 text-center">
+                    <div class="w-14 h-14 bg-solar-500/20 rounded-full flex items-center justify-center mx-auto mb-5 text-solar-400 text-2xl"><i class="fa-solid fa-hammer"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Kỹ thuật đúng chuẩn</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">100% kỹ sư có chứng chỉ. Tuân thủ TCVN, IEC, đúng tiêu chuẩn Phòng cháy chữa cháy từ khâu thiết kế.</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm border-2 border-white/10 rounded-2xl p-8 text-center">
+                    <div class="w-14 h-14 bg-solar-500/20 rounded-full flex items-center justify-center mx-auto mb-5 text-solar-400 text-2xl"><i class="fa-solid fa-heart"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Hậu mãi tận tâm</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Không biến mất sau khi lắp đặt. Đội ngũ kỹ thuật giám sát hệ thống 24/7, phản hồi sự cố trong 4 giờ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA ───────────────────────────────────────── -->
+    <section class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Sẵn sàng bắt đầu hành trình<br>năng lượng sạch?</h2>
+            <p class="text-lg text-gray-600 mb-8">Kỹ sư NLP Group sẽ khảo sát thực địa miễn phí và tư vấn giải pháp phù hợp nhất trong vòng 24 giờ làm việc.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-solar-600 hover:bg-solar-700 text-white px-10 py-4 rounded-xl font-bold transition-all shadow-lg shadow-solar-500/30 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bolt"></i> Khảo sát miễn phí ngay
+                </button>
+                <a href="../../pages/lien-he/" class="border-2 border-gray-200 text-gray-700 hover:border-solar-500 hover:text-solar-600 px-10 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-location-dot"></i> Xem văn phòng
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ─────────────────────────────────────── -->
+    <footer class="bg-dark text-gray-400 py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+            <p class="text-white font-bold">NLP <span class="text-solar-500">GROUP</span></p>
+            <p>&copy; 2026 NLP GROUP · <a href="tel:0333864000" class="hover:text-white">0333.864.000</a> · <a href="mailto:contact@nlpgroup.com.vn" class="hover:text-white">contact@nlpgroup.com.vn</a></p>
+            <div class="flex gap-4">
+                <a href="../../index.html" class="hover:text-white">Trang chủ</a>
+                <a href="../../pages/doi-tac/" class="hover:text-white">Đối tác</a>
+                <a href="../../pages/lien-he/" class="hover:text-white">Liên hệ</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lead Modal (shared) -->
+    <div id="leadModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-dark/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
+            <div class="relative bg-white rounded-3xl text-left overflow-hidden shadow-2xl sm:my-8 sm:max-w-lg w-full">
+                <div class="bg-gradient-to-r from-solar-600 to-solar-500 px-6 py-8 text-center relative">
+                    <button onclick="closeModal()" class="absolute top-4 right-4 text-white/70 hover:text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="text-2xl font-black text-white mb-2">Nhận Tư Vấn Miễn Phí</h3>
+                    <p class="text-solar-50 text-sm">Kỹ sư NLP Group liên hệ trong 15 phút làm việc</p>
+                </div>
+                <div class="px-6 py-8">
+                    <form id="contactForm" onsubmit="submitForm(event)">
+                        <div class="space-y-4">
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">Họ tên *</label><input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-solar-500 outline-none" placeholder="Nhập tên của bạn"></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">Số điện thoại *</label><input type="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-solar-500 outline-none" placeholder="09xx xxx xxx"></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">Quan tâm đến</label>
+                                <select class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-solar-500 outline-none bg-white">
+                                    <option>Điện mặt trời mái nhà</option>
+                                    <option>Điện mặt trời công nghiệp</option>
+                                    <option>Trạm sạc xe điện</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-6"><button type="submit" class="w-full bg-solar-600 hover:bg-solar-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all">Yêu Cầu Khảo Sát Miễn Phí</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAB -->
+    <a href="tel:0333864000" class="fab-btn fab-phone" title="Gọi ngay"><i class="fa-solid fa-phone"></i></a>
+    <a href="https://zalo.me/0333864000" target="_blank" class="fab-btn fab-zalo" title="Chat Zalo"><i class="fa-solid fa-comment-dots"></i></a>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

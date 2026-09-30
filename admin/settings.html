@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt Site – NLP Group Admin</title>
+    <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+</head>
+<body>
+<div class="admin-layout">
+    <aside class="admin-sidebar">
+        <div class="brand">NLP <span>GROUP</span> <span style="font-size:.65rem;font-weight:400;color:#57606a;margin-left:4px">Admin</span></div>
+        <nav>
+            <div class="nav-section">Dashboard</div>
+            <a href="index.html"><i class="fa-solid fa-house-chimney fa-fw"></i> Tổng quan</a>
+            <div class="nav-section">Nội dung</div>
+            <a href="pages.html"><i class="fa-solid fa-file-lines fa-fw"></i> Quản lý trang</a>
+            <a href="leads.html"><i class="fa-solid fa-user-group fa-fw"></i> Danh sách leads</a>
+            <div class="nav-section">Cấu hình</div>
+            <a href="settings.html" class="active"><i class="fa-solid fa-gear fa-fw"></i> Cài đặt site</a>
+            <div style="flex:1"></div>
+            <div class="nav-section">Tài khoản</div>
+            <a href="../index.html" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i> Xem trang chủ</a>
+            <a href="#" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket fa-fw"></i> Đăng xuất</a>
+        </nav>
+    </aside>
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <div style="display:flex;align-items:center;gap:.75rem">
+                <h1><i class="fa-solid fa-gear" style="color:#57606a;margin-right:.5rem"></i>Cài đặt Site</h1>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn btn-primary" onclick="saveSettings()"><i class="fa-solid fa-save"></i> Lưu & Xuất db.json</button>
+            </div>
+        </div>
+        <div class="admin-content">
+            <div id="adminAlert" class="alert"></div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start" class="settings-grid">
+
+                <!-- Thông tin liên hệ -->
+                <div class="admin-panel">
+                    <div class="panel-header"><h2><i class="fa-solid fa-address-book" style="color:#16a34a;margin-right:.4rem"></i>Thông tin liên hệ</h2></div>
+                    <div class="panel-body" style="padding:1.25rem">
+                        <div class="setting-row">
+                            <label class="setting-label"><i class="fa-solid fa-phone fa-fw text-green-600"></i> Số điện thoại</label>
+                            <input type="text" id="s_phone" class="form-input" placeholder="0333.864.000">
+                        </div>
+                        <div class="setting-row">
+                            <label class="setting-label"><i class="fa-solid fa-envelope fa-fw" style="color:#3b82d4"></i> Email</label>
+                            <input type="email" id="s_email" class="form-input" placeholder="contact@nlpgroup.com.vn">
+                        </div>
+                        <div class="setting-row">
+                            <label class="setting-label"><i class="fa-brands fa-facebook fa-fw" style="color:#1877f2"></i> Zalo link</label>
+                            <input type="url" id="s_zalo" class="form-input" placeholder="https://zalo.me/...">
+                        </div>
+                        <div class="setting-row">
+                            <label class="setting-label"><i class="fa-solid fa-location-dot fa-fw" style="color:#ef4444"></i> Địa chỉ TP.HCM</label>
+                            <input type="text" id="s_addr_hcm" class="form-input" placeholder="Địa chỉ văn phòng HCM">
+                        </div>
+                        <div class="setting-row">
+                            <label class="setting-label"><i class="fa-solid fa-location-dot fa-fw" style="color:#f97316"></i> Địa chỉ Hà Nội</label>
+                            <input type="text" id="s_addr_hn" class="form-input" placeholder="Địa chỉ văn phòng HN (nếu có)">
+                        </div>
+                        <div class="setting-row">
+                            <label class="setting-label"><i class="fa-solid fa-id-card fa-fw" style="color:#7c3aed"></i> Mã số thuế (MST)</label>
+                            <input type="text" id="s_license" class="form-input" placeholder="0312XXXXXXX">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tracking & Analytics -->
+                <div class="admin-panel">
+                    <div class="panel-header"><h2><i class="fa-solid fa-chart-bar" style="color:#3b82d4;margin-right:.4rem"></i>Tracking & Analytics</h2></div>
+                    <div class="panel-body" style="padding:1.25rem">
+                        <div class="setting-row">
+                            <label class="setting-label"><img src="https://www.google.com/favicon.ico" style="width:14px;margin-right:6px;vertical-align:middle"> Google Analytics 4 ID</label>
+                            <input type="text" id="s_ga_tag" class="form-input" placeholder="G-XXXXXXXXXX">
+                            <p class="setting-hint">Điền GA4 Measurement ID để bật tracking events tự động trên toàn site.</p>
+                        </div>
+                        <div class="setting-row">
+                            <label class="setting-label"><i class="fa-brands fa-facebook fa-fw" style="color:#1877f2"></i> Facebook Pixel ID</label>
+                            <input type="text" id="s_fb_pixel" class="form-input" placeholder="1234567890123456">
+                        </div>
+                        <div class="setting-row">
+                            <label class="setting-label"><img src="https://zalo.me/favicon.ico" style="width:14px;margin-right:6px;vertical-align:middle" onerror="this.style.display='none'">Zalo OA ID</label>
+                            <input type="text" id="s_zalo_oa" class="form-input" placeholder="Zalo Official Account ID">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chế độ Maintenance -->
+                <div class="admin-panel">
+                    <div class="panel-header"><h2><i class="fa-solid fa-triangle-exclamation" style="color:#f59e0b;margin-right:.4rem"></i>Chế độ Bảo trì</h2></div>
+                    <div class="panel-body" style="padding:1.25rem">
+                        <div class="setting-row" style="flex-direction:row;align-items:center;gap:1rem">
+                            <div style="flex:1">
+                                <p style="font-weight:600;color:#1f2328;margin-bottom:.25rem">Bật chế độ Maintenance</p>
+                                <p style="font-size:.82rem;color:#57606a">Khi bật, khách truy cập sẽ thấy trang "Đang bảo trì". Chỉ Admin mới xem được nội dung thực.</p>
+                            </div>
+                            <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;flex-shrink:0">
+                                <input type="checkbox" id="s_maintenance" style="width:20px;height:20px;cursor:pointer">
+                                <span style="font-size:.85rem;font-weight:600" id="maintenanceLabel">Tắt</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thông tin site -->
+                <div class="admin-panel">
+                    <div class="panel-header"><h2><i class="fa-solid fa-circle-info" style="color:#57606a;margin-right:.4rem"></i>Thông tin Site</h2></div>
+                    <div class="panel-body" style="padding:1.25rem">
+                        <div class="setting-row">
+                            <p class="setting-label">Domain</p>
+                            <p style="font-size:.875rem;font-weight:600;color:#1f2328">nlpgroup.com.vn</p>
+                        </div>
+                        <div class="setting-row">
+                            <p class="setting-label">Hosting</p>
+                            <p style="font-size:.875rem;color:#57606a">Cloudflare Pages</p>
+                        </div>
+                        <div class="setting-row">
+                            <p class="setting-label">Repository</p>
+                            <a href="https://github.com/thekingbao/vnsolar" target="_blank" style="font-size:.82rem;color:#3b82d4">github.com/thekingbao/vnsolar</a>
+                        </div>
+                        <div class="setting-row">
+                            <p class="setting-label">Admin Login</p>
+                            <code style="font-size:.82rem;background:#f6f8fa;padding:3px 8px;border-radius:4px">admin / nlpgroup2025</code>
+                        </div>
+                        <div class="setting-row" style="border:0">
+                            <p class="setting-label">Xem hướng dẫn</p>
+                            <a href="../draft/PLAN_UPDATE_NLPGROUP.md" target="_blank" style="font-size:.82rem;color:#3b82d4">PLAN_UPDATE_NLPGROUP.md</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:1.5rem;text-align:center">
+                <button class="btn btn-primary" onclick="saveSettings()" style="padding:.75rem 2.5rem;font-size:1rem">
+                    <i class="fa-solid fa-save"></i> Lưu thay đổi & Xuất db.json
+                </button>
+                <p style="font-size:.8rem;color:#57606a;margin-top:.75rem">Sau khi lưu, thay thế file <code>admin/db.json</code> trong dự án và chạy <code>git push</code> để áp dụng.</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+.settings-grid { }
+@media (max-width: 768px) {
+    .settings-grid { grid-template-columns: 1fr !important; }
+}
+.setting-row { padding:.75rem 0; border-bottom:1px solid #f3f4f6; }
+.setting-row:last-child { border-bottom:0; }
+.setting-label { font-size:.8rem; font-weight:600; color:#57606a; margin-bottom:.4rem; display:block }
+.setting-hint  { font-size:.75rem; color:#57606a; margin-top:.35rem }
+.form-input    { width:100%; padding:.55rem .75rem; border:1.5px solid #e5e7eb; border-radius:.5rem; font-size:.875rem; outline:none; transition:border-color .2s; box-sizing:border-box }
+.form-input:focus { border-color:#16a34a }
+.panel-body { }
+</style>
+
+<script src="../js/admin.js"></script>
+<script>
+let db = null;
+
+async function loadSettings() {
+    try {
+        const r = await fetch('../admin/db.json?t=' + Date.now());
+        db = await r.json();
+        const s = db.settings || {};
+        document.getElementById('s_phone').value    = s.phone    || '';
+        document.getElementById('s_email').value    = s.email    || '';
+        document.getElementById('s_zalo').value     = s.zalo     || '';
+        document.getElementById('s_addr_hcm').value = s.address_hcm || '';
+        document.getElementById('s_addr_hn').value  = s.address_hn  || '';
+        document.getElementById('s_license').value  = s.business_license || '';
+        document.getElementById('s_ga_tag').value   = s.google_tag || '';
+        document.getElementById('s_fb_pixel').value = s.fb_pixel  || '';
+        document.getElementById('s_zalo_oa').value  = s.zalo_oa_id|| '';
+        const maint = s.maintenance || false;
+        document.getElementById('s_maintenance').checked = maint;
+        document.getElementById('maintenanceLabel').textContent = maint ? 'Bật' : 'Tắt';
+    } catch(e) {
+        showAlert('Không tải được db.json: ' + e.message, 'error');
+    }
+}
+
+document.getElementById('s_maintenance').addEventListener('change', function() {
+    document.getElementById('maintenanceLabel').textContent = this.checked ? 'Bật' : 'Tắt';
+});
+
+function saveSettings() {
+    if (!db) { showAlert('Chưa tải được db.json', 'error'); return; }
+    db.settings = Object.assign(db.settings || {}, {
+        phone:            document.getElementById('s_phone').value.trim(),
+        email:            document.getElementById('s_email').value.trim(),
+        zalo:             document.getElementById('s_zalo').value.trim(),
+        address_hcm:      document.getElementById('s_addr_hcm').value.trim(),
+        address_hn:       document.getElementById('s_addr_hn').value.trim(),
+        business_license: document.getElementById('s_license').value.trim(),
+        google_tag:       document.getElementById('s_ga_tag').value.trim(),
+        fb_pixel:         document.getElementById('s_fb_pixel').value.trim(),
+        zalo_oa_id:       document.getElementById('s_zalo_oa').value.trim(),
+        maintenance:      document.getElementById('s_maintenance').checked
+    });
+    // Also update site.email
+    if (db.site) db.site.email = db.settings.email;
+
+    const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'db.json';
+    a.click();
+    showAlert('✅ Đã xuất db.json với cài đặt mới. Thay thế file admin/db.json và commit lên GitHub.', 'success');
+}
+
+function showAlert(msg, type) {
+    const el = document.getElementById('adminAlert');
+    el.className = 'alert alert-' + (type === 'error' ? 'danger' : 'success');
+    el.textContent = msg; el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 7000);
+}
+
+document.addEventListener('DOMContentLoaded', loadSettings);
+</script>
+</body>
+</html>

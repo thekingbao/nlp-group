@@ -1,9 +1,9 @@
-﻿{
+{
   "site": {
     "name": "NLP Group",
     "tagline": "Giải pháp Năng lượng mặt trời & Trạm sạc xe điện",
     "phone": "0333.864.000",
-    "email": "contact@muabandien.com",
+    "email": "contact@nlpgroup.com.vn",
     "address": "Tòa nhà Innovation, Công viên phần mềm Quang Trung, Q.12, TP.HCM",
     "facebook": "https://facebook.com/nlpgroup",
     "youtube": "https://youtube.com/@nlpgroup",
@@ -14,30 +14,55 @@
       "id": "pg_home",
       "title": "Trang chủ",
       "slug": "trang-chu",
-      "url": "index.html",
+      "url": "/",
       "status": "active",
       "meta_title": "NLP Group – Giải pháp Năng lượng mặt trời & Trạm sạc xe điện",
       "meta_desc": "NLP Group cung cấp giải pháp điện mặt trời và trạm sạc xe điện B2B/B2C tại Việt Nam. Tiết kiệm 40-70% hóa đơn điện.",
+      "canonical": "https://nlpgroup.com.vn/",
       "updated_at": "2026-09-25T00:00:00.000Z"
+    },
+    {
+      "id": "pg_ve-chung-toi",
+      "title": "Về chúng tôi",
+      "slug": "ve-chung-toi",
+      "url": "/pages/ve-chung-toi/",
+      "status": "active",
+      "meta_title": "Về chúng tôi – NLP Group | Tiên phong năng lượng sạch",
+      "meta_desc": "NLP Group – đơn vị tiên phong cung cấp giải pháp điện mặt trời và trạm sạc xe điện từ 2018. 1.000+ dự án, 50+ kỹ sư.",
+      "canonical": "https://nlpgroup.com.vn/pages/ve-chung-toi/",
+      "updated_at": "2026-10-01T00:00:00.000Z"
+    },
+    {
+      "id": "pg_doi-tac",
+      "title": "Đăng ký Đối tác",
+      "slug": "dang-ky-doi-tac",
+      "url": "/pages/doi-tac/",
+      "status": "active",
+      "meta_title": "Đăng ký Đối tác – Hoa hồng 15-25% | NLP Group",
+      "meta_desc": "Trở thành đối tác NLP Group – nhận hoa hồng 15-25%, hỗ trợ kỹ thuật, độc quyền khu vực. Đăng ký miễn phí.",
+      "canonical": "https://nlpgroup.com.vn/pages/doi-tac/",
+      "updated_at": "2026-10-01T00:00:00.000Z"
     },
     {
       "id": "pg_dmt",
       "title": "Điện mặt trời",
       "slug": "dien-mat-troi",
-      "url": "pages/dien-mat-troi/",
+      "url": "/pages/dien-mat-troi/",
       "status": "active",
       "meta_title": "Điện mặt trời – Biến tần Hòa lưới & Hybrid | NLP Group",
       "meta_desc": "Hệ thống điện mặt trời áp mái cho hộ gia đình, nhà xưởng, khách sạn. Biến tần DEYE, SOLIS chính hãng.",
+      "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
     {
       "id": "pg_bien-tan-hoa-luoi",
       "title": "Biến tần Hòa lưới",
       "slug": "bien-tan-hoa-luoi",
-      "url": "pages/dien-mat-troi/bien-tan-hoa-luoi/",
+      "url": "/pages/dien-mat-troi/bien-tan-hoa-luoi/",
       "status": "active",
       "meta_title": "Biến tần Hòa lưới DEYE & SOLIS | NLP Group",
       "meta_desc": "Biến tần hòa lưới 1 pha và 3 pha, công suất 3kW đến 100kW.",
+      "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/bien-tan-hoa-luoi/",
       "parent": "pg_dmt",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
@@ -45,10 +70,11 @@
       "id": "pg_bien-tan-hybrid",
       "title": "Biến tần Hybrid",
       "slug": "bien-tan-hybrid",
-      "url": "pages/dien-mat-troi/bien-tan-hybrid/",
+      "url": "/pages/dien-mat-troi/bien-tan-hybrid/",
       "status": "active",
       "meta_title": "Biến tần Hybrid – Lưu trữ điện thông minh | NLP Group",
       "meta_desc": "Biến tần Hybrid kết hợp pin lưu trữ Lithium. Tự cấp điện ban đêm, hoạt động khi mất lưới.",
+      "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/bien-tan-hybrid/",
       "parent": "pg_dmt",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
@@ -56,10 +82,11 @@
       "id": "pg_tam-pin",
       "title": "Tấm pin Solar",
       "slug": "tam-pin-solar",
-      "url": "pages/dien-mat-troi/tam-pin-solar/",
+      "url": "/pages/dien-mat-troi/tam-pin-solar/",
       "status": "active",
       "meta_title": "Tấm pin năng lượng mặt trời Mono PERC & TOPCon | NLP Group",
       "meta_desc": "Tấm pin Mono PERC, TOPCon hiệu suất cao. Chứng nhận IEC, bảo hành 25 năm.",
+      "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/tam-pin-solar/",
       "parent": "pg_dmt",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
@@ -67,10 +94,11 @@
       "id": "pg_pin-luu-tru",
       "title": "Pin Lưu trữ",
       "slug": "pin-luu-tru",
-      "url": "pages/dien-mat-troi/pin-luu-tru/",
+      "url": "/pages/dien-mat-troi/pin-luu-tru/",
       "status": "active",
       "meta_title": "Pin lưu trữ Lithium LiFePO4 | NLP Group",
       "meta_desc": "Pin lưu trữ LiFePO4, dung lượng 5kWh – 100kWh. An toàn, chu kỳ > 6.000 lần.",
+      "canonical": "https://nlpgroup.com.vn/pages/dien-mat-troi/pin-luu-tru/",
       "parent": "pg_dmt",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
@@ -78,20 +106,22 @@
       "id": "pg_tru-sac",
       "title": "Trụ sạc ô tô điện",
       "slug": "tru-sac-o-to-dien",
-      "url": "pages/tru-sac/",
+      "url": "/pages/tru-sac/",
       "status": "active",
       "meta_title": "Trụ sạc ô tô điện DC & AC | NLP Group",
       "meta_desc": "Trạm sạc nhanh DC 120kW/240kW và sạc AC thông minh. ROI 2–3 năm.",
+      "canonical": "https://nlpgroup.com.vn/pages/tru-sac/",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
     {
       "id": "pg_tru-sac-dc",
       "title": "Trụ sạc DC 120kW / 240kW",
       "slug": "tru-sac-dc",
-      "url": "pages/tru-sac/tru-sac-dc/",
+      "url": "/pages/tru-sac/tru-sac-dc/",
       "status": "active",
       "meta_title": "Trụ sạc DC 120kW 240kW siêu nhanh | NLP Group",
       "meta_desc": "Trụ sạc DC 120kW và 240kW. Sạc đầy 80% pin xe điện trong 30 phút.",
+      "canonical": "https://nlpgroup.com.vn/pages/tru-sac/tru-sac-dc/",
       "parent": "pg_tru-sac",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
@@ -99,10 +129,11 @@
       "id": "pg_tru-sac-ac",
       "title": "Trụ sạc AC 7/11/22 kW",
       "slug": "tru-sac-ac",
-      "url": "pages/tru-sac/tru-sac-ac/",
+      "url": "/pages/tru-sac/tru-sac-ac/",
       "status": "active",
       "meta_title": "Trụ sạc AC 7kW 11kW 22kW sạc qua đêm | NLP Group",
       "meta_desc": "Trụ sạc AC thông minh cho nhà ở, căn hộ, văn phòng. Thanh toán app.",
+      "canonical": "https://nlpgroup.com.vn/pages/tru-sac/tru-sac-ac/",
       "parent": "pg_tru-sac",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
@@ -110,20 +141,22 @@
       "id": "pg_dich-vu",
       "title": "Dịch vụ",
       "slug": "dich-vu",
-      "url": "pages/dich-vu/",
+      "url": "/pages/dich-vu/",
       "status": "active",
       "meta_title": "Dịch vụ lắp đặt Thuê–Mua & Trả chậm 0% | NLP Group",
       "meta_desc": "Điện mặt trời Thuê – Mua và mua trả chậm không lãi suất. Lắp đặt toàn quốc.",
+      "canonical": "https://nlpgroup.com.vn/pages/dich-vu/",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
     {
       "id": "pg_thue-mua",
       "title": "Điện mặt trời Thuê – Mua",
       "slug": "thue-mua-dien-mat-troi",
-      "url": "pages/dich-vu/thue-mua/",
+      "url": "/pages/dich-vu/thue-mua/",
       "status": "active",
       "meta_title": "Điện mặt trời Thuê – Mua (0 đồng vốn) | NLP Group",
       "meta_desc": "Lắp điện mặt trời không cần vốn, trả phí dùng điện thấp hơn EVN.",
+      "canonical": "https://nlpgroup.com.vn/pages/dich-vu/thue-mua/",
       "parent": "pg_dich-vu",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
@@ -131,10 +164,11 @@
       "id": "pg_tra-cham",
       "title": "Mua trả chậm 0% lãi suất",
       "slug": "mua-tra-cham-0-lai",
-      "url": "pages/dich-vu/tra-cham/",
+      "url": "/pages/dich-vu/tra-cham/",
       "status": "active",
       "meta_title": "Mua điện mặt trời trả góp 0% lãi suất | NLP Group",
       "meta_desc": "Trả góp 0% lãi suất 12–24 tháng. Sở hữu hệ thống ngay từ ngày đầu.",
+      "canonical": "https://nlpgroup.com.vn/pages/dich-vu/tra-cham/",
       "parent": "pg_dich-vu",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
@@ -142,35 +176,90 @@
       "id": "pg_tin-tuc",
       "title": "Tin tức & Kiến thức",
       "slug": "tin-tuc",
-      "url": "pages/tin-tuc/",
+      "url": "/pages/tin-tuc/",
       "status": "active",
       "meta_title": "Tin tức năng lượng mặt trời & xe điện | NLP Group",
       "meta_desc": "Cập nhật chính sách NĐ 135/2024, công nghệ solar và xu hướng xe điện tại Việt Nam.",
+      "canonical": "https://nlpgroup.com.vn/pages/tin-tuc/",
       "updated_at": "2026-09-25T00:00:00.000Z"
     },
     {
       "id": "pg_lien-he",
       "title": "Liên hệ",
       "slug": "lien-he",
-      "url": "pages/lien-he/",
+      "url": "/pages/lien-he/",
       "status": "active",
       "meta_title": "Liên hệ NLP Group – Tư vấn miễn phí 24/7",
       "meta_desc": "Liên hệ NLP Group để được tư vấn miễn phí về điện mặt trời và trạm sạc xe điện.",
+      "canonical": "https://nlpgroup.com.vn/pages/lien-he/",
       "updated_at": "2026-09-25T00:00:00.000Z"
     }
   ],
   "products": [
-    { "id": "pr_deye6kw",   "name": "DEYE Hybrid 6kW 1P",  "brand": "DEYE",  "type": "inverter-hybrid", "tag": "BÁN CHẠY" },
-    { "id": "pr_deye10kw",  "name": "DEYE Hybrid 10kW 3P", "brand": "DEYE",  "type": "inverter-hybrid" },
-    { "id": "pr_solis6kw",  "name": "SOLIS Hybrid 6kW",    "brand": "SOLIS", "type": "inverter-hybrid" },
-    { "id": "pr_solis10kw", "name": "SOLIS Hybrid 10kW 3P","brand": "SOLIS", "type": "inverter-hybrid" }
+    { "id": "pr_deye6kw",   "name": "DEYE Hybrid 6kW 1P",  "brand": "DEYE",  "type": "inverter-hybrid", "tag": "BÁN CHẠY", "status": "active" },
+    { "id": "pr_deye10kw",  "name": "DEYE Hybrid 10kW 3P", "brand": "DEYE",  "type": "inverter-hybrid",                   "status": "active" },
+    { "id": "pr_solis6kw",  "name": "SOLIS Hybrid 6kW",    "brand": "SOLIS", "type": "inverter-hybrid",                   "status": "active" },
+    { "id": "pr_solis10kw", "name": "SOLIS Hybrid 10kW 3P","brand": "SOLIS", "type": "inverter-hybrid",                   "status": "active" },
+    { "id": "pr_dc120kw",   "name": "Trụ sạc DC 120kW",    "brand": "NLP",   "type": "ev-charger-dc",                     "status": "active" },
+    { "id": "pr_dc240kw",   "name": "Trụ sạc DC 240kW",    "brand": "NLP",   "type": "ev-charger-dc",                     "status": "active" },
+    { "id": "pr_ac22kw",    "name": "Trụ sạc AC 22kW",     "brand": "NLP",   "type": "ev-charger-ac",                     "status": "active" }
+  ],
+  "posts": [
+    {
+      "id": "post_001",
+      "title": "NĐ 135/2024 nói gì về tự sản tự tiêu điện mặt trời?",
+      "slug": "nd-135-2024-tu-san-tu-tieu",
+      "excerpt": "Nghị định 135/2024/NĐ-CP mở ra cơ hội cho doanh nghiệp tự sản xuất và tự tiêu thụ điện mặt trời mà không cần đấu nối lưới điện quốc gia.",
+      "category": "chinh-sach",
+      "published_at": "2026-01-05",
+      "status": "draft"
+    },
+    {
+      "id": "post_002",
+      "title": "DEYE vs SOLIS: Biến tần nào tốt hơn cho gia đình Việt?",
+      "slug": "deye-vs-solis-bien-tan-tot-hon",
+      "excerpt": "So sánh chi tiết giữa DEYE và SOLIS về độ bền, hiệu suất, giá cả và chính sách bảo hành để giúp bạn đưa ra quyết định đúng đắn.",
+      "category": "kien-thuc",
+      "published_at": "2026-01-08",
+      "status": "draft"
+    }
+  ],
+  "projects": [
+    {
+      "id": "pj_001",
+      "title": "Nhà máy Dệt may ABC – Bình Dương",
+      "power_kwp": 500,
+      "type": "industrial",
+      "year": 2024,
+      "monthly_saving": 85000000,
+      "lat": 10.9804,
+      "lng": 106.6519,
+      "status": "active"
+    },
+    {
+      "id": "pj_002",
+      "title": "Khách sạn Grand Palace – TP.HCM",
+      "power_kwp": 120,
+      "type": "commercial",
+      "year": 2024,
+      "monthly_saving": 25000000,
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "status": "active"
+    }
   ],
   "settings": {
-    "phone":       "0333.864.000",
-    "zalo":        "https://zalo.me/0333864000",
-    "email":       "contact@muabandien.com",
-    "google_tag":  "",
-    "fb_pixel":    "",
-    "maintenance": false
+    "phone":            "0333.864.000",
+    "zalo":             "https://zalo.me/0333864000",
+    "email":            "contact@nlpgroup.com.vn",
+    "google_tag":       "",
+    "fb_pixel":         "",
+    "zalo_oa_id":       "",
+    "business_license": "",
+    "address_hcm":      "Tòa nhà Innovation, Công viên phần mềm Quang Trung, Q.12, TP.HCM",
+    "address_hn":       "",
+    "maintenance":      false,
+    "admin_user":       "admin",
+    "admin_pass_hash":  "nlpgroup2025"
   }
 }

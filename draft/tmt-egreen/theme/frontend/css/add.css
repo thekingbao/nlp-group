@@ -1,0 +1,9 @@
+
+.min-h-\[563px\] {
+    min-height: 563px;
+}
+@media (min-width: 960px) {
+    .lg\:pl-10 {
+        padding-left: 2.5rem /* 40px */;
+    }
+}

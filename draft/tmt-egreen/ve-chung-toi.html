@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="vi">
+
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="csrf-token" content="cQG20wyTxN9G6FRlhE4GxXBuHIhQpGMUBz17xVMy">
+    <base href='https://TMT-EGREEN.com/'/><title>Về chúng tôi</title><meta name="description" content="TMT-EGREEN - Giải pháp sạc thông minh, an toàn và bền vững"><meta name="keywords" content="TMT-EGREEN - Giải pháp sạc thông minh, an toàn và bền vững"><meta property="og:site_name" content="TMT-EGREEN - Giải pháp sạc thông minh, an toàn và bền vững"><meta property="og:url" content="https://TMT-EGREEN.com/ve-chung-toi"><meta property="og:type" content="article"><meta property="og:title" content="Về chúng tôi"><meta property="og:description" content="TMT-EGREEN - Giải pháp sạc thông minh, an toàn và bền vững"><meta property="og:image" content="https://TMT-EGREEN.com/uploads/trangchu/bg.jpg"><meta property="og:locale" content="vi_vn"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Về chúng tôi"><meta name="twitter:description" content="TMT-EGREEN - Giải pháp sạc thông minh, an toàn và bền vững"><meta name="twitter:image" content="https://TMT-EGREEN.com/uploads/trangchu/bg.jpg"><meta property="fb:app_id" content=""><link rel="canonical" href="https://TMT-EGREEN.com/ve-chung-toi"><link rel="shortcut icon" href="uploads/logo/favicon_2.png"><meta name="csrf-token" content="cQG20wyTxN9G6FRlhE4GxXBuHIhQpGMUBz17xVMy"><meta name="is-login" content="0"><meta name="current-lang" content="vi"><meta name="exchange-rate" content="1">
+        <link rel="stylesheet" href="https://TMT-EGREEN.com/theme/frontend/css/all.min.css?v=1758014074">
+    <link rel="stylesheet" href="https://TMT-EGREEN.com/theme/frontend/css/animate.css?v=1758014074">
+    <link rel="stylesheet" href="https://TMT-EGREEN.com/theme/frontend/css/swiper-bundle.min.css?v=1758014074">
+    <link rel="stylesheet" href="https://TMT-EGREEN.com/base_assets/css/toastify.css?v=1685588026" type="text/css" >
+    <link rel="stylesheet" href="https://TMT-EGREEN.com/theme/frontend/css/slimselect.css?v=1758014074">
+    <link rel="stylesheet" href="https://TMT-EGREEN.com/theme/frontend/css/fonts.css?v=1760411200">
+    <link rel="stylesheet" href="https://TMT-EGREEN.com/theme/frontend/css/output.css?v=1776222911">
+    <link rel="stylesheet" href="https://TMT-EGREEN.com/theme/frontend/css/custom-select.css?v=1759114430">
+    <link rel="stylesheet" href="https://TMT-EGREEN.com/theme/frontend/css/main.css?v=1776224077">
+    <link rel="stylesheet" href="https://TMT-EGREEN.com/theme/frontend/css/add.css?v=1758775103">
+            <script type="text/javascript">
+        var showNotify = "";
+        var messageNotify = "";
+        var typeNotify = "";
+        var typePopup = "";
+        var emailSocial = "";
+        var auth = "";
+        var redirect = "";
+        var onOffModalPartner = "0";
+        var timeShowModalPartner = "6000";
+    </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HZC9FW0SXE"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag('js', new Date());
+
+  var gaDebugParam =
+    new URLSearchParams(window.location.search).get('ga_debug');
+
+  if (gaDebugParam === '1') {
+    sessionStorage.setItem('tmt_ga_debug', '1');
+  }
+  else if (gaDebugParam === '0') {
+    sessionStorage.removeItem('tmt_ga_debug');
+  }
+
+  var isGaDebug =
+    gaDebugParam === '1' ||
+    sessionStorage.getItem('tmt_ga_debug') === '1';
+
+  gtag('config', 'G-HZC9FW0SXE', {
+    debug_mode: isGaDebug
+  });
+</script>
+
+
+<!-- ======================================================
+1. THEO DÕI BẤM CHỈ ĐƯỜNG TRẠM
+====================================================== -->
+<script>
+document.addEventListener('click', function(e) {
+
+    const btn = e.target.closest(
+        'a[onclick*="SEARCH_MAP.openDirection"]'
+    );
+
+    if (!btn) return;
+
+
+    /* =========================
+       LẤY POPUP TRẠM
+    ========================== */
+
+    const popup = btn.closest('.map-small');
+
+
+    /* =========================
+       LẤY TÊN TRẠM + ĐỊA CHỈ
+
+       - Nếu bấm trong popup bản đồ:
+         lấy từ .name-info / .map-info
+
+       - Nếu bấm từ danh sách:
+         tìm ngược lên card gần nhất có thẻ h3
+         (tên trạm) và thẻ p (địa chỉ)
+    ========================== */
+
+    let tenTram = '';
+    let diaChi = '';
+
+    if (popup) {
+
+        const nameEl =
+            popup.querySelector('.name-info');
+
+        const addressEl =
+            popup.querySelector('.map-info');
+
+        tenTram = nameEl
+            ? nameEl.textContent.trim()
+            : '';
+
+        diaChi = addressEl
+            ? addressEl.textContent.trim()
+            : '';
+
+    }
+
+
+    /*
+    Trường hợp nút "Chỉ đường" nằm trong danh sách,
+    không có .map-small nên tìm card cha gần nhất có h3.
+    */
+    if (!tenTram) {
+
+        let card = btn.parentElement;
+        let depth = 0;
+
+        while (
+            card &&
+            card !== document.body &&
+            depth < 8
+        ) {
+
+            const titleEl =
+                card.querySelector('h3');
+
+            if (titleEl) {
+
+                tenTram =
+                    (titleEl.textContent || '')
+                    .trim();
+
+                /*
+                Ưu tiên đoạn <p> ngay sau h3.
+                Nếu cấu trúc thay đổi nhẹ thì fallback
+                về thẻ p đầu tiên trong card.
+                */
+                const nextEl =
+                    titleEl.nextElementSibling;
+
+                if (
+                    nextEl &&
+                    nextEl.tagName === 'P'
+                ) {
+
+                    diaChi =
+                        (nextEl.textContent || '')
+                        .trim();
+
+                }
+                else {
+
+                    const addressFallback =
+                        card.querySelector('p');
+
+                    diaChi = addressFallback
+                        ? addressFallback.textContent.trim()
+                        : '';
+
+                }
+
+                break;
+            }
+
+            card = card.parentElement;
+            depth++;
+        }
+
+    }
+
+
+    tenTram = tenTram
+        .replace(/^Tên:\s*/i, '')
+        .trim();
+
+    diaChi = diaChi
+        .replace(/^Địa\s*Chỉ:\s*/i, '')
+        .trim();
+
+
+    /* =========================
+       TÁCH TỈNH / THÀNH PHỐ
+    ========================== */
+
+    let tinhThanh = '';
+
+    if (diaChi) {
+
+        const cacPhanDiaChi = diaChi
+            .split(',')
+            .map(function(item) {
+                return item.trim();
+            })
+            .filter(Boolean);
+
+        /*
+        Duyệt từ cuối địa chỉ về đầu.
+        Ví dụ:
+        "... Xã Tân Ninh, Tỉnh Thanh Hóa"
+        => Thanh Hóa
+        */
+
+        for (let i = cacPhanDiaChi.length - 1; i >= 0; i--) {
+
+            const phan = cacPhanDiaChi[i];
+
+            // Ví dụ: "Tỉnh Thanh Hóa"
+            let match = phan.match(
+                /^tỉnh\s+(.+)$/i
+            );
+
+            if (match) {
+                tinhThanh = match[1].trim();
+                break;
+            }
+
+
+            // Ví dụ:
+            // "Thành phố Hà Nội"
+            // "TP. Hồ Chí Minh"
+            match = phan.match(
+                /^(?:thành phố|tp\.?)\s+(.+)$/i
+            );
+
+            if (match) {
+                tinhThanh = match[1].trim();
+                break;
+            }
+        }
+    }
+
+
+    /* =========================
+       XÁC ĐỊNH VỊ TRÍ NÚT
+    ========================== */
+
+    let viTriNut = 'chi_duong_danh_sach';
+
+    if (popup) {
+        viTriNut = 'chi_duong_ban_do';
+    }
+
+
+    /* =========================
+       THAM SỐ EVENT
+    ========================== */
+
+    const eventParams = {
+
+        ten_tram: tenTram,
+
+        vi_tri_nut: viTriNut,
+
+        trang_nguon: window.location.pathname
+    };
+
+
+    /*
+    Chỉ gửi tinh_thanh nếu lấy được dữ liệu.
+    Không gửi giá trị rỗng.
+    */
+
+    if (tinhThanh) {
+        eventParams.tinh_thanh = tinhThanh;
+    }
+
+
+    /* =========================
+       GỬI EVENT GA4
+    ========================== */
+
+    gtag(
+        'event',
+        'bam_chi_duong_tram',
+        eventParams
+    );
+
+}, true);
+</script>
+
+
+
+<!-- ======================================================
+2. THEO DÕI BẤM GỌI HOTLINE
+====================================================== -->
+<script>
+document.addEventListener('click', function(e) {
+
+    const btn = e.target.closest(
+        'a[href^="tel:"]'
+    );
+
+    if (!btn) return;
+
+
+    /* =========================
+       SỐ ĐIỆN THOẠI
+    ========================== */
+
+    const soDienThoai =
+        (btn.getAttribute('href') || '')
+        .replace('tel:', '')
+        .replace(/\s+/g, '')
+        .trim();
+
+
+    /* =========================
+       VỊ TRÍ NÚT
+    ========================== */
+
+    let viTriNut = 'trong_bai';
+
+    if (btn.closest('header')) {
+
+        viTriNut = 'dau_trang';
+
+    }
+
+    else if (btn.closest('footer')) {
+
+        viTriNut = 'chan_trang';
+
+    }
+
+    else {
+
+        const style =
+            window.getComputedStyle(btn);
+
+        const parentFixed =
+            btn.closest('[class*="fixed"]');
+
+        if (
+            style.position === 'fixed' ||
+            parentFixed
+        ) {
+            viTriNut = 'nut_noi';
+        }
+    }
+
+
+    /* =========================
+       LOẠI THIẾT BỊ
+    ========================== */
+
+    const laDienThoai =
+        /Android|iPhone|iPod|Mobile/i
+        .test(navigator.userAgent);
+
+
+    /* =========================
+       GỬI EVENT GA4
+    ========================== */
+
+    gtag(
+        'event',
+        'bam_goi_hotline',
+        {
+
+            so_dien_thoai:
+                soDienThoai,
+
+            vi_tri_nut:
+                viTriNut,
+
+            trang_nguon:
+                window.location.pathname,
+
+            loai_thiet_bi:
+                laDienThoai
+                    ? 'dien_thoai'
+                    : 'may_tinh'
+        }
+    );
+
+}, true);
+</script>
+
+
+
+<!-- ======================================================
+3. THEO DÕI BẤM TẢI APP
+====================================================== -->
+<script>
+document.addEventListener('click', function(e) {
+
+    const btn =
+        e.target.closest('a[href]');
+
+    if (!btn) return;
+
+
+    /* =========================
+       LẤY URL
+    ========================== */
+
+    let url;
+
+    try {
+
+        url = new URL(
+            btn.href,
+            window.location.href
+        );
+
+    }
+
+    catch (err) {
+
+        return;
+
+    }
+
+
+    /* =========================
+       XÁC ĐỊNH KHO ỨNG DỤNG
+    ========================== */
+
+    let khoUngDung = '';
+
+
+    // CH PLAY
+    if (
+
+        url.hostname ===
+            'play.google.com'
+
+        &&
+
+        url.pathname ===
+            '/store/apps/details'
+
+        &&
+
+        url.searchParams.get('id') ===
+            'com.tmt.egreen'
+
+    ) {
+
+        khoUngDung = 'ch_play';
+
+    }
+
+
+    // APP STORE
+    else if (
+
+        url.hostname ===
+            'apps.apple.com'
+
+        &&
+
+        url.pathname.includes(
+            '/vn/app/TMT-EGREEN/id6762349874'
+        )
+
+    ) {
+
+        khoUngDung = 'app_store';
+
+    }
+
+
+    else {
+
+        return;
+
+    }
+
+
+    /* =========================
+       XÁC ĐỊNH VỊ TRÍ NÚT
+    ========================== */
+
+    let viTriNut = 'trong_bai';
+
+
+    if (btn.closest('header')) {
+
+        viTriNut = 'dau_trang';
+
+    }
+
+    else if (btn.closest('footer')) {
+
+        viTriNut = 'chan_trang';
+
+    }
+
+    else if (
+
+        window.location.pathname === '/'
+        ||
+        window.location.pathname === ''
+
+    ) {
+
+        viTriNut = 'trang_chu';
+
+    }
+
+
+    /* =========================
+       GỬI EVENT GA4
+    ========================== */
+
+    gtag(
+        'event',
+        'bam_tai_app',
+        {
+
+            kho_ung_dung:
+                khoUngDung,
+
+            vi_tri_nut:
+                viTriNut,
+
+            trang_nguon:
+                window.location.pathname,
+
+            // URL đích để đối soát
+            link_url:
+                url.href
+        }
+    );
+
+}, true);
+</script>
+<!-- ======================================================
+4. THEO DÕI ĐĂNG KÝ ĐỐI TÁC THÀNH CÔNG
+====================================================== -->
+<script>
+(function() {
+
+    const STORAGE_KEY = 'tmt_partner_form_pending_v1';
+    const SUCCESS_PATH = '/dang-ky-doi-tac-thanh-cong';
+
+
+    /* =========================
+       KHI NGƯỜI DÙNG GỬI FORM
+    ========================== */
+
+    document.addEventListener('submit', function(e) {
+
+        const form = e.target;
+
+        if (!(form instanceof HTMLFormElement)) return;
+
+        const currentPath =
+            window.location.pathname.replace(/\/+$/, '');
+
+
+        // Chỉ áp dụng tại trang đăng ký đối tác
+        // và không áp dụng tại trang thành công
+        if (
+            !currentPath.includes('/dang-ky-doi-tac') ||
+            currentPath.includes('thanh-cong')
+        ) {
+            return;
+        }
+
+
+        // Ghi nhớ việc người dùng vừa gửi form
+        const submitData = {
+            timestamp: Date.now(),
+            trang_nguon: window.location.pathname
+        };
+
+        try {
+            sessionStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(submitData)
+            );
+        }
+        catch (err) {
+            console.warn(
+                'Không thể lưu trạng thái đăng ký đối tác',
+                err
+            );
+        }
+
+    }, true);
+
+
+
+    /* =========================
+       KIỂM TRA TRANG THÀNH CÔNG
+    ========================== */
+
+    function checkPartnerSuccess() {
+
+        const currentPath =
+            window.location.pathname.replace(/\/+$/, '');
+
+
+        // Không phải trang thành công thì dừng
+        if (currentPath !== SUCCESS_PATH) {
+            return;
+        }
+
+
+        let storedData = null;
+
+        try {
+
+            const raw =
+                sessionStorage.getItem(STORAGE_KEY);
+
+            if (!raw) return;
+
+            storedData = JSON.parse(raw);
+
+        }
+        catch (err) {
+
+            sessionStorage.removeItem(STORAGE_KEY);
+            return;
+
+        }
+
+
+        /* =========================
+           CHỐNG DỮ LIỆU CŨ
+        ========================== */
+
+        const MAX_AGE =
+            10 * 60 * 1000; // 10 phút
+
+        if (
+            !storedData.timestamp ||
+            Date.now() - storedData.timestamp > MAX_AGE
+        ) {
+
+            sessionStorage.removeItem(STORAGE_KEY);
+            return;
+
+        }
+
+
+        /*
+        Xóa trạng thái TRƯỚC khi gửi event.
+        Nhờ vậy refresh trang sẽ không bắn lần 2.
+        */
+        sessionStorage.removeItem(STORAGE_KEY);
+
+
+        /* =========================
+           GỬI EVENT GA4
+        ========================== */
+
+        gtag(
+            'event',
+            'dang_ky_doi_tac_thanh_cong',
+            {
+
+                ten_bieu_mau:
+                    'dang_ky_doi_tac',
+
+                trang_nguon:
+                    storedData.trang_nguon
+                    || '/dang-ky-doi-tac'
+
+            }
+        );
+
+    }
+
+
+    /* =========================
+       CHẠY KHI TRANG SẴN SÀNG
+    ========================== */
+
+    if (document.readyState === 'loading') {
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            checkPartnerSuccess
+        );
+
+    }
+    else {
+
+        checkPartnerSuccess();
+
+    }
+
+})();
+</script>
+<script>
+document.addEventListener('click', function(e) {
+    var btn = e.target.closest('a[href]');
+    if (!btn) return;
+
+    var href = btn.getAttribute('href') || '';
+    var kenh = '';
+
+    if (href.indexOf('zalo.me/') > -1) {
+        kenh = 'zalo';
+    } else if (href.indexOf('m.me/') > -1) {
+        kenh = 'messenger';
+    } else {
+        return;
+    }
+
+    if (typeof gtag === 'function') {
+        gtag('event', 'bam_chat', {
+            kenh_chat: kenh,
+            vi_tri_nut: 'nut_noi',
+            trang_nguon: window.location.pathname
+        });
+    }
+}, true);
+</script>
+<!-- Theo dõi xem chi tiết trạm -->
+<script>
+document.addEventListener('click', function(e) {
+
+    var btn = e.target.closest(
+        'a[data-action*="/station/detail/station/"]'
+    );
+
+    if (!btn) return;
+
+    var popup = btn.closest('.map-small');
+
+    var nameEl = popup
+        ? popup.querySelector('.name-info')
+        : null;
+
+    var tenTram = nameEl
+        ? nameEl.textContent.trim()
+        : '';
+
+    tenTram = tenTram
+        .replace(/^Tên:\s*/i, '')
+        .trim();
+
+    var action =
+        btn.getAttribute('data-action') || '';
+
+    var tramId = '';
+
+    var match =
+        action.match(/\/station\/(\d+)/);
+
+    if (match) {
+        tramId = match[1];
+    }
+
+    var isDebug =
+        new URLSearchParams(
+            window.location.search
+        ).get('ga_debug') === '1';
+
+    if (typeof gtag === 'function') {
+
+        gtag('event', 'xem_chi_tiet_tram', {
+
+            ten_tram: tenTram,
+
+            tram_id: tramId,
+
+            vi_tri_nut: 'chi_tiet_ban_do',
+
+            trang_nguon:
+                window.location.pathname,
+
+            debug_mode: isDebug
+        });
+
+    }
+
+}, true);
+</script>
+<!-- Theo dõi tìm kiếm / lọc trạm sạc -->
+<script>
+document.addEventListener('click', function(e) {
+
+    /* =========================
+       1. CHỌN ĐỊA ĐIỂM GỢI Ý
+    ========================== */
+
+    var diaDiem = e.target.closest(
+        'a[onclick*="SEARCH_MAP.chooseAddress"]'
+    );
+
+    if (diaDiem) {
+
+        if (typeof gtag === 'function') {
+            gtag('event', 'tim_kiem_tram_sac', {
+                kieu_tim_kiem: 'dia_diem_goi_y',
+                vi_tri_nut: 'goi_y_tim_kiem',
+                trang_nguon: window.location.pathname
+            });
+        }
+
+        return;
+    }
+
+
+    /* =========================
+       2. CHỌN TỈNH / THÀNH PHỐ
+    ========================== */
+
+    var tinh = e.target.closest(
+        'li[onclick*="AJAX_CALL_API.handleSelectProvince"]'
+    );
+
+    if (tinh) {
+
+        var tenTinh =
+            (tinh.textContent || '').trim();
+
+        if (typeof gtag === 'function') {
+            gtag('event', 'tim_kiem_tram_sac', {
+                kieu_tim_kiem: 'tinh_thanh',
+                tinh_thanh_tim_kiem: tenTinh,
+                vi_tri_nut: 'bo_loc_tinh_thanh',
+                trang_nguon: window.location.pathname
+            });
+        }
+
+        return;
+    }
+
+}, true);
+</script></head>
+
+<body class="" >
+    <div class="header-scroll-watcher"></div>
+<header class="transition-all duration-300 bg-white">
+    <div class="container flex items-center justify-between py-3">
+        <a href="https://TMT-EGREEN.com" class="h-[58px] md:h-[70px] max-sm:w-[92px] img__contain img__h-full block logo__header">
+            <picture >
+	<source media="(min-width:450px)" data-srcset="uploads/logo/TMT-EGREEN-xanh-w300.png" srcset="uploads/logo/TMT-EGREEN-xanh-w300.png">
+	<source media="(min-width:0px)" data-srcset="uploads/logo/thumbs/450x0/TMT-EGREEN-xanh-w300.png" srcset="uploads/logo/thumbs/450x0/TMT-EGREEN-xanh-w300.png">
+	<img loading="auto" src="uploads/logo/TMT-EGREEN-xanh-w300.png" data-src="uploads/logo/TMT-EGREEN-xanh-w300.png" class="img-fluid" width="300" height="192">
+</picture>
+        </a>
+        <div class="main-menu">
+            <a href="https://TMT-EGREEN.com" class="h-[58px] img__contain img__h-full block px-4 lg:hidden my-5">
+                <picture >
+	<source media="(min-width:450px)" data-srcset="uploads/logo/TMT-EGREEN-xanh-w300.png" srcset="uploads/logo/TMT-EGREEN-xanh-w300.png">
+	<source media="(min-width:0px)" data-srcset="uploads/logo/thumbs/450x0/TMT-EGREEN-xanh-w300.png" srcset="uploads/logo/thumbs/450x0/TMT-EGREEN-xanh-w300.png">
+	<img loading="auto" src="uploads/logo/TMT-EGREEN-xanh-w300.png" data-src="uploads/logo/TMT-EGREEN-xanh-w300.png" class="img-fluid" width="300" height="192">
+</picture>
+            </a>
+                        <ul class=""><li><a href="/" title="Trang chủ" class=" " id="menu_2">Trang chủ</a></li><li><a href="/tim-kiem-tram-sac-gan-nhat#oto" title="Tra cứu trạm sạc" class=" " id="menu_3">Tra cứu trạm sạc</a><ul class=""><li><a href="/tim-kiem-tram-sac-gan-nhat#oto" title="Trạm sạc gần nhất" class=" " id="menu_6">Trạm sạc gần nhất</a></li><li><a href="/tim-kiem-tram-sac-theo-lo-trinh" title="Trạm sạc theo lộ trình" class=" " id="menu_4">Trạm sạc theo lộ trình</a></li></ul></li><li><a href="/dang-ky-doi-tac" title="Đăng ký đối tác" class=" " id="menu_7">Đăng ký đối tác</a></li><li><a href="/ve-chung-toi" title="Về chúng tôi" class="active" id="menu_8">Về chúng tôi</a></li><li><a href="/tin-tuc" title="Tin tức" class=" " id="menu_9">Tin tức</a></li></ul>
+
+            <p class="my-4 font-semibold text-center text-v2 lg:hidden">Theo dõi chúng tôi</p>
+            <div class="flex gap-2.5 lg:hidden justify-center">
+                <a href="https://www.facebook.com/tramsac.tmtegreen" target="_blank" rel="noopener" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 14" fill="none">
+    <g clip-path="url(#clip0_4967_99)">
+        <path d="M2.14405 13.2218V7.38249H0.555664V5.28007H2.14405V3.48432C2.14405 2.07321 3.08232 0.777344 5.24429 0.777344C6.11964 0.777344 6.76692 0.858917 6.76692 0.858917L6.71591 2.82223C6.71591 2.82223 6.05579 2.81598 5.33544 2.81598C4.5558 2.81598 4.43089 3.16523 4.43089 3.74491V5.28007H6.77789L6.67577 7.38249H4.43089V13.2218H2.14405Z" fill="#192031" />
+    </g>
+    <defs>
+        <clipPath id="clip0_4967_99">
+            <rect width="6.22222" height="12.4444" fill="white" transform="translate(0.555664 0.777344)" />
+        </clipPath>
+    </defs>
+</svg>                </a>
+                <a href="" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14" fill="none">
+    <g clip-path="url(#clip0_4967_103)">
+        <path d="M16 2.29064C15.4009 2.5435 14.7654 2.70948 14.1146 2.78306C14.7924 2.39603 15.3129 1.78316 15.5579 1.05292C14.9136 1.4172 14.2086 1.67385 13.4735 1.8118C12.8747 1.20404 12.0216 0.824219 11.0774 0.824219C9.26456 0.824219 7.79475 2.22443 7.79475 3.95141C7.79475 4.19654 7.82381 4.43519 7.87975 4.66413C5.15162 4.53367 2.73287 3.28869 1.11381 1.39666C0.831312 1.85854 0.669438 2.39579 0.669438 2.96883C0.669438 4.05382 1.249 5.01097 2.12975 5.5718C1.60847 5.55625 1.09866 5.42212 0.642875 5.18061C0.642687 5.19371 0.642687 5.2068 0.642687 5.21996C0.642687 6.73515 1.77419 7.99912 3.27581 8.28642C2.79243 8.41166 2.28539 8.42999 1.79344 8.34C2.21112 9.58242 3.42344 10.4865 4.85981 10.5118C3.73638 11.3505 2.32094 11.8505 0.783063 11.8505C0.518063 11.8505 0.256813 11.8357 0 11.8068C1.45269 12.6941 3.17813 13.2119 5.03188 13.2119C11.0698 13.2119 14.3715 8.44659 14.3715 4.31408C14.3715 4.17844 14.3684 4.04358 14.362 3.90949C15.0046 3.4669 15.5593 2.9187 16 2.29064Z" fill="#192031" />
+    </g>
+    <defs>
+        <clipPath id="clip0_4967_103">
+            <rect width="16" height="12.4444" fill="white" transform="translate(0 0.777344)" />
+        </clipPath>
+    </defs>
+</svg>                </a>
+                <a href="" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" fill="none">
+    <g clip-path="url(#clip0_4967_107)">
+        <path d="M4.0064 14.2201V5.22408H0.957243V14.2201H4.0064ZM2.48222 3.99509C3.54551 3.99509 4.20736 3.30431 4.20736 2.44105C4.18755 1.55833 3.54555 0.886719 2.50239 0.886719C1.4594 0.886719 0.777344 1.55835 0.777344 2.44105C0.777344 3.30435 1.43903 3.99509 2.46231 3.99509H2.48212H2.48222ZM5.6941 14.2201H8.74326V9.19627C8.74326 8.9274 8.76307 8.65881 8.84359 8.46661C9.06402 7.92943 9.56573 7.37305 10.408 7.37305C11.5114 7.37305 11.9528 8.19801 11.9528 9.40735V14.22H15.0018V9.06179C15.0018 6.29857 13.4975 5.01288 11.4913 5.01288C9.84642 5.01288 9.1242 5.91451 8.72297 6.5286H8.74332V5.22389H5.69417C5.73418 6.06803 5.69417 14.2199 5.69417 14.2199L5.6941 14.2201Z" fill="#192031" />
+    </g>
+    <defs>
+        <clipPath id="clip0_4967_107">
+            <rect width="14.2222" height="13.3333" fill="white" transform="translate(0.777344 0.886719)" />
+        </clipPath>
+    </defs>
+</svg>                </a>
+                <a href="" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 17" fill="none">
+    <g clip-path="url(#clip0_4969_7816)">
+        <path d="M7.78072 4.85117C5.76168 4.85117 4.13311 6.45429 4.13311 8.44179C4.13311 10.4293 5.76168 12.0324 7.78072 12.0324C9.79977 12.0324 11.4283 10.4293 11.4283 8.44179C11.4283 6.45429 9.79977 4.85117 7.78072 4.85117ZM7.78072 10.7762C6.47596 10.7762 5.4093 9.72929 5.4093 8.44179C5.4093 7.15429 6.47279 6.10742 7.78072 6.10742C9.08866 6.10742 10.1522 7.15429 10.1522 8.44179C10.1522 9.72929 9.08548 10.7762 7.78072 10.7762V10.7762ZM12.4283 4.7043C12.4283 5.16992 12.0474 5.5418 11.5775 5.5418C11.1045 5.5418 10.7268 5.1668 10.7268 4.7043C10.7268 4.2418 11.1077 3.8668 11.5775 3.8668C12.0474 3.8668 12.4283 4.2418 12.4283 4.7043ZM14.8442 5.5543C14.7902 4.43242 14.5299 3.43867 13.695 2.61992C12.8633 1.80117 11.8537 1.54492 10.7141 1.48867C9.53945 1.42305 6.01882 1.42305 4.84422 1.48867C3.70771 1.5418 2.69819 1.79805 1.86327 2.6168C1.02835 3.43555 0.771205 4.4293 0.714062 5.55117C0.647396 6.70742 0.647396 10.173 0.714062 11.3293C0.768031 12.4512 1.02835 13.4449 1.86327 14.2637C2.69819 15.0824 3.70454 15.3387 4.84422 15.3949C6.01882 15.4605 9.53945 15.4605 10.7141 15.3949C11.8537 15.3418 12.8633 15.0855 13.695 14.2637C14.5268 13.4449 14.7871 12.4512 14.8442 11.3293C14.9109 10.173 14.9109 6.71054 14.8442 5.5543V5.5543ZM13.3268 12.5699C13.0791 13.1824 12.5998 13.6543 11.9744 13.9012C11.0379 14.2668 8.81564 14.1824 7.78072 14.1824C6.7458 14.1824 4.52041 14.2637 3.58708 13.9012C2.96485 13.6574 2.48549 13.1855 2.2347 12.5699C1.86327 11.648 1.94898 9.46054 1.94898 8.44179C1.94898 7.42304 1.86644 5.23242 2.2347 4.31367C2.48232 3.70117 2.96168 3.2293 3.58708 2.98242C4.52358 2.6168 6.7458 2.70117 7.78072 2.70117C8.81564 2.70117 11.041 2.61992 11.9744 2.98242C12.5966 3.22617 13.076 3.69805 13.3268 4.31367C13.6982 5.23555 13.6125 7.42304 13.6125 8.44179C13.6125 9.46054 13.6982 11.6512 13.3268 12.5699Z" fill="#192031" />
+    </g>
+    <defs>
+        <clipPath id="clip0_4969_7816">
+            <rect width="14.2222" height="16" fill="white" transform="translate(0.666504 0.444824)" />
+        </clipPath>
+    </defs>
+</svg>                </a>
+            </div>
+        </div>
+        <div class="lg:hidden">
+            <div class="hamburger hamburger--squeeze btn-menu-mobile">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-menu-overlay lg:hidden fixed top-0 right-0 w-full h-full bg-black/50 z-[99] transition-all duration-300 invisible opacity-0 pointer-events-none"></div>
+</header>    <!-- New -->
+<!-- New -->
+<section class="py-10 bg-cover bg-bottom max-lg:min-h-[500px] lg:h-[calc(100vh-100px)] relative z-[1] before:absolute before:inset-0 before:z-[-1] before:bg-[linear-gradient(180deg,rgba(38,59,127,1)_22%,rgba(255,255,255,0)_100%)] pb-[50vh]" style="background-image: url('uploads/ve-chung-toi/asset-1-100.jpg')">
+    <div class="container">
+        <h2 class="mb-10 text-center title__all !text-white wow fadeIn" data-wow-delay="0.2s">
+            <span class="underline underline-offset-[10px]">
+                GIỚI THIỆU VỀ TMT-EGREEN            </span>
+        </h2>
+        <div class="wow fadeInLeft" data-wow-delay="0.4s">
+            <h3 class="text-[1.3125rem] font-bold mb-4 text-white uppercase">Lịch sử hình thành</h3>
+            <div class="bg-white/5 backdrop-blur-sm border-2 border-white/50 rounded-[1.25rem] p-2 text-white">
+                <div class="s-content s-content__ul">
+                    <p dir="ltr">TMT-EGREEN kế thừa nền tảng gần 50 năm của TMT Motors. TMT Motors nhiều năm nằm trong Top 500 Doanh nghiệp lớn nhất Việt Nam, sở hữu nhà máy công suất 30.000 xe/năm, mạng lưới hơn 60 đại lý và hơn 1.000 nhân sự trên toàn quốc.</p>
+<p dir="ltr"><strong>Dòng thời gian:</strong></p>
+<ul>
+<li><strong>1976:</strong> Tiền thân của TMT Motors là Công ty Vật tư thiết bị cơ khí giao thông vận tải, trực thuộc Cục Cơ khí – Bộ GTVT, thành lập ngày 27/10/1976.</li>
+<li><strong>2006:</strong> Cổ phần hóa, chuyển đổi thành Công ty Cổ phần Ô tô TMT. Được Nhà nước trao tặng Huân chương Lao động hạng Ba.</li>
+<li><strong>2007:</strong> Ngày 23/10/2007, TMT đưa thương hiệu xe tải Sinotruk vào Việt Nam.</li>
+<li><strong>2010:</strong> TMT Motors đạt giải TOP 10 Thương hiệu nổi tiếng Quốc gia 2010.</li>
+<li><strong>2016:</strong> Hợp tác độc quyền sản xuất, lắp ráp CKD với Sinotruk, ký kết ngày 29/02/2016.</li>
+<li><strong>2023:</strong> Ký kết hợp tác chiến lược với liên doanh SAIC-GM-Wuling (SGMW), độc quyền sản xuất, lắp ráp và phân phối ô tô điện thương hiệu Wuling tại Việt Nam.</li>
+<li><strong>2025:</strong> TMT-EGREEN (Công ty Cổ phần Đầu tư Trạm sạc Việt Nam) thành lập ngày 22/5/2025, là công ty thành viên của TMT Motors. Mục tiêu đến năm 2030 có 30.000 trụ sạc trên toàn quốc.</li>
+</ul>                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<style>
+    body {
+        background: #F9F9F9;
+    }
+</style>
+    <footer>
+    <div class="container flex gap-y-5 gap-x-14 justify-between py-10 max-lg:flex-col">
+        <div class="w-full lg:max-w-[350px] xl:max-w-[400px] shrink-0">
+            <a href="https://TMT-EGREEN.com" class="h-[70px] img__contain img__h-full block mb-5 w-fit">
+                <picture >
+	<source media="(min-width:450px)" data-srcset="uploads/logo/TMT-EGREEN-xanh-w300.png" srcset="uploads/logo/TMT-EGREEN-xanh-w300.png">
+	<source media="(min-width:0px)" data-srcset="uploads/logo/thumbs/450x0/TMT-EGREEN-xanh-w300.png" srcset="uploads/logo/thumbs/450x0/TMT-EGREEN-xanh-w300.png">
+	<img loading="auto" src="uploads/logo/TMT-EGREEN-xanh-w300.png" data-src="uploads/logo/TMT-EGREEN-xanh-w300.png" class="img-fluid" width="300" height="192">
+</picture>
+            </a>
+            <div class="s-content text-[0.875rem] font-medium mb-5 text-[#755151]">
+                Ngày thành lập : 22/05/2025<br />
+Giấy chứng nhận đăng ký doanh nghiệp Số 0111060371- Sở tài chính Hà Nội cấp ngày 22/05/2025
+            </div>
+            <div class="flex gap-2.5 mb-10">
+                                <a href="https://www.facebook.com/tramsac.tmtegreen" target="_blank" rel="noopener" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 14" fill="none">
+    <g clip-path="url(#clip0_4967_99)">
+        <path d="M2.14405 13.2218V7.38249H0.555664V5.28007H2.14405V3.48432C2.14405 2.07321 3.08232 0.777344 5.24429 0.777344C6.11964 0.777344 6.76692 0.858917 6.76692 0.858917L6.71591 2.82223C6.71591 2.82223 6.05579 2.81598 5.33544 2.81598C4.5558 2.81598 4.43089 3.16523 4.43089 3.74491V5.28007H6.77789L6.67577 7.38249H4.43089V13.2218H2.14405Z" fill="#192031" />
+    </g>
+    <defs>
+        <clipPath id="clip0_4967_99">
+            <rect width="6.22222" height="12.4444" fill="white" transform="translate(0.555664 0.777344)" />
+        </clipPath>
+    </defs>
+</svg>                </a>
+                                                                                                <a href="https://www.youtube.com/@tramsac.tmtegreen" target="_blank" rel="noopener" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M581.7 188.1C575.5 164.4 556.9 145.8 533.4 139.5C490.9 128 320.1 128 320.1 128C320.1 128 149.3 128 106.7 139.5C83.2 145.8 64.7 164.4 58.4 188.1C47 231 47 320.4 47 320.4C47 320.4 47 409.8 58.4 452.7C64.7 476.3 83.2 494.2 106.7 500.5C149.3 512 320.1 512 320.1 512C320.1 512 490.9 512 533.5 500.5C557 494.2 575.5 476.3 581.8 452.7C593.2 409.8 593.2 320.4 593.2 320.4C593.2 320.4 593.2 231 581.8 188.1zM264.2 401.6L264.2 239.2L406.9 320.4L264.2 401.6z"/></svg>                </a>
+                                                <a href="https://www.tiktok.com/@tramsac.tmtegreen" target="_blank" rel="noopener" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M544.5 273.9C500.5 274 457.5 260.3 421.7 234.7L421.7 413.4C421.7 446.5 411.6 478.8 392.7 506C373.8 533.2 347.1 554 316.1 565.6C285.1 577.2 251.3 579.1 219.2 570.9C187.1 562.7 158.3 545 136.5 520.1C114.7 495.2 101.2 464.1 97.5 431.2C93.8 398.3 100.4 365.1 116.1 336C131.8 306.9 156.1 283.3 185.7 268.3C215.3 253.3 248.6 247.8 281.4 252.3L281.4 342.2C266.4 337.5 250.3 337.6 235.4 342.6C220.5 347.6 207.5 357.2 198.4 369.9C189.3 382.6 184.4 398 184.5 413.8C184.6 429.6 189.7 444.8 199 457.5C208.3 470.2 221.4 479.6 236.4 484.4C251.4 489.2 267.5 489.2 282.4 484.3C297.3 479.4 310.4 469.9 319.6 457.2C328.8 444.5 333.8 429.1 333.8 413.4L333.8 64L421.8 64C421.7 71.4 422.4 78.9 423.7 86.2C426.8 102.5 433.1 118.1 442.4 131.9C451.7 145.7 463.7 157.5 477.6 166.5C497.5 179.6 520.8 186.6 544.6 186.6L544.6 274z"/></svg>                </a>
+                            </div>
+            <div class="flex gap-5 sm:hidden">
+                <a href="https://play.google.com/store/apps/details?id=com.tmt.egreen" target="_blank" class="btn-google-play w-[138px] h-[48px]"></a>
+                <a href="https://apps.apple.com/vn/app/TMT-EGREEN/id6762349874?l=vi" target="_blank" class="btn-app-store w-[138px] h-[48px]"></a>
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-between flex-1 gap-5 lg:max-w-[700px]">
+            <div class="order-1 w-[calc(50%-1.125rem)] md:w-fit">
+                <p class="mb-5 font-semibold md:mb-8 text-v2">Trang chủ</p>
+                <div class="menu__footer text-[#755151] text-[0.875rem]">
+                                        <ul class=""><li><a href="/" title="Trang chủ" class=" " id="menu_10">Trang chủ</a></li><li><a href="ve-chung-toi" title="Về chúng tôi" class="active" id="menu_11">Về chúng tôi</a></li><li><a href="/dang-ky-doi-tac" title="Đăng ký đối tác" class=" " id="menu_12">Đăng ký đối tác</a></li><li><a href="/tim-kiem-tram-sac-gan-nhat#oto" title="Tra cứu trạm sạc ô tô" class=" " id="menu_14">Tra cứu trạm sạc ô tô</a></li></ul>
+                </div>
+            </div>
+            <div class="order-4 w-[calc(50%-1.125rem)] md:order-2 md:w-fit">
+                <p class="mb-5 font-semibold md:mb-8 text-v2">Chính sách</p>
+                <div class="menu__footer text-[#755151] text-[0.875rem]">
+                                        <ul class=""><li><a href="chinh-sach-bao-mat" title="Chính sách bảo mật" class=" " id="menu_15">Chính sách bảo mật</a></li><li><a href="chinh-sach-bao-hanh" title="Chính sách bảo hành" class=" " id="menu_19">Chính sách bảo hành</a></li></ul>
+                </div>
+            </div>
+            <div class="w-[calc(50%-1.125rem)] md:w-fit md:max-w-[210px] order-3">
+                <p class="mb-5 font-semibold md:mb-8 text-[#755151]">Liên hệ</p>
+                <a href="tel:037 585 2469" class="flex mb-3 text-[0.875rem] text-[#755151] btn-contact hover:text-v1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-1.5 w-5 shrink-0" viewBox="0 0 20 22" fill="none">
+                        <path d="M1.13919 5.01816L3.35794 2.8015C3.51446 2.6443 3.70049 2.51957 3.90535 2.43448C4.11021 2.34939 4.32986 2.30561 4.55169 2.30566C5.00378 2.30566 5.42877 2.48275 5.74752 2.8015L8.13503 5.189C8.29223 5.34551 8.41695 5.53154 8.50205 5.7364C8.58714 5.94126 8.63091 6.16092 8.63086 6.38275C8.63086 6.83483 8.45378 7.25983 8.13503 7.57858L6.38919 9.32441C6.79785 10.2252 7.36602 11.0446 8.06628 11.7432C8.76477 12.4451 9.58413 13.0154 10.485 13.4265L12.2309 11.6807C12.3874 11.5235 12.5734 11.3987 12.7783 11.3136C12.9831 11.2286 13.2028 11.1848 13.4246 11.1848C13.8767 11.1848 14.3017 11.3619 14.6204 11.6807L17.01 14.0661C17.1674 14.2229 17.2923 14.4093 17.3773 14.6145C17.4624 14.8197 17.5061 15.0397 17.5059 15.2619C17.5059 15.714 17.3288 16.139 17.01 16.4577L14.7954 18.6723C14.2871 19.1827 13.585 19.4723 12.8642 19.4723C12.7121 19.4723 12.5663 19.4598 12.4225 19.4348C9.61419 18.9723 6.82877 17.4786 4.58086 15.2327C2.33503 12.989 0.843359 10.2057 0.374609 7.389C0.232943 6.52858 0.51836 5.64316 1.13919 5.01816V5.01816Z" fill="#192031" />
+                    </svg>
+                    037 585 2469                </a>
+                <a href="mailto:admin-egreen@tmt-vietnam.com" class="flex mb-3 text-[0.875rem] text-[#755151] btn-contact hover:text-v1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-1.5 w-5 shrink-0" viewBox="0 0 20 23" fill="none">
+                        <path d="M4.07697 5.15552H16.819C18.0211 5.15552 18.627 5.78485 18.627 7.06485V16.0462C18.627 17.3155 18.0211 17.9555 16.819 17.9555H4.07697C2.87489 17.9555 2.26904 17.3155 2.26904 16.0462V7.06485C2.26904 5.78485 2.87489 5.15552 4.07697 5.15552ZM10.4432 14.3289L16.9248 8.43018C17.1556 8.21685 17.3383 7.72618 17.0498 7.28885C16.771 6.85152 16.2613 6.84085 15.9247 7.10752L10.4432 11.2249L4.97132 7.10752C4.63474 6.84085 4.12506 6.85152 3.84617 7.28885C3.55767 7.72618 3.74039 8.21685 3.97119 8.43018L10.4432 14.3289Z" fill="#192031" />
+                    </svg>
+                    admin-egreen@tmt-vietnam.com                </a>
+                <a href="javascript:void(0);" class="flex mb-3 text-[0.875rem] text-[#755151] btn-contact hover:text-v1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 px-[0.1875rem] mr-1.5 shrink-0" viewBox="0 0 12 18" fill="none">
+                        <path d="M5.27957 16.6888C3.75443 14.5711 0.362305 9.43849 0.362305 6.5555C0.362305 3.05765 2.87382 0.222168 5.97202 0.222168C9.06905 0.222168 11.5817 3.05765 11.5817 6.5555C11.5817 9.43849 8.16331 14.5711 6.66447 16.6888C6.30509 17.1935 5.63894 17.1935 5.27957 16.6888V16.6888ZM5.97202 8.66661C7.00339 8.66661 7.84192 7.71991 7.84192 6.5555C7.84192 5.39109 7.00339 4.44439 5.97202 4.44439C4.94065 4.44439 4.10211 5.39109 4.10211 6.5555C4.10211 7.71991 4.94065 8.66661 5.97202 8.66661Z" fill="#192031" />
+                    </svg>
+                    Tầng 9+10 tòa nhà Coninco, số 4 Tôn Thất Tùng, P. Kim Liên, TP. Hà Nội, Việt Nam                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button class="btn-to-top fixed z-[9] right-5 bottom-20 xs:bottom-7 rounded-md hidden items-center justify-center size-10 group bg-v1 hover:bg-v3 hover:-translate-y-1 shadow-[0_5px_10px_var(--color-v1)] hover:shadow-[0_5px_10px_var(--color-v3)]">
+    <i class="text-white fa-solid fa-angles-up"></i>
+</button>
+
+<div class="fixed right-5 top-1/2 -translate-y-1/2 z-10 max-xs:hidden z-[20]">
+    <a href="/dang-ky-doi-tac" class="size-[3.25rem] rounded-full border border-v1 text-center flex items-center justify-center bg-white hover:text-white *:*:hover:fill-white mb-5 hover:shadow-[0_5px_10px_var(--color-v1)] hover:scale-110 transition-all duration-300 relative group">
+        <span class="size-6 img__contain img__h-full">
+            <img src="uploads/trangchu/icon-lienhe/icon-23-1.svg" class="icon_contact_all">
+        </span>
+        <p class="absolute top-1/2 right-[3.75rem] p-2 whitespace-nowrap font-medium bg-white rounded-md -translate-y-1/2 before:absolute before:w-2 before:h-5 before:[clip-path:polygon(0_0,0%_100%,100%_50%);] before:left-full before:top-1/2 before:-translate-y-1/2 before:bg-white shadow-[rgba(0,0,0,.35)_0px_5px_15px] text-[0.875rem] !text-main invisible opacity-0 transition-all duration-300 -translate-x-4 group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">Đăng ký trở thành đối tác</p>
+    </a>
+    <a href="https://zalo.me/0375852469" class="size-[3.25rem] rounded-full border border-v1 text-center flex items-center justify-center bg-white hover:text-white *:*:hover:fill-white mb-5 hover:shadow-[0_5px_10px_var(--color-v1)] hover:scale-110 transition-all duration-300 relative group">
+        <span class="size-6 img__contain img__h-full">
+            <img src="uploads/trangchu/icon-lienhe/icon-24-1.svg" class="icon_contact_all">
+        </span>
+        <p class="absolute top-1/2 right-[3.75rem] p-2 whitespace-nowrap font-medium bg-white rounded-md -translate-y-1/2 before:absolute before:w-2 before:h-5 before:[clip-path:polygon(0_0,0%_100%,100%_50%);] before:left-full before:top-1/2 before:-translate-y-1/2 before:bg-white shadow-[rgba(0,0,0,.35)_0px_5px_15px] text-[0.875rem] !text-main invisible opacity-0 transition-all duration-300 -translate-x-4 group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">Zalo</p>
+    </a>
+    <a href="http://m.me/tramsac.tmtegreen" class="size-[3.25rem] rounded-full border border-v1 text-center flex items-center justify-center bg-white hover:text-white *:*:hover:fill-white mb-5 hover:shadow-[0_5px_10px_var(--color-v1)] hover:scale-110 transition-all duration-300 relative group">
+        <span class="size-6 img__contain img__h-full">
+            <img src="uploads/trangchu/icon-lienhe/icon-25-1.svg" class="icon_contact_all">
+        </span>
+        <p class="absolute top-1/2 right-[3.75rem] p-2 whitespace-nowrap font-medium bg-white rounded-md -translate-y-1/2 before:absolute before:w-2 before:h-5 before:[clip-path:polygon(0_0,0%_100%,100%_50%);] before:left-full before:top-1/2 before:-translate-y-1/2 before:bg-white shadow-[rgba(0,0,0,.35)_0px_5px_15px] text-[0.875rem] !text-main invisible opacity-0 transition-all duration-300 -translate-x-4 group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">Messenger</p>
+    </a>
+    <a href="tel:037 585 2469" class="size-[3.25rem] rounded-full border border-v1 text-center flex items-center justify-center bg-white *:*:hover:fill-white hover:shadow-[0_5px_10px_var(--color-v1)] hover:scale-110 transition-all duration-300 relative group">
+        <span class="size-6 img__contain img__h-full">
+            <img src="uploads/trangchu/icon-lienhe/icon-26-1.svg" class="icon_contact_all">
+        </span>
+        <p class="absolute top-1/2 right-[3.75rem] p-2 whitespace-nowrap font-medium bg-white rounded-md -translate-y-1/2 before:absolute before:w-2 before:h-5 before:[clip-path:polygon(0_0,0%_100%,100%_50%);] before:left-full before:top-1/2 before:-translate-y-1/2 before:bg-white shadow-[rgba(0,0,0,.35)_0px_5px_15px] text-[0.875rem] !text-main invisible opacity-0 transition-all duration-300 -translate-x-4 group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">Liên hệ ngay</p>
+    </a>
+</div>
+
+<div class="sticky bottom-0 right-0 z-[20] bg-[#323E4F] h-[72px] flex items-center justify-around px-2 border-t border-white/5 xs:hidden pb-[env(safe-area-inset-bottom)]">
+    <!-- Home -->
+    <a href="https://TMT-EGREEN.com" class="flex flex-col flex-1 gap-1 items-center text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        <span class="text-[11px] font-medium">Trang chủ</span>
+    </a>
+
+    <!-- Map -->
+    <a href="https://TMT-EGREEN.com#map-fullscreen-container" class="flex flex-col flex-1 gap-1 items-center text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+            <line x1="8" y1="2" x2="8" y2="18" />
+            <line x1="16" y1="6" x2="16" y2="22" />
+        </svg>
+        <span class="text-[11px] font-medium">Bản đồ</span>
+    </a>
+
+    <!-- Hotline (Raised Center) -->
+    <div class="flex relative -top-6 flex-1 justify-center h-full pointer-events-none">
+        <a href="tel:037 585 2469" class="size-[64px] rounded-full bg-[var(--color-v1)] border-[6px] border-[#f6f8f7] shadow-[0_8px_25px_rgba(0,0,0,0.15)] flex items-center justify-center text-white transition-transform active:scale-90 pointer-events-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+        </a>
+    </div>
+
+    <!-- Register -->
+    <a href="/dang-ky-doi-tac" class="flex flex-col flex-1 gap-1 items-center text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+        </svg>
+        <span class="text-[11px] font-medium line-clamp-1">Đăng ký...</span>
+    </a>
+
+    <!-- About Us -->
+    <a href="/ve-chung-toi" class="flex flex-col flex-1 gap-1 items-center text-gray-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+        <span class="text-[11px] font-medium">Về chúng tôi</span>
+    </a>
+</div>
+
+            <script src="https://TMT-EGREEN.com/theme/frontend/js/swiper-bundle.min.js?v=1758014083" defer></script>
+    <script src="https://TMT-EGREEN.com/theme/frontend/js/slimselect.min.js?v=1758014082" defer></script>
+    <script src="https://TMT-EGREEN.com/theme/frontend/js/wow.min.js?v=1758014083" defer></script>
+    <script src="https://TMT-EGREEN.com/assets/js/XHR.js?v=1758161274" defer></script>
+    <script src="https://TMT-EGREEN.com/base_assets/js/toastify.js?v=1685588026" defer></script>
+    <script src="https://TMT-EGREEN.com/assets/js/ValidateForm.js?v=1758161274" type="module" defer></script>
+    <script src="https://TMT-EGREEN.com/base_assets/js/base.js?v=1685588026" defer></script>
+        <script src="https://TMT-EGREEN.com/theme/frontend/js/script.js?v=1775547163" defer></script>
+    <script src="https://TMT-EGREEN.com/theme/frontend/js/ajax.js?v=1787118254" defer></script>
+    <script src="https://TMT-EGREEN.com/theme/frontend/add/map.js?v=1772780560" defer></script>
+    <script src="https://TMT-EGREEN.com/theme/frontend/add/route-map.js?v=1758468737" defer></script>
+    <script src="https://TMT-EGREEN.com/theme/frontend/add/map-init.js?v=1772087163" defer></script>
+    <script src="https://TMT-EGREEN.com/theme/frontend/add/map-search.js?v=1787118255" defer></script>
+    <script src="https://TMT-EGREEN.com/theme/frontend/add/loading.js?v=1758429853" defer></script>
+    <script src="https://TMT-EGREEN.com/theme/frontend/add/script.js?v=1772088459" defer></script>
+        <div id="map">
+        
+    </div>
+</body>
+</html>
