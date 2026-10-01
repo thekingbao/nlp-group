@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phòng Tài chính — NLP Group Nội bộ</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b1220;--surface:#131f30;--surface2:#1a2a3e;--border:#1e3050;
+  --text:#e2e8f0;--muted:#64748b;--accent:#3b82f6;--accent2:#1d4ed8;
+  --safe:#22c55e;--warn:#f59e0b;--danger:#ef4444;--teal:#06b6d4;
+  --radius:12px;--nav:64px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit;border:none;outline:none}
+
+/* ── Sidebar ── */
+.sidebar{width:240px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;position:fixed;top:0;left:0;bottom:0;z-index:10}
+.sidebar-logo{padding:20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.logo-mark{width:36px;height:36px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;flex-shrink:0}
+.logo-text{font-weight:700;font-size:.9rem;line-height:1.2}
+.logo-text span{color:var(--accent);font-size:.7rem;font-weight:500;display:block}
+.sidebar-nav{padding:12px 8px;flex:1;overflow-y:auto}
+.nav-section{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:8px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:.875rem;font-weight:500;color:var(--muted);transition:.2s;cursor:pointer;margin-bottom:2px}
+.nav-item:hover,.nav-item.active{background:var(--surface2);color:var(--text)}
+.nav-item.active{color:var(--accent)}
+.icon{width:18px;text-align:center;font-size:14px}
+.nav-badge{margin-left:auto;background:var(--danger);color:#fff;font-size:.65rem;font-weight:700;padding:2px 6px;border-radius:99px}
+.sidebar-footer{padding:12px 8px;border-top:1px solid var(--border)}
+.portal-links{display:flex;flex-direction:column;gap:4px;padding:8px;margin-bottom:4px}
+.portal-link{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:8px;font-size:.8rem;font-weight:500;background:transparent;border:1px solid var(--border);color:var(--muted);transition:.2s}
+.portal-link:hover{border-color:var(--accent);color:var(--accent)}
+.user-pill{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px}
+.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--teal));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:#fff;flex-shrink:0}
+.user-info{font-size:.8rem;line-height:1.3}
+.user-info span{color:var(--muted);font-size:.7rem;display:block}
+
+/* ── Main ── */
+.main{margin-left:240px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:5}
+.topbar h1{font-size:1.125rem;font-weight:700}
+.topbar p{font-size:.8rem;color:var(--muted)}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.content{padding:24px;flex:1}
+
+/* ── Live notif ── */
+.notif-bar{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25);border-radius:var(--radius);padding:10px 16px;margin-bottom:20px;font-size:.85rem;color:var(--accent);display:flex;align-items:center;gap:8px}
+
+/* ── Stats ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;position:relative;overflow:hidden}
+.kpi::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px}
+.kpi.blue::after{background:var(--accent)}
+.kpi.green::after{background:var(--safe)}
+.kpi.yellow::after{background:var(--warn)}
+.kpi.red::after{background:var(--danger)}
+.amt-warn{color:var(--warn)}.amt-muted{color:var(--muted)}
+.kpi-label{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
+.kpi-value{font-size:1.5rem;font-weight:700;line-height:1;margin-bottom:4px}
+.kpi-sub{font-size:.75rem;color:var(--muted)}
+.kpi-icon{position:absolute;top:16px;right:16px;font-size:22px;opacity:.12}
+
+/* ── Panels ── */
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:20px}
+.panel-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
+.panel-title{font-size:.9375rem;font-weight:600}
+.panel-actions{display:flex;gap:8px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:.8rem;font-weight:600;transition:.2s;cursor:pointer}
+.btn-sm{padding:5px 10px;font-size:.75rem}
+.btn-blue{background:var(--accent);color:#fff;border:none}
+.btn-blue:hover{background:var(--accent2)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.btn-safe{background:rgba(34,197,94,.15);color:var(--safe);border:1px solid rgba(34,197,94,.25)}
+.btn-safe:hover{background:rgba(34,197,94,.25)}
+.btn-warn{background:rgba(245,158,11,.15);color:var(--warn);border:1px solid rgba(245,158,11,.25)}
+.btn-danger{background:rgba(239,68,68,.15);color:var(--danger);border:1px solid rgba(239,68,68,.25)}
+
+/* ── Filter ── */
+.filter-row{padding:12px 20px;border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filter-btn{padding:5px 12px;border-radius:99px;font-size:.775rem;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:.2s}
+.filter-btn.active,.filter-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(59,130,246,.08)}
+
+/* ── Table ── */
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+thead th{text-align:left;padding:10px 16px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid rgba(30,48,80,.8);transition:background .15s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--surface2)}
+td{padding:12px 16px;vertical-align:middle}
+.td-id{font-family:monospace;font-size:.78rem;color:var(--muted)}
+.td-name{font-weight:500}
+.td-sub{font-size:.78rem;color:var(--muted)}
+
+/* ── Badges ── */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;font-size:.72rem;font-weight:600}
+.badge-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.b-green{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.b-green .badge-dot{background:#4ade80}
+.b-yellow{background:rgba(245,158,11,.12);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.b-yellow .badge-dot{background:#fbbf24}
+.b-red{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.b-red .badge-dot{background:#f87171}
+.b-gray{background:rgba(100,116,139,.1);color:var(--muted);border:1px solid rgba(100,116,139,.15)}
+.b-gray .badge-dot{background:var(--muted)}
+.b-blue{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.b-blue .badge-dot{background:#60a5fa}
+
+/* ── Progress ── */
+.progress-bar{height:6px;border-radius:99px;background:var(--surface2);overflow:hidden;margin-top:4px}
+.progress-fill{height:100%;border-radius:99px;transition:.4s}
+
+/* ── SVG Chart ── */
+.chart-wrap{padding:20px;overflow-x:auto}
+.bar-chart{display:flex;align-items:flex-end;gap:8px;height:160px;padding-bottom:24px;position:relative}
+.bar-group{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;min-width:60px}
+.bar-pair{display:flex;align-items:flex-end;gap:3px;width:100%}
+.bar{border-radius:4px 4px 0 0;flex:1;min-width:18px;transition:.5s ease;cursor:pointer;position:relative}
+.bar:hover{filter:brightness(1.2)}
+.bar-label{font-size:.65rem;color:var(--muted);white-space:nowrap;text-align:center;margin-top:4px}
+.legend{display:flex;gap:16px;padding:0 20px 16px;font-size:.75rem}
+.legend-item{display:flex;align-items:center;gap:5px;color:var(--muted)}
+.legend-dot{width:10px;height:10px;border-radius:2px}
+
+/* ── Cashflow row ── */
+.cf-row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--border)}
+.cf-row:last-child{border-bottom:none}
+.cf-label{font-size:.85rem;font-weight:500}
+.cf-amount{font-size:.9rem;font-weight:700}
+.cf-bar-wrap{width:120px;margin:0 12px}
+
+/* ── Payment form ── */
+.drawer{position:fixed;top:0;right:-480px;width:440px;height:100vh;background:var(--surface);border-left:1px solid var(--border);z-index:50;display:flex;flex-direction:column;transition:.3s ease;overflow:hidden}
+.drawer.open{right:0}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40}
+.overlay.show{display:block}
+.drawer-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.drawer-body{flex:1;overflow-y:auto;padding:20px}
+.form-group{margin-bottom:14px}
+.form-label{font-size:.78rem;color:var(--muted);display:block;margin-bottom:4px}
+.form-input{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:8px;font-size:.875rem;font-family:inherit}
+.form-input:focus{outline:none;border-color:var(--accent)}
+select.form-input option{background:var(--surface2)}
+
+/* ── Toast ── */
+#toast{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--accent);color:var(--text);padding:10px 20px;border-radius:99px;font-size:.85rem;z-index:999;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+@media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">💰</div>
+    <div class="logo-text">Phòng Tài chính <span>NLP Group Nội bộ</span></div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Tài chính</div>
+    <div class="nav-item active" onclick="showView('dashboard')"><span class="icon">📊</span> Tổng quan</div>
+    <div class="nav-item" onclick="showView('invoices')"><span class="icon">🧾</span> Hóa đơn <span class="nav-badge" id="overdue-badge">0</span></div>
+    <div class="nav-item" onclick="showView('cashflow')"><span class="icon">📈</span> Dòng tiền</div>
+    <div class="nav-item" onclick="showView('projects')"><span class="icon">🏗️</span> Thu theo dự án</div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="portal-links">
+      <a class="portal-link" href="admin.html">📊 Admin Dashboard</a>
+      <a class="portal-link" href="legal.html">⚖️ Phòng Pháp chế</a>
+    </div>
+    <div class="user-pill">
+      <div class="avatar">TC</div>
+      <div class="user-info">Lê Thị Tài Chính <span>Kế toán trưởng</span></div>
+    </div>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="main">
+  <div class="topbar">
+    <div>
+      <h1 id="view-title">Tổng quan Tài chính</h1>
+      <p>Theo dõi dòng tiền, hóa đơn và công nợ dự án</p>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-blue" onclick="openPaymentForm()">+ Ghi nhận thanh toán</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="notif-bar" id="live-notif" style="display:none">
+      <span>🔔</span><span id="live-notif-text"></span>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="view-dashboard">
+      <div class="kpi-grid" id="kpi-grid"></div>
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-header"><span class="panel-title">📊 Doanh thu theo dự án</span></div>
+          <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Giá trị HĐ</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--safe)"></div>Đã thu</div>
+          </div>
+          <div class="chart-wrap"><div class="bar-chart" id="bar-chart"></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><span class="panel-title">⚡ Hóa đơn cần xử lý</span><button class="btn btn-outline btn-sm" onclick="showView('invoices')">Xem tất cả</button></div>
+          <div id="urgent-invoices" style="padding:8px 0"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INVOICES -->
+    <div id="view-invoices" style="display:none">
+      <div class="panel">
+        <div class="panel-header"><span class="panel-title">Danh sách hóa đơn</span>
+          <div class="panel-actions"><button class="btn btn-blue btn-sm" onclick="openPaymentForm()">+ Ghi nhận TT</button></div>
+        </div>
+        <div class="filter-row">
+          <button class="filter-btn active" data-if="">Tất cả</button>
+          <button class="filter-btn" data-if="paid">Đã thu</button>
+          <button class="filter-btn" data-if="pending">Chờ TT</button>
+          <button class="filter-btn" data-if="overdue">Quá hạn</button>
+        </div>
+        <table><thead><tr><th>Mã HĐ</th><th>Dự án</th><th>Loại</th><th>Số tiền</th><th>Phát hành</th><th>Đến hạn</th><th>Trạng thái</th><th></th></tr></thead>
+        <tbody id="invoices-table"></tbody></table>
+      </div>
+    </div>
+
+    <!-- CASHFLOW -->
+    <div id="view-cashflow" style="display:none">
+      <div class="kpi-grid" id="cf-kpis"></div>
+      <div class="grid-2">
+        <div class="panel">
+          <div class="panel-header"><span class="panel-title">Dòng tiền theo dự án</span></div>
+          <div id="cf-rows" style="padding:0 4px"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><span class="panel-title">Phân tích công nợ</span></div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:10px" id="debt-analysis"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div id="view-projects" style="display:none">
+      <div class="panel">
+        <div class="panel-header"><span class="panel-title">Thu tiền theo dự án</span></div>
+        <table><thead><tr><th>Mã DA</th><th>Dự án</th><th>Giá trị HĐ</th><th>Đã thu</th><th>Còn lại</th><th>Tiến độ</th><th>Trạng thái</th><th></th></tr></thead>
+        <tbody id="proj-fin-table"></tbody></table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Payment Drawer -->
+<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div>
+      <div style="font-weight:600;font-size:.9375rem" id="drawer-title">Ghi nhận thanh toán</div>
+      <div style="font-size:.78rem;color:var(--muted)" id="drawer-sub">Cập nhật trạng thái hóa đơn</div>
+    </div>
+    <button class="btn btn-outline btn-sm" onclick="closeDrawer()">✕ Đóng</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</div>
+
+<div id="toast"></div>
+
+<script src="db.js"></script>
+<script>
+const VIEWS = ['dashboard','invoices','cashflow','projects'];
+const pct = (a,b) => b ? Math.round(a/b*100) : 0;
+const fmtDate = d => d ? new Date(d).toLocaleDateString('vi-VN') : '—';
+
+function showView(v) {
+  VIEWS.forEach(x => document.getElementById('view-'+x).style.display = x===v ? '' : 'none');
+  const titles = {dashboard:'Tổng quan Tài chính',invoices:'Quản lý Hóa đơn',cashflow:'Phân tích Dòng tiền',projects:'Thu tiền theo Dự án'};
+  document.getElementById('view-title').textContent = titles[v];
+  document.querySelectorAll('.nav-item').forEach(el => {
+    const t = el.textContent.toLowerCase();
+    el.classList.toggle('active', (v==='dashboard'&&t.includes('tổng')) || (v==='invoices'&&t.includes('hóa')) || (v==='cashflow'&&t.includes('dòng')) || (v==='projects'&&t.includes('thu theo')));
+  });
+  if(v==='dashboard') renderDashboard();
+  if(v==='invoices') renderInvoices();
+  if(v==='cashflow') renderCashflow();
+  if(v==='projects') renderProjFin();
+}
+
+// ── Badges ────────────────────────────────────────────────────────────────
+const invBadge = s => { const m={paid:['b-green','✅ Đã thu'],pending:['b-yellow','⏳ Chờ TT'],overdue:['b-red','🔴 Quá hạn']}; const[c,l]=m[s]||['b-gray',s]; return `<span class="badge ${c}"><span class="badge-dot"></span>${l}</span>`; };
+
+// ── KPIs ──────────────────────────────────────────────────────────────────
+function renderKPIs() {
+  const s = DB.stats();
+  const overdue = DB.getInvoices().filter(i=>i.status==='overdue').length;
+  document.getElementById('overdue-badge').textContent = overdue;
+  document.getElementById('kpi-grid').innerHTML = `
+    <div class="kpi blue"><div class="kpi-label">Tổng giá trị HĐ</div><div class="kpi-value" style="color:var(--accent)">${DB.fmt(s.totalValue)}</div><div class="kpi-sub">${s.totalProjects} dự án</div><div class="kpi-icon">💼</div></div>
+    <div class="kpi green"><div class="kpi-label">Đã thu</div><div class="kpi-value" style="color:var(--safe)">${DB.fmt(s.totalPaid)}</div><div class="kpi-sub">${pct(s.totalPaid,s.totalValue)}% tổng giá trị</div><div class="kpi-icon">✅</div></div>
+    <div class="kpi yellow"><div class="kpi-label">Phải thu còn lại</div><div class="kpi-value" style="color:var(--warn)">${DB.fmt(s.outstanding)}</div><div class="kpi-sub">${s.pending} HĐ chờ · ${s.overdue} quá hạn</div><div class="kpi-icon">⏳</div></div>
+    <div class="kpi red"><div class="kpi-label">Quá hạn thanh toán</div><div class="kpi-value" style="color:var(--danger)">${DB.getInvoices().filter(i=>i.status==='overdue').reduce((s,i)=>s+i.amount,0) ? DB.fmt(DB.getInvoices().filter(i=>i.status==='overdue').reduce((s2,i)=>s2+i.amount,0)) : '0 ₫'}</div><div class="kpi-sub">${overdue} hóa đơn cần đôn đốc</div><div class="kpi-icon">🚨</div></div>`;
+}
+
+// ── Dashboard ─────────────────────────────────────────────────────────────
+function renderDashboard() {
+  renderKPIs();
+  // Bar chart
+  const projs = DB.getProjects();
+  const maxVal = Math.max(...projs.map(p=>p.value));
+  document.getElementById('bar-chart').innerHTML = projs.map(p => {
+    const hVal = Math.round((p.value / maxVal) * 130);
+    const hPaid = Math.round((p.paid / maxVal) * 130);
+    const id = p.id.replace('-','');
+    return `<div class="bar-group">
+      <div class="bar-pair">
+        <div class="bar" style="height:${hVal}px;background:rgba(59,130,246,.45)" title="${p.id}: ${DB.fmt(p.value)}"></div>
+        <div class="bar" style="height:${hPaid}px;background:var(--safe)" title="Đã thu: ${DB.fmt(p.paid)}"></div>
+      </div>
+      <div class="bar-label">${p.id}</div>
+    </div>`;
+  }).join('');
+
+  // Urgent invoices
+  const urgent = DB.getInvoices().filter(i=>i.status!=='paid');
+  document.getElementById('urgent-invoices').innerHTML = urgent.length
+    ? urgent.map(i => {
+        const p = DB.getProject(i.projectId);
+        return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--border)">
+          <div>
+            <div style="font-size:.85rem;font-weight:500">${i.id}</div>
+            <div style="font-size:.75rem;color:var(--muted);max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p?.name}</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:.85rem;font-weight:700;white-space:nowrap">${DB.fmt(i.amount)}</div>
+            ${invBadge(i.status)}
+          </div>
+          ${i.status!=='paid'?`<button class="btn btn-safe btn-sm" style="margin-left:8px" onclick="markPaid('${i.id}')">Thu</button>`:''}
+        </div>`;
+      }).join('')
+    : '<p style="color:var(--muted);font-size:.85rem;text-align:center;padding:32px">✅ Tất cả hóa đơn đã thanh toán</p>';
+}
+
+// ── Invoices ──────────────────────────────────────────────────────────────
+let invFilter = '';
+function renderInvoices(filter) {
+  if(filter !== undefined) invFilter = filter;
+  document.querySelectorAll('[data-if]').forEach(b => b.classList.toggle('active', b.dataset.if === invFilter));
+  const invs = invFilter ? DB.getInvoices().filter(i=>i.status===invFilter) : DB.getInvoices();
+  const typeLabel = {full:'Thanh lý',deposit:'Đặt cọc',progress:'Đợt %'};
+  document.getElementById('invoices-table').innerHTML = invs.map(i => {
+    const p = DB.getProject(i.projectId);
+    return `<tr>
+      <td class="td-id">${i.id}</td>
+      <td><div class="td-name" style="max-width:160px">${p?.name}</div><div class="td-sub">${i.projectId}</div></td>
+      <td><span class="badge b-gray">${typeLabel[i.type]||i.type}</span></td>
+      <td style="font-weight:600;white-space:nowrap">${DB.fmt(i.amount)}</td>
+      <td style="font-size:.8rem">${fmtDate(i.issued)}</td>
+      <td style="font-size:.8rem;color:${i.status==='overdue'?'var(--danger)':'inherit'};font-weight:${i.status==='overdue'?'600':'400'}">${fmtDate(i.due)}</td>
+      <td>${invBadge(i.status)}</td>
+      <td>${i.status!=='paid'?`<button class="btn btn-safe btn-sm" onclick="markPaid('${i.id}')">✅ Thu tiền</button><button class="btn btn-outline btn-sm" style="margin-left:4px" onclick="openInvoiceDetail('${i.id}')">📋</button>`:'<button class="btn btn-outline btn-sm" onclick="openInvoiceDetail(\''+i.id+'\')">📋</button>'}</td>
+    </tr>`;
+  }).join('');
+}
+
+function markPaid(id) {
+  if(confirm('Xác nhận đã thu hóa đơn ' + id + '?')) {
+    DB.updateInvoiceStatus(id, 'paid');
+    renderInvoices();
+    renderKPIs();
+    toast('✅ Hóa đơn ' + id + ' đã ghi nhận thanh toán');
+  }
+}
+
+function openInvoiceDetail(id) {
+  const inv = DB.getInvoices().find(i=>i.id===id);
+  const p = DB.getProject(inv.projectId);
+  document.getElementById('drawer-title').textContent = 'Chi tiết ' + id;
+  document.getElementById('drawer-sub').textContent = p?.name;
+  document.getElementById('drawer-body').innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px">
+        <div style="font-size:.72rem;color:var(--muted);margin-bottom:2px">Số tiền</div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--accent)">${DB.fmt(inv.amount)}</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px">
+          <div style="font-size:.72rem;color:var(--muted)">Phát hành</div>
+          <div style="font-size:.875rem;font-weight:500">${fmtDate(inv.issued)}</div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px">
+          <div style="font-size:.72rem;color:var(--muted)">Đến hạn</div>
+          <div style="font-size:.875rem;font-weight:500;color:${inv.status==='overdue'?'var(--danger)':'inherit'}">${fmtDate(inv.due)}</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--surface2);border:1px solid var(--border);border-radius:8px">
+        <span style="font-size:.85rem">Trạng thái</span>${invBadge(inv.status)}
+      </div>
+      ${inv.status!=='paid'?`<button class="btn btn-safe" style="width:100%;justify-content:center" onclick="markPaid('${id}');closeDrawer()">✅ Xác nhận đã thu tiền</button>`:'<div style="text-align:center;color:var(--safe);font-size:.85rem;padding:10px">✅ Đã thanh toán đầy đủ</div>'}
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px">
+        <div style="font-size:.78rem;font-weight:600;color:var(--muted);margin-bottom:8px">THÔNG TIN DỰ ÁN</div>
+        <div style="font-size:.85rem;font-weight:500">${p?.name}</div>
+        <div style="font-size:.78rem;color:var(--muted);margin-top:2px">${p?.client} · ${p?.region}</div>
+      </div>
+    </div>`;
+  openDrawer();
+}
+
+// ── Cashflow ──────────────────────────────────────────────────────────────
+function renderCashflow() {
+  const s = DB.stats();
+  document.getElementById('cf-kpis').innerHTML = `
+    <div class="kpi blue"><div class="kpi-label">Tổng doanh thu</div><div class="kpi-value" style="color:var(--accent);font-size:1.1rem">${DB.fmt(s.totalValue)}</div></div>
+    <div class="kpi green"><div class="kpi-label">Đã thu</div><div class="kpi-value" style="color:var(--safe);font-size:1.1rem">${DB.fmt(s.totalPaid)}</div></div>
+    <div class="kpi yellow"><div class="kpi-label">Chưa thu</div><div class="kpi-value" style="color:var(--warn);font-size:1.1rem">${DB.fmt(s.outstanding)}</div></div>
+    <div class="kpi red"><div class="kpi-label">Tỷ lệ thu</div><div class="kpi-value" style="color:var(--teal);font-size:1.1rem">${pct(s.totalPaid,s.totalValue)}%</div></div>`;
+
+  const projs = DB.getProjects();
+  const maxV = Math.max(...projs.map(p=>p.value));
+  document.getElementById('cf-rows').innerHTML = projs.map(p => {
+    const pPct = pct(p.paid,p.value);
+    return `<div class="cf-row">
+      <div style="flex:1.5">
+        <div class="cf-label" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px">${p.name}</div>
+        <div class="td-sub">${p.id}</div>
+      </div>
+      <div class="cf-bar-wrap">
+        <div style="font-size:.7rem;color:var(--muted);margin-bottom:3px">${pPct}% đã thu</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pPct}%;background:${pPct===100?'var(--safe)':pPct>50?'var(--accent)':'var(--warn)'}"></div></div>
+      </div>
+      <div style="text-align:right;min-width:80px">
+        <div class="cf-amount" style="color:var(--safe);font-size:.85rem">${DB.fmt(p.paid)}</div>
+        <div style="font-size:.72rem;color:var(--muted)">/ ${DB.fmt(p.value)}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Debt analysis
+  const overdueTotal = DB.getInvoices().filter(i=>i.status==='overdue').reduce((s,i)=>s+i.amount,0);
+  const pendingTotal = DB.getInvoices().filter(i=>i.status==='pending').reduce((s,i)=>s+i.amount,0);
+  document.getElementById('debt-analysis').innerHTML = `
+    <div style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px;padding:14px">
+      <div style="font-size:.75rem;color:var(--muted);margin-bottom:4px">Công nợ quá hạn</div>
+      <div style="font-size:1.2rem;font-weight:700;color:var(--danger)">${DB.fmt(overdueTotal)}</div>
+      <div style="font-size:.75rem;color:var(--muted);margin-top:2px">${DB.getInvoices().filter(i=>i.status==='overdue').length} hóa đơn</div>
+    </div>
+    <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:10px;padding:14px">
+      <div style="font-size:.75rem;color:var(--muted);margin-bottom:4px">Đang chờ thanh toán</div>
+      <div style="font-size:1.2rem;font-weight:700;color:var(--warn)">${DB.fmt(pendingTotal)}</div>
+      <div style="font-size:.75rem;color:var(--muted);margin-top:2px">${DB.getInvoices().filter(i=>i.status==='pending').length} hóa đơn</div>
+    </div>
+    <div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);border-radius:10px;padding:14px">
+      <div style="font-size:.75rem;color:var(--muted);margin-bottom:4px">Đã thu đầy đủ</div>
+      <div style="font-size:1.2rem;font-weight:700;color:var(--safe)">${DB.getInvoices().filter(i=>i.status==='paid').length} hóa đơn</div>
+    </div>
+    <div style="background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);border-radius:10px;padding:14px">
+      <div style="font-size:.75rem;color:var(--muted);margin-bottom:4px">Tỷ lệ thu thành công</div>
+      <div style="font-size:1.2rem;font-weight:700;color:var(--teal)">${pct(DB.getInvoices().filter(i=>i.status==='paid').length, DB.getInvoices().length)}%</div>
+    </div>`;
+}
+
+// ── Projects Finance ──────────────────────────────────────────────────────
+function renderProjFin() {
+  const projs = DB.getProjects();
+  const statusBadge = s => { const m={active:['b-green','Vận hành'],installing:['b-blue','Lắp đặt'],pending:['b-yellow','Chờ'],completed:['b-gray','Hoàn thành']}; const[c,l]=m[s]||['b-gray',s]; return `<span class="badge ${c}"><span class="badge-dot"></span>${l}</span>`; };
+  document.getElementById('proj-fin-table').innerHTML = projs.map(p => {
+    const pp = pct(p.paid, p.value);
+    const remaining = p.value - p.paid;
+    return `<tr>
+      <td class="td-id">${p.id}</td>
+      <td><div class="td-name">${p.name}</div><div class="td-sub">${p.client}</div></td>
+      <td style="font-weight:600;white-space:nowrap">${DB.fmt(p.value)}</td>
+      <td style="white-space:nowrap;color:var(--safe);font-weight:600">${DB.fmt(p.paid)}</td>
+      <td style="white-space:nowrap;font-weight:600" class="${remaining>0?'amt-warn':'amt-muted'}">${DB.fmt(remaining)}</td>
+      <td style="min-width:110px">
+        <div style="font-size:.72rem;color:var(--muted);margin-bottom:3px">${pp}%</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pp}%;background:${pp===100?'var(--safe)':pp>60?'var(--accent)':'var(--warn)'}"></div></div>
+      </td>
+      <td>${statusBadge(p.status)}</td>
+      <td>${remaining>0?`<button class="btn btn-blue btn-sm" onclick="openPaymentFor('${p.id}')">+ Thu</button>`:''}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Payment form ──────────────────────────────────────────────────────────
+function openPaymentForm() { openPaymentFor(''); }
+function openPaymentFor(projectId) {
+  const projs = DB.getProjects();
+  document.getElementById('drawer-title').textContent = 'Ghi nhận thanh toán';
+  document.getElementById('drawer-sub').textContent = 'Cập nhật hóa đơn đã thu';
+  const pendingInvs = DB.getInvoices().filter(i=>i.status!=='paid');
+  document.getElementById('drawer-body').innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="form-group">
+        <label class="form-label">Dự án</label>
+        <select class="form-input" id="pay-proj" onchange="filterInvoicesByProj()">
+          <option value="">-- Tất cả --</option>
+          ${projs.map(p=>`<option value="${p.id}" ${p.id===projectId?'selected':''}>${p.id} · ${p.name}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Chọn hóa đơn cần ghi nhận</label>
+        <div id="pay-inv-list" style="display:flex;flex-direction:column;gap:6px;max-height:260px;overflow-y:auto"></div>
+      </div>
+      <div style="padding:12px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);border-radius:8px;font-size:.8rem;color:var(--muted)">
+        💡 Sau khi xác nhận, trạng thái hóa đơn sẽ chuyển thành "Đã thu" và cập nhật tức thì sang Admin & Pháp chế.
+      </div>
+    </div>`;
+  filterInvoicesByProj(projectId);
+  openDrawer();
+}
+
+function filterInvoicesByProj(projId) {
+  if (projId === undefined) projId = document.getElementById('pay-proj')?.value || '';
+  const invs = projId ? DB.getInvoices().filter(i=>i.status!=='paid'&&i.projectId===projId) : DB.getInvoices().filter(i=>i.status!=='paid');
+  const container = document.getElementById('pay-inv-list');
+  if (!container) return;
+  container.innerHTML = invs.length
+    ? invs.map(i => {
+        const p = DB.getProject(i.projectId);
+        return `<div style="display:flex;align-items:center;justify-content:space-between;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 12px">
+          <div>
+            <div style="font-size:.85rem;font-weight:500">${i.id} ${invBadge(i.status)}</div>
+            <div style="font-size:.75rem;color:var(--muted);margin-top:2px">${p?.name} · Hạn: ${fmtDate(i.due)}</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-weight:700;font-size:.85rem;white-space:nowrap">${DB.fmt(i.amount)}</span>
+            <button class="btn btn-safe btn-sm" onclick="markPaid('${i.id}');filterInvoicesByProj('${i.projectId}')">✅ Thu</button>
+          </div>
+        </div>`;
+      }).join('')
+    : '<p style="color:var(--muted);font-size:.8rem;text-align:center;padding:20px">✅ Không có hóa đơn chờ thanh toán</p>';
+}
+
+function openDrawer() { document.getElementById('drawer').classList.add('open'); document.getElementById('overlay').classList.add('show'); }
+function closeDrawer() { document.getElementById('drawer').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); }
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.style.display='block';
+  clearTimeout(el._t); el._t = setTimeout(()=>el.style.display='none', 3000);
+}
+
+// ── Filters ───────────────────────────────────────────────────────────────
+document.querySelectorAll('[data-if]').forEach(b => b.addEventListener('click', () => renderInvoices(b.dataset.if)));
+
+// ── DB Event listener ─────────────────────────────────────────────────────
+DB.onAny((event, payload) => {
+  const bar = document.getElementById('live-notif');
+  const msgs = {
+    'invoice:statusChanged': `💰 Hóa đơn ${payload.id} → ${payload.status === 'paid' ? 'Đã thu ✅' : payload.status}`,
+    'project:statusChanged': `🏗️ Dự án ${payload.name} → ${payload.status}`,
+    'legal:statusChanged': `⚖️ Pháp lý ${payload.name} → ${payload.legalStatus}`,
+  };
+  if (msgs[event]) {
+    document.getElementById('live-notif-text').textContent = msgs[event];
+    bar.style.display = 'flex';
+    setTimeout(() => bar.style.display='none', 5000);
+  }
+  renderKPIs();
+  const overdueCount = DB.getInvoices().filter(i=>i.status==='overdue').length;
+  document.getElementById('overdue-badge').textContent = overdueCount;
+});
+
+// ── Init ──────────────────────────────────────────────────────────────────
+renderDashboard();
+</script>
+</body>
+</html>

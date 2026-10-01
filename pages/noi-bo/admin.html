@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — NLP Group Nội bộ</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f172a;--surface:#1e293b;--surface2:#273349;--border:#334155;
+  --text:#e2e8f0;--muted:#94a3b8;--accent:#22c55e;--accent2:#3b82f6;
+  --warn:#f59e0b;--danger:#ef4444;--purple:#a855f7;
+  --radius:12px;--nav:64px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit;border:none;outline:none}
+
+/* ── Sidebar ── */
+.sidebar{width:240px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;position:fixed;top:0;left:0;bottom:0;z-index:10}
+.sidebar-logo{padding:20px 20px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.logo-mark{width:36px;height:36px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#000;flex-shrink:0}
+.logo-text{font-weight:700;font-size:.9rem;line-height:1.2}
+.logo-text span{color:var(--accent);font-size:.7rem;font-weight:500;display:block}
+.sidebar-nav{padding:12px 8px;flex:1;overflow-y:auto}
+.nav-section{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:8px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:.875rem;font-weight:500;color:var(--muted);transition:.2s;cursor:pointer;margin-bottom:2px}
+.nav-item:hover,.nav-item.active{background:var(--surface2);color:var(--text)}
+.nav-item.active{color:var(--accent)}
+.nav-item .icon{width:18px;text-align:center;font-size:14px}
+.nav-badge{margin-left:auto;background:var(--danger);color:#fff;font-size:.65rem;font-weight:700;padding:2px 6px;border-radius:99px;min-width:20px;text-align:center}
+.sidebar-footer{padding:12px 8px;border-top:1px solid var(--border)}
+.user-pill{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px}
+.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:#000;flex-shrink:0}
+.user-info{font-size:.8rem;line-height:1.3}
+.user-info span{color:var(--muted);font-size:.7rem;display:block}
+.portal-links{display:flex;flex-direction:column;gap:4px;padding:8px}
+.portal-link{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:8px;font-size:.8rem;font-weight:500;background:transparent;border:1px solid var(--border);color:var(--muted);transition:.2s}
+.portal-link:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── Main ── */
+.main{margin-left:240px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--border);background:var(--surface);position:sticky;top:0;z-index:5}
+.topbar-left h1{font-size:1.125rem;font-weight:700}
+.topbar-left p{font-size:.8rem;color:var(--muted)}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.notif-btn{position:relative;width:36px;height:36px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:15px;cursor:pointer;transition:.2s}
+.notif-btn:hover{color:var(--text)}
+.notif-dot{position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--danger);border:2px solid var(--surface)}
+.content{padding:24px;flex:1}
+
+/* ── Stats ── */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.stat-card.green::before{background:var(--accent)}
+.stat-card.blue::before{background:var(--accent2)}
+.stat-card.yellow::before{background:var(--warn)}
+.stat-card.red::before{background:var(--danger)}
+.stat-label{font-size:.75rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.stat-value{font-size:1.5rem;font-weight:700;line-height:1.1;margin-bottom:4px}
+.stat-sub{font-size:.75rem;color:var(--muted)}
+.stat-icon{position:absolute;top:14px;right:14px;font-size:22px;opacity:.15}
+
+/* ── Panel / Table ── */
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:20px}
+.panel-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border)}
+.panel-title{font-size:.9375rem;font-weight:600}
+.panel-actions{display:flex;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;font-size:.8rem;font-weight:600;transition:.2s;cursor:pointer;border:none}
+.btn-sm{padding:5px 10px;font-size:.75rem}
+.btn-primary{background:var(--accent);color:#000}
+.btn-primary:hover{opacity:.85}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.btn-danger{background:rgba(239,68,68,.15);color:var(--danger);border:1px solid rgba(239,68,68,.25)}
+.filter-row{padding:12px 20px;border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filter-btn{padding:5px 12px;border-radius:99px;font-size:.775rem;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:.2s}
+.filter-btn.active,.filter-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(34,197,94,.08)}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+thead th{text-align:left;padding:10px 16px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
+tbody tr{border-bottom:1px solid rgba(51,65,85,.6);transition:background .15s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--surface2)}
+td{padding:12px 16px;vertical-align:middle}
+.td-id{font-family:monospace;font-size:.78rem;color:var(--muted)}
+.td-name{font-weight:500}
+.td-client{font-size:.8rem;color:var(--muted)}
+
+/* ── Badges ── */
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;font-size:.72rem;font-weight:600}
+.badge-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.b-green{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.b-green .badge-dot{background:#4ade80}
+.b-blue{background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.b-blue .badge-dot{background:#60a5fa}
+.b-yellow{background:rgba(245,158,11,.12);color:#fbbf24;border:1px solid rgba(245,158,11,.2)}
+.b-yellow .badge-dot{background:#fbbf24}
+.b-red{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.b-red .badge-dot{background:#f87171}
+.b-gray{background:rgba(148,163,184,.1);color:var(--muted);border:1px solid rgba(148,163,184,.15)}
+.b-gray .badge-dot{background:var(--muted)}
+.b-purple{background:rgba(168,85,247,.12);color:#c084fc;border:1px solid rgba(168,85,247,.2)}
+.b-purple .badge-dot{background:#c084fc}
+
+/* ── Progress ── */
+.progress-bar{height:6px;border-radius:99px;background:var(--surface2);overflow:hidden;margin-top:4px}
+.progress-fill{height:100%;border-radius:99px;background:var(--accent);transition:.4s}
+
+/* ── Notif Drawer ── */
+.notif-drawer{position:fixed;top:0;right:-360px;width:340px;height:100vh;background:var(--surface);border-left:1px solid var(--border);z-index:50;display:flex;flex-direction:column;transition:.3s ease}
+.notif-drawer.open{right:0}
+.drawer-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.drawer-list{flex:1;overflow-y:auto;padding:12px}
+.notif-item{padding:12px;border-radius:8px;margin-bottom:6px;background:var(--surface2);border:1px solid var(--border)}
+.notif-item.unread{border-color:rgba(34,197,94,.25);background:rgba(34,197,94,.04)}
+.notif-event{font-size:.75rem;font-weight:600;color:var(--accent);margin-bottom:3px}
+.notif-ts{font-size:.7rem;color:var(--muted);margin-top:2px}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40}
+.overlay.show{display:block}
+
+/* ── Grid 2 ── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .grid-2{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .sidebar{width:200px}
+  .main{margin-left:200px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">N</div>
+    <div class="logo-text">NLP Group <span>Admin Portal</span></div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Tổng quan</div>
+    <div class="nav-item active" onclick="showTab('dashboard')"><span class="icon">📊</span> Dashboard</div>
+    <div class="nav-item" onclick="showTab('projects')"><span class="icon">🏗️</span> Dự án <span class="nav-badge" id="badge-projects">7</span></div>
+    <div class="nav-section">Vận hành</div>
+    <div class="nav-item" onclick="showTab('invoices')"><span class="icon">🧾</span> Hóa đơn <span class="nav-badge" id="badge-inv">2</span></div>
+    <div class="nav-item" onclick="showTab('legal')"><span class="icon">⚖️</span> Pháp chế</div>
+    <div class="nav-item" onclick="showTab('finance')"><span class="icon">💰</span> Tài chính</div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="portal-links">
+      <a class="portal-link" href="legal.html">⚖️ Phòng Pháp chế</a>
+      <a class="portal-link" href="finance.html">💰 Phòng Tài chính</a>
+    </div>
+    <div class="user-pill">
+      <div class="avatar">AD</div>
+      <div class="user-info">Nguyễn Văn Admin <span>Quản trị hệ thống</span></div>
+    </div>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="main">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1 id="page-title">Dashboard tổng quan</h1>
+      <p id="page-sub">Theo dõi toàn bộ dự án và hoạt động nội bộ</p>
+    </div>
+    <div class="topbar-right">
+      <button class="notif-btn" id="notifBtn" onclick="toggleNotif()">
+        🔔 <span class="notif-dot" id="notifDot"></span>
+      </button>
+      <button class="btn btn-primary" onclick="refreshAll()">↻ Làm mới</button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content" id="main-content">
+    <!-- DASHBOARD TAB -->
+    <div id="tab-dashboard">
+      <div class="stats-grid" id="stats-grid"></div>
+      <div class="grid-2">
+        <!-- Recent projects -->
+        <div class="panel">
+          <div class="panel-header"><span class="panel-title">Dự án gần đây</span><button class="btn btn-outline btn-sm" onclick="showTab('projects')">Xem tất cả</button></div>
+          <table><thead><tr><th>Mã</th><th>Dự án</th><th>Trạng thái</th><th>Pháp lý</th></tr></thead>
+          <tbody id="dash-projects"></tbody></table>
+        </div>
+        <!-- Overdue invoices -->
+        <div class="panel">
+          <div class="panel-header"><span class="panel-title">Hóa đơn cần xử lý</span><button class="btn btn-outline btn-sm" onclick="showTab('invoices')">Xem tất cả</button></div>
+          <table><thead><tr><th>Mã HĐ</th><th>Dự án</th><th>Số tiền</th><th>Trạng thái</th></tr></thead>
+          <tbody id="dash-invoices"></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS TAB -->
+    <div id="tab-projects" style="display:none">
+      <div class="panel">
+        <div class="panel-header"><span class="panel-title">Danh sách dự án (7)</span>
+          <div class="panel-actions"><button class="btn btn-outline btn-sm">⬇ Xuất Excel</button></div>
+        </div>
+        <div class="filter-row" id="proj-filters">
+          <span style="font-size:.78rem;color:var(--muted)">Lọc:</span>
+          <button class="filter-btn active" data-filter="">Tất cả</button>
+          <button class="filter-btn" data-filter="active">Đang vận hành</button>
+          <button class="filter-btn" data-filter="installing">Đang lắp đặt</button>
+          <button class="filter-btn" data-filter="pending">Chờ triển khai</button>
+          <button class="filter-btn" data-filter="completed">Hoàn thành</button>
+        </div>
+        <table><thead><tr><th>Mã</th><th>Dự án</th><th>Khách hàng</th><th>Loại</th><th>Giá trị HĐ</th><th>Thanh toán</th><th>Trạng thái</th><th>Pháp lý</th><th></th></tr></thead>
+        <tbody id="projects-table"></tbody></table>
+      </div>
+    </div>
+
+    <!-- INVOICES TAB -->
+    <div id="tab-invoices" style="display:none">
+      <div class="panel">
+        <div class="panel-header"><span class="panel-title">Quản lý hóa đơn</span></div>
+        <table><thead><tr><th>Mã HĐ</th><th>Dự án</th><th>Loại</th><th>Số tiền</th><th>Phát hành</th><th>Đến hạn</th><th>Trạng thái</th><th></th></tr></thead>
+        <tbody id="invoices-table"></tbody></table>
+      </div>
+    </div>
+
+    <!-- LEGAL TAB -->
+    <div id="tab-legal" style="display:none">
+      <div class="panel">
+        <div class="panel-header"><span class="panel-title">Tình trạng pháp lý các dự án</span><a href="legal.html" class="btn btn-primary btn-sm">↗ Mở Portal Pháp chế</a></div>
+        <table><thead><tr><th>Mã</th><th>Dự án</th><th>Pháp lý</th><th>Ghi chú</th><th>Hành động</th></tr></thead>
+        <tbody id="legal-table"></tbody></table>
+      </div>
+    </div>
+
+    <!-- FINANCE TAB -->
+    <div id="tab-finance" style="display:none">
+      <div class="panel">
+        <div class="panel-header"><span class="panel-title">Tổng quan tài chính</span><a href="finance.html" class="btn btn-primary btn-sm">↗ Mở Portal Tài chính</a></div>
+        <div style="padding:20px">
+          <div class="grid-3" id="finance-summary"></div>
+        </div>
+        <table><thead><tr><th>Mã</th><th>Dự án</th><th>Giá trị HĐ</th><th>Đã thu</th><th>Còn lại</th><th>Tỷ lệ</th></tr></thead>
+        <tbody id="finance-table"></tbody></table>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Notification Drawer -->
+<div class="overlay" id="overlay" onclick="toggleNotif()"></div>
+<div class="notif-drawer" id="notifDrawer">
+  <div class="drawer-header">
+    <span style="font-weight:600">🔔 Thông báo</span>
+    <button class="btn btn-outline btn-sm" onclick="markRead()">Đánh dấu đã đọc</button>
+  </div>
+  <div class="drawer-list" id="notif-list">
+    <p style="color:var(--muted);font-size:.8rem;text-align:center;margin-top:40px">Chưa có thông báo mới</p>
+  </div>
+</div>
+
+<script src="db.js"></script>
+<script>
+const TABS = ['dashboard','projects','invoices','legal','finance'];
+let currentFilter = '';
+
+// ─── Tab nav ──────────────────────────────────────────────────────────────
+function showTab(tab) {
+  TABS.forEach(t => document.getElementById('tab-' + t).style.display = t === tab ? '' : 'none');
+  const titles = { dashboard:'Dashboard tổng quan', projects:'Quản lý dự án', invoices:'Quản lý hóa đơn', legal:'Pháp chế', finance:'Tài chính' };
+  document.getElementById('page-title').textContent = titles[tab];
+  document.querySelectorAll('.nav-item').forEach((el, i) => {
+    el.classList.toggle('active', el.textContent.trim().toLowerCase().includes(tab === 'dashboard' ? 'dashboard' : tab === 'projects' ? 'dự án' : tab === 'invoices' ? 'hóa đơn' : tab === 'legal' ? 'pháp' : 'tài chính'));
+  });
+  if (tab === 'dashboard') renderDashboard();
+  if (tab === 'projects') renderProjects();
+  if (tab === 'invoices') renderInvoices();
+  if (tab === 'legal') renderLegalTab();
+  if (tab === 'finance') renderFinanceTab();
+}
+
+// ─── Helpers ─────────────────────────────────────────────────────────────
+const statusBadge = s => {
+  const m = { active:['b-green','Đang vận hành'], installing:['b-blue','Đang lắp đặt'], pending:['b-yellow','Chờ triển khai'], completed:['b-gray','Hoàn thành'] };
+  const [cls, label] = m[s] || ['b-gray', s];
+  return `<span class="badge ${cls}"><span class="badge-dot"></span>${label}</span>`;
+};
+const legalBadge = s => {
+  const m = { approved:['b-green','Đã duyệt'], pending:['b-yellow','Chờ duyệt'], review:['b-purple','Đang xét'], missing:['b-red','Thiếu hồ sơ'] };
+  const [cls, label] = m[s] || ['b-gray', s];
+  return `<span class="badge ${cls}"><span class="badge-dot"></span>${label}</span>`;
+};
+const invBadge = s => {
+  const m = { paid:['b-green','Đã thu'], pending:['b-yellow','Chờ thanh toán'], overdue:['b-red','Quá hạn'] };
+  const [cls, label] = m[s] || ['b-gray', s];
+  return `<span class="badge ${cls}"><span class="badge-dot"></span>${label}</span>`;
+};
+const fmtDate = d => d ? new Date(d).toLocaleDateString('vi-VN') : '—';
+const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+
+// ─── Dashboard ────────────────────────────────────────────────────────────
+function renderDashboard() {
+  const s = DB.stats();
+  document.getElementById('stats-grid').innerHTML = `
+    <div class="stat-card green"><div class="stat-label">Tổng giá trị HĐ</div><div class="stat-value" style="color:var(--accent)">${DB.fmt(s.totalValue)}</div><div class="stat-sub">${s.totalProjects} dự án</div><div class="stat-icon">📁</div></div>
+    <div class="stat-card blue"><div class="stat-label">Đã thu</div><div class="stat-value" style="color:#60a5fa">${DB.fmt(s.totalPaid)}</div><div class="stat-sub">${pct(s.totalPaid, s.totalValue)}% tổng giá trị</div><div class="stat-icon">✅</div></div>
+    <div class="stat-card yellow"><div class="stat-label">Còn phải thu</div><div class="stat-value" style="color:#fbbf24">${DB.fmt(s.outstanding)}</div><div class="stat-sub">${s.overdue} HĐ quá hạn · ${s.pending} chờ</div><div class="stat-icon">⏳</div></div>
+    <div class="stat-card red"><div class="stat-label">Cần xử lý pháp lý</div><div class="stat-value" style="color:#f87171">${s.legalIssues}</div><div class="stat-sub">dự án có vấn đề pháp lý</div><div class="stat-icon">⚖️</div></div>`;
+
+  // recent projects
+  const projs = DB.getProjects().slice(0, 5);
+  document.getElementById('dash-projects').innerHTML = projs.map(p => `
+    <tr><td class="td-id">${p.id}</td><td><div class="td-name">${p.name}</div><div class="td-client">${p.region}</div></td>
+    <td>${statusBadge(p.status)}</td><td>${legalBadge(p.legalStatus)}</td></tr>`).join('');
+
+  // invoices needing attention
+  const invs = DB.getInvoices().filter(i => i.status !== 'paid');
+  document.getElementById('dash-invoices').innerHTML = invs.map(i => {
+    const p = DB.getProject(i.projectId);
+    return `<tr><td class="td-id">${i.id}</td><td class="td-name" style="max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p?.name}</td><td style="white-space:nowrap">${DB.fmt(i.amount)}</td><td>${invBadge(i.status)}</td></tr>`;
+  }).join('');
+}
+
+// ─── Projects ─────────────────────────────────────────────────────────────
+function renderProjects(filter) {
+  if (filter !== undefined) currentFilter = filter;
+  document.querySelectorAll('#proj-filters .filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === currentFilter));
+  const projs = DB.getProjects(currentFilter ? { status: currentFilter } : {});
+  document.getElementById('projects-table').innerHTML = projs.map(p => {
+    const pctPaid = pct(p.paid, p.value);
+    return `<tr>
+      <td class="td-id">${p.id}</td>
+      <td><div class="td-name">${p.name}</div><div class="td-client">${p.region}</div></td>
+      <td class="td-client">${p.client}</td>
+      <td><span class="badge ${p.type === 'solar' ? 'b-yellow' : 'b-blue'}">${p.type === 'solar' ? '☀️ Solar' : '⚡ EV'}</span></td>
+      <td style="white-space:nowrap;font-weight:600">${DB.fmt(p.value)}</td>
+      <td style="min-width:110px">
+        <div style="font-size:.75rem;color:var(--muted)">${pctPaid}% đã thu</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pctPaid}%;background:${pctPaid===100?'var(--accent)':'var(--warn)'}"></div></div>
+      </td>
+      <td>${statusBadge(p.status)}</td>
+      <td>${legalBadge(p.legalStatus)}</td>
+      <td><button class="btn btn-outline btn-sm" onclick="quickStatus('${p.id}')">✏️</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function quickStatus(id) {
+  const p = DB.getProject(id);
+  const ns = prompt(`Cập nhật trạng thái "${p.name}":\n(active/installing/pending/completed)`, p.status);
+  if (ns && ['active','installing','pending','completed'].includes(ns)) {
+    DB.updateProjectStatus(id, ns);
+    renderProjects();
+    toast(`✅ Đã cập nhật ${p.id} → ${ns}`);
+  }
+}
+
+// ─── Invoices ─────────────────────────────────────────────────────────────
+function renderInvoices() {
+  const invs = DB.getInvoices();
+  document.getElementById('invoices-table').innerHTML = invs.map(i => {
+    const p = DB.getProject(i.projectId);
+    return `<tr>
+      <td class="td-id">${i.id}</td>
+      <td><div class="td-name" style="max-width:180px">${p?.name}</div><div class="td-client">${i.projectId}</div></td>
+      <td><span class="badge b-gray">${i.type === 'deposit' ? 'Đặt cọc' : i.type === 'progress' ? 'Đợt %' : 'Thanh lý'}</span></td>
+      <td style="font-weight:600;white-space:nowrap">${DB.fmt(i.amount)}</td>
+      <td style="font-size:.8rem">${fmtDate(i.issued)}</td>
+      <td style="font-size:.8rem;color:${i.status==='overdue'?'var(--danger)':'inherit'}">${fmtDate(i.due)}</td>
+      <td>${invBadge(i.status)}</td>
+      <td>${i.status !== 'paid' ? `<button class="btn btn-primary btn-sm" onclick="payInvoice('${i.id}')">Thu tiền</button>` : ''}</td>
+    </tr>`;
+  }).join('');
+}
+
+function payInvoice(id) {
+  if (confirm('Xác nhận đã thu hóa đơn ' + id + '?')) {
+    DB.updateInvoiceStatus(id, 'paid');
+    renderInvoices();
+    toast('✅ Hóa đơn ' + id + ' đã được ghi nhận thanh toán');
+  }
+}
+
+// ─── Legal ────────────────────────────────────────────────────────────────
+function renderLegalTab() {
+  const projs = DB.getProjects();
+  document.getElementById('legal-table').innerHTML = projs.map(p => `
+    <tr>
+      <td class="td-id">${p.id}</td>
+      <td><div class="td-name">${p.name}</div><div class="td-client">${p.client}</div></td>
+      <td>${legalBadge(p.legalStatus)}</td>
+      <td style="font-size:.8rem;color:var(--muted);max-width:220px">${p.legalNote}</td>
+      <td><a href="legal.html" class="btn btn-outline btn-sm">Xem chi tiết</a></td>
+    </tr>`).join('');
+}
+
+// ─── Finance ──────────────────────────────────────────────────────────────
+function renderFinanceTab() {
+  const s = DB.stats();
+  document.getElementById('finance-summary').innerHTML = `
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+      <div style="font-size:.75rem;color:var(--muted);margin-bottom:4px">Tổng doanh thu HĐ</div>
+      <div style="font-size:1.1rem;font-weight:700;color:var(--accent)">${DB.fmt(s.totalValue)}</div>
+    </div>
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+      <div style="font-size:.75rem;color:var(--muted);margin-bottom:4px">Đã thu</div>
+      <div style="font-size:1.1rem;font-weight:700;color:#60a5fa">${DB.fmt(s.totalPaid)}</div>
+    </div>
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center">
+      <div style="font-size:.75rem;color:var(--muted);margin-bottom:4px">Còn phải thu</div>
+      <div style="font-size:1.1rem;font-weight:700;color:#fbbf24">${DB.fmt(s.outstanding)}</div>
+    </div>`;
+
+  const projs = DB.getProjects();
+  document.getElementById('finance-table').innerHTML = projs.map(p => {
+    const pctPaid = pct(p.paid, p.value);
+    return `<tr>
+      <td class="td-id">${p.id}</td>
+      <td class="td-name">${p.name}</td>
+      <td style="white-space:nowrap">${DB.fmt(p.value)}</td>
+      <td style="white-space:nowrap;color:var(--accent)">${DB.fmt(p.paid)}</td>
+      <td style="white-space:nowrap;color:${p.value-p.paid>0?'var(--warn)':'var(--muted)'}">${DB.fmt(p.value - p.paid)}</td>
+      <td style="min-width:100px">
+        <div style="font-size:.75rem;color:var(--muted);margin-bottom:3px">${pctPaid}%</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pctPaid}%;background:${pctPaid===100?'var(--accent)':'var(--warn)'}"></div></div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ─── Notifications ────────────────────────────────────────────────────────
+function renderNotifs() {
+  const notifs = DB.getNotifications();
+  if (!notifs.length) return;
+  document.getElementById('notif-list').innerHTML = notifs.map(n => `
+    <div class="notif-item ${n.read?'':'unread'}">
+      <div class="notif-event">${n.event}</div>
+      <div style="font-size:.8rem;color:var(--text)">${JSON.stringify(n.payload).replace(/[{}""]/g,'').slice(0,80)}</div>
+      <div class="notif-ts">${n.ts}</div>
+    </div>`).join('');
+  const unread = notifs.filter(n => !n.read).length;
+  document.getElementById('notifDot').style.display = unread ? '' : 'none';
+}
+
+function toggleNotif() {
+  document.getElementById('notifDrawer').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+  renderNotifs();
+}
+function markRead() { DB.markRead(); renderNotifs(); }
+
+// ─── Toast ────────────────────────────────────────────────────────────────
+function toast(msg) {
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e293b;border:1px solid var(--accent);color:#e2e8f0;padding:10px 20px;border-radius:99px;font-size:.85rem;z-index:999;box-shadow:0 4px 16px rgba(0,0,0,.4)';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+
+// ─── Filters ──────────────────────────────────────────────────────────────
+document.querySelectorAll('#proj-filters .filter-btn').forEach(b =>
+  b.addEventListener('click', () => renderProjects(b.dataset.filter)));
+
+// ─── DB event listener ────────────────────────────────────────────────────
+DB.onAny(() => {
+  const n = DB.getNotifications().filter(n => !n.read).length;
+  document.getElementById('notifDot').style.display = n ? '' : 'none';
+});
+
+// ─── Init ─────────────────────────────────────────────────────────────────
+function refreshAll() { showTab('dashboard'); toast('Dữ liệu đã được làm mới'); }
+renderDashboard();
+</script>
+</body>
+</html>

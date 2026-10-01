@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cổng Nội bộ — NLP Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0f1a;--surface:#111827;--border:#1f2937;--text:#f1f5f9;--muted:#64748b;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+.header{text-align:center;margin-bottom:48px}
+.logo{width:56px;height:56px;background:linear-gradient(135deg,#22c55e,#06b6d4);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#000;margin:0 auto 16px}
+h1{font-size:1.75rem;font-weight:800;margin-bottom:6px}
+p{color:var(--muted);font-size:.95rem}
+.portals{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;width:100%;max-width:860px}
+.portal-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;text-align:center;transition:all .25s;text-decoration:none;color:var(--text);position:relative;overflow:hidden}
+.portal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:var(--radius) var(--radius) 0 0}
+.portal-card.admin::before{background:linear-gradient(90deg,#22c55e,#06b6d4)}
+.portal-card.legal::before{background:linear-gradient(90deg,#a855f7,#6366f1)}
+.portal-card.finance::before{background:linear-gradient(90deg,#3b82f6,#06b6d4)}
+.portal-card:hover{border-color:rgba(255,255,255,.15);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.portal-icon{font-size:36px;margin-bottom:16px;display:block}
+.portal-name{font-size:1rem;font-weight:700;margin-bottom:6px}
+.portal-desc{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.portal-tag{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;font-size:.72rem;font-weight:600;border:1px solid}
+.tag-green{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.25);color:#4ade80}
+.tag-purple{background:rgba(168,85,247,.1);border-color:rgba(168,85,247,.25);color:#c084fc}
+.tag-blue{background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.25);color:#60a5fa}
+.footer{margin-top:48px;font-size:.78rem;color:var(--muted);text-align:center}
+@media(max-width:640px){.portals{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">N</div>
+  <h1>Cổng Nội bộ NLP Group</h1>
+  <p>Hệ thống quản trị nội bộ — Admin · Pháp chế · Tài chính</p>
+</div>
+<div class="portals">
+  <a class="portal-card admin" href="admin.html">
+    <span class="portal-icon">📊</span>
+    <div class="portal-name">Admin Dashboard</div>
+    <div class="portal-desc">Tổng quan toàn bộ dự án, hóa đơn, pháp lý và tài chính. Quản trị viên toàn hệ thống.</div>
+    <span class="portal-tag tag-green">● Quản trị hệ thống</span>
+  </a>
+  <a class="portal-card legal" href="legal.html">
+    <span class="portal-icon">⚖️</span>
+    <div class="portal-name">Phòng Pháp chế</div>
+    <div class="portal-desc">Quản lý hồ sơ pháp lý, hợp đồng EPC, giấy phép và phê duyệt từng dự án.</div>
+    <span class="portal-tag tag-purple">● Pháp lý & Hợp đồng</span>
+  </a>
+  <a class="portal-card finance" href="finance.html">
+    <span class="portal-icon">💰</span>
+    <div class="portal-name">Phòng Tài chính</div>
+    <div class="portal-desc">Theo dõi dòng tiền, ghi nhận thanh toán, phân tích công nợ và hóa đơn dự án.</div>
+    <span class="portal-tag tag-blue">● Kế toán & Dòng tiền</span>
+  </a>
+</div>
+<div class="footer">
+  NLP Group · Hệ thống quản trị nội bộ · <a href="../../index.html" style="color:#60a5fa">← Về trang chủ</a>
+</div>
+</body>
+</html>
