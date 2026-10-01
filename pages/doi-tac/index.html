@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký Đối tác – NLP Group | Hợp tác phân phối Điện mặt trời & Trạm sạc</title>
-    <meta name="description" content="Trở thành đối tác chiến lược của NLP Group – nhận hỗ trợ kỹ thuật, hoa hồng cạnh tranh, độc quyền khu vực. Đăng ký ngay, miễn phí.">
-    <meta name="keywords" content="đối tác NLP Group, nhượng quyền điện mặt trời, đại lý trạm sạc xe điện, đăng ký đối tác">
+    <title>Đăng ký Đối tác – NLP Group | Nhượng quyền Điện mặt trời & Trạm sạc xe điện</title>
+    <meta name="description" content="Trở thành đối tác NLP Group — hoa hồng hấp dẫn, hỗ trợ kỹ thuật toàn diện, vùng độc quyền. Đăng ký ngay hôm nay để nhận tư vấn miễn phí.">
+    <meta name="keywords" content="đối tác NLP Group, nhượng quyền điện mặt trời, đại lý trạm sạc xe điện, hoa hồng năng lượng sạch">
+    <meta name="author" content="NLP Group">
     <meta property="og:title" content="Đăng ký Đối tác – NLP Group">
-    <meta property="og:description" content="Hợp tác với NLP Group – hoa hồng hấp dẫn, hỗ trợ kỹ thuật toàn diện, độc quyền khu vực.">
+    <meta property="og:description" content="Hoa hồng hấp dẫn, hỗ trợ kỹ thuật toàn diện, vùng độc quyền. Cùng NLP Group xây dựng hạ tầng năng lượng sạch Việt Nam.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nlpgroup.com.vn/pages/doi-tac/">
     <link rel="canonical" href="https://nlpgroup.com.vn/pages/doi-tac/">
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon"       href="../../favicon_io/favicon.ico">
-    <link rel="apple-touch-icon"               href="../../favicon_io/apple-touch-icon.png">
-    <link rel="manifest"                        href="../../favicon_io/site.webmanifest">
+    <link rel="icon" type="image/x-icon"        href="../../favicon_io/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon_io/favicon-32x32.png">
+    <link rel="apple-touch-icon"                href="../../favicon_io/apple-touch-icon.png">
+    <link rel="manifest"                         href="../../favicon_io/site.webmanifest">
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -22,450 +24,656 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter','sans-serif'] },
-                    colors: {
-                        solar: { 50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d',900:'#14532d' },
-                        dark: '#0f172a'
-                    }
+            theme: { extend: {
+                fontFamily: { sans: ['Inter','sans-serif'] },
+                colors: {
+                    solar: { 50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d',900:'#14532d' },
+                    dark: '#0f172a'
                 }
-            }
+            }}
         }
     </script>
     <!-- Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://nlpgroup.com.vn"},
-        {"@type":"ListItem","position":2,"name":"Đăng ký Đối tác","item":"https://nlpgroup.com.vn/pages/doi-tac/"}
-      ]
+      "@type": "WebPage",
+      "name": "Đăng ký Đối tác – NLP Group",
+      "url": "https://nlpgroup.com.vn/pages/doi-tac/",
+      "description": "Chương trình đối tác nhượng quyền NLP Group — điện mặt trời & trạm sạc xe điện.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://nlpgroup.com.vn" },
+          { "@type": "ListItem", "position": 2, "name": "Đối tác", "item": "https://nlpgroup.com.vn/pages/doi-tac/" }
+        ]
+      }
     }
     </script>
+    <style>
+        .hero-dark {
+            background: linear-gradient(135deg, #0f172a 0%, #0c1f0e 55%, #0f172a 100%);
+        }
+        .glass-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(255,255,255,0.10);
+        }
+        .glass-card:hover {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(34,197,94,0.35);
+        }
+        .benefit-card { transition: transform .25s ease, box-shadow .25s ease; }
+        .benefit-card:hover { transform: translateY(-6px); }
+        .step-connector { background: linear-gradient(to right, #16a34a, #22c55e); }
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(22,163,74,0.25);
+        }
+        .form-input {
+            width: 100%; padding: .75rem 1rem;
+            background: rgba(255,255,255,0.06);
+            border: 1.5px solid rgba(255,255,255,0.12);
+            border-radius: .75rem;
+            color: #fff;
+            font-size: .9375rem;
+            transition: border-color .2s, background .2s;
+        }
+        .form-input::placeholder { color: rgba(255,255,255,0.35); }
+        .form-input:focus {
+            border-color: #22c55e;
+            background: rgba(255,255,255,0.10);
+        }
+        .form-input option { background: #0f172a; color: #fff; }
+        .form-label {
+            display: block; font-size: .8125rem; font-weight: 700;
+            color: rgba(255,255,255,0.55);
+            text-transform: uppercase; letter-spacing: .06em;
+            margin-bottom: .4rem;
+        }
+    </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-white">
 
-    <!-- ── NAVBAR ────────────────────────────────────── -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <a href="../../index.html" class="text-2xl font-black text-dark tracking-tighter">NLP <span class="text-solar-600">GROUP</span></a>
-                <div class="hidden md:flex space-x-6 items-center text-sm font-semibold text-gray-600">
-                    <a href="../../index.html#gioi-thieu" class="hover:text-solar-600 transition-colors">Giới thiệu</a>
-                    <a href="../../pages/dien-mat-troi/" class="hover:text-solar-600 transition-colors">Điện mặt trời</a>
-                    <a href="../../pages/tru-sac/" class="hover:text-solar-600 transition-colors">Trụ sạc</a>
-                    <a href="../../pages/lien-he/" class="hover:text-solar-600 transition-colors">Liên hệ</a>
-                    <a href="../../pages/doi-tac/" class="bg-solar-600 hover:bg-solar-700 text-white px-5 py-2 rounded-full font-semibold transition-colors shadow-lg shadow-solar-500/30">Đăng ký đối tác</a>
-                </div>
-                <button id="mobile-menu-btn" class="md:hidden text-gray-600 p-2"><i class="fa-solid fa-bars text-xl"></i></button>
+<!-- ── NAVBAR ─────────────────────────────────────── -->
+<nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            <a href="../../index.html" class="text-2xl font-black text-dark tracking-tighter">NLP <span class="text-solar-600">GROUP</span></a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="../../pages/ve-chung-toi/" class="text-sm font-semibold text-gray-600 hover:text-solar-600">Về chúng tôi</a>
+                <a href="../../index.html#gioi-thieu" class="text-sm font-semibold text-gray-600 hover:text-solar-600">Giải pháp</a>
+                <a href="../../pages/dien-mat-troi/" class="text-sm font-semibold text-gray-600 hover:text-solar-600">Điện mặt trời</a>
+                <a href="../../pages/tru-sac/" class="text-sm font-semibold text-gray-600 hover:text-solar-600">Trụ sạc ô tô</a>
+                <a href="../../pages/tin-tuc/" class="text-sm font-semibold text-gray-600 hover:text-solar-600">Tin tức</a>
+                <a href="../../pages/lien-he/" class="text-sm font-semibold text-gray-600 hover:text-solar-600">Liên hệ</a>
+                <a href="../../pages/doi-tac/" class="text-sm font-bold text-white bg-solar-600 hover:bg-solar-700 px-4 py-1.5 rounded-full transition-colors">🤝 Đối tác</a>
             </div>
+            <button id="mobile-menu-btn" class="md:hidden text-gray-600 p-2">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
-            <div class="px-4 py-4 space-y-2">
-                <a href="../../index.html" class="block py-2 text-gray-700 font-medium">Trang chủ</a>
-                <a href="../../pages/dien-mat-troi/" class="block py-2 text-gray-700 font-medium">Điện mặt trời</a>
-                <a href="../../pages/tru-sac/" class="block py-2 text-gray-700 font-medium">Trụ sạc</a>
-                <a href="../../pages/lien-he/" class="block py-2 text-gray-700 font-medium">Liên hệ</a>
-            </div>
-        </div>
-    </nav>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full px-4 py-4 space-y-1 shadow-xl">
+        <a href="../../index.html" class="block py-2.5 px-3 text-gray-700 hover:text-solar-600 rounded-lg hover:bg-solar-50">Trang chủ</a>
+        <a href="../../pages/ve-chung-toi/" class="block py-2.5 px-3 text-gray-700 hover:text-solar-600 rounded-lg hover:bg-solar-50">Về chúng tôi</a>
+        <a href="../../pages/dien-mat-troi/" class="block py-2.5 px-3 text-gray-700 hover:text-solar-600 rounded-lg hover:bg-solar-50">Điện mặt trời</a>
+        <a href="../../pages/tru-sac/" class="block py-2.5 px-3 text-gray-700 hover:text-solar-600 rounded-lg hover:bg-solar-50">Trụ sạc ô tô</a>
+        <a href="../../pages/tin-tuc/" class="block py-2.5 px-3 text-gray-700 hover:text-solar-600 rounded-lg hover:bg-solar-50">Tin tức</a>
+        <a href="../../pages/lien-he/" class="block py-2.5 px-3 text-gray-700 hover:text-solar-600 rounded-lg hover:bg-solar-50">Liên hệ</a>
+        <a href="../../pages/doi-tac/" class="block py-2.5 px-3 mt-2 text-center bg-solar-600 text-white rounded-xl font-bold">🤝 Đăng ký Đối tác</a>
+    </div>
+</nav>
 
-    <!-- ── HERO DARK ─────────────────────────────────── -->
-    <section class="relative pt-16 bg-dark overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop"
-                 alt="Đối tác NLP Group" class="w-full h-full object-cover opacity-20" loading="eager" fetchpriority="high">
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-b from-dark/50 to-dark z-[1]"></div>
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 py-20 text-center">
-            <!-- Breadcrumb -->
-            <div class="flex items-center justify-center gap-2 text-xs text-gray-400 mb-6 font-medium uppercase tracking-wider">
-                <a href="../../index.html" class="hover:text-white">Trang chủ</a>
-                <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                <span class="text-solar-400">Đối tác</span>
-            </div>
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-solar-600/20 border border-solar-500/40 text-solar-400 text-sm font-bold mb-6 uppercase tracking-wider">
-                <i class="fa-solid fa-handshake"></i> Chương trình đối tác 2025
-            </div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
-                Cùng NLP Group<br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-solar-400 to-yellow-400">Chinh phục thị trường năng lượng sạch</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
-                Thị trường điện mặt trời và xe điện Việt Nam đang bùng nổ. Hãy tận dụng cơ hội ngay hôm nay với hỗ trợ kỹ thuật, marketing và độc quyền khu vực từ NLP Group.
-            </p>
-            <a href="#form-dang-ky" class="inline-flex items-center gap-2 bg-solar-600 hover:bg-solar-500 text-white px-10 py-4 rounded-xl font-bold text-lg transition-all shadow-xl shadow-solar-500/40 transform hover:-translate-y-1">
-                <i class="fa-solid fa-arrow-down"></i> Đăng ký ngay — Miễn phí
-            </a>
+<!-- ── HERO (dark glassmorphism) ──────────────────── -->
+<section class="hero-dark relative pt-36 pb-24 overflow-hidden">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-solar-600 rounded-full mix-blend-screen filter blur-[120px] opacity-10 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-3xl opacity-10 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Breadcrumb -->
+        <div class="flex items-center gap-2 text-xs text-gray-500 mb-8">
+            <a href="../../index.html" class="hover:text-solar-400 transition-colors">Trang chủ</a>
+            <i class="fa-solid fa-chevron-right text-gray-600 text-xs"></i>
+            <span class="text-solar-400 font-semibold">Đăng ký Đối tác</span>
         </div>
 
-        <!-- Stats strip -->
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 pb-16">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center">
-                    <p class="text-2xl font-black text-solar-400">200+</p>
-                    <p class="text-xs text-gray-400 font-semibold mt-1">Đối tác toàn quốc</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <!-- Left: Copy -->
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-solar-600/20 border border-solar-500/30 mb-6">
+                    <i class="fa-solid fa-handshake text-solar-400 text-xs"></i>
+                    <span class="text-xs font-bold text-solar-300 uppercase tracking-widest">Chương trình Đối tác NLP Group</span>
                 </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center">
-                    <p class="text-2xl font-black text-solar-400">15–25%</p>
-                    <p class="text-xs text-gray-400 font-semibold mt-1">Hoa hồng dự án</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center">
-                    <p class="text-2xl font-black text-solar-400">72h</p>
-                    <p class="text-xs text-gray-400 font-semibold mt-1">Hỗ trợ kỹ thuật</p>
-                </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center">
-                    <p class="text-2xl font-black text-solar-400">Độc quyền</p>
-                    <p class="text-xs text-gray-400 font-semibold mt-1">Khu vực tỉnh/thành</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── BENEFITS ──────────────────────────────────── -->
-    <section class="py-24 bg-white">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6">
-            <div class="text-center mb-16">
-                <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Quyền lợi đối tác</p>
-                <h2 class="text-3xl md:text-4xl font-black text-gray-900">Tại sao chọn NLP Group<br>làm đối tác chiến lược?</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="flex items-start gap-5 p-6 rounded-2xl border border-gray-100 hover:border-solar-200 hover:shadow-md transition-all">
-                    <div class="w-14 h-14 rounded-2xl bg-solar-50 flex items-center justify-center text-solar-600 text-2xl shrink-0"><i class="fa-solid fa-percent"></i></div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 text-lg mb-2">Hoa hồng cạnh tranh 15–25%</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Hoa hồng tính trên giá trị dự án, thanh toán trong 7 ngày sau khi hoàn công. Càng nhiều dự án, mức hoa hồng càng tăng theo bậc.</p>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                    Cùng nhau<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-solar-400 to-yellow-300">xanh hóa</span><br>
+                    hạ tầng Việt Nam
+                </h1>
+                <p class="text-lg text-gray-300 mb-10 leading-relaxed max-w-xl">
+                    Trở thành đại lý hoặc đối tác lắp đặt NLP Group — hưởng hoa hồng cạnh tranh, được đào tạo kỹ thuật chuyên sâu, và khai thác thị trường năng lượng sạch đang bùng nổ tại địa phương của bạn.
+                </p>
+                <!-- Quick stats -->
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="glass-card rounded-2xl p-4 text-center">
+                        <div class="text-2xl font-black text-solar-400">15%</div>
+                        <div class="text-xs text-gray-400 mt-1 font-medium">Hoa hồng<br>trung bình</div>
                     </div>
-                </div>
-                <div class="flex items-start gap-5 p-6 rounded-2xl border border-gray-100 hover:border-solar-200 hover:shadow-md transition-all">
-                    <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 text-2xl shrink-0"><i class="fa-solid fa-map-location-dot"></i></div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 text-lg mb-2">Độc quyền khu vực tỉnh/thành</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Mỗi đối tác được bảo hộ vùng kinh doanh riêng. NLP Group không bán song song cho đại lý khác trong khu vực của bạn.</p>
+                    <div class="glass-card rounded-2xl p-4 text-center">
+                        <div class="text-2xl font-black text-yellow-300">0đ</div>
+                        <div class="text-xs text-gray-400 mt-1 font-medium">Phí gia<br>nhập</div>
                     </div>
-                </div>
-                <div class="flex items-start gap-5 p-6 rounded-2xl border border-gray-100 hover:border-solar-200 hover:shadow-md transition-all">
-                    <div class="w-14 h-14 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600 text-2xl shrink-0"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 text-lg mb-2">Đào tạo kỹ thuật & bán hàng</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Khóa đào tạo kỹ thuật + sales tại TP.HCM hoặc trực tuyến. Cung cấp tài liệu, pitch deck, brochure sẵn sàng sử dụng ngay.</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-5 p-6 rounded-2xl border border-gray-100 hover:border-solar-200 hover:shadow-md transition-all">
-                    <div class="w-14 h-14 rounded-2xl bg-orange-50 flex items-center justify-center text-orange-600 text-2xl shrink-0"><i class="fa-solid fa-headset"></i></div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 text-lg mb-2">Hỗ trợ kỹ thuật 24/7</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Đội ngũ kỹ sư NLP Group hỗ trợ thiết kế hệ thống, giải đáp kỹ thuật và xử lý sự cố sau lắp đặt. Không để đối tác một mình.</p>
+                    <div class="glass-card rounded-2xl p-4 text-center">
+                        <div class="text-2xl font-black text-blue-300">24/7</div>
+                        <div class="text-xs text-gray-400 mt-1 font-medium">Hỗ trợ<br>kỹ thuật</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ── PARTNER TYPES ─────────────────────────────── -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6">
-            <div class="text-center mb-12">
-                <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Loại hình đối tác</p>
-                <h2 class="text-3xl font-black text-gray-900">Chương trình phù hợp<br>với mọi quy mô</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Tier 1 -->
-                <div class="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all text-center">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-5 text-gray-600 text-2xl"><i class="fa-solid fa-store"></i></div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Đại lý Cơ bản</h3>
-                    <p class="text-gray-500 text-sm mb-4">Phù hợp cá nhân, thợ điện, công ty vừa & nhỏ mới bắt đầu</p>
-                    <ul class="text-left space-y-2 text-sm text-gray-600 mb-6">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-500 text-xs"></i> Hoa hồng 15% / dự án</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-500 text-xs"></i> Đào tạo online 2 ngày</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-500 text-xs"></i> Tài liệu marketing đầy đủ</li>
-                    </ul>
-                    <a href="#form-dang-ky" class="block w-full border-2 border-gray-200 hover:border-solar-500 text-gray-700 hover:text-solar-600 py-2.5 rounded-xl font-semibold transition-all">Đăng ký ngay</a>
+            <!-- Right: Form -->
+            <div class="glass-card rounded-3xl p-8" id="form-section">
+                <div class="mb-6">
+                    <div class="text-lg font-black text-white mb-1">Đăng ký ngay — miễn phí</div>
+                    <div class="text-sm text-gray-400">Chúng tôi sẽ liên hệ trong vòng 2 giờ làm việc</div>
                 </div>
-                <!-- Tier 2 -->
-                <div class="bg-solar-600 rounded-2xl p-8 border-2 border-solar-500 shadow-xl shadow-solar-500/20 text-center relative">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-dark text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">Phổ biến nhất</div>
-                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-5 text-white text-2xl"><i class="fa-solid fa-building"></i></div>
-                    <h3 class="text-lg font-bold text-white mb-3">Đại lý Chuyên nghiệp</h3>
-                    <p class="text-solar-100 text-sm mb-4">Doanh nghiệp M&E, xây dựng, điện lạnh có kinh nghiệm thực thi</p>
-                    <ul class="text-left space-y-2 text-sm text-solar-100 mb-6">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-200 text-xs"></i> Hoa hồng 20% / dự án</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-200 text-xs"></i> Đào tạo tập trung 3 ngày</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-200 text-xs"></i> Độc quyền 1 tỉnh/thành</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-200 text-xs"></i> Co-branding với NLP Group</li>
-                    </ul>
-                    <a href="#form-dang-ky" class="block w-full bg-white text-solar-700 font-bold py-2.5 rounded-xl hover:bg-solar-50 transition-colors">Đăng ký ngay</a>
-                </div>
-                <!-- Tier 3 -->
-                <div class="bg-white rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all text-center">
-                    <div class="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-5 text-purple-600 text-2xl"><i class="fa-solid fa-crown"></i></div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Đối tác Chiến lược</h3>
-                    <p class="text-gray-500 text-sm mb-4">Tập đoàn, tổng thầu xây dựng, BĐS quy mô lớn</p>
-                    <ul class="text-left space-y-2 text-sm text-gray-600 mb-6">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-500 text-xs"></i> Hoa hồng 25% + thưởng KPI</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-500 text-xs"></i> Kỹ sư NLP hỗ trợ tận nơi</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-500 text-xs"></i> Độc quyền nhiều tỉnh/thành</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-solar-500 text-xs"></i> Giá ưu đãi nhập hàng bulk</li>
-                    </ul>
-                    <a href="#form-dang-ky" class="block w-full border-2 border-purple-200 hover:border-purple-500 text-purple-700 py-2.5 rounded-xl font-semibold transition-all">Liên hệ tư vấn</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ── REGISTRATION FORM ─────────────────────────── -->
-    <section id="form-dang-ky" class="py-24 bg-dark relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <img src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=1920&auto=format&fit=crop" alt="" class="w-full h-full object-cover" loading="lazy">
-        </div>
-        <div class="max-w-2xl mx-auto px-4 sm:px-6 relative z-10">
-            <div class="text-center mb-10">
-                <p class="text-solar-400 font-bold uppercase tracking-wider text-sm mb-2">Bước đầu tiên</p>
-                <h2 class="text-3xl md:text-4xl font-black text-white mb-4">Đăng ký làm đối tác</h2>
-                <p class="text-gray-400">Điền thông tin bên dưới — đội ngũ NLP Group sẽ liên hệ bạn trong vòng <strong class="text-white">24 giờ làm việc</strong> để thảo luận chi tiết chương trình.</p>
-            </div>
+                <form id="partner-form" class="space-y-4" novalidate>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="form-label">Họ và tên *</label>
+                            <input type="text" id="f-name" class="form-input" placeholder="Nguyễn Văn A" required>
+                        </div>
+                        <div>
+                            <label class="form-label">Số điện thoại *</label>
+                            <input type="tel" id="f-phone" class="form-input" placeholder="0912 345 678" required>
+                        </div>
+                    </div>
 
-            <div class="bg-white rounded-3xl p-8 shadow-2xl">
-                <form id="partnerForm" onsubmit="submitPartnerForm(event)">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="form-label">Email</label>
+                        <input type="email" id="f-email" class="form-input" placeholder="email@congty.com">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Họ và tên *</label>
-                            <input type="text" required id="pf_name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-solar-500 focus:border-solar-500 outline-none transition-all" placeholder="Nguyễn Văn A">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Số điện thoại *</label>
-                            <input type="tel" required id="pf_phone" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-solar-500 focus:border-solar-500 outline-none transition-all" placeholder="09xx xxx xxx">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Email</label>
-                            <input type="email" id="pf_email" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-solar-500 focus:border-solar-500 outline-none transition-all" placeholder="email@congty.com">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Tên công ty / Doanh nghiệp</label>
-                            <input type="text" id="pf_company" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-solar-500 focus:border-solar-500 outline-none transition-all" placeholder="Công ty TNHH ...">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Tỉnh / Thành phố *</label>
-                            <select required id="pf_province" onchange="loadDistricts()" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-solar-500 outline-none bg-white transition-all">
+                            <label class="form-label">Tỉnh / Thành phố *</label>
+                            <select id="f-province" class="form-input" required>
                                 <option value="">-- Chọn tỉnh/thành --</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Quận / Huyện</label>
-                            <select id="pf_district" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-solar-500 outline-none bg-white transition-all">
+                            <label class="form-label">Quận / Huyện</label>
+                            <select id="f-district" class="form-input" disabled>
                                 <option value="">-- Chọn quận/huyện --</option>
                             </select>
                         </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Loại đối tác quan tâm *</label>
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="partner_type" value="co-ban" class="peer sr-only" checked>
-                                    <div class="p-3 text-center text-sm border-2 border-gray-200 rounded-xl peer-checked:border-solar-500 peer-checked:bg-solar-50 peer-checked:text-solar-700 font-semibold transition-all">Đại lý Cơ bản</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="partner_type" value="chuyen-nghiep" class="peer sr-only">
-                                    <div class="p-3 text-center text-sm border-2 border-gray-200 rounded-xl peer-checked:border-solar-500 peer-checked:bg-solar-50 peer-checked:text-solar-700 font-semibold transition-all">Chuyên nghiệp</div>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="radio" name="partner_type" value="chien-luoc" class="peer sr-only">
-                                    <div class="p-3 text-center text-sm border-2 border-gray-200 rounded-xl peer-checked:border-solar-500 peer-checked:bg-solar-50 peer-checked:text-solar-700 font-semibold transition-all">Chiến lược</div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-sm font-bold text-gray-700 mb-1.5">Lĩnh vực kinh doanh hiện tại</label>
-                            <textarea id="pf_business" rows="3" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-solar-500 outline-none transition-all resize-none" placeholder="Mô tả ngắn về công ty / kinh nghiệm liên quan (VD: Công ty M&E 5 năm kinh nghiệm, thi công điện công nghiệp...)"></textarea>
-                        </div>
                     </div>
-                    <div class="mt-6">
-                        <button type="submit" id="partnerSubmitBtn" class="w-full bg-solar-600 hover:bg-solar-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg shadow-solar-500/30 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg">
-                            <i class="fa-solid fa-paper-plane"></i> Gửi đăng ký — Hoàn toàn miễn phí
-                        </button>
-                        <p class="text-xs text-gray-400 text-center mt-3">* Thông tin của bạn được bảo mật tuyệt đối. Không spam.</p>
+
+                    <div>
+                        <label class="form-label">Loại đối tác quan tâm *</label>
+                        <select id="f-type" class="form-input" required>
+                            <option value="">-- Chọn loại đối tác --</option>
+                            <option value="dai-ly-solar">Đại lý điện mặt trời</option>
+                            <option value="dai-ly-tram-sac">Đại lý trạm sạc xe điện</option>
+                            <option value="ca-hai">Cả hai (Solar + Trạm sạc)</option>
+                            <option value="thi-cong">Nhà thầu thi công lắp đặt</option>
+                            <option value="tu-van">Đối tác tư vấn / môi giới</option>
+                        </select>
                     </div>
+
+                    <div>
+                        <label class="form-label">Kinh nghiệm / Ghi chú thêm</label>
+                        <textarea id="f-note" class="form-input" rows="3"
+                            placeholder="Mô tả ngắn về kinh nghiệm, mạng lưới khách hàng, hoặc câu hỏi của bạn..."></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn"
+                        class="w-full bg-solar-600 hover:bg-solar-500 text-white py-4 rounded-xl font-bold text-base transition-all shadow-lg shadow-solar-500/30 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span id="btn-text">Gửi đăng ký đối tác</span>
+                    </button>
+
+                    <p class="text-xs text-gray-500 text-center leading-relaxed">
+                        Bằng cách gửi form, bạn đồng ý để NLP Group liên hệ tư vấn. Thông tin được bảo mật tuyệt đối.
+                    </p>
                 </form>
-            </div>
-        </div>
-    </section>
 
-    <!-- ── FAQ ───────────────────────────────────────── -->
-    <section class="py-20 bg-white">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-black text-gray-900">Câu hỏi thường gặp</h2>
-            </div>
-            <div class="space-y-4" id="faq">
-                <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-gray-900 hover:bg-gray-50 transition-colors">
-                        <span>Vốn tối thiểu để trở thành đại lý NLP Group là bao nhiêu?</span>
-                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
-                    </button>
-                    <div class="faq-body hidden px-6 pb-5 text-gray-600 text-sm leading-relaxed">
-                        Chương trình Đại lý Cơ bản không yêu cầu vốn tối thiểu. Bạn chỉ cần có năng lực tiếp cận khách hàng và hiểu biết cơ bản về điện. Đối với chương trình Chuyên nghiệp và Chiến lược, chúng tôi sẽ thảo luận chi tiết tùy theo khu vực và kế hoạch kinh doanh.
+                <!-- Success state (hidden by default) -->
+                <div id="form-success" class="hidden text-center py-8">
+                    <div class="w-16 h-16 bg-solar-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-circle-check text-solar-400 text-3xl"></i>
                     </div>
-                </div>
-                <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-gray-900 hover:bg-gray-50 transition-colors">
-                        <span>Đại lý có cần phải tự thi công lắp đặt không?</span>
-                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
-                    </button>
-                    <div class="faq-body hidden px-6 pb-5 text-gray-600 text-sm leading-relaxed">
-                        Không bắt buộc. Đại lý có thể chỉ đảm nhận vai trò kinh doanh, tiếp cận khách hàng và đưa khách hàng về NLP Group. Đội kỹ thuật NLP Group sẽ thiết kế và thi công. Hoặc nếu bạn có đội thi công, chúng tôi sẽ đào tạo và bạn có thể thực hiện toàn bộ.
-                    </div>
-                </div>
-                <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-gray-900 hover:bg-gray-50 transition-colors">
-                        <span>Hoa hồng được thanh toán như thế nào và khi nào?</span>
-                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
-                    </button>
-                    <div class="faq-body hidden px-6 pb-5 text-gray-600 text-sm leading-relaxed">
-                        Hoa hồng được tính trên giá trị thanh toán thực tế của khách hàng. Thanh toán trong 7 ngày làm việc sau khi dự án hoàn công và được khách hàng nghiệm thu. Không có điều khoản giữ lại hay hoàn trả.
-                    </div>
-                </div>
-                <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
-                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-5 text-left font-bold text-gray-900 hover:bg-gray-50 transition-colors">
-                        <span>Độc quyền khu vực có nghĩa là gì?</span>
-                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
-                    </button>
-                    <div class="faq-body hidden px-6 pb-5 text-gray-600 text-sm leading-relaxed">
-                        Sau khi ký hợp đồng đối tác, NLP Group cam kết không phát triển thêm đại lý mới tại khu vực địa lý đã được giao cho bạn. Các lead/khách hàng từ khu vực đó sẽ được chuyển về cho bạn xử lý. Điều kiện là duy trì tối thiểu 2 dự án/tháng trong khu vực.
-                    </div>
+                    <div class="text-xl font-black text-white mb-2">Đã nhận đăng ký!</div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Cảm ơn bạn đã quan tâm. Đội ngũ NLP Group sẽ liên hệ trong vòng <strong class="text-white">2 giờ làm việc</strong>.
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ── FOOTER ─────────────────────────────────────── -->
-    <footer class="bg-dark text-gray-400 py-8 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-4 text-sm">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-white font-bold">NLP <span class="text-solar-500">GROUP</span></p>
-                <p>&copy; 2026 NLP GROUP · <a href="tel:0944086788" class="hover:text-white">0333.864.000</a></p>
-                <div class="flex gap-4">
-                    <a href="../../index.html" class="hover:text-white">Trang chủ</a>
-                    <a href="../ve-chung-toi/" class="hover:text-white">Về chúng tôi</a>
-                    <a href="../lien-he/" class="hover:text-white">Liên hệ</a>
+<!-- ── 4 LỢI ÍCH ĐỐI TÁC ──────────────────────────── -->
+<section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Tại sao chọn NLP Group?</p>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900">4 lý do đối tác<br>thành công cùng chúng tôi</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1 -->
+            <div class="benefit-card bg-gray-50 rounded-3xl p-8 border-2 border-gray-100 hover:border-solar-200 hover:shadow-2xl hover:shadow-solar-500/10">
+                <div class="w-14 h-14 bg-solar-100 text-solar-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-sack-dollar"></i>
                 </div>
+                <div class="inline-block bg-solar-100 text-solar-700 text-xs font-bold px-2.5 py-1 rounded-full mb-3">Hoa hồng cao</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Thu nhập hấp dẫn</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Hoa hồng từ <strong class="text-gray-700">10–20%</strong> giá trị hợp đồng. Thưởng thêm khi vượt doanh số theo quý. Thanh toán đúng hạn, minh bạch từng đơn.</p>
             </div>
-            <div class="border-t border-gray-800 pt-4 flex flex-wrap justify-center gap-4 text-xs text-gray-500">
-                <a href="../dieu-khoan/" class="hover:text-white transition-colors">Điều khoản sử dụng</a>
-                <a href="../bao-mat/"    class="hover:text-white transition-colors">Chính sách bảo mật</a>
-                <a href="../tin-tuc/"   class="hover:text-white transition-colors">Tin tức</a>
-                <a href="../lien-he/"   class="hover:text-white transition-colors">Liên hệ</a>
+            <!-- Card 2 -->
+            <div class="benefit-card bg-gray-50 rounded-3xl p-8 border-2 border-gray-100 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-500/10">
+                <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+                <div class="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full mb-3">Hỗ trợ toàn diện</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Kỹ thuật & Đào tạo</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Đào tạo kỹ thuật miễn phí 2–3 ngày. Tài liệu báo giá, catalogue, hồ sơ kỹ thuật đầy đủ. Đội kỹ sư NLP Group hỗ trợ thi công khi cần.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="benefit-card bg-gray-50 rounded-3xl p-8 border-2 border-gray-100 hover:border-yellow-200 hover:shadow-2xl hover:shadow-yellow-500/10">
+                <div class="w-14 h-14 bg-yellow-100 text-yellow-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <div class="inline-block bg-yellow-100 text-yellow-700 text-xs font-bold px-2.5 py-1 rounded-full mb-3">Vùng độc quyền</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Khu vực ưu tiên</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Đối tác cấp tỉnh/thành được cấp vùng hoạt động ưu tiên. NLP Group không phát triển thêm đối tác cạnh tranh trong cùng địa bàn.</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="benefit-card bg-gray-50 rounded-3xl p-8 border-2 border-gray-100 hover:border-purple-200 hover:shadow-2xl hover:shadow-purple-500/10">
+                <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="inline-block bg-purple-100 text-purple-700 text-xs font-bold px-2.5 py-1 rounded-full mb-3">Thị trường lớn</div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Ngành tăng trưởng mạnh</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Thị trường solar + EV charging Việt Nam tăng trưởng <strong class="text-gray-700">35–50%/năm</strong>. NĐ 135/2024 mở cửa hoàn toàn — cơ hội chưa bao giờ lớn hơn.</p>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- FAB -->
-    <a href="tel:0944086788" class="fab-btn fab-phone" title="Gọi ngay"><i class="fa-solid fa-phone"></i></a>
-    <a href="https://zalo.me/0944086788" target="_blank" class="fab-btn fab-zalo" title="Chat Zalo"><i class="fa-solid fa-comment-dots"></i></a>
+<!-- ── CÁC HẠNG ĐỐI TÁC ───────────────────────────── -->
+<section class="py-24 bg-gray-50 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Chương trình đối tác</p>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900">3 hạng đối tác —<br>chọn cấp phù hợp với bạn</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            <!-- Silver -->
+            <div class="bg-white rounded-3xl border-2 border-gray-200 p-8 flex flex-col">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-medal text-gray-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Hạng</div>
+                        <div class="text-xl font-black text-gray-700">Bạc · Silver</div>
+                    </div>
+                </div>
+                <div class="text-3xl font-black text-gray-900 mb-1">10%</div>
+                <div class="text-sm text-gray-500 mb-6">Hoa hồng cơ bản / hợp đồng</div>
+                <ul class="space-y-3 text-sm text-gray-600 flex-1 mb-8">
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-solar-500 mt-0.5 flex-shrink-0"></i>Doanh số tối thiểu: 1 hợp đồng/tháng</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-solar-500 mt-0.5 flex-shrink-0"></i>Tài liệu báo giá & catalogue</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-solar-500 mt-0.5 flex-shrink-0"></i>Hỗ trợ kỹ thuật qua hotline</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-solar-500 mt-0.5 flex-shrink-0"></i>Đào tạo online cơ bản</li>
+                </ul>
+                <a href="#form-section" class="block text-center border-2 border-gray-200 hover:border-solar-400 text-gray-700 hover:text-solar-600 py-3 rounded-xl font-bold transition-all">Bắt đầu miễn phí</a>
+            </div>
+            <!-- Gold — recommended -->
+            <div class="bg-solar-600 rounded-3xl border-2 border-solar-500 p-8 flex flex-col relative shadow-2xl shadow-solar-500/30 scale-[1.02]">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-yellow-900 text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">Phổ biến nhất</div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-trophy text-yellow-300 text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-solar-200 uppercase tracking-wider">Hạng</div>
+                        <div class="text-xl font-black text-white">Vàng · Gold</div>
+                    </div>
+                </div>
+                <div class="text-3xl font-black text-white mb-1">15%</div>
+                <div class="text-sm text-solar-200 mb-6">Hoa hồng cao + thưởng quý</div>
+                <ul class="space-y-3 text-sm text-solar-100 flex-1 mb-8">
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-yellow-300 mt-0.5 flex-shrink-0"></i>Doanh số tối thiểu: 3 hợp đồng/tháng</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-yellow-300 mt-0.5 flex-shrink-0"></i>Vùng ưu tiên theo tỉnh/thành</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-yellow-300 mt-0.5 flex-shrink-0"></i>Đào tạo kỹ thuật offline 2 ngày</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-yellow-300 mt-0.5 flex-shrink-0"></i>Hỗ trợ thi công tại chỗ</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-yellow-300 mt-0.5 flex-shrink-0"></i>Thưởng 2% khi vượt mục tiêu quý</li>
+                </ul>
+                <a href="#form-section" class="block text-center bg-white text-solar-700 hover:bg-solar-50 py-3 rounded-xl font-bold transition-all">Đăng ký hạng Vàng</a>
+            </div>
+            <!-- Platinum -->
+            <div class="bg-white rounded-3xl border-2 border-gray-200 p-8 flex flex-col">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center">
+                        <i class="fa-solid fa-gem text-blue-300 text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">Hạng</div>
+                        <div class="text-xl font-black text-gray-900">Bạch kim · Platinum</div>
+                    </div>
+                </div>
+                <div class="text-3xl font-black text-gray-900 mb-1">20%+</div>
+                <div class="text-sm text-gray-500 mb-6">Hoa hồng tối đa + hỗ trợ độc quyền</div>
+                <ul class="space-y-3 text-sm text-gray-600 flex-1 mb-8">
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-solar-500 mt-0.5 flex-shrink-0"></i>Doanh số tối thiểu: 8 hợp đồng/tháng</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-solar-500 mt-0.5 flex-shrink-0"></i>Độc quyền tỉnh/thành</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-solar-500 mt-0.5 flex-shrink-0"></i>Kỹ sư hỗ trợ cố định</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-solar-500 mt-0.5 flex-shrink-0"></i>Thương hiệu co-branding</li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-solar-500 mt-0.5 flex-shrink-0"></i>Quản lý tài khoản riêng (AM)</li>
+                </ul>
+                <a href="#form-section" class="block text-center border-2 border-gray-200 hover:border-solar-400 text-gray-700 hover:text-solar-600 py-3 rounded-xl font-bold transition-all">Liên hệ tư vấn</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <script>
-    /* ── Province / District cascade (open-api.vn) ── */
-    async function loadProvinces() {
-        try {
-            const res = await fetch('https://provinces.open-api.vn/api/p/');
-            const data = await res.json();
-            const sel = document.getElementById('pf_province');
-            data.forEach(p => {
-                const opt = document.createElement('option');
-                opt.value = p.code;
-                opt.textContent = p.name;
-                sel.appendChild(opt);
-            });
-        } catch(e) {
-            console.warn('Province API failed', e);
-        }
-    }
+<!-- ── 4 BƯỚC QUY TRÌNH ───────────────────────────── -->
+<section class="py-24 bg-dark relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-64 h-64 bg-solar-700 rounded-full filter blur-3xl opacity-10"></div>
+        <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-700 rounded-full filter blur-3xl opacity-10"></div>
+    </div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+            <p class="text-solar-400 font-bold uppercase tracking-wider text-sm mb-3">Quy trình đơn giản</p>
+            <h2 class="text-3xl md:text-4xl font-black text-white">4 bước để trở thành<br>đối tác NLP Group</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+            <!-- Connector line desktop -->
+            <div class="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-0.5 step-connector"></div>
 
-    async function loadDistricts() {
-        const code = document.getElementById('pf_province').value;
-        const sel  = document.getElementById('pf_district');
-        sel.innerHTML = '<option value="">-- Chọn quận/huyện --</option>';
-        if (!code) return;
-        try {
-            const res  = await fetch(`https://provinces.open-api.vn/api/p/${code}?depth=2`);
-            const data = await res.json();
-            (data.districts || []).forEach(d => {
-                const opt = document.createElement('option');
-                opt.value = d.code;
-                opt.textContent = d.name;
-                sel.appendChild(opt);
-            });
-        } catch(e) {
-            console.warn('District API failed', e);
-        }
-    }
+            <div class="relative text-center">
+                <div class="w-20 h-20 bg-solar-600 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-solar-500/40 relative z-10">
+                    <i class="fa-solid fa-file-lines text-white text-2xl"></i>
+                </div>
+                <div class="text-xs font-black text-solar-400 uppercase tracking-widest mb-2">Bước 1</div>
+                <h3 class="font-bold text-white mb-2">Điền form đăng ký</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">Hoàn thành form trên trang này — mất chưa đến 2 phút</p>
+            </div>
 
-    /* ── Partner form submit ── */
-    window.submitPartnerForm = function(e) {
-        e.preventDefault();
-        const btn = document.getElementById('partnerSubmitBtn');
-        const orig = btn.innerHTML;
+            <div class="relative text-center">
+                <div class="w-20 h-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl flex items-center justify-center mx-auto mb-5 relative z-10">
+                    <i class="fa-solid fa-phone-volume text-solar-400 text-2xl"></i>
+                </div>
+                <div class="text-xs font-black text-solar-400 uppercase tracking-widest mb-2">Bước 2</div>
+                <h3 class="font-bold text-white mb-2">Tư vấn 1-1</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">Chuyên gia NLP Group gọi điện tư vấn trong 2 giờ làm việc</p>
+            </div>
 
-        const prov = document.getElementById('pf_province');
-        const provName = prov.options[prov.selectedIndex]?.text || '';
-        const dist = document.getElementById('pf_district');
-        const distName = dist.options[dist.selectedIndex]?.text || '';
+            <div class="relative text-center">
+                <div class="w-20 h-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl flex items-center justify-center mx-auto mb-5 relative z-10">
+                    <i class="fa-solid fa-file-signature text-solar-400 text-2xl"></i>
+                </div>
+                <div class="text-xs font-black text-solar-400 uppercase tracking-widest mb-2">Bước 3</div>
+                <h3 class="font-bold text-white mb-2">Ký hợp đồng</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">Ký hợp đồng đối tác, được cấp tài khoản và tài liệu đầy đủ</p>
+            </div>
 
-        const data = {
-            type: 'partner',
-            name:     document.getElementById('pf_name').value,
-            phone:    document.getElementById('pf_phone').value,
-            email:    document.getElementById('pf_email').value,
-            company:  document.getElementById('pf_company').value,
-            province: provName,
-            district: distName,
-            partner_type: document.querySelector('input[name="partner_type"]:checked')?.value || '',
-            business: document.getElementById('pf_business').value,
-            source:   window.location.pathname,
-            time:     new Date().toISOString(),
-        };
+            <div class="relative text-center">
+                <div class="w-20 h-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl flex items-center justify-center mx-auto mb-5 relative z-10">
+                    <i class="fa-solid fa-rocket text-yellow-300 text-2xl"></i>
+                </div>
+                <div class="text-xs font-black text-solar-400 uppercase tracking-widest mb-2">Bước 4</div>
+                <h3 class="font-bold text-white mb-2">Kinh doanh ngay</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">Bắt đầu chào hàng, NLP Group hỗ trợ kỹ thuật & đóng hợp đồng</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang gửi...';
-        btn.disabled = true;
+<!-- ── FAQ ────────────────────────────────────────── -->
+<section class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Câu hỏi thường gặp</p>
+            <h2 class="text-2xl md:text-3xl font-black text-gray-900">Bạn có thắc mắc?<br>Chúng tôi có câu trả lời</h2>
+        </div>
+        <div class="space-y-4" id="faq-list">
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+                <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                    <span>Tôi có cần kinh nghiệm kỹ thuật không?</span>
+                    <i class="fa-solid fa-chevron-down text-solar-500 transition-transform text-sm flex-shrink-0 ml-4"></i>
+                </button>
+                <div class="faq-body hidden px-6 pb-5 text-gray-600 text-sm leading-relaxed">
+                    Không bắt buộc. NLP Group sẽ đào tạo toàn bộ kiến thức kỹ thuật cần thiết trong chương trình onboarding. Bạn chỉ cần có mạng lưới khách hàng và kỹ năng bán hàng.
+                </div>
+            </div>
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+                <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                    <span>Phí gia nhập chương trình đối tác là bao nhiêu?</span>
+                    <i class="fa-solid fa-chevron-down text-solar-500 transition-transform text-sm flex-shrink-0 ml-4"></i>
+                </button>
+                <div class="faq-body hidden px-6 pb-5 text-gray-600 text-sm leading-relaxed">
+                    Hoàn toàn <strong>miễn phí</strong>. Không có phí đăng ký, không đặt cọc, không yêu cầu mua hàng mẫu tối thiểu để gia nhập.
+                </div>
+            </div>
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+                <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                    <span>Hoa hồng được thanh toán khi nào?</span>
+                    <i class="fa-solid fa-chevron-down text-solar-500 transition-transform text-sm flex-shrink-0 ml-4"></i>
+                </button>
+                <div class="faq-body hidden px-6 pb-5 text-gray-600 text-sm leading-relaxed">
+                    Hoa hồng được thanh toán trong vòng 7 ngày làm việc sau khi khách hàng thanh toán đủ hợp đồng. Đối tác Gold và Platinum được thanh toán theo kỳ 2 tuần.
+                </div>
+            </div>
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+                <button class="faq-btn w-full text-left px-6 py-5 flex items-center justify-between font-semibold text-gray-900 hover:bg-gray-50 transition-colors">
+                    <span>Tôi có thể làm đối tác cả solar lẫn trạm sạc không?</span>
+                    <i class="fa-solid fa-chevron-down text-solar-500 transition-transform text-sm flex-shrink-0 ml-4"></i>
+                </button>
+                <div class="faq-body hidden px-6 pb-5 text-gray-600 text-sm leading-relaxed">
+                    Có. Đây thực ra là lựa chọn tối ưu — khách hàng doanh nghiệp thường quan tâm cả hai. NLP Group khuyến khích đối tác phát triển cả hai mảng để tối đa hóa thu nhập.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // Save to localStorage
-        const leads = JSON.parse(localStorage.getItem('nlpgroup_leads') || '[]');
-        leads.unshift(data);
-        localStorage.setItem('nlpgroup_leads', JSON.stringify(leads));
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer class="bg-dark text-gray-400 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="md:col-span-2">
+                <div class="text-2xl font-black text-white tracking-tighter mb-4">NLP <span class="text-solar-500">GROUP</span></div>
+                <p class="text-sm leading-relaxed mb-6 max-w-sm">Tiên phong giải pháp điện mặt trời áp mái & trạm sạc xe điện thông minh B2B/B2C tại Việt Nam.</p>
+                <div class="flex gap-3">
+                    <a href="#" class="w-9 h-9 bg-white/10 hover:bg-solar-600 rounded-lg flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#" class="w-9 h-9 bg-white/10 hover:bg-red-600 rounded-lg flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube text-sm"></i></a>
+                    <a href="#" class="w-9 h-9 bg-white/10 hover:bg-black rounded-lg flex items-center justify-center transition-colors"><i class="fa-brands fa-tiktok text-sm"></i></a>
+                </div>
+            </div>
+            <div>
+                <div class="text-white font-bold mb-4 text-sm uppercase tracking-wider">Giải pháp</div>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="../../pages/dien-mat-troi/bien-tan-hybrid/" class="hover:text-solar-400 transition-colors">Biến tần Hybrid</a></li>
+                    <li><a href="../../pages/dien-mat-troi/bien-tan-hoa-luoi/" class="hover:text-solar-400 transition-colors">Biến tần Hòa lưới</a></li>
+                    <li><a href="../../pages/tru-sac/tru-sac-dc/" class="hover:text-solar-400 transition-colors">Trụ sạc DC</a></li>
+                    <li><a href="../../pages/tru-sac/tru-sac-ac/" class="hover:text-solar-400 transition-colors">Trụ sạc AC</a></li>
+                    <li><a href="../../pages/dich-vu/thue-mua/" class="hover:text-solar-400 transition-colors">Thuê – Mua 0 đồng</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="text-white font-bold mb-4 text-sm uppercase tracking-wider">Công ty</div>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="../../pages/ve-chung-toi/" class="hover:text-solar-400 transition-colors">Về chúng tôi</a></li>
+                    <li><a href="../../pages/doi-tac/" class="text-solar-400 font-semibold">Đăng ký Đối tác</a></li>
+                    <li><a href="../../pages/tin-tuc/" class="hover:text-solar-400 transition-colors">Tin tức</a></li>
+                    <li><a href="../../pages/lien-he/" class="hover:text-solar-400 transition-colors">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <div>© 2025 NLP GROUP JOINT STOCK COMPANY · MST: 0316942991</div>
+            <div class="flex gap-4">
+                <a href="../../index.html" class="hover:text-solar-400">Trang chủ</a>
+                <a href="../../pages/tin-tuc/" class="hover:text-solar-400">Tin tức</a>
+                <a href="../../pages/lien-he/" class="hover:text-solar-400">Liên hệ</a>
+                <a href="../../admin/" class="hover:text-solar-400">Admin</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
-        // GA4 event
-        if (typeof gtag === 'function') {
-            gtag('event', 'dang_ky_doi_tac', {
-                tinh_thanh: provName,
-                loai_doi_tac: data.partner_type,
-                trang_nguon: window.location.pathname
-            });
-        }
+<!-- Mobile sticky bar -->
+<div class="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white border-t border-gray-200 shadow-2xl flex">
+    <a href="tel:0333864000" class="flex-1 flex flex-col items-center justify-center py-3 text-gray-700 hover:text-solar-600 active:bg-solar-50 transition-colors">
+        <i class="fa-solid fa-phone text-solar-600 text-lg mb-0.5"></i>
+        <span class="text-xs font-semibold">Gọi ngay</span>
+    </a>
+    <a href="https://zalo.me/0944086788" target="_blank" rel="noopener" class="flex-1 flex flex-col items-center justify-center py-3 text-gray-700 hover:text-blue-600 active:bg-blue-50 transition-colors border-x border-gray-200">
+        <i class="fa-brands fa-telegram text-blue-500 text-lg mb-0.5"></i>
+        <span class="text-xs font-semibold">Zalo</span>
+    </a>
+    <a href="#form-section" class="flex-1 flex flex-col items-center justify-center py-3 bg-solar-600 text-white">
+        <i class="fa-solid fa-handshake text-lg mb-0.5"></i>
+        <span class="text-xs font-semibold">Đăng ký</span>
+    </a>
+</div>
 
-        setTimeout(() => {
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> Gửi thành công! Chúng tôi sẽ liên hệ bạn sớm.';
-            btn.classList.replace('bg-solar-600','bg-green-600');
-            setTimeout(() => {
-                e.target.reset();
-                loadProvinces();
-                btn.innerHTML = orig;
-                btn.disabled = false;
-                btn.classList.replace('bg-green-600','bg-solar-600');
-            }, 3000);
-        }, 900);
-    };
+<!-- FAB desktop -->
+<div class="hidden md:flex fixed bottom-8 right-6 z-40 flex-col gap-3">
+    <a href="tel:0333864000" class="w-12 h-12 bg-solar-600 hover:bg-solar-700 text-white rounded-full shadow-xl shadow-solar-500/40 flex items-center justify-center transition-all hover:scale-110" title="Gọi ngay">
+        <i class="fa-solid fa-phone"></i>
+    </a>
+    <a href="https://zalo.me/0944086788" target="_blank" rel="noopener" class="w-12 h-12 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-xl flex items-center justify-center transition-all hover:scale-110" title="Chat Zalo">
+        <i class="fa-brands fa-telegram"></i>
+    </a>
+</div>
 
-    /* ── FAQ toggle ── */
-    window.toggleFaq = function(btn) {
+<script>
+// ── Mobile menu ──────────────────────────────────
+const btn = document.getElementById('mobile-menu-btn');
+const menu = document.getElementById('mobile-menu');
+if (btn && menu) {
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        const icon = btn.querySelector('i');
+        if (icon) { icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-xmark'); }
+    });
+}
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (nav) nav.classList.toggle('shadow-md', window.scrollY > 10);
+});
+
+// ── FAQ accordion ────────────────────────────────
+document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
         const body = btn.nextElementSibling;
         const icon = btn.querySelector('i');
-        body.classList.toggle('hidden');
-        icon.classList.toggle('rotate-180');
-    };
+        const isOpen = !body.classList.contains('hidden');
+        // Close all
+        document.querySelectorAll('.faq-body').forEach(b => b.classList.add('hidden'));
+        document.querySelectorAll('.faq-btn i').forEach(i => i.style.transform = '');
+        // Toggle clicked
+        if (!isOpen) {
+            body.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+        }
+    });
+});
 
-    /* ── Init ── */
-    document.addEventListener('DOMContentLoaded', loadProvinces);
-    </script>
-    <script src="../../js/main.js"></script>
+// ── Cascade tỉnh/huyện ───────────────────────────
+const provSel = document.getElementById('f-province');
+const distSel = document.getElementById('f-district');
+
+fetch('https://provinces.open-api.vn/api/p/')
+    .then(r => r.json())
+    .then(data => {
+        data.sort((a, b) => a.name.localeCompare(b.name, 'vi'));
+        data.forEach(p => {
+            const opt = document.createElement('option');
+            opt.value = p.code;
+            opt.textContent = p.name;
+            provSel.appendChild(opt);
+        });
+    })
+    .catch(() => {
+        // fallback: manual list major cities
+        const fallback = ['Hà Nội','TP. Hồ Chí Minh','Đà Nẵng','Hải Phòng','Cần Thơ',
+            'Bình Dương','Đồng Nai','Bà Rịa - Vũng Tàu','Long An','Khánh Hòa'];
+        fallback.forEach(n => {
+            const opt = document.createElement('option');
+            opt.value = n; opt.textContent = n;
+            provSel.appendChild(opt);
+        });
+    });
+
+provSel.addEventListener('change', () => {
+    const code = provSel.value;
+    distSel.innerHTML = '<option value="">-- Chọn quận/huyện --</option>';
+    if (!code) { distSel.disabled = true; return; }
+    distSel.disabled = false;
+    // Try to fetch districts
+    fetch(`https://provinces.open-api.vn/api/p/${code}?depth=2`)
+        .then(r => r.json())
+        .then(data => {
+            (data.districts || [])
+                .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
+                .forEach(d => {
+                    const opt = document.createElement('option');
+                    opt.value = d.code; opt.textContent = d.name;
+                    distSel.appendChild(opt);
+                });
+        })
+        .catch(() => { distSel.disabled = true; });
+});
+
+// ── Form submit ──────────────────────────────────
+document.getElementById('partner-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name    = document.getElementById('f-name').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const type    = document.getElementById('f-type').value;
+    const province = provSel.options[provSel.selectedIndex]?.text || '';
+
+    if (!name) { alert('Vui lòng nhập họ và tên.'); return; }
+    if (!phone || !/^[0-9\s.+\-()]{9,15}$/.test(phone)) {
+        alert('Vui lòng nhập số điện thoại hợp lệ.'); return;
+    }
+    if (!type) { alert('Vui lòng chọn loại đối tác.'); return; }
+
+    // Persist to localStorage
+    const leads = JSON.parse(localStorage.getItem('nlp_leads') || '[]');
+    leads.push({
+        id: Date.now(),
+        name,
+        phone,
+        email: document.getElementById('f-email').value.trim(),
+        province,
+        district: distSel.options[distSel.selectedIndex]?.text || '',
+        type,
+        note: document.getElementById('f-note').value.trim(),
+        source: 'doi-tac',
+        created_at: new Date().toISOString()
+    });
+    localStorage.setItem('nlp_leads', JSON.stringify(leads));
+
+    // Show success
+    document.getElementById('partner-form').classList.add('hidden');
+    document.getElementById('form-success').classList.remove('hidden');
+
+    // GA4 event (if loaded)
+    if (typeof gtag === 'function') {
+        gtag('event', 'dang_ky_doi_tac', {
+            tinh_thanh: province,
+            loai_doi_tac: type,
+            trang_nguon: window.location.pathname
+        });
+    }
+});
+</script>
 </body>
 </html>
