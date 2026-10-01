@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -7,12 +7,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App NLP-EGREEN – Quản lý Sạc & Đầu tư Trạm Sạc Xe Điện | NLP Group</title>
-    <meta name="description" content="Tải app NLP-EGREEN để tìm trạm sạc, quản lý phiên sạc và theo dõi doanh thu đầu tư trạm sạc xe điện. Dành cho tài xế và nhà đầu tư franchise.">
-    <meta name="keywords" content="app NLP EGREEN, ứng dụng sạc xe điện, app trạm sạc, quản lý trạm sạc, đầu tư franchise sạc xe">
-    <meta property="og:title" content="App NLP-EGREEN – Quản lý Sạc & Đầu tư Trạm">
-    <meta property="og:description" content="Tìm trạm sạc, theo dõi phiên sạc, xem doanh thu franchise. iOS & Android.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>App NLP-EGREEN – Real-time Truth. Zero Anxiety. | Trạm Sạc Thông Minh</title>
+    <meta name="description" content="App NLP-EGREEN — nền tảng tìm trạm sạc xe điện thế hệ mới với TLP Trust Level Protocol, bản đồ real-time, thanh toán Zero-Lock. Dành cho tài xế & nhà đầu tư franchise.">
+    <meta property="og:title" content="App NLP-EGREEN – Real-time Truth. Zero Anxiety.">
+    <meta property="og:description" content="Hệ thống TLP 4 cấp độ tin cậy, bản đồ trạm sạc real-time, lộ trình thông minh theo SoC xe. iOS & Android.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nlpgroup.com.vn/pages/app/">
     <meta property="og:image" content="https://nlpgroup.com.vn/favicon_io/og-image.png">
@@ -20,14 +19,100 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://nlpgroup.com.vn/favicon_io/og-image.png">
+    <!-- Work Sans for VoltSync design system -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
     <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'] }, colors: { solar:{ 50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d' }, dark:'#0f172a', ev:'#1D3A8A' } } } }
+    tailwind.config = { theme: { extend: {
+        fontFamily: {
+            sans:  ['Work Sans', 'Inter', 'sans-serif'],
+            mono:  ['"JetBrains Mono"', 'monospace'],
+        },
+        colors: {
+            /* VoltSync Design System tokens */
+            'bg-primary':   '#0D1117',
+            'bg-secondary': '#161B22',
+            'surface':      '#1C2128',
+            'surface-r':    '#22272E',
+            'border-s':     '#30363D',
+            'border-sub':   '#21262D',
+            /* TLP Trust Level Protocol */
+            'tlp-safe':     '#00D68F',
+            'tlp-caution':  '#FFAA00',
+            'tlp-blocked':  '#FF3D71',
+            'tlp-system':   '#57606A',
+            /* Brand */
+            'brand-teal':   '#49DBC8',
+            'brand-green':  '#BEFF6C',
+            /* Legacy solar for navbar/footer */
+            solar: { 50:'#f0fdf4',100:'#dcfce7',400:'#4ade80',500:'#22c55e',600:'#16a34a',700:'#15803d' },
+            dark: '#0f172a',
+        }
+    }}}
     </script>
+    <style>
+        /* ── VoltSync CSS tokens ── */
+        :root {
+            --tlp-safe:    #00D68F;
+            --tlp-caution: #FFAA00;
+            --tlp-blocked: #FF3D71;
+            --tlp-system:  #57606A;
+            --brand-teal:  #49DBC8;
+            --brand-green: #BEFF6C;
+            --bg-primary:  #0D1117;
+            --surface:     #1C2128;
+            --border-s:    #30363D;
+        }
+        body { background: var(--bg-primary); color: #e6edf3; font-family: 'Work Sans', 'Inter', sans-serif; }
+
+        /* TLP badge */
+        .tlp-badge { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:700; letter-spacing:.04em; }
+        .tlp-safe-badge    { background:rgba(0,214,143,.15);  color:var(--tlp-safe);    border:1px solid rgba(0,214,143,.3); }
+        .tlp-caution-badge { background:rgba(255,170,0,.15);  color:var(--tlp-caution); border:1px solid rgba(255,170,0,.3); }
+        .tlp-blocked-badge { background:rgba(255,61,113,.15); color:var(--tlp-blocked); border:1px solid rgba(255,61,113,.3); }
+        .tlp-system-badge  { background:rgba(87,96,106,.2);   color:var(--tlp-system);  border:1px solid rgba(87,96,106,.3); }
+
+        /* Phone mockup screen */
+        .phone-screen { background: var(--bg-primary); border-radius:16px; overflow:hidden; }
+
+        /* Teal CTA */
+        .btn-teal { background:var(--brand-teal); color:#000; font-weight:700; border-radius:12px; padding:12px 28px; display:inline-flex; align-items:center; gap:8px; transition:opacity .2s; }
+        .btn-teal:hover { opacity:.88; }
+
+        /* Section card dark */
+        .dark-card { background:var(--surface); border:1px solid var(--border-s); border-radius:16px; padding:24px; }
+
+        /* Charge ring */
+        .charge-ring { stroke-dasharray: 339.3; stroke-dashoffset: 84.8; /* 75% */ stroke-linecap:round; transition:stroke-dashoffset 1.2s ease; }
+
+        /* Telemetry mono */
+        .tele-value { font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--brand-teal); }
+
+        /* Slider stop button */
+        .slider-stop { background:rgba(255,61,113,.12); border:1.5px solid var(--tlp-blocked); border-radius:24px; color:var(--tlp-blocked); font-weight:700; display:flex; align-items:center; justify-content:space-between; padding:12px 16px; gap:8px; font-size:13px; cursor:grab; user-select:none; }
+        .slider-handle { width:40px; height:40px; background:var(--tlp-blocked); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; flex-shrink:0; }
+
+        /* Elevation chart line */
+        .elev-path { fill:none; stroke:#49DBC8; stroke-width:2; }
+        .soc-path  { fill:none; stroke:#BEFF6C; stroke-width:2; }
+
+        /* Feature icon */
+        .feat-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+
+        /* Scroll reveal */
+        .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+        .reveal.visible { opacity:1; transform:none; }
+
+        /* Mobile bottom nav override for dark pages */
+        .mobile-cta-bar { background: #1C2128; border-top:1px solid #30363D; }
+        .mobile-cta-bar .nav-tab { color:#8b949e; }
+        .mobile-cta-bar .nav-tab.active, .mobile-cta-bar .nav-tab:hover { color:var(--brand-teal); }
+        .mobile-cta-bar .nav-tab.cta-primary { background:var(--brand-teal); color:#000; }
+    </style>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
         {"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://nlpgroup.com.vn"},
@@ -35,361 +120,589 @@
     ]}
     </script>
 </head>
-<body class="font-sans antialiased text-gray-800 bg-gray-50">
+<body>
 
 <!-- NAVBAR -->
-<nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100" id="navbar">
+<nav class="fixed w-full z-50 border-b border-[#30363D] backdrop-blur-md" style="background:rgba(13,17,23,.9)" id="navbar">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
-        <a href="../../index.html" class="text-xl font-black text-dark tracking-tighter">NLP <span class="text-solar-600">GROUP</span></a>
-        <div class="hidden md:flex space-x-6 items-center text-sm font-semibold text-gray-600">
-            <a href="../tru-sac/"               class="hover:text-solar-600">Trụ sạc</a>
-            <a href="../tim-kiem-tram-sac/"     class="hover:text-solar-600">Tìm trạm sạc</a>
-            <a href="../bieu-phi/"              class="hover:text-solar-600">Biểu phí</a>
-            <a href="../lien-he/"               class="hover:text-solar-600">Liên hệ</a>
-            <a href="../doi-tac/" class="bg-solar-600 hover:bg-solar-700 text-white px-4 py-1.5 rounded-full transition-colors">🤝 Đối tác</a>
+        <a href="../../index.html" class="font-black tracking-tighter text-white text-xl">NLP <span style="color:var(--brand-teal)">GROUP</span></a>
+        <div class="hidden md:flex space-x-6 items-center text-sm font-semibold text-gray-400">
+            <a href="../tim-kiem-tram-sac/" class="hover:text-white">Tìm trạm sạc</a>
+            <a href="../tru-sac/"           class="hover:text-white">Trụ sạc</a>
+            <a href="../bieu-phi/"          class="hover:text-white">Biểu phí</a>
+            <a href="../lien-he/"           class="hover:text-white">Liên hệ</a>
+            <a href="../doi-tac/" class="btn-teal text-sm px-4 py-1.5" style="border-radius:20px">🤝 Đầu tư trạm</a>
         </div>
-        <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600"><i class="fa-solid fa-bars text-xl"></i></button>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-400"><i class="fa-solid fa-bars text-xl"></i></button>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-2 shadow-xl absolute w-full">
-        <a href="../tru-sac/"           class="block py-2 font-medium text-gray-700">Trụ sạc</a>
-        <a href="../tim-kiem-tram-sac/" class="block py-2 font-medium text-gray-700">Tìm trạm sạc</a>
-        <a href="../bieu-phi/"          class="block py-2 font-medium text-gray-700">Biểu phí</a>
-        <a href="../doi-tac/"           class="block py-2 font-bold text-solar-600">🤝 Đăng ký Đối tác</a>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-[#30363D] px-4 py-4 space-y-2" style="background:#161B22">
+        <a href="../tim-kiem-tram-sac/" class="block py-2 font-medium text-gray-300">Tìm trạm sạc</a>
+        <a href="../tru-sac/"           class="block py-2 font-medium text-gray-300">Trụ sạc</a>
+        <a href="../bieu-phi/"          class="block py-2 font-medium text-gray-300">Biểu phí</a>
+        <a href="../doi-tac/"           class="block py-2 font-bold" style="color:var(--brand-teal)">🤝 Đăng ký Đầu tư</a>
     </div>
 </nav>
 
-<!-- HERO SECTION -->
-<section class="min-h-screen bg-dark flex items-center overflow-hidden pt-16 relative">
-    <div class="absolute inset-0 z-0 opacity-10">
-        <div class="absolute top-20 left-10 w-72 h-72 bg-solar-500 rounded-full mix-blend-screen blur-3xl"></div>
-        <div class="absolute bottom-10 right-10 w-80 h-80 bg-blue-600 rounded-full mix-blend-screen blur-3xl"></div>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<section class="min-h-screen flex items-center pt-16 relative overflow-hidden" style="background:var(--bg-primary)">
+    <!-- Grid background -->
+    <div class="absolute inset-0 opacity-[0.04]" style="background-image:linear-gradient(#49DBC8 1px,transparent 1px),linear-gradient(90deg,#49DBC8 1px,transparent 1px);background-size:48px 48px"></div>
+    <!-- Glow blobs -->
+    <div class="absolute top-24 left-1/4 w-80 h-80 rounded-full blur-3xl opacity-10" style="background:var(--brand-teal)"></div>
+    <div class="absolute bottom-16 right-1/4 w-72 h-72 rounded-full blur-3xl opacity-8" style="background:var(--brand-green)"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <!-- Left content -->
-            <div>
-                <nav class="breadcrumb mb-6">
-                    <a href="../../index.html" class="text-gray-400 hover:text-white">Trang chủ</a>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400">App NLP-EGREEN</span>
-                </nav>
-                <div class="inline-flex items-center gap-2 bg-solar-500/20 border border-solar-500/30 text-solar-400 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-6">
-                    <i class="fa-solid fa-mobile-screen-button"></i> iOS & Android · Miễn phí
+            <!-- Left -->
+            <div class="animate__animated animate__fadeInLeft">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6" style="background:rgba(73,219,200,.1);border:1px solid rgba(73,219,200,.25);color:var(--brand-teal)">
+                    <span class="w-2 h-2 rounded-full animate-pulse" style="background:var(--tlp-safe)"></span>
+                    Real-time Truth · Zero Anxiety
                 </div>
-                <h1 class="text-4xl md:text-6xl font-black text-white leading-tight mb-6">
-                    Ứng dụng<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-solar-400 to-green-300">NLP-EGREEN</span>
+                <h1 class="text-5xl md:text-6xl font-black text-white leading-tight mb-4">
+                    App<br>
+                    <span style="color:var(--brand-teal)">NLP-EGREEN</span>
                 </h1>
-                <p class="text-gray-300 text-xl mb-8 leading-relaxed max-w-lg">
-                    Dành cho <strong class="text-white">tài xế xe điện</strong> — tìm trạm, sạc nhanh, thanh toán ví số.<br>
-                    Dành cho <strong class="text-white">nhà đầu tư</strong> — quản lý trạm sạc, xem doanh thu theo thời gian thực.
+                <p class="text-lg text-gray-400 mb-6 leading-relaxed max-w-lg">
+                    Nền tảng điều phối hạ tầng sạc mở thế hệ mới — tích hợp <strong class="text-white">TLP Trust Level Protocol</strong>, bản đồ real-time và lộ trình thông minh theo SoC xe.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 mb-10">
-                    <a href="#download" class="store-badge">
-                        <i class="fa-brands fa-apple"></i>
-                        <div class="text-left">
-                            <div class="text-xs text-gray-300">Tải về trên</div>
-                            <div class="text-base font-black">App Store</div>
-                        </div>
+                <!-- TLP legend inline -->
+                <div class="flex flex-wrap gap-2 mb-8">
+                    <span class="tlp-badge tlp-safe-badge"><i class="fa-solid fa-circle text-[8px]"></i> TLP Safe</span>
+                    <span class="tlp-badge tlp-caution-badge"><i class="fa-solid fa-circle text-[8px]"></i> TLP Caution</span>
+                    <span class="tlp-badge tlp-blocked-badge"><i class="fa-solid fa-circle text-[8px]"></i> TLP Blocked</span>
+                    <span class="tlp-badge tlp-system-badge"><i class="fa-solid fa-circle text-[8px]"></i> TLP System</span>
+                </div>
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row gap-3 mb-8">
+                    <a href="#download" class="btn-teal">
+                        <i class="fa-brands fa-apple text-lg"></i>
+                        <div class="text-left"><div class="text-xs opacity-70">Tải về trên</div><div class="font-black">App Store</div></div>
                     </a>
-                    <a href="#download" class="store-badge">
-                        <i class="fa-brands fa-google-play"></i>
-                        <div class="text-left">
-                            <div class="text-xs text-gray-300">Tải về trên</div>
-                            <div class="text-base font-black">Google Play</div>
-                        </div>
+                    <a href="#download" class="flex items-center gap-3 px-5 py-3 rounded-xl border font-bold text-white transition-colors hover:bg-white/5" style="border-color:var(--border-s)">
+                        <i class="fa-brands fa-google-play text-lg" style="color:var(--brand-green)"></i>
+                        <div class="text-left"><div class="text-xs text-gray-400">Tải về trên</div><div class="font-black">Google Play</div></div>
                     </a>
                 </div>
-                <div class="flex flex-wrap gap-6 text-sm text-gray-400">
-                    <div class="flex items-center gap-2"><i class="fa-solid fa-star text-yellow-400"></i> 4.8/5 đánh giá</div>
-                    <div class="flex items-center gap-2"><i class="fa-solid fa-download text-solar-400"></i> 50.000+ lượt tải</div>
-                    <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-solar-400"></i> Bảo mật dữ liệu</div>
+                <div class="flex flex-wrap gap-5 text-sm text-gray-400">
+                    <span><i class="fa-solid fa-star" style="color:#fbbf24"></i> 4.8/5 đánh giá</span>
+                    <span><i class="fa-solid fa-bolt" style="color:var(--brand-green)"></i> 50K+ lượt tải</span>
+                    <span><i class="fa-solid fa-shield-halved" style="color:var(--brand-teal)"></i> OCPP 2.0.1</span>
                 </div>
             </div>
 
-            <!-- Right: App mockup -->
-            <div class="hidden lg:flex justify-center">
+            <!-- Right: Phone mockup — Map Hub screen -->
+            <div class="hidden lg:flex justify-center animate__animated animate__fadeInRight">
                 <div class="relative">
-                    <!-- Phone frame SVG -->
-                    <svg viewBox="0 0 260 520" class="w-64 drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Phone body -->
-                        <rect x="10" y="10" width="240" height="500" rx="35" fill="#1a1a2e" stroke="#374151" stroke-width="2"/>
-                        <!-- Screen -->
-                        <rect x="20" y="50" width="220" height="430" rx="20" fill="#0f172a"/>
-                        <!-- Status bar -->
-                        <rect x="20" y="50" width="220" height="30" rx="0" fill="#1e293b"/>
-                        <rect x="20" y="50" width="220" height="30" rx="20 20 0 0" fill="#1e293b"/>
+                    <svg viewBox="0 0 280 560" class="w-72 drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Frame -->
+                        <rect x="8" y="8" width="264" height="544" rx="36" fill="#161B22" stroke="#30363D" stroke-width="1.5"/>
+                        <!-- Screen bg -->
+                        <rect x="18" y="48" width="244" height="464" rx="18" fill="#0D1117"/>
                         <!-- Notch -->
-                        <rect x="100" y="12" width="60" height="18" rx="9" fill="#111827"/>
+                        <rect x="108" y="10" width="64" height="20" rx="10" fill="#0D1117"/>
 
-                        <!-- App screen content -->
-                        <!-- Header bar -->
-                        <rect x="20" y="80" width="220" height="50" fill="#16a34a"/>
-                        <text x="130" y="110" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="Inter,sans-serif">NLP-EGREEN</text>
-                        <text x="130" y="125" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="sans-serif">Trạm sạc thông minh</text>
+                        <!-- Status bar -->
+                        <rect x="18" y="48" width="244" height="28" rx="18 18 0 0" fill="#161B22"/>
+                        <text x="32" y="66" fill="#8b949e" font-size="9" font-family="sans-serif">9:41</text>
+                        <text x="236" y="66" fill="#8b949e" font-size="9" font-family="sans-serif" text-anchor="end">100%</text>
 
-                        <!-- Map preview -->
-                        <rect x="20" y="130" width="220" height="120" fill="#1e3a5f"/>
-                        <!-- Map grid -->
-                        <line x1="20" y1="155" x2="240" y2="155" stroke="#1d4ed8" stroke-width="0.5" opacity="0.4"/>
-                        <line x1="20" y1="180" x2="240" y2="180" stroke="#1d4ed8" stroke-width="0.5" opacity="0.4"/>
-                        <line x1="20" y1="205" x2="240" y2="205" stroke="#1d4ed8" stroke-width="0.5" opacity="0.4"/>
-                        <line x1="80" y1="130" x2="80" y2="250" stroke="#1d4ed8" stroke-width="0.5" opacity="0.4"/>
-                        <line x1="140" y1="130" x2="140" y2="250" stroke="#1d4ed8" stroke-width="0.5" opacity="0.4"/>
-                        <line x1="200" y1="130" x2="200" y2="250" stroke="#1d4ed8" stroke-width="0.5" opacity="0.4"/>
-                        <!-- Station markers -->
-                        <circle cx="100" cy="165" r="8" fill="#16a34a" opacity="0.9"/>
-                        <text x="100" y="169" text-anchor="middle" fill="white" font-size="8">⚡</text>
-                        <circle cx="160" cy="190" r="8" fill="#16a34a" opacity="0.9"/>
-                        <text x="160" y="194" text-anchor="middle" fill="white" font-size="8">⚡</text>
-                        <circle cx="70" cy="205" r="6" fill="#fbbf24" opacity="0.8"/>
-                        <text x="70" y="209" text-anchor="middle" fill="white" font-size="7">⚡</text>
-                        <!-- User location -->
-                        <circle cx="130" cy="175" r="6" fill="#3b82f6"/>
-                        <circle cx="130" cy="175" r="10" fill="#3b82f6" opacity="0.3"/>
+                        <!-- Search bar -->
+                        <rect x="28" y="84" width="224" height="30" rx="10" fill="#22272E"/>
+                        <text x="46" y="103" fill="#8b949e" font-size="9" font-family="sans-serif">🔍  Tìm trạm sạc gần bạn...</text>
 
-                        <!-- Search bar below map -->
-                        <rect x="30" y="260" width="200" height="28" rx="8" fill="#1e293b"/>
-                        <text x="50" y="278" fill="#64748b" font-size="9" font-family="sans-serif">🔍  Tìm trạm gần bạn...</text>
+                        <!-- Map area -->
+                        <rect x="18" y="120" width="244" height="200" fill="#1e3a5f"/>
+                        <!-- Roads -->
+                        <line x1="18" y1="210" x2="262" y2="210" stroke="#1d4ed8" stroke-width="3" opacity="0.4"/>
+                        <line x1="140" y1="120" x2="140" y2="320" stroke="#1d4ed8" stroke-width="2" opacity="0.3"/>
+                        <!-- TLP Safe markers -->
+                        <circle cx="100" cy="170" r="10" fill="#00D68F"/>
+                        <text x="100" y="174" text-anchor="middle" fill="white" font-size="9">⚡</text>
+                        <circle cx="175" cy="195" r="10" fill="#00D68F"/>
+                        <text x="175" y="199" text-anchor="middle" fill="white" font-size="9">⚡</text>
+                        <!-- TLP Caution -->
+                        <circle cx="75" cy="235" r="9" fill="#FFAA00"/>
+                        <text x="75" y="239" text-anchor="middle" fill="white" font-size="8">⚡</text>
+                        <!-- TLP Blocked -->
+                        <circle cx="210" cy="155" r="8" fill="#FF3D71"/>
+                        <text x="210" y="159" text-anchor="middle" fill="white" font-size="7">✕</text>
+                        <!-- User dot -->
+                        <circle cx="140" cy="210" r="7" fill="#3b82f6"/>
+                        <circle cx="140" cy="210" r="12" fill="#3b82f6" opacity="0.25"/>
 
-                        <!-- Station cards -->
-                        <rect x="30" y="300" width="200" height="50" rx="10" fill="#1e293b"/>
-                        <rect x="38" y="310" width="24" height="24" rx="6" fill="#16a34a" opacity="0.2"/>
-                        <text x="50" y="326" text-anchor="middle" fill="#16a34a" font-size="11">⚡</text>
-                        <text x="72" y="321" fill="white" font-size="9" font-family="sans-serif" font-weight="bold">Trạm Cầu Giấy</text>
-                        <text x="72" y="334" fill="#94a3b8" font-size="8" font-family="sans-serif">120kW · 2 cổng · 0.3km</text>
-                        <rect x="175" y="312" width="40" height="18" rx="5" fill="#16a34a"/>
-                        <text x="195" y="324" text-anchor="middle" fill="white" font-size="8" font-weight="bold">Sạc</text>
+                        <!-- Station card selected -->
+                        <rect x="28" y="328" width="224" height="64" rx="12" fill="#1C2128" stroke="#30363D" stroke-width="1"/>
+                        <rect x="38" y="338" width="28" height="28" rx="8" fill="#00D68F" opacity="0.15"/>
+                        <text x="52" y="356" text-anchor="middle" fill="#00D68F" font-size="13">⚡</text>
+                        <text x="76" y="351" fill="white" font-size="9" font-family="sans-serif" font-weight="bold">Trạm Cầu Giấy – DC 120kW</text>
+                        <!-- TLP badge -->
+                        <rect x="76" y="357" width="52" height="14" rx="4" fill="#00D68F" opacity="0.15"/>
+                        <text x="102" y="367" text-anchor="middle" fill="#00D68F" font-size="7" font-weight="bold">TLP SAFE</text>
+                        <rect x="200" y="338" width="42" height="22" rx="7" fill="#49DBC8"/>
+                        <text x="221" y="353" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">Đi ngay</text>
 
-                        <rect x="30" y="360" width="200" height="50" rx="10" fill="#1e293b"/>
-                        <rect x="38" y="370" width="24" height="24" rx="6" fill="#f59e0b" opacity="0.2"/>
-                        <text x="50" y="386" text-anchor="middle" fill="#f59e0b" font-size="11">⚡</text>
-                        <text x="72" y="381" fill="white" font-size="9" font-family="sans-serif" font-weight="bold">Trạm Hoàng Mai</text>
-                        <text x="72" y="394" fill="#94a3b8" font-size="8" font-family="sans-serif">240kW · 4 cổng · 1.2km</text>
-                        <rect x="175" y="372" width="40" height="18" rx="5" fill="#f59e0b"/>
-                        <text x="195" y="384" text-anchor="middle" fill="white" font-size="8" font-weight="bold">Sắp sạc</text>
-
-                        <!-- Tab bar -->
-                        <rect x="20" y="450" width="220" height="30" fill="#1e293b"/>
-                        <text x="60"  y="469" text-anchor="middle" fill="#16a34a" font-size="11">🗺</text>
-                        <text x="100" y="469" text-anchor="middle" fill="#475569" font-size="11">⚡</text>
-                        <text x="140" y="469" text-anchor="middle" fill="#475569" font-size="11">📊</text>
-                        <text x="180" y="469" text-anchor="middle" fill="#475569" font-size="11">👤</text>
-
-                        <!-- Home indicator -->
-                        <rect x="105" y="490" width="50" height="4" rx="2" fill="#374151"/>
+                        <!-- Bottom nav bar -->
+                        <rect x="18" y="480" width="244" height="32" fill="#1C2128" stroke="#30363D" stroke-width="0.5" stroke-dasharray="0"/>
+                        <text x="58"  y="500" text-anchor="middle" fill="#49DBC8" font-size="12">🗺</text>
+                        <text x="98"  y="500" text-anchor="middle" fill="#57606a" font-size="12">⚡</text>
+                        <!-- Teal CTA center -->
+                        <circle cx="140" cy="492" r="14" fill="#49DBC8"/>
+                        <text x="140" y="497" text-anchor="middle" fill="#000" font-size="11">＋</text>
+                        <text x="182" y="500" text-anchor="middle" fill="#57606a" font-size="12">📊</text>
+                        <text x="222" y="500" text-anchor="middle" fill="#57606a" font-size="12">👤</text>
+                        <!-- Home bar -->
+                        <rect x="115" y="537" width="50" height="4" rx="2" fill="#30363D"/>
                     </svg>
-
-                    <!-- Floating badges -->
-                    <div class="absolute -left-16 top-20 bg-white rounded-2xl px-4 py-3 shadow-2xl text-center animate-bounce" style="animation-duration:3s">
-                        <div class="text-2xl font-black text-solar-600">24/7</div>
-                        <div class="text-xs text-gray-500 font-semibold">Hoạt động</div>
+                    <!-- Float badges -->
+                    <div class="absolute -left-14 top-24 rounded-2xl px-3 py-2.5 shadow-2xl text-center" style="background:#1C2128;border:1px solid #30363D">
+                        <div class="text-xl font-black" style="color:var(--brand-teal)">24/7</div>
+                        <div class="text-xs text-gray-400">Real-time</div>
                     </div>
-                    <div class="absolute -right-16 bottom-24 bg-white rounded-2xl px-4 py-3 shadow-2xl text-center">
-                        <div class="text-2xl font-black text-green-600">4.8★</div>
-                        <div class="text-xs text-gray-500 font-semibold">App Store</div>
+                    <div class="absolute -right-14 bottom-28 rounded-2xl px-3 py-2.5 shadow-2xl text-center" style="background:#1C2128;border:1px solid #30363D">
+                        <div class="text-xl font-black" style="color:var(--tlp-safe)">98%</div>
+                        <div class="text-xs text-gray-400">Uptime</div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- FEATURES FOR DRIVERS -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-14">
-            <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Dành cho Tài xế</p>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900">Sạc thông minh hơn, tiết kiệm hơn</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="text-center p-6">
-                <div class="w-16 h-16 bg-solar-50 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
-                    <i class="fa-solid fa-map-location-dot text-solar-600"></i>
-                </div>
-                <h3 class="font-black text-gray-900 mb-2">Tìm trạm theo thời gian thực</h3>
-                <p class="text-gray-500 text-sm">Bản đồ 24+ tỉnh thành, lọc theo loại sạc DC/AC, khoảng cách và trạng thái còn trống.</p>
-            </div>
-            <div class="text-center p-6">
-                <div class="w-16 h-16 bg-solar-50 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
-                    <i class="fa-solid fa-qrcode text-solar-600"></i>
-                </div>
-                <h3 class="font-black text-gray-900 mb-2">Quét QR – Sạc ngay</h3>
-                <p class="text-gray-500 text-sm">Không cần thẻ vật lý. Quét mã QR trên trụ sạc là kích hoạt phiên sạc trong vòng 10 giây.</p>
-            </div>
-            <div class="text-center p-6">
-                <div class="w-16 h-16 bg-solar-50 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
-                    <i class="fa-solid fa-wallet text-solar-600"></i>
-                </div>
-                <h3 class="font-black text-gray-900 mb-2">Ví điện tử & hóa đơn</h3>
-                <p class="text-gray-500 text-sm">Nạp ví, thanh toán tự động, nhận hóa đơn điện tử ngay sau khi hoàn thành phiên sạc.</p>
-            </div>
-            <div class="text-center p-6">
-                <div class="w-16 h-16 bg-solar-50 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
-                    <i class="fa-solid fa-bell text-solar-600"></i>
-                </div>
-                <h3 class="font-black text-gray-900 mb-2">Thông báo sạc đầy</h3>
-                <p class="text-gray-500 text-sm">Push notification khi pin đạt 80% hoặc 100%, nhắc nhở rút cáp để nhường cổng cho người khác.</p>
-            </div>
-            <div class="text-center p-6">
-                <div class="w-16 h-16 bg-solar-50 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
-                    <i class="fa-solid fa-history text-solar-600"></i>
-                </div>
-                <h3 class="font-black text-gray-900 mb-2">Lịch sử phiên sạc</h3>
-                <p class="text-gray-500 text-sm">Xem toàn bộ lịch sử sạc điện, chi phí từng lần và tổng kWh tiêu thụ theo tuần/tháng.</p>
-            </div>
-            <div class="text-center p-6">
-                <div class="w-16 h-16 bg-solar-50 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
-                    <i class="fa-solid fa-leaf text-solar-600"></i>
-                </div>
-                <h3 class="font-black text-gray-900 mb-2">Theo dõi CO₂ tiết kiệm</h3>
-                <p class="text-gray-500 text-sm">Xem lượng CO₂ bạn đã tiết kiệm so với xe xăng. Cùng góp phần cho môi trường xanh hơn.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- INVESTOR MODE -->
-<section class="py-20 bg-gray-50 border-t border-gray-100">
+<!-- ══ TLP SYSTEM ════════════════════════════════════════════ -->
+<section class="py-20 border-t" style="background:var(--bg-secondary);border-color:var(--border-s)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="text-center mb-14 reveal">
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-4" style="background:rgba(0,214,143,.1);color:var(--tlp-safe);border:1px solid rgba(0,214,143,.2)">
+                <i class="fa-solid fa-shield-halved"></i> TLP — Trust Level Protocol
+            </div>
+            <h2 class="text-3xl md:text-4xl font-black text-white mb-3">Triệt tiêu "Cổng trống ảo"</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Hệ thống phân loại độ tin cậy trạm sạc dựa trên đa nguồn dữ liệu OCPP real-time — cảm biến AI + xác thực cộng đồng.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- TLP Safe -->
+            <div class="dark-card reveal" style="border-top:3px solid var(--tlp-safe)">
+                <div class="tlp-badge tlp-safe-badge mb-4">● TLP Safe</div>
+                <div class="text-2xl font-mono font-bold mb-2" style="color:var(--tlp-safe)">#00D68F</div>
+                <p class="text-sm text-gray-400 leading-relaxed">Trụ online qua OCPP + giao dịch thành công &lt;15 phút + AI xác nhận ô trống.</p>
+                <div class="mt-4 text-xs font-semibold" style="color:var(--tlp-safe)">✓ Khả dụng cao — cắm sạc ngay</div>
+            </div>
+            <!-- TLP Caution -->
+            <div class="dark-card reveal" style="border-top:3px solid var(--tlp-caution)">
+                <div class="tlp-badge tlp-caution-badge mb-4">● TLP Caution</div>
+                <div class="text-2xl font-mono font-bold mb-2" style="color:var(--tlp-caution)">#FFAA00</div>
+                <p class="text-sm text-gray-400 leading-relaxed">Online nhưng không có giao dịch &gt;4 giờ, hoặc báo cáo xe xăng đỗ lấn chắn.</p>
+                <div class="mt-4 text-xs font-semibold" style="color:var(--tlp-caution)">⚠ Cần lưu ý — có nguy cơ nghẽn</div>
+            </div>
+            <!-- TLP Blocked -->
+            <div class="dark-card reveal" style="border-top:3px solid var(--tlp-blocked)">
+                <div class="tlp-badge tlp-blocked-badge mb-4">● TLP Blocked</div>
+                <div class="text-2xl font-mono font-bold mb-2" style="color:var(--tlp-blocked)">#FF3D71</div>
+                <p class="text-sm text-gray-400 leading-relaxed">Mất tín hiệu, hỏng ngàm súng sạc, mất điện hoặc bị rào chắn hoàn toàn.</p>
+                <div class="mt-4 text-xs font-semibold" style="color:var(--tlp-blocked)">✕ Tạm dừng — không vào được</div>
+            </div>
+            <!-- TLP System -->
+            <div class="dark-card reveal" style="border-top:3px solid var(--tlp-system)">
+                <div class="tlp-badge tlp-system-badge mb-4">● TLP System</div>
+                <div class="text-2xl font-mono font-bold mb-2" style="color:var(--tlp-system)">#57606A</div>
+                <p class="text-sm text-gray-400 leading-relaxed">Bảo trì định kỳ theo lịch hoặc thuộc mạng lưới nội bộ restricted.</p>
+                <div class="mt-4 text-xs font-semibold" style="color:var(--tlp-system)">⚙ Không phục vụ công cộng</div>
+            </div>
+        </div>
+        <!-- 1-Tap Crowdsource -->
+        <div class="mt-8 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center gap-6 reveal" style="background:rgba(73,219,200,.06);border:1px solid rgba(73,219,200,.2)">
+            <div class="feat-icon" style="background:rgba(73,219,200,.15);color:var(--brand-teal)">
+                <i class="fa-solid fa-hand-pointer"></i>
+            </div>
             <div>
-                <p class="text-purple-600 font-bold uppercase tracking-wider text-sm mb-2">Dành cho Nhà đầu tư</p>
-                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6">Quản lý trạm sạc — Thu tiền tự động</h2>
-                <p class="text-gray-600 text-lg mb-8">Là đối tác franchise NLP-EGREEN, bạn kiểm soát toàn bộ hoạt động trạm sạc từ ứng dụng. Doanh thu 80% được thanh toán tự động vào tài khoản mỗi tuần.</p>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-start gap-3">
-                        <div class="w-6 h-6 bg-solar-600 rounded-full flex items-center justify-center mt-0.5 shrink-0"><i class="fa-solid fa-check text-white text-xs"></i></div>
-                        <div><strong class="text-gray-900">Dashboard doanh thu thời gian thực</strong> — kWh bán, số phiên sạc, doanh thu ngày/tuần/tháng</div>
+                <h3 class="font-bold text-white mb-1">1-Tap Crowdsource Check-in</h3>
+                <p class="text-sm text-gray-400">Tài xế xác nhận TLP thực tế chỉ bằng 1 thao tác vuốt ("Trụ số 2 hỏng súng", "Xe xăng chắn lối"). Nhận ngay <strong class="text-white">voucher sạc miễn phí</strong> tương đương điểm token.</p>
+            </div>
+            <div class="shrink-0">
+                <span class="px-4 py-2 rounded-xl text-sm font-bold" style="background:var(--brand-teal);color:#000">Phản hồi &lt;200ms</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ 3 CORE SCREENS ════════════════════════════════════════ -->
+<section class="py-20 border-t" style="background:var(--bg-primary);border-color:var(--border-s)">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-4" style="background:rgba(190,255,108,.08);color:var(--brand-green);border:1px solid rgba(190,255,108,.2)">
+                <i class="fa-solid fa-mobile-screen-button"></i> 3 Màn hình Nòng cốt
+            </div>
+            <h2 class="text-3xl md:text-4xl font-black text-white">Thiết kế tối ưu cho tốc độ lái xe</h2>
+        </div>
+
+        <!-- Screen 1: Station Detail -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+            <div class="reveal">
+                <div class="text-xs font-bold uppercase tracking-wider mb-3" style="color:var(--brand-teal)">Màn hình 1</div>
+                <h3 class="text-2xl font-black text-white mb-4">Chi tiết Trạm — Station Details</h3>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex gap-3">
+                        <span class="tlp-badge tlp-safe-badge shrink-0 mt-0.5">Trust</span>
+                        <span><strong class="text-white">Trust Index 98%</strong> — Badge ngay dưới tên trạm, màu theo TLP token, cập nhật real-time</span>
                     </li>
-                    <li class="flex items-start gap-3">
-                        <div class="w-6 h-6 bg-solar-600 rounded-full flex items-center justify-center mt-0.5 shrink-0"><i class="fa-solid fa-check text-white text-xs"></i></div>
-                        <div><strong class="text-gray-900">Giám sát từ xa 24/7</strong> — cảnh báo lỗi, nhiệt độ, trạng thái cổng sạc qua push notification</div>
+                    <li class="flex gap-3">
+                        <span class="w-6 h-6 rounded-md shrink-0 mt-0.5 flex items-center justify-center text-xs font-bold text-white" style="background:var(--brand-green)">A1</span>
+                        <span><strong class="text-white">Slot Layout trực quan</strong> — A1(180kW/Sẵn sàng) · A2(Đang sạc 62% ~12 phút còn lại) · B1(Bảo trì)</span>
                     </li>
-                    <li class="flex items-start gap-3">
-                        <div class="w-6 h-6 bg-solar-600 rounded-full flex items-center justify-center mt-0.5 shrink-0"><i class="fa-solid fa-check text-white text-xs"></i></div>
-                        <div><strong class="text-gray-900">Báo cáo tài chính tự động</strong> — xuất PDF hàng tuần, đối soát với NLP dễ dàng</div>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <div class="w-6 h-6 bg-solar-600 rounded-full flex items-center justify-center mt-0.5 shrink-0"><i class="fa-solid fa-check text-white text-xs"></i></div>
-                        <div><strong class="text-gray-900">Cấu hình giá sạc</strong> — tùy chỉnh giá cho từng trạm theo khung giờ EVN hoặc cố định</div>
+                    <li class="flex gap-3">
+                        <span class="feat-icon shrink-0" style="width:24px;height:24px;background:rgba(73,219,200,.15);color:var(--brand-teal);border-radius:6px"><i class="fa-solid fa-route text-xs"></i></span>
+                        <span><strong class="text-white">Micro-Guide lối vào</strong> — Ảnh thực tế ram dốc B2, giới hạn chiều cao xe, thông tin barie và phí gửi xe</span>
                     </li>
                 </ul>
-                <a href="../doi-tac/" class="inline-flex items-center gap-2 bg-solar-600 hover:bg-solar-700 text-white font-bold px-8 py-3 rounded-xl transition-colors shadow-lg shadow-solar-500/30">
-                    <i class="fa-solid fa-handshake"></i> Đăng ký trở thành Đối tác
-                </a>
             </div>
-            <div class="space-y-4">
-                <!-- Revenue card mockup -->
-                <div class="bg-dark rounded-2xl p-6 text-white">
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-sm text-gray-400 font-semibold">Doanh thu tuần này</span>
-                        <span class="text-xs text-solar-400 bg-solar-400/10 px-2 py-0.5 rounded-full font-bold">+18% so tuần trước</span>
+            <!-- Station detail mockup -->
+            <div class="dark-card reveal" style="font-family:'Work Sans',sans-serif">
+                <div class="flex items-start justify-between gap-3 mb-4">
+                    <div>
+                        <div class="text-xs text-gray-400 mb-1">NLP-EGREEN · Hà Nội</div>
+                        <h4 class="font-black text-white text-base">Trạm Cầu Giấy – DC Fast</h4>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="tlp-badge tlp-safe-badge">● TLP Safe — Độ tin cậy 98%</span>
+                        </div>
                     </div>
-                    <div class="text-4xl font-black text-solar-400 mb-1">4.250.000 đ</div>
-                    <div class="text-gray-400 text-sm">127 phiên sạc · 854 kWh bán ra</div>
-                    <div class="mt-4 grid grid-cols-3 gap-3">
-                        <div class="bg-white/5 rounded-xl p-3 text-center">
-                            <div class="font-black text-white text-lg">98%</div>
-                            <div class="text-xs text-gray-400">Uptime</div>
-                        </div>
-                        <div class="bg-white/5 rounded-xl p-3 text-center">
-                            <div class="font-black text-white text-lg">2</div>
-                            <div class="text-xs text-gray-400">Cổng hoạt động</div>
-                        </div>
-                        <div class="bg-white/5 rounded-xl p-3 text-center">
-                            <div class="font-black text-solar-400 text-lg">6.7h</div>
-                            <div class="text-xs text-gray-400">Sạc TB/ngày</div>
+                    <div class="text-right shrink-0">
+                        <div class="text-xs text-gray-400">Công suất</div>
+                        <div class="font-mono font-bold" style="color:var(--brand-green)">120 kW</div>
+                    </div>
+                </div>
+                <!-- Slot layout -->
+                <div class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Sơ đồ cổng</div>
+                <div class="grid grid-cols-3 gap-2 mb-4">
+                    <div class="rounded-lg p-2.5 text-center" style="background:rgba(190,255,108,.12);border:1px solid rgba(190,255,108,.25)">
+                        <div class="text-xs font-bold mb-1" style="color:var(--brand-green)">A1 · CCS2</div>
+                        <div class="text-xs text-gray-300">Sẵn sàng</div>
+                    </div>
+                    <div class="rounded-lg p-2.5 text-center" style="background:rgba(87,96,106,.15);border:1px solid #30363D">
+                        <div class="text-xs font-bold mb-1 text-gray-400">A2 · CCS2</div>
+                        <div class="text-xs text-gray-400">62% · ~12 phút</div>
+                    </div>
+                    <div class="rounded-lg p-2.5 text-center" style="background:rgba(255,61,113,.08);border:1px solid rgba(255,61,113,.2)">
+                        <div class="text-xs font-bold mb-1" style="color:var(--tlp-blocked)">B1 · DC</div>
+                        <div class="text-xs text-gray-500">Bảo trì</div>
+                    </div>
+                </div>
+                <!-- Micro guide -->
+                <div class="rounded-lg p-3 text-xs text-gray-400 flex gap-3" style="background:#22272E;border:1px solid #30363D">
+                    <i class="fa-solid fa-diamond-turn-right mt-0.5 shrink-0" style="color:var(--brand-teal)"></i>
+                    <span>Vào cổng bảo vệ phía Nam → Ram dốc B2 (giới hạn <strong class="text-white">1.9m</strong>) → Bãi EV ký hiệu xanh. Phí gửi xe 5.000đ/giờ. Đóng cửa sau 23:00.</span>
+                </div>
+                <!-- Action row -->
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <button class="btn-teal justify-center text-sm py-2.5" style="border-radius:10px"><i class="fa-solid fa-map-location-dot"></i> Dẫn đường</button>
+                    <button class="text-sm py-2.5 rounded-[10px] font-bold border" style="border-color:var(--border-s);color:var(--brand-teal)"><i class="fa-solid fa-calendar-check"></i> Đặt chỗ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 2: Active Charge -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+            <div class="dark-card reveal order-2 lg:order-1">
+                <!-- Charge ring -->
+                <div class="flex items-center justify-center mb-6">
+                    <div class="relative">
+                        <svg width="180" height="180" viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" fill="none" stroke="#22272E" stroke-width="8"/>
+                            <circle cx="60" cy="60" r="54" fill="none" stroke="#49DBC8" stroke-width="8"
+                                    stroke-dasharray="339.3" stroke-dashoffset="84.8"
+                                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <div class="font-black text-white" style="font-size:36px;line-height:1">75%</div>
+                            <div class="text-xs text-gray-400 font-semibold">SoC</div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="font-bold text-gray-900 text-sm">ROI Trạm sạc DC 120kW</span>
-                        <span class="text-solar-600 font-black">21%/năm</span>
+                <!-- Telemetry -->
+                <div class="grid grid-cols-3 gap-3 mb-5 text-center">
+                    <div style="background:#22272E;border-radius:10px;padding:10px">
+                        <div class="tele-value font-black">75.2</div>
+                        <div class="text-xs text-gray-500 mt-0.5">kW</div>
                     </div>
-                    <div class="w-full bg-gray-100 rounded-full h-2 mb-2">
-                        <div class="bg-solar-600 h-2 rounded-full" style="width:42%"></div>
+                    <div style="background:#22272E;border-radius:10px;padding:10px">
+                        <div class="tele-value font-black">385V</div>
+                        <div class="text-xs text-gray-500 mt-0.5">Điện áp</div>
                     </div>
-                    <div class="text-xs text-gray-400">Tiến độ hoàn vốn: 42% (sau 18 tháng)</div>
+                    <div style="background:#22272E;border-radius:10px;padding:10px">
+                        <div class="tele-value font-black">195A</div>
+                        <div class="text-xs text-gray-500 mt-0.5">Dòng điện</div>
+                    </div>
+                </div>
+                <div class="text-center text-xs text-gray-400 mb-5">Còn ~18 phút · Dự kiến hoàn thành lúc 10:42</div>
+                <!-- Slider stop -->
+                <div class="slider-stop">
+                    <div class="slider-handle"><i class="fa-solid fa-power-off text-sm"></i></div>
+                    <span class="flex-1 text-center text-xs tracking-wider">← TRƯỢT ĐỂ NGẮT SẠC KHẨN CẤP</span>
+                    <div class="w-8 h-8 rounded-full border-2 flex items-center justify-center" style="border-color:rgba(255,61,113,.3)">
+                        <i class="fa-solid fa-chevron-right text-xs" style="color:var(--tlp-blocked)"></i>
+                    </div>
+                </div>
+                <!-- Escrow notice -->
+                <div class="mt-4 text-xs text-gray-500 text-center flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-lock" style="color:var(--brand-teal)"></i>
+                    Ký quỹ 10.000đ/block · Hoàn tiền tức thì nếu trụ mất điện
+                </div>
+            </div>
+            <div class="reveal order-1 lg:order-2">
+                <div class="text-xs font-bold uppercase tracking-wider mb-3" style="color:var(--brand-teal)">Màn hình 2</div>
+                <h3 class="text-2xl font-black text-white mb-4">Tiến trình Sạc — Active Charge</h3>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex gap-3">
+                        <span class="feat-icon shrink-0" style="width:24px;height:24px;background:rgba(73,219,200,.15);color:var(--brand-teal);border-radius:6px"><i class="fa-solid fa-circle-notch text-xs"></i></span>
+                        <span><strong class="text-white">Vòng SoC real-time</strong> — SVG animated, font 60px Work Sans SemiBold, cập nhật 1 giây/lần</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="feat-icon shrink-0" style="width:24px;height:24px;background:rgba(73,219,200,.15);color:var(--brand-teal);border-radius:6px"><i class="fa-solid fa-terminal text-xs"></i></span>
+                        <span><strong class="text-white">Live Telemetry</strong> — kW · Volt · Ampere theo font mono, độ trễ &lt;200ms từ OCPP WebSocket</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="feat-icon shrink-0" style="width:24px;height:24px;background:rgba(255,61,113,.1);color:var(--tlp-blocked);border-radius:6px"><i class="fa-solid fa-hand-point-left text-xs"></i></span>
+                        <span><strong class="text-white">Slider dừng khẩn cấp</strong> — Thiết kế trượt 1 chiều, triệt tiêu rủi ro bấm nhầm. Tiền hoàn về ví &lt;3 giây</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="feat-icon shrink-0" style="width:24px;height:24px;background:rgba(190,255,108,.1);color:var(--brand-green);border-radius:6px"><i class="fa-solid fa-lock text-xs"></i></span>
+                        <span><strong class="text-white">Zero-Lock Escrow</strong> — Tiền khóa theo block 10.000đ, không bao giờ treo tài khoản dù trụ gặp sự cố</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Screen 3: Smart Planner -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <div class="text-xs font-bold uppercase tracking-wider mb-3" style="color:var(--brand-teal)">Màn hình 3</div>
+                <h3 class="text-2xl font-black text-white mb-4">Lộ trình Thông minh — Smart Planner</h3>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li class="flex gap-3">
+                        <span class="feat-icon shrink-0" style="width:24px;height:24px;background:rgba(73,219,200,.15);color:var(--brand-teal);border-radius:6px"><i class="fa-solid fa-bluetooth text-xs"></i></span>
+                        <span><strong class="text-white">Kết nối BLE OBD2 / CarKey</strong> — Đọc SoC%, nhiệt độ pin, công suất tiêu thụ thực tế của xe</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="feat-icon shrink-0" style="width:24px;height:24px;background:rgba(190,255,108,.1);color:var(--brand-green);border-radius:6px"><i class="fa-solid fa-mountain text-xs"></i></span>
+                        <span><strong class="text-white">Bù trừ địa hình</strong> — Tự tính mức tiêu hao leo đèo, tái tạo năng lượng khi đổ dốc, đề xuất dừng sạc 10%→65%</span>
+                    </li>
+                    <li class="flex gap-3">
+                        <span class="feat-icon shrink-0" style="width:24px;height:24px;background:rgba(255,170,0,.1);color:var(--tlp-caution);border-radius:6px"><i class="fa-solid fa-triangle-exclamation text-xs"></i></span>
+                        <span><strong class="text-white">Cảnh báo chủ động</strong> — Phát hiện pin tụt nhanh do ngược gió/tốc độ cao → đề xuất trạm thay thế trước khi cạn</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- Elevation chart mockup -->
+            <div class="dark-card reveal">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-sm font-bold text-white">HCM → Đà Lạt · 308km</span>
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded-full" style="background:rgba(190,255,108,.1);color:var(--brand-green)">SoC 72% đủ đến trạm 1</span>
+                </div>
+                <!-- SVG chart -->
+                <svg viewBox="0 0 300 100" class="w-full rounded-lg mb-3" style="background:#22272E">
+                    <!-- Elevation line (teal) -->
+                    <polyline points="0,80 40,75 80,50 120,20 160,30 200,60 240,55 300,65" fill="none" stroke="#49DBC8" stroke-width="2"/>
+                    <!-- SoC line (green dashed) -->
+                    <polyline points="0,30 40,35 80,50 120,75 160,65 200,55 240,50 300,45" fill="none" stroke="#BEFF6C" stroke-width="1.5" stroke-dasharray="4,3"/>
+                    <!-- Warning zone -->
+                    <rect x="70" y="15" width="60" height="45" fill="#FFAA00" opacity="0.08" rx="2"/>
+                    <text x="100" y="12" text-anchor="middle" fill="#FFAA00" font-size="7">⚠ +18%</text>
+                    <!-- Charge stop pin -->
+                    <line x1="160" y1="10" x2="160" y2="90" stroke="#00D68F" stroke-width="1" stroke-dasharray="3,2"/>
+                    <circle cx="160" cy="12" r="5" fill="#00D68F"/>
+                    <text x="160" y="9" text-anchor="middle" fill="white" font-size="5">⚡</text>
+                    <!-- Axes labels -->
+                    <text x="5" y="98" fill="#57606a" font-size="7">0km</text>
+                    <text x="285" y="98" fill="#57606a" font-size="7">308km</text>
+                </svg>
+                <div class="flex gap-3 text-xs mb-3">
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 inline-block rounded" style="background:var(--brand-teal)"></span><span class="text-gray-400">Độ cao</span></span>
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 inline-block rounded" style="background:var(--brand-green);opacity:.6"></span><span class="text-gray-400">SoC dự kiến</span></span>
+                </div>
+                <!-- Charge suggestion -->
+                <div class="rounded-lg p-3 text-xs flex gap-3" style="background:rgba(0,214,143,.07);border:1px solid rgba(0,214,143,.2)">
+                    <i class="fa-solid fa-bolt mt-0.5" style="color:var(--tlp-safe)"></i>
+                    <span class="text-gray-300">Đề xuất: Sạc tại <strong class="text-white">Trạm Bảo Lộc 120kW (TLP Safe)</strong> — chỉ từ <strong style="color:var(--brand-green)">10% → 65%</strong> (tiết kiệm 22 phút so với sạc đầy)</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- DOWNLOAD SECTION -->
-<section id="download" class="py-20 bg-solar-600 text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-black mb-4">Tải ngay — Hoàn toàn miễn phí</h2>
-        <p class="text-solar-100 text-lg mb-10 max-w-2xl mx-auto">App NLP-EGREEN khả dụng cho iOS 14+ và Android 8.0+. Đăng ký tài khoản trong 30 giây.</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <a href="#" class="store-badge bg-white text-gray-900 border-white hover:bg-solar-50 justify-center">
-                <i class="fa-brands fa-apple text-gray-900" style="font-size:2rem"></i>
-                <div class="text-left">
-                    <div class="text-xs text-gray-500">Tải về trên</div>
-                    <div class="text-lg font-black text-gray-900">App Store</div>
+<!-- ══ INVESTOR MODE ══════════════════════════════════════════ -->
+<section class="py-20 border-t" style="background:var(--bg-secondary);border-color:var(--border-s)">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14 reveal">
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-4" style="background:rgba(190,255,108,.08);color:var(--brand-green);border:1px solid rgba(190,255,108,.2)">
+                <i class="fa-solid fa-chart-line"></i> Dành cho Nhà đầu tư Franchise
+            </div>
+            <h2 class="text-3xl md:text-4xl font-black text-white mb-3">So sánh 4 Mô hình Đầu tư</h2>
+            <p class="text-gray-400">Phân tích chiến lược đầu tư hạ tầng sạc — lựa chọn mô hình phù hợp với mặt bằng và vốn.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-10">
+            <!-- Model 1: TMT -->
+            <div class="dark-card reveal" style="border-top:3px solid var(--brand-teal)">
+                <div class="text-xs font-bold uppercase tracking-wider mb-2" style="color:var(--brand-teal)">Mô hình 1</div>
+                <h4 class="font-black text-white mb-1">TMT-EGREEN CPO</h4>
+                <div class="text-2xl font-black mb-2" style="color:var(--tlp-safe)">0 đồng</div>
+                <div class="text-xs text-gray-400 mb-3">vốn đầu tư ban đầu</div>
+                <ul class="text-xs text-gray-400 space-y-1.5">
+                    <li class="flex gap-2"><i class="fa-solid fa-check shrink-0 mt-0.5" style="color:var(--tlp-safe)"></i> Chia 800–1.500đ/kWh</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check shrink-0 mt-0.5" style="color:var(--tlp-safe)"></i> Hệ sinh thái VETC + Grab</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check shrink-0 mt-0.5" style="color:var(--tlp-safe)"></i> Hợp đồng 10 năm chuẩn</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-times shrink-0 mt-0.5" style="color:var(--tlp-blocked)"></i> Cần điện 3 pha, 2+ ô đỗ</li>
+                </ul>
+                <div class="mt-4 text-xs font-bold px-3 py-1.5 rounded-full text-center" style="background:rgba(0,214,143,.1);color:var(--tlp-safe)">⭐ Tốt nhất mặt bằng lớn</div>
+            </div>
+            <!-- Model 2: Solar+BESS -->
+            <div class="dark-card reveal" style="border-top:3px solid var(--brand-green)">
+                <div class="text-xs font-bold uppercase tracking-wider mb-2" style="color:var(--brand-green)">Mô hình 2</div>
+                <h4 class="font-black text-white mb-1">Solar + BESS</h4>
+                <div class="text-2xl font-black mb-2" style="color:var(--tlp-safe)">0 đồng</div>
+                <div class="text-xs text-gray-400 mb-3">thiết bị (cho thuê mặt bằng)</div>
+                <ul class="text-xs text-gray-400 space-y-1.5">
+                    <li class="flex gap-2"><i class="fa-solid fa-check shrink-0 mt-0.5" style="color:var(--tlp-safe)"></i> 400đ/kWh + tiết kiệm điện</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check shrink-0 mt-0.5" style="color:var(--tlp-safe)"></i> Độc lập khỏi lưới điện yếu</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-times shrink-0 mt-0.5" style="color:var(--tlp-blocked)"></i> Thu nhập từ sạc xe thấp</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-times shrink-0 mt-0.5" style="color:var(--tlp-blocked)"></i> Cần mái rộng, đủ nắng</li>
+                </ul>
+                <div class="mt-4 text-xs font-bold px-3 py-1.5 rounded-full text-center" style="background:rgba(190,255,108,.08);color:var(--brand-green)">✓ Tốt cho vùng điện yếu</div>
+            </div>
+            <!-- Model 3: ABB 24kW -->
+            <div class="dark-card reveal" style="border-top:3px solid var(--tlp-blocked)">
+                <div class="text-xs font-bold uppercase tracking-wider mb-2" style="color:var(--tlp-blocked)">Mô hình 3</div>
+                <h4 class="font-black text-white mb-1">ABB 24kW Độc lập</h4>
+                <div class="text-2xl font-black mb-2" style="color:var(--tlp-caution)">135 triệu</div>
+                <div class="text-xs text-gray-400 mb-3">vốn đầu tư ban đầu</div>
+                <ul class="text-xs text-gray-400 space-y-1.5">
+                    <li class="flex gap-2"><i class="fa-solid fa-times shrink-0 mt-0.5" style="color:var(--tlp-blocked)"></i> Chỉ 33% doanh thu</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-times shrink-0 mt-0.5" style="color:var(--tlp-blocked)"></i> 24kW "lửng lơ" — sạc chậm</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-times shrink-0 mt-0.5" style="color:var(--tlp-blocked)"></i> EVN chiếm 48% doanh thu</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-times shrink-0 mt-0.5" style="color:var(--tlp-blocked)"></i> Rủi ro vắng xe cao</li>
+                </ul>
+                <div class="mt-4 text-xs font-bold px-3 py-1.5 rounded-full text-center" style="background:rgba(255,61,113,.1);color:var(--tlp-blocked)">⚠ Bẫy lợi nhuận trên giấy</div>
+            </div>
+            <!-- Model 4: VP Franchise -->
+            <div class="dark-card reveal" style="border-top:3px solid #a78bfa">
+                <div class="text-xs font-bold uppercase tracking-wider mb-2 text-purple-400">Mô hình 4</div>
+                <h4 class="font-black text-white mb-1">Nhượng quyền VP 40–240kW</h4>
+                <div class="text-2xl font-black mb-2 text-purple-300">~3.500đ</div>
+                <div class="text-xs text-gray-400 mb-3">lợi nhuận/kWh bán ra</div>
+                <ul class="text-xs text-gray-400 space-y-1.5">
+                    <li class="flex gap-2"><i class="fa-solid fa-check shrink-0 mt-0.5 text-purple-400"></i> Biên gộp lớn nhất</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check shrink-0 mt-0.5 text-purple-400"></i> 2 súng cân bằng tải</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-times shrink-0 mt-0.5" style="color:var(--tlp-blocked)"></i> Vốn lớn, tự gánh sự cố</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-times shrink-0 mt-0.5" style="color:var(--tlp-blocked)"></i> Rủi ro phạt công suất EVN</li>
+                </ul>
+                <div class="mt-4 text-xs font-bold px-3 py-1.5 rounded-full text-center bg-purple-900/40 text-purple-300">💡 Tự chủ tài chính cao nhất</div>
+            </div>
+        </div>
+
+        <!-- Dashboard mockup -->
+        <div class="dark-card reveal">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 mb-5">
+                <div>
+                    <div class="text-xs text-gray-400 mb-1">Dashboard Nhà đầu tư — Tuần này</div>
+                    <div class="text-3xl font-black" style="color:var(--brand-teal)">4.250.000 đ</div>
+                    <div class="text-sm text-gray-400 mt-1">127 phiên sạc · 854 kWh · <span style="color:var(--tlp-safe)">+18% so tuần trước</span></div>
                 </div>
+                <a href="../doi-tac/" class="btn-teal text-sm px-5 py-2.5">
+                    <i class="fa-solid fa-handshake"></i> Đăng ký Đầu tư ngay
+                </a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="rounded-xl p-3 text-center" style="background:#22272E">
+                    <div class="font-black text-white text-xl">98%</div><div class="text-xs text-gray-400">Uptime</div>
+                </div>
+                <div class="rounded-xl p-3 text-center" style="background:#22272E">
+                    <div class="font-black text-xl" style="color:var(--brand-green)">21%</div><div class="text-xs text-gray-400">ROI/năm</div>
+                </div>
+                <div class="rounded-xl p-3 text-center" style="background:#22272E">
+                    <div class="font-black text-white text-xl">6.7h</div><div class="text-xs text-gray-400">Sạc TB/ngày</div>
+                </div>
+                <div class="rounded-xl p-3 text-center" style="background:#22272E">
+                    <div class="font-black text-xl" style="color:var(--brand-teal)">42%</div><div class="text-xs text-gray-400">Hoàn vốn (18th)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ DOWNLOAD ═══════════════════════════════════════════════ -->
+<section id="download" class="py-20 border-t" style="background:var(--bg-primary);border-color:var(--border-s)">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-black text-white mb-3">Tải App NLP-EGREEN</h2>
+        <p class="text-gray-400 mb-8">iOS 14+ & Android 8.0+ · Miễn phí · Đăng ký trong 30 giây</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a href="#" class="btn-teal justify-center text-base px-6 py-3.5">
+                <i class="fa-brands fa-apple text-xl"></i>
+                <div class="text-left"><div class="text-xs opacity-70">Tải về trên</div><div class="font-black">App Store</div></div>
             </a>
-            <a href="#" class="store-badge bg-white text-gray-900 border-white hover:bg-solar-50 justify-center">
-                <i class="fa-brands fa-google-play text-gray-900" style="font-size:1.8rem"></i>
-                <div class="text-left">
-                    <div class="text-xs text-gray-500">Tải về trên</div>
-                    <div class="text-lg font-black text-gray-900">Google Play</div>
-                </div>
+            <a href="#" class="flex items-center gap-3 px-6 py-3.5 rounded-xl border font-bold text-white hover:bg-white/5 transition-colors justify-center" style="border-color:var(--border-s)">
+                <i class="fa-brands fa-google-play text-xl" style="color:var(--brand-green)"></i>
+                <div class="text-left"><div class="text-xs text-gray-400">Tải về trên</div><div class="font-black">Google Play</div></div>
             </a>
         </div>
-        <p class="text-solar-200 text-sm">Đang được phát triển — đăng ký nhận thông báo khi ra mắt chính thức</p>
-        <div class="flex gap-3 max-w-sm mx-auto mt-4" id="waitlistForm">
+        <p class="text-gray-500 text-sm mb-4">Đang phát triển — đăng ký nhận thông báo khi ra mắt chính thức</p>
+        <div class="flex gap-3 max-w-sm mx-auto" id="waitlistForm">
             <input id="waitlistPhone" type="tel" placeholder="Số điện thoại của bạn"
-                class="flex-1 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-solar-200 focus:outline-none focus:border-white text-sm"
+                class="flex-1 px-4 py-3 rounded-xl text-white text-sm focus:outline-none focus:ring-2 placeholder-gray-600"
+                style="background:#22272E;border:1px solid var(--border-s);focus-ring-color:var(--brand-teal)"
                 pattern="[0-9]{9,11}">
-            <button onclick="submitWaitlist()" class="bg-white text-solar-700 font-bold px-5 py-3 rounded-xl hover:bg-solar-50 transition-colors whitespace-nowrap text-sm">Nhắc tôi</button>
+            <button onclick="submitWaitlist()" class="btn-teal text-sm px-5 py-3 whitespace-nowrap">Nhắc tôi</button>
         </div>
-        <p id="waitlistMsg" class="text-solar-200 text-sm mt-2 hidden"></p>
-        <script>
-        function submitWaitlist() {
-            const phone = document.getElementById('waitlistPhone').value.trim();
-            if (!phone || phone.length < 9) {
-                document.getElementById('waitlistMsg').textContent = '⚠️ Vui lòng nhập số điện thoại hợp lệ.';
-                document.getElementById('waitlistMsg').classList.remove('hidden');
-                return;
-            }
-            const leads = JSON.parse(localStorage.getItem('nlpgroup_leads') || '[]');
-            leads.unshift({ type: 'lead', name: 'App Waitlist', phone, service: 'App NLP-EGREEN Waitlist', source: '/pages/app/', time: new Date().toISOString() });
-            localStorage.setItem('nlpgroup_leads', JSON.stringify(leads));
-            document.getElementById('waitlistForm').innerHTML = '<p class="text-white font-bold text-center w-full py-3">✅ Đã đăng ký! Chúng tôi sẽ nhắc bạn khi app ra mắt.</p>';
-            document.getElementById('waitlistMsg').classList.add('hidden');
-        }
-        </script>
+        <p id="waitlistMsg" class="text-gray-400 text-sm mt-2 hidden"></p>
     </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="bg-dark text-gray-400 py-8 border-t-4 border-solar-500 text-sm">
+<footer class="border-t py-8 text-sm" style="background:var(--bg-secondary);border-color:var(--border-s)">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <span class="font-black text-white text-lg">NLP <span class="text-solar-500">GROUP</span></span>
-            <p>&copy; 2026 NLP GROUP – nlpgroup.com.vn · Hotline: <a href="tel:0944086788" class="text-solar-400 font-bold">0333.864.000</a></p>
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400">
+            <span class="font-black text-white text-lg">NLP <span style="color:var(--brand-teal)">GROUP</span></span>
+            <p>&copy; 2026 NLP GROUP – MST 0316942991 · Hotline: <a href="tel:0333864000" class="font-bold" style="color:var(--brand-teal)">0333.864.000</a></p>
             <div class="flex gap-4">
                 <a href="../../index.html" class="hover:text-white">Trang chủ</a>
-                <a href="../lien-he/" class="hover:text-white">Liên hệ</a>
+                <a href="../lien-he/"      class="hover:text-white">Liên hệ</a>
             </div>
         </div>
-        <div class="border-t border-gray-800 pt-4 flex flex-wrap justify-center gap-4 text-xs text-gray-500">
-            <a href="../dieu-khoan/" class="hover:text-white transition-colors">Điều khoản sử dụng</a>
-            <a href="../bao-mat/"    class="hover:text-white transition-colors">Chính sách bảo mật</a>
-            <a href="../tin-tuc/"   class="hover:text-white transition-colors">Tin tức</a>
-            <a href="../lien-he/"   class="hover:text-white transition-colors">Liên hệ</a>
+        <div class="border-t pt-4 flex flex-wrap justify-center gap-4 text-xs text-gray-500" style="border-color:var(--border-s)">
+            <a href="../dieu-khoan/" class="hover:text-white">Điều khoản</a>
+            <a href="../bao-mat/"   class="hover:text-white">Bảo mật</a>
+            <a href="../tin-tuc/"   class="hover:text-white">Tin tức</a>
+            <a href="../lien-he/"   class="hover:text-white">Liên hệ</a>
         </div>
     </div>
 </footer>
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <script src="../../js/main.js"></script>
-<script>new WOW({ offset: 60, mobile: false }).init();</script>
+<script>
+/* WOW.js init */
+new WOW({ offset: 60, mobile: false }).init();
+
+/* Scroll reveal */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* Waitlist form */
+function submitWaitlist() {
+    const phone = document.getElementById('waitlistPhone').value.trim();
+    const msg   = document.getElementById('waitlistMsg');
+    if (!phone || phone.length < 9) {
+        msg.textContent = '⚠️ Vui lòng nhập số điện thoại hợp lệ.';
+        msg.classList.remove('hidden');
+        return;
+    }
+    const leads = JSON.parse(localStorage.getItem('nlpgroup_leads') || '[]');
+    leads.unshift({ type:'lead', name:'App Waitlist', phone, service:'App NLP-EGREEN Waitlist', source:'/pages/app/', time:new Date().toISOString() });
+    localStorage.setItem('nlpgroup_leads', JSON.stringify(leads));
+    document.getElementById('waitlistForm').innerHTML = '<p class="text-center w-full py-3 font-bold" style="color:var(--tlp-safe)">✅ Đã đăng ký! Chúng tôi sẽ nhắc bạn khi app ra mắt.</p>';
+    msg.classList.add('hidden');
+}
+</script>
+
     <!-- Mobile Bottom Navigation (4-tab app-like) -->
     <nav class="mobile-cta-bar md:hidden" id="mobileBottomNav" aria-label="Mobile navigation">
         <a href="../index.html" class="nav-tab" id="nav-home">
@@ -412,5 +725,6 @@
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+</body>
 </html>
