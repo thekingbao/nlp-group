@@ -1,5 +1,5 @@
 # PLAN UPDATE — nlpgroup.com.vn
-**Phiên bản:** v1.3 | **Cập nhật:** 2026-10-01
+**Phiên bản:** v1.4 | **Cập nhật:** 2026-10-02
 **Nguồn tham khảo:** `draft/TMT-EGREEN/` (TMT-EGREEN.com)  
 **Mục tiêu:** Nâng cấp toàn diện giao diện, UX, tính năng và hạ tầng kỹ thuật của `nlpgroup.com.vn` để đạt chuẩn thương mại thực tiễn B2B/B2C có thể kinh doanh.
 
@@ -32,18 +32,18 @@
 
 | Chức năng | TMT-EGREEN | nlpgroup | Ưu tiên | Trạng thái |
 |-----------|-----------|---------|---------|-----------|
-| Trang "Về chúng tôi" + Timeline | ✅ | ❌ | P1 | ⬜ NEXT UP |
-| Trang Đăng ký đối tác nhượng quyền | ✅ | ❌ | P1 | ⬜ Sau T1.1 |
-| GA4 Event Tracking chi tiết | ✅ 7 events | ❌ | P1 | 🔄 Chờ GA4 ID |
-| WOW.js scroll animations | ✅ | ❌ | P2 | ⬜ Chưa làm |
-| Swiper slider sản phẩm | ✅ | ❌ | P2 | ⬜ Chưa làm |
+| Trang "Về chúng tôi" + Timeline | ✅ | ✅ | P1 | ✅ Done |
+| Trang Đăng ký đối tác nhượng quyền | ✅ | ✅ | P1 | ✅ Done |
+| GA4 Event Tracking chi tiết | ✅ 7 events | ✅ 6 events | P1 | 🔄 Chờ GA4 ID |
+| WOW.js scroll animations | ✅ | ✅ | P2 | ✅ Done |
+| Swiper slider sản phẩm | ✅ | ✅ | P2 | ✅ Done |
 | Bản đồ tương tác Leaflet | ✅ | ✅ | P2 | ✅ Done |
 | Form đối tác cascade select (tỉnh/phường) | ✅ | ✅ | P1 | ✅ Done |
 | App download CTAs (CH Play / App Store) | ✅ | ❌ | P3 | ⬜ Chưa làm |
-| Mobile-first design nghiêm ngặt | ✅ | ✅ | P1 | ✅ Done (sticky bar 3 nút) |
+| Mobile-first design nghiêm ngặt | ✅ | ✅ | P1 | ✅ Done — 4-tab bottom nav, scroll-hide, swipe modal |
 | Glassmorphism section tối | ✅ | Một phần | P2 | 🔄 Một phần |
 | Footer đầy đủ (MST, social, app store) | ✅ | ✅ MST có | P2 | ✅ MST = 0316942991 |
-| Trang Điều khoản + Bảo mật | ❌ | ❌ | P3 | ⬜ Chưa làm |
+| Trang Điều khoản + Bảo mật | ❌ | ✅ | P3 | ✅ Done |
 | SEO Schema.org WebPage/Organization | ✅ | ✅ | P1 | ✅ Done (6 bài blog) |
 | Admin: Quản lý Leads đầy đủ | N/A | Một phần | P1 | 🔄 Một phần |
 | Admin: Cài đặt site từ panel | N/A | ✅ | P1 | ✅ Done |
@@ -59,9 +59,9 @@
 
 ### 🔴 P1 — Phải làm ngay (Tuần 1)
 
-> **Trạng thái Sprint 1:** 3/5 task done ✅  |  2 task còn lại: **T1.1**, T1.2
+> **Trạng thái Sprint 1:** 5/5 task done ✅ — Sprint 1 hoàn thành!
 
-#### T1.1 – Tạo trang "Về chúng tôi" ⬅ NEXT UP
+#### ✅ T1.1 – Tạo trang "Về chúng tôi"
 - **Path:** `pages/ve-chung-toi/index.html`
 - **Nội dung:** Hero banner, Timeline công ty NLP Group, Đội ngũ lãnh đạo, Sứ mệnh/Tầm nhìn, Số liệu ấn tượng (số dự án, kWp lắp đặt, khách hàng)
 - **Style học từ tmt:** Hero fullscreen với overlay tối, timeline dạng alternating left/right, glassmorphism numbers overlay
@@ -69,7 +69,7 @@
 - **Slug DB:** `ve-chung-toi`
 - **Navbar:** Thêm link "Về chúng tôi" vào menu chính
 
-#### T1.2 – Tạo trang Đăng ký đối tác  _(sau T1.1)_
+#### ✅ T1.2 – Tạo trang Đăng ký đối tác
 - **Path:** `pages/doi-tac/index.html`
 - **Nội dung:** 4 benefit cards đối tác (% hoa hồng, hỗ trợ kỹ thuật, exclusive zone), Form đăng ký 2-cột (Tên, SĐT, Tỉnh/Thành, Loại đối tác)
 - **Style học từ tmt:** `dang-ky-doi-tac.html` – backdrop blur glassmorphism dark section, cascade select tỉnh/thành
@@ -132,11 +132,15 @@
 - **Thêm:** Copyright với địa chỉ đăng ký kinh doanh đầy đủ
 - **Cải thiện:** Icon xã hội có brand color chính xác (Facebook blue, YouTube red, TikTok black/pink)
 
-#### T2.5 – Mobile UX Improvements
-- **Sticky bottom bar mobile:** Giống TMT-EGREEN – thanh cố định dưới màn hình mobile với: [Gọi ngay] [Chat Zalo] [Tư vấn]
-- **Touch-friendly:** Tăng kích thước vùng tap các link menu mobile ≥ 44px
-- **Swipe gesture:** Dropdown menu mobile có animation slide-down mượt
-- **Performance:** Lazy load ảnh bằng `loading="lazy"` trên tất cả `<img>`
+#### ✅ T2.5 – Mobile UX Improvements _(Done — Sprint Mobile)_
+- ✅ **4-tab bottom nav app-like** (Trang chủ / Solar / Tư vấn / Trạm sạc / Dự án) — 27/27 pages
+- ✅ **Scroll-hide navbar** — ẩn khi scroll down mobile, hiện khi scroll up (rAF)
+- ✅ **Swipe-down bottom sheet** — kéo modal xuống ≥80px tự đóng
+- ✅ **has-mobile-bar** — FAB reposition tự động trên mobile
+- ✅ **PWA meta** — viewport-fit=cover, apple-mobile-web-app-capable, theme-color
+- ✅ **site.webmanifest** — display: standalone, theme_color: #16a34a
+- ✅ **safe-area insets** — padding-bottom env(safe-area-inset-bottom) toàn bộ
+- ⬜ **Lazy load ảnh** — thêm `loading="lazy"` cho tất cả `<img>` dưới fold (Sprint 4)
 
 #### T2.6 – Blog/Tin tức (5 bài thực)
 - **Path:** `pages/tin-tuc/index.html` – hiện có khung, cần bổ sung 5 bài thực
@@ -151,33 +155,31 @@
 
 ### 🟡 P3 — Tính năng nâng cao (Tuần 3+)
 
-#### T3.1 – Bản đồ tương tác dự án
-- **Thư viện:** Leaflet.js (CDN) + OpenStreetMap tiles (miễn phí)
-- **Path:** `pages/du-an/index.html` (trang mới)
-- **Chức năng:** Marker các dự án NLP Group đã lắp đặt toàn quốc (dùng `db.json` hoặc GeoJSON inline)
-- **Popup marker:** Ảnh dự án, công suất, khách hàng, năm lắp đặt
-- **Học từ:** `draft/TMT-EGREEN/tim-kiem-tram-sac-gan-nhat.html`
+> **Trạng thái Sprint 3:** 4/5 task done ✅  |  T3.4 chờ Zalo OA ID từ client
 
-#### T3.2 – Trang Dự án / Case Studies
-- **Path:** `pages/du-an/index.html`
-- **Nội dung:** Grid case studies (ảnh thực + thông số: kWp, loại hệ thống, tiết kiệm/tháng, khách hàng)
-- **Trang detail:** `pages/du-an/[ten-du-an]/index.html` – full case study có timeline và số liệu
-- **Slug DB:** `du-an`, thêm array `projects` vào `admin/db.json`
+#### ✅ T3.1 – Bản đồ tương tác dự án
+- **Path:** `pages/du-an/index.html` ✅
+- **Leaflet.js** + OpenStreetMap, filter solar/ev, 10 markers toàn quốc, popup thông tin dự án
+- **Slug DB:** `du-an` — thêm vào `admin/db.json` ✅
 
-#### T3.3 – Trang Điều khoản + Bảo mật
-- **Path:** `pages/dieu-khoan/index.html`, `pages/bao-mat/index.html`
-- **Yêu cầu pháp lý:** Bắt buộc theo Luật BVQLNTD và yêu cầu Google AdSense/Ads
-- **Nội dung:** Standard B2B service terms, PDPA-compliant privacy policy tiếng Việt
+#### ✅ T3.2 – Trang Dự án / Case Studies
+- **Path:** `pages/du-an/index.html` ✅
+- Grid 3 dự án tiêu biểu + stats strip + CTA section
+- `projects[]` array đầy đủ trong `admin/db.json` ✅
 
-#### T3.4 – Tích hợp Zalo OA / Facebook Messenger
-- **Zalo:** Thêm Zalo OA Chat Widget (snippet JS Zalo)
-- **Facebook:** Thêm Facebook Messenger Chat Plugin
-- **Thay thế:** FAB hiện tại (a[href=tel] + a[href=zalo.me]) → upgrade thành proper chat widget
+#### ✅ T3.3 – Trang Điều khoản + Bảo mật
+- `pages/dieu-khoan/index.html` ✅ — 8 điều khoản, đúng pháp nhân MST 0316942991, địa chỉ thực Thủ Đức
+- `pages/bao-mat/index.html` ✅ — NĐ 13/2023, bảng dữ liệu thu thập, quyền người dùng
+- Link vào footer trang chủ ✅
 
-#### T3.5 – PWA (Progressive Web App)
-- **Đã có:** `favicon_io/site.webmanifest`
-- **Cần thêm:** `sw.js` service worker (cache-first strategy cho CSS/JS/fonts)
-- **Benefit:** Tải nhanh lần 2, offline fallback, "Add to Home Screen" prompt
+#### ⬜ T3.4 – Tích hợp Zalo OA / Facebook Messenger _(chờ Zalo OA ID từ client)_
+- **Cần:** `settings.zalo_oa_id` trong `admin/db.json`
+- FAB hiện tại đã có Zalo link `zalo.me/0944086788` — đủ dùng tạm
+
+#### ✅ T3.5 – PWA (Progressive Web App)
+- `sw.js` — cache-first + network-first, version `nlpgroup-v2` ✅
+- PRECACHE bao gồm tất cả 9 trang quan trọng ✅
+- SW registration trong `index.html` ✅
 
 ---
 
@@ -445,8 +447,8 @@ document.addEventListener('click', e => {
 ### Sprint 1 – Tuần 1 (P1 tasks)
 | Ngày | Task | Output | Trạng thái |
 |------|------|--------|-----------|
-| 1 | T1.1 Trang Về chúng tôi | `pages/ve-chung-toi/index.html` | ⬜ **NEXT UP** |
-| 2 | T1.2 Trang Đối tác | `pages/doi-tac/index.html` | ⬜ Sau T1.1 |
+| 1 | T1.1 Trang Về chúng tôi | `pages/ve-chung-toi/index.html` | ✅ Done |
+| 2 | T1.2 Trang Đối tác | `pages/doi-tac/index.html` | ✅ Done |
 | 3 | T1.3 GA4 Tracking | `js/main.js` – 7 events | 🔄 Chờ GA4 ID |
 | 4 | T1.4 Schema.org SEO | 6 bài blog + sản phẩm | ✅ Done |
 | 5 | T1.5 Admin hoàn thiện | `admin/` full panel | ✅ Done |
@@ -454,18 +456,42 @@ document.addEventListener('click', e => {
 ### Sprint 2 – Tuần 2 (P2 tasks)
 | Ngày | Task | Output | Trạng thái |
 |------|------|--------|-----------|
-| 1 | T2.1 WOW.js Animations | `js/main.js` + `css/main.css` | ⬜ Chưa |
-| 2 | T2.2 Swiper Slider | Section sản phẩm trang chủ | ⬜ Chưa |
-| 3 | T2.3 Hero nâng cấp | `index.html` hero section | ⬜ Chưa |
-| 4 | T2.4 Footer + T2.5 Mobile bar | `index.html` + `css/main.css` | ✅ Done (mobile bar 3 nút) |
+| 1 | T2.1 WOW.js Animations | `js/main.js` + `css/main.css` | ✅ Done |
+| 2 | T2.2 Swiper Slider | Section sản phẩm trang chủ | ✅ Done |
+| 3 | T2.3 Hero stats strip | `index.html` hero section | ✅ Done |
+| 4 | T2.4 Footer + T2.5 Mobile bar | `index.html` + `css/main.css` | ✅ Done |
 | 5 | T2.6 Blog 6 bài | `pages/tin-tuc/` + 6 trang detail | ✅ Done |
 
 ### Sprint 3 – Tuần 3+ (P3 tasks)
-- T3.1 Bản đồ dự án Leaflet
-- T3.2 Trang Case Studies
-- T3.3 Điều khoản + Bảo mật
-- T3.4 Zalo OA / Messenger widget
-- T3.5 PWA Service Worker
+| Ngày | Task | Output | Trạng thái |
+|------|------|--------|-----------|
+| 1 | T3.1+T3.2 Dự án + Leaflet | `pages/du-an/index.html` | ✅ Done |
+| 2 | T3.3 Điều khoản + Bảo mật | `pages/dieu-khoan/` + `pages/bao-mat/` | ✅ Done |
+| 3 | T3.5 PWA sw.js | `sw.js` v2 + SW registration | ✅ Done |
+| - | T3.4 Zalo OA Widget | `settings.zalo_oa_id` | ⬜ Chờ client |
+
+### Sprint 4 – Mobile UX Enhancement (hoàn thành)
+| Task | Output | Trạng thái |
+|------|--------|-----------|
+| Bottom nav 4-tab trên 27 sub-pages | `pages/*/index.html` | ✅ Done |
+| `js/main.js` — scroll-hide navbar | `initScrollHideNav()` | ✅ Done |
+| `js/main.js` — swipe-to-close modal | `initSwipeModal()` | ✅ Done |
+| `js/main.js` — active tab highlight | `initBottomNavActive()` | ✅ Done |
+| `js/main.js` — has-mobile-bar + resize | DOMContentLoaded | ✅ Done |
+| `css/main.css` — safe-area, bottom sheet | mobile-cta-bar CSS | ✅ Done |
+| `site.webmanifest` — standalone PWA | favicon_io/ | ✅ Done |
+
+### Sprint 5 – Tiếp theo (đề xuất)
+| Priority | Task | File | Ghi chú |
+|----------|------|------|---------|
+| P1 | Điền GA4 ID thực | `admin/db.json` → `settings.google_tag` | Chờ client |
+| P2 | Lazy load `loading="lazy"` tất cả `<img>` | Tất cả trang | Quick win perf |
+| P2 | `fetchpriority="high"` hero img | `index.html` | LCP fix |
+| P2 | Sitemap XML tự động | `sitemap.xml` | SEO |
+| P2 | `robots.txt` chuẩn | `robots.txt` | SEO |
+| P3 | Zalo OA widget nhúng | Chờ `zalo_oa_id` | Chờ client |
+| P3 | App download section (CH Play link) | `index.html` | Nếu app live |
+| P3 | OpenGraph `og:image` ảnh thực 1200×630 | Tất cả trang | Social share |
 
 ---
 
@@ -499,8 +525,12 @@ document.addEventListener('click', e => {
 ## 11. CHECKLIST PHÁT TRIỂN
 
 ### Trước khi commit
-- [ ] Test trên mobile Chrome (375px) + tablet (768px) + desktop (1440px)
+- [ ] Test trên mobile Chrome (375px iPhone SE, 390px iPhone 14, 412px Pixel 7)
 - [ ] Kiểm tra Console không có lỗi JS
+- [ ] Bottom nav hiển thị đúng trên mobile, ẩn trên desktop
+- [ ] Active tab highlight đúng theo từng section
+- [ ] Navbar ẩn khi scroll xuống, hiện khi scroll lên (mobile only)
+- [ ] Swipe-down ≥80px đóng modal bottom sheet
 - [ ] Tất cả link internal hoạt động (không 404)
 - [ ] Form modal submit + reset hoạt động
 - [ ] Calculator hiển thị kết quả đúng

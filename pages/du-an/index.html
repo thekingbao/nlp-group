@@ -1,7 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <link rel="manifest" href="../favicon_io/site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dự án đã triển khai – NLP Group | Bản đồ công trình toàn quốc</title>
     <meta name="description" content="Hơn 1.000 dự án điện mặt trời và trạm sạc xe điện NLP Group đã triển khai trên toàn quốc. Xem bản đồ dự án, thông số công suất và kết quả thực tế.">
@@ -10,11 +15,12 @@
     <meta property="og:description" content="Bản đồ 1.000+ dự án điện mặt trời & trạm sạc xe điện NLP Group trên toàn quốc.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nlpgroup.com.vn/pages/du-an/">
+    <meta property="og:image" content="https://nlpgroup.com.vn/favicon_io/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://nlpgroup.com.vn/favicon_io/og-image.png">
     <link rel="canonical" href="https://nlpgroup.com.vn/pages/du-an/">
-    <link rel="icon" type="image/x-icon"       href="../../favicon_io/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon_io/favicon-32x32.png">
-    <link rel="apple-touch-icon"               href="../../favicon_io/apple-touch-icon.png">
-    <link rel="manifest"                        href="../../favicon_io/site.webmanifest">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -331,5 +337,27 @@ function filterMap(type) {
     });
 }
 </script>
-</body>
+    <!-- Mobile Bottom Navigation (4-tab app-like) -->
+    <nav class="mobile-cta-bar md:hidden" id="mobileBottomNav" aria-label="Mobile navigation">
+        <a href="../index.html" class="nav-tab" id="nav-home">
+            <i class="fa-solid fa-house"></i>
+            <span>Trang ch&#7911;</span>
+        </a>
+        <a href="../pages/dien-mat-troi/" class="nav-tab" id="nav-solar">
+            <i class="fa-solid fa-solar-panel"></i>
+            <span>Solar</span>
+        </a>
+        <button class="nav-tab cta-primary" onclick="openModal()" id="nav-cta">
+            <i class="fa-solid fa-phone-volume"></i>
+            <span>T&#432; v&#7845;n</span>
+        </button>
+        <a href="../pages/tru-sac/" class="nav-tab" id="nav-ev">
+            <i class="fa-solid fa-charging-station"></i>
+            <span>Tr&#7841;m s&#7841;c</span>
+        </a>
+        <a href="../pages/du-an/" class="nav-tab active" id="nav-project">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>D&#7921; &#225;n</span>
+        </a>
+    </nav></body>
 </html>

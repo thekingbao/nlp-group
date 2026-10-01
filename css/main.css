@@ -1,5 +1,20 @@
-/* VN Solar – Main Stylesheet
+/* NLP Group – Main Stylesheet v3 (Mobile-First)
    Extends Tailwind with custom utilities shared across all pages */
+
+/* ── iOS/Android safe area support ────────────────── */
+:root {
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-top:    env(safe-area-inset-top, 0px);
+    --safe-left:   env(safe-area-inset-left, 0px);
+    --safe-right:  env(safe-area-inset-right, 0px);
+}
+
+/* ── Touch tap highlight removal ──────────────────── */
+* { -webkit-tap-highlight-color: transparent; }
+a, button { touch-action: manipulation; }
+
+/* ── Smooth momentum scroll ────────────────────────── */
+html { -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
 
 /* ── Scrollbar hide (marquee) ─────────────────────── */
 .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -92,17 +107,50 @@
     margin: .5rem auto 0;
 }
 
-/* ── Mobile bottom CTA bar ────────────────────────── */
+/* ── Mobile Bottom Nav Bar (4-tab app-like) ─────────── */
 .mobile-cta-bar {
     position: fixed;
     bottom: 0; left: 0; right: 0;
     z-index: 80;
     display: flex;
-    background: #fff;
+    background: #ffffff;
     border-top: 1px solid #e5e7eb;
-    padding: .5rem 1rem;
-    gap: .5rem;
+    padding: .45rem .5rem;
+    padding-bottom: calc(.45rem + var(--safe-bottom));
+    gap: 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,.07);
 }
+.mobile-cta-bar .nav-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: .35rem .25rem;
+    border-radius: .625rem;
+    text-decoration: none;
+    color: #57606a;
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    transition: color .15s, background .15s;
+    cursor: pointer;
+    border: none;
+    background: none;
+    min-height: 48px;
+}
+.mobile-cta-bar .nav-tab i { font-size: 1.1rem; line-height: 1; }
+.mobile-cta-bar .nav-tab.active,
+.mobile-cta-bar .nav-tab:active { color: #16a34a; }
+.mobile-cta-bar .nav-tab.cta-primary {
+    background: #16a34a;
+    color: #fff;
+    border-radius: .75rem;
+    margin: 0 .25rem;
+    box-shadow: 0 2px 8px rgba(22,163,74,.35);
+}
+.mobile-cta-bar .nav-tab.cta-primary:active { background: #15803d; transform: scale(.97); }
 @media (min-width: 768px) { .mobile-cta-bar { display: none; } }
 
 /* ── Floating WhatsApp / Phone button ─────────────── */
@@ -199,4 +247,81 @@ body.has-mobile-bar .fab-zalo  { bottom: 6.5rem; }
 .animate__animated { visibility: visible; }
 
 /* ── Body bottom padding when mobile bar is present ── */
-body.has-mobile-bar { padding-bottom: 72px; }
+body.has-mobile-bar {
+    padding-bottom: calc(68px + var(--safe-bottom));
+}
+
+/* ── Mobile input font-size ≥ 16px (prevent iOS zoom) ── */
+@media (max-width: 767px) {
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* ── Mobile overscroll color (Chrome Android) ──────── */
+@media (max-width: 767px) {
+    html { overscroll-behavior-y: contain; }
+}
+
+/* ── Touch button active press feedback ──────────────── */
+@media (max-width: 767px) {
+    .btn-touch:active,
+    button:active,
+    [onclick]:active {
+        opacity: .82;
+        transform: scale(.98);
+    }
+}
+
+/* ── Full-width CTA buttons on mobile ──────────────── */
+@media (max-width: 639px) {
+    .hero-cta-group { flex-direction: column; }
+    .hero-cta-group > * { width: 100%; }
+}
+
+/* ── Bottom sheet modal on mobile ──────────────────── */
+@media (max-width: 639px) {
+    #leadModal .modal-inner {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        border-radius: 1.5rem 1.5rem 0 0;
+        max-height: 92vh;
+        overflow-y: auto;
+        animation: slideUp .3s ease;
+    }
+    @keyframes slideUp {
+        from { transform: translateY(100%); }
+        to   { transform: translateY(0); }
+    }
+}
+
+/* ── Pull-to-refresh visual hint ──────────────────── */
+.ptr-spinner {
+    width: 32px; height: 32px;
+    border: 3px solid #e5e7eb;
+    border-top-color: #16a34a;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    margin: 0 auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Hero stats glassmorphism cards ──────────────── */
+.glass-stat {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ── Swiper product slider ────────────────────────── */
+.product-swiper { overflow: visible; }
+.product-swiper .swiper-wrapper { align-items: stretch; }
+.product-swiper .swiper-slide { height: auto; }
+.product-swiper .swiper-pagination-bullet { background: #16a34a; opacity: .4; }
+.product-swiper .swiper-pagination-bullet-active { opacity: 1; }

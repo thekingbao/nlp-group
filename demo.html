@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Demo Dashboard – NLP Group Site Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: {
+                fontFamily: { sans: ['Inter','sans-serif'] },
+                colors: { solar:{50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d'}, dark:'#0f172a' }
+            }}
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; }
+        .card-link { transition: all .2s; }
+        .card-link:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.10); }
+        .status-dot { width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px; }
+        .status-green { background:#16a34a; }
+        .status-yellow { background:#f59e0b; }
+        .status-red { background:#ef4444; }
+        .badge { display:inline-block;padding:2px 8px;border-radius:999px;font-size:.72rem;font-weight:700; }
+        .badge-solar { background:#dcfce7;color:#15803d; }
+        .badge-ev { background:#ede9fe;color:#6d28d9; }
+        .badge-partner { background:#dbeafe;color:#1d4ed8; }
+        .stat-num { font-size:2rem;font-weight:900;line-height:1; }
+        @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.5} }
+        .live-dot { animation:pulse 2s infinite; }
+    </style>
+</head>
+<body class="text-gray-800">
+
+<!-- TOPBAR -->
+<div class="bg-dark text-white px-6 py-3 flex items-center justify-between text-sm">
+    <div class="flex items-center gap-3">
+        <span class="font-black text-lg">NLP <span class="text-solar-500">GROUP</span></span>
+        <span class="bg-solar-600 text-white px-2 py-0.5 rounded text-xs font-bold">DEMO MODE</span>
+        <span class="live-dot status-dot status-green"></span>
+        <span class="text-gray-400 text-xs" id="seedStatus">Đang kiểm tra dữ liệu...</span>
+    </div>
+    <div class="flex items-center gap-4">
+        <button onclick="resetDemo()" class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-rotate-right mr-1"></i>Reset demo data</button>
+        <a href="index.html" class="bg-solar-600 hover:bg-solar-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-colors">
+            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Mở trang chủ thật
+        </a>
+    </div>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 py-8">
+
+    <!-- HEADER -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-black text-gray-900 mb-2">🎯 Demo Experience Dashboard</h1>
+        <p class="text-gray-500">Tất cả trang và tính năng của <strong>nlpgroup.com.vn</strong> — click để trải nghiệm trực tiếp.</p>
+    </div>
+
+    <!-- LIVE STATS -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" id="liveStats">
+        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+            <p class="text-xs text-gray-400 font-bold uppercase mb-2">Leads trong demo</p>
+            <p class="stat-num text-solar-600" id="statLeads">–</p>
+            <p class="text-xs text-gray-400 mt-1">Solar + EV + Đối tác</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+            <p class="text-xs text-gray-400 font-bold uppercase mb-2">Trạm sạc online</p>
+            <p class="stat-num text-blue-600">6/8</p>
+            <p class="text-xs text-gray-400 mt-1">2 maintenance/offline</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+            <p class="text-xs text-gray-400 font-bold uppercase mb-2">DT tháng (demo)</p>
+            <p class="stat-num text-purple-600">145M</p>
+            <p class="text-xs text-gray-400 mt-1">8 trạm cộng gộp</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+            <p class="text-xs text-gray-400 font-bold uppercase mb-2">Trang đã xây</p>
+            <p class="stat-num text-orange-500">22</p>
+            <p class="text-xs text-gray-400 mt-1">Sprint 1+2+3 done</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- ── CỘT TRÁI: TRANG KHÁCH HÀNG ── -->
+        <div class="lg:col-span-2 space-y-6">
+
+            <!-- PUBLIC PAGES -->
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-2">
+                    <i class="fa-solid fa-globe text-solar-600"></i>
+                    <h2 class="font-black text-gray-900">Trang khách hàng (Public)</h2>
+                </div>
+                <div class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+                    <a href="index.html" class="card-link block bg-gradient-to-br from-solar-600 to-solar-700 text-white rounded-xl p-4">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fa-solid fa-house text-xl"></i>
+                            <span class="font-bold">Trang chủ</span>
+                            <span class="ml-auto text-xs bg-white/20 px-2 py-0.5 rounded">Hero + Swiper + WOW</span>
+                        </div>
+                        <p class="text-solar-100 text-xs">Hero stats, 5 sản phẩm Swiper, calculator ROI, WOW animations</p>
+                        <p class="text-solar-200 text-xs mt-1 font-mono">index.html</p>
+                    </a>
+
+                    <a href="pages/ve-chung-toi/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-solar-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-building text-solar-600 text-lg"></i>
+                            <span class="font-bold">Về chúng tôi</span>
+                        </div>
+                        <p class="text-gray-500 text-xs">Timeline NLP Group, số liệu ấn tượng, đội ngũ, glassmorphism hero</p>
+                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/ve-chung-toi/</p>
+                    </a>
+
+                    <a href="pages/dien-mat-troi/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-solar-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-solar-panel text-yellow-500 text-lg"></i>
+                            <span class="font-bold">Điện mặt trời</span>
+                        </div>
+                        <p class="text-gray-500 text-xs">Biến tần DEYE/SOLIS, tấm pin, pin lưu trữ, calculator ROI</p>
+                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/dien-mat-troi/</p>
+                    </a>
+
+                    <a href="pages/tru-sac/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-purple-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-charging-station text-purple-600 text-lg"></i>
+                            <span class="font-bold">Trạm sạc xe điện</span>
+                        </div>
+                        <p class="text-gray-500 text-xs">DC 120/240kW, AC 7-22kW, ROI calculator, bản đồ trạm</p>
+                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/tru-sac/</p>
+                    </a>
+
+                    <a href="pages/doi-tac/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-blue-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-handshake text-blue-600 text-lg"></i>
+                            <span class="font-bold">Đăng ký Đối tác</span>
+                        </div>
+                        <p class="text-gray-500 text-xs">4 benefit cards, form cascade tỉnh/phường, glassmorphism dark</p>
+                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/doi-tac/</p>
+                    </a>
+
+                    <a href="pages/du-an/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-green-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-map-location-dot text-green-600 text-lg"></i>
+                            <span class="font-bold">Dự án & Bản đồ</span>
+                        </div>
+                        <p class="text-gray-500 text-xs">Leaflet.js bản đồ 10 markers, filter solar/EV, case studies grid</p>
+                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/du-an/</p>
+                    </a>
+
+                    <a href="pages/tin-tuc/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-orange-200">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-newspaper text-orange-500 text-lg"></i>
+                            <span class="font-bold">Tin tức & Blog</span>
+                        </div>
+                        <p class="text-gray-500 text-xs">6 bài viết, filter theo chuyên mục, featured post, Schema Article</p>
+                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/tin-tuc/</p>
+                    </a>
+
+                    <a href="pages/lien-he/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-gray-300">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-phone text-gray-600 text-lg"></i>
+                            <span class="font-bold">Liên hệ</span>
+                        </div>
+                        <p class="text-gray-500 text-xs">Form tư vấn, bản đồ, hotline, LocalBusiness Schema</p>
+                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/lien-he/</p>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- BLOG ARTICLES -->
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-2">
+                    <i class="fa-solid fa-file-lines text-orange-500"></i>
+                    <h2 class="font-black text-gray-900">6 Bài blog có nội dung thực</h2>
+                </div>
+                <div class="divide-y divide-gray-50">
+                    <a href="pages/tin-tuc/nd-135-2024-dien-mat-troi-tu-san-tu-tieu/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
+                        <span class="badge badge-solar">Chính sách</span>
+                        <span class="text-sm font-semibold text-gray-800 flex-1">NĐ 135/2024: Điện mặt trời tự sản tự tiêu — Cơ hội vàng</span>
+                        <span class="text-xs text-gray-400">22/11/2024</span>
+                    </a>
+                    <a href="pages/tin-tuc/deye-vs-solis-2026/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
+                        <span class="badge" style="background:#dcfce7;color:#15803d">Công nghệ</span>
+                        <span class="text-sm font-semibold text-gray-800 flex-1">DEYE vs SOLIS 2026: So sánh biến tần Hybrid 6kW & 10kW</span>
+                        <span class="text-xs text-gray-400">10/06/2026</span>
+                    </a>
+                    <a href="pages/tin-tuc/bieu-gia-dien-sac-xe-2026/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
+                        <span class="badge" style="background:#fef3c7;color:#92400e">Thị trường</span>
+                        <span class="text-sm font-semibold text-gray-800 flex-1">Biểu giá điện sạc xe 2026: 3.651đ – 7.436đ/kWh</span>
+                        <span class="text-xs text-gray-400">15/07/2026</span>
+                    </a>
+                    <a href="pages/tin-tuc/case-study-khach-san-da-nang/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
+                        <span class="badge" style="background:#ffedd5;color:#9a3412">Dự án</span>
+                        <span class="text-sm font-semibold text-gray-800 flex-1">Case study: Khách sạn Đà Nẵng tiết kiệm 68% hóa đơn</span>
+                        <span class="text-xs text-gray-400">05/05/2026</span>
+                    </a>
+                    <a href="pages/tin-tuc/roi-tram-sac-dc-120kw/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
+                        <span class="badge badge-ev">Xe điện</span>
+                        <span class="text-sm font-semibold text-gray-800 flex-1">Đầu tư trạm sạc DC 120kW: ROI thực tế sau 18 tháng</span>
+                        <span class="text-xs text-gray-400">20/04/2026</span>
+                    </a>
+                    <a href="pages/tin-tuc/pin-lithium-lifepo4-solar-hybrid/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
+                        <span class="badge" style="background:#dcfce7;color:#15803d">Công nghệ</span>
+                        <span class="text-sm font-semibold text-gray-800 flex-1">Pin LiFePO4 cho Solar Hybrid: Tất cả những gì cần biết</span>
+                        <span class="text-xs text-gray-400">12/03/2026</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DEMO LEADS PREVIEW -->
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-user-group text-blue-500"></i>
+                        <h2 class="font-black text-gray-900">Leads demo (localStorage)</h2>
+                    </div>
+                    <a href="admin/leads.html" class="text-xs text-solar-600 font-semibold hover:underline">Xem trong Admin →</a>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Họ tên</th>
+                                <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">SĐT</th>
+                                <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Loại</th>
+                                <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Tỉnh</th>
+                                <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Thời gian</th>
+                            </tr>
+                        </thead>
+                        <tbody id="demoLeadsBody" class="divide-y divide-gray-50">
+                            <tr><td colspan="5" class="px-4 py-4 text-center text-gray-400 text-sm">Đang tải...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── CỘT PHẢI: ADMIN + PHÁP LÝ ── -->
+        <div class="space-y-6">
+
+            <!-- ADMIN PAGES -->
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div class="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
+                    <i class="fa-solid fa-lock text-gray-500"></i>
+                    <h2 class="font-black text-gray-900">Admin Panel</h2>
+                    <span class="ml-auto text-xs text-gray-400">admin / nlpgroup2025</span>
+                </div>
+                <div class="p-4 space-y-2">
+                    <a href="admin/index.html" class="card-link flex items-center gap-3 bg-gray-900 text-white rounded-xl p-3.5 hover:bg-gray-800">
+                        <i class="fa-solid fa-gauge-high text-solar-400"></i>
+                        <div>
+                            <p class="font-bold text-sm">Dashboard Tổng quan</p>
+                            <p class="text-gray-400 text-xs">KPI, trạm sạc, NFC, BCTC, HR</p>
+                        </div>
+                    </a>
+                    <a href="admin/leads.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-blue-200">
+                        <i class="fa-solid fa-user-group text-blue-500"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-900">Danh sách Leads</p>
+                            <p class="text-gray-400 text-xs">20 demo leads · Export CSV</p>
+                        </div>
+                        <span class="ml-auto bg-blue-100 text-blue-700 text-xs font-bold px-2 py-0.5 rounded-full" id="adminLeadBadge">20</span>
+                    </a>
+                    <a href="admin/stations.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-green-200">
+                        <i class="fa-solid fa-charging-station text-green-600"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-900">Quản lý Trạm sạc</p>
+                            <p class="text-gray-400 text-xs">8 trạm, bản đồ, OCPP simulator</p>
+                        </div>
+                    </a>
+                    <a href="admin/nfc.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-teal-200">
+                        <i class="fa-solid fa-id-card text-teal-600"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-900">NFC Manager</p>
+                            <p class="text-gray-400 text-xs">5 thẻ, simulator quét NFC</p>
+                        </div>
+                    </a>
+                    <a href="admin/finance.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-purple-200">
+                        <i class="fa-solid fa-chart-pie text-purple-600"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-900">BCTC B01–B03</p>
+                            <p class="text-gray-400 text-xs">Bảng cân đối, lợi nhuận, dòng tiền</p>
+                        </div>
+                    </a>
+                    <a href="admin/employees.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-orange-200">
+                        <i class="fa-solid fa-users-gear text-orange-500"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-900">HR & Thuế TNCN</p>
+                            <p class="text-gray-400 text-xs">7 nhân viên, bảng lương, TNCN 7 bậc</p>
+                        </div>
+                    </a>
+                    <a href="admin/settings.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-gray-300">
+                        <i class="fa-solid fa-gear text-gray-500"></i>
+                        <div>
+                            <p class="font-bold text-sm text-gray-900">Cài đặt Site</p>
+                            <p class="text-gray-400 text-xs">SĐT, GA4, FB Pixel, bảo trì</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- LEGAL PAGES -->
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div class="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
+                    <i class="fa-solid fa-scale-balanced text-gray-500"></i>
+                    <h2 class="font-black text-gray-900">Pháp lý & Chính sách</h2>
+                </div>
+                <div class="p-4 space-y-2">
+                    <a href="pages/dieu-khoan/" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3 hover:border-gray-300">
+                        <i class="fa-solid fa-file-contract text-gray-500"></i>
+                        <div>
+                            <p class="font-semibold text-sm text-gray-900">Điều khoản Sử dụng</p>
+                            <p class="text-gray-400 text-xs">8 điều, MST 0316942991, địa chỉ thực</p>
+                        </div>
+                    </a>
+                    <a href="pages/bao-mat/" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3 hover:border-gray-300">
+                        <i class="fa-solid fa-shield-halved text-gray-500"></i>
+                        <div>
+                            <p class="font-semibold text-sm text-gray-900">Chính sách Bảo mật</p>
+                            <p class="text-gray-400 text-xs">NĐ 13/2023, PDPA-compliant tiếng Việt</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- TECH STACK -->
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                <div class="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
+                    <i class="fa-solid fa-microchip text-gray-500"></i>
+                    <h2 class="font-black text-gray-900">Tech Stack</h2>
+                </div>
+                <div class="p-4 space-y-2 text-sm">
+                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
+                        <span class="text-gray-600">CSS Framework</span>
+                        <span class="font-semibold text-gray-900">Tailwind CSS CDN</span>
+                    </div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
+                        <span class="text-gray-600">Animations</span>
+                        <span class="font-semibold text-gray-900">WOW.js + Animate.css</span>
+                    </div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
+                        <span class="text-gray-600">Slider</span>
+                        <span class="font-semibold text-gray-900">Swiper.js v11</span>
+                    </div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
+                        <span class="text-gray-600">Maps</span>
+                        <span class="font-semibold text-gray-900">Leaflet.js + OSM</span>
+                    </div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
+                        <span class="text-gray-600">Icons</span>
+                        <span class="font-semibold text-gray-900">Font Awesome 6.4</span>
+                    </div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
+                        <span class="text-gray-600">Data store</span>
+                        <span class="font-semibold text-gray-900">admin/db.json + localStorage</span>
+                    </div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
+                        <span class="text-gray-600">PWA</span>
+                        <span class="font-semibold text-green-700">sw.js v2 ✅</span>
+                    </div>
+                    <div class="flex justify-between items-center py-1">
+                        <span class="text-gray-600">Deploy</span>
+                        <span class="font-semibold text-gray-900">Cloudflare Pages</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHECKLIST -->
+            <div class="bg-solar-50 rounded-2xl border border-solar-100 p-5">
+                <p class="font-black text-solar-900 mb-3 flex items-center gap-2"><i class="fa-solid fa-clipboard-check"></i> Sprint Status</p>
+                <div class="space-y-1.5 text-sm">
+                    <div class="flex items-center gap-2 text-solar-800"><i class="fa-solid fa-check-circle text-solar-600"></i> Sprint 1 — P1 (5/5 done)</div>
+                    <div class="flex items-center gap-2 text-solar-800"><i class="fa-solid fa-check-circle text-solar-600"></i> Sprint 2 — P2 (5/5 done)</div>
+                    <div class="flex items-center gap-2 text-solar-800"><i class="fa-solid fa-check-circle text-solar-600"></i> Sprint 3 — P3 (4/5 done)</div>
+                    <div class="flex items-center gap-2 text-gray-500"><i class="fa-regular fa-circle text-gray-400"></i> T3.4 Zalo OA — chờ OA ID</div>
+                    <div class="flex items-center gap-2 text-gray-500"><i class="fa-regular fa-circle text-gray-400"></i> GA4 — chờ G-XXXXXXXXXX</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="js/demo-seed.js"></script>
+<script>
+function resetDemo() {
+    if (!confirm('Reset toàn bộ dữ liệu demo về ban đầu?')) return;
+    localStorage.removeItem('nlpgroup_demo_seeded');
+    localStorage.removeItem('nlpgroup_leads');
+    localStorage.removeItem('nlpgroup_calc_history');
+    localStorage.removeItem('nlpgroup_notifications');
+    location.reload();
+}
+
+function loadLeadsPreview() {
+    const leads = JSON.parse(localStorage.getItem('nlpgroup_leads') || '[]');
+    document.getElementById('statLeads').textContent = leads.length;
+    document.getElementById('adminLeadBadge').textContent = leads.length;
+
+    const body = document.getElementById('demoLeadsBody');
+    const preview = leads.slice(0, 8);
+    if (!preview.length) {
+        body.innerHTML = '<tr><td colspan="5" class="px-4 py-4 text-center text-gray-400">Chưa có leads</td></tr>';
+        return;
+    }
+    body.innerHTML = preview.map(l => {
+        const typeColor = l.type === 'partner' ? 'badge-partner' : (l.service||'').includes('sạc') ? 'badge-ev' : 'badge-solar';
+        const typeLabel = l.type === 'partner' ? '🤝 Đối tác' : (l.service||'').includes('sạc') ? '⚡ EV' : '☀️ Solar';
+        const dt = new Date(l.time);
+        const ago = Math.round((Date.now() - dt.getTime()) / 3600000);
+        const timeStr = ago < 24 ? ago + 'h trước' : Math.round(ago/24) + 'ngày trước';
+        return `<tr class="hover:bg-gray-50">
+            <td class="px-4 py-2.5 font-semibold text-sm">${l.name}</td>
+            <td class="px-4 py-2.5 text-sm text-blue-600">${l.phone}</td>
+            <td class="px-4 py-2.5"><span class="badge ${typeColor}">${typeLabel}</span></td>
+            <td class="px-4 py-2.5 text-xs text-gray-500">${l.province || '—'}</td>
+            <td class="px-4 py-2.5 text-xs text-gray-400 whitespace-nowrap">${timeStr}</td>
+        </tr>`;
+    }).join('');
+
+    if (leads.length > 8) {
+        body.innerHTML += `<tr><td colspan="5" class="px-4 py-2 text-center text-xs text-solar-600 font-semibold">
+            <a href="admin/leads.html">+ ${leads.length - 8} leads khác → Xem toàn bộ trong Admin</a>
+        </td></tr>`;
+    }
+}
+
+document.getElementById('seedStatus').textContent =
+    localStorage.getItem('nlpgroup_demo_seeded') === 'v3'
+        ? '✅ Demo data đã seed — ' + JSON.parse(localStorage.getItem('nlpgroup_leads')||'[]').length + ' leads'
+        : '⚠️ Demo data chưa seed';
+
+loadLeadsPreview();
+</script>
+
+</body>
+</html>

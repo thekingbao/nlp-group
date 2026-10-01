@@ -228,21 +228,121 @@ window.updateCalculator = function() {
     }, 800);
 };
 
+/* ── Mobile: hide navbar on scroll-down ─────── */
+(function initScrollHideNav() {
+    const nav = document.getElementById('navbar');
+    if (!nav) return;
+    let lastY = 0;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            const y = window.scrollY;
+            // Only hide/show on mobile (< 768px)
+            if (window.innerWidth < 768) {
+                if (y > lastY && y > 80) {
+                    nav.style.transform = 'translateY(-100%)';
+                    nav.style.transition = 'transform 0.25s ease';
+                } else {
+                    nav.style.transform = '';
+                }
+            }
+            lastY = y;
+            ticking = false;
+        });
+    }, { passive: true });
+})();
+
+/* ── Mobile: swipe-down to close bottom-sheet modal ── */
+(function initSwipeModal() {
+    const modal = document.getElementById('leadModal');
+    if (!modal) return;
+    const sheet = modal.querySelector('.modal-sheet') || modal.firstElementChild;
+    if (!sheet) return;
+
+    let startY = 0;
+    let isDragging = false;
+
+    sheet.addEventListener('touchstart', e => {
+        // Only start drag from the drag handle or top 40px of sheet
+        const touchY = e.touches[0].clientY;
+        const rect   = sheet.getBoundingClientRect();
+        if (touchY - rect.top > 60) return; // allow normal scroll inside
+        startY     = touchY;
+        isDragging = true;
+        sheet.style.transition = 'none';
+    }, { passive: true });
+
+    sheet.addEventListener('touchmove', e => {
+        if (!isDragging) return;
+        const delta = e.touches[0].clientY - startY;
+        if (delta > 0) {
+            sheet.style.transform = `translateY(${delta}px)`;
+        }
+    }, { passive: true });
+
+    sheet.addEventListener('touchend', e => {
+        if (!isDragging) return;
+        isDragging = false;
+        const delta = e.changedTouches[0].clientY - startY;
+        sheet.style.transition = '';
+        sheet.style.transform  = '';
+        if (delta > 80) {
+            closeModal();
+        }
+    });
+})();
+
+/* ── Mobile: bottom-nav active tab highlight ── */
+(function initBottomNavActive() {
+    const bottomNav = document.getElementById('mobileBottomNav');
+    if (!bottomNav) return;
+    const path = window.location.pathname;
+
+    // Tab → path prefix mapping
+    const tabMap = {
+        'nav-home':    '/',
+        'nav-solar':   '/pages/dien-mat-troi',
+        'nav-ev':      '/pages/tru-sac',
+        'nav-project': '/pages/du-an',
+    };
+
+    Object.entries(tabMap).forEach(([id, prefix]) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const match = prefix === '/'
+            ? (path === '/' || path === '/index.html')
+            : path.startsWith(prefix);
+        el.classList.toggle('active', match);
+    });
+})();
+
 /* ── Page init ───────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('page-fade');
     updateCalculator();
     loadDB();
 
-    // Active nav link highlight
+    // Apply has-mobile-bar class so FAB repositions correctly
+    if (window.innerWidth < 768) {
+        document.body.classList.add('has-mobile-bar');
+    }
+    window.addEventListener('resize', () => {
+        document.body.classList.toggle('has-mobile-bar', window.innerWidth < 768);
+    });
+
+    // Active nav link highlight (top navbar)
     const path = window.location.pathname;
     document.querySelectorAll('nav a').forEach(a => {
         const href = a.getAttribute('href') || '';
         if (href && href !== '#' && href.length > 1) {
-            const hPath = new URL(href, window.location.href).pathname;
-            if (hPath !== '/' && path.startsWith(hPath)) {
-                a.classList.add('text-solar-600', '!font-bold');
-            }
+            try {
+                const hPath = new URL(href, window.location.href).pathname;
+                if (hPath !== '/' && path.startsWith(hPath)) {
+                    a.classList.add('text-solar-600', '!font-bold');
+                }
+            } catch (_) {}
         }
     });
 });

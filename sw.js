@@ -4,7 +4,7 @@
  * Enables fast repeat loads and basic offline fallback
  */
 
-const CACHE_VERSION = 'nlpgroup-v1';
+const CACHE_VERSION = 'nlpgroup-v3';
 const STATIC_CACHE  = `${CACHE_VERSION}-static`;
 const PAGE_CACHE    = `${CACHE_VERSION}-pages`;
 
@@ -21,11 +21,16 @@ const PRECACHE_ASSETS = [
   '/admin/db.json',
   '/pages/ve-chung-toi/',
   '/pages/doi-tac/',
+  '/pages/du-an/',
   '/pages/dien-mat-troi/',
   '/pages/tru-sac/',
   '/pages/tin-tuc/',
   '/pages/lien-he/',
+  '/pages/dieu-khoan/',
+  '/pages/bao-mat/',
 ];
+
+const CACHE_VERSION_DATE = '2026-10-02';  // Sprint 4: mobile nav, main.js UX blocks, manifest fix
 
 // ── INSTALL ────────────────────────────────────
 self.addEventListener('install', event => {
