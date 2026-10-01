@@ -208,7 +208,7 @@
     <!-- ── HERO SECTION ───────────────────────────────── -->
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden hero-pattern">
         <div class="absolute inset-0 z-0 opacity-20">
-            <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2072&auto=format&fit=crop" alt="Solar Panels Background" class="w-full h-full object-cover mix-blend-overlay">
+            <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2072&auto=format&fit=crop" alt="Solar Panels Background" class="w-full h-full object-cover mix-blend-overlay" fetchpriority="high">
         </div>
         <div class="absolute -top-24 -right-24 w-96 h-96 bg-solar-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
         <div class="absolute bottom-10 -left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
@@ -247,15 +247,31 @@
                     <div class="grid grid-cols-2 gap-4 text-sm text-gray-400 font-medium">
                         <div class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-solar-500"></i> Bảo hành thiết bị 10 năm</div>
                         <div class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-solar-500"></i> Lắp đặt toàn quốc</div>
-                        <div class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-solar-500"></i> Phù hợp pháp lý mới</div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-solar-500"></i> Phù hợp NĐ 135/2024</div>
                         <div class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-solar-500"></i> Kỹ sư giám sát 24/7</div>
+                    </div>
+
+                    <!-- Stats strip -->
+                    <div class="grid grid-cols-3 gap-3 mt-8">
+                        <div class="bg-white/8 backdrop-blur-sm border border-white/10 rounded-xl p-3 text-center">
+                            <div class="text-xl font-black text-solar-400">200+</div>
+                            <div class="text-xs text-gray-400 font-medium mt-0.5">Dự án xong</div>
+                        </div>
+                        <div class="bg-white/8 backdrop-blur-sm border border-white/10 rounded-xl p-3 text-center">
+                            <div class="text-xl font-black text-yellow-300">50 MWp</div>
+                            <div class="text-xs text-gray-400 font-medium mt-0.5">Lắp đặt</div>
+                        </div>
+                        <div class="bg-white/8 backdrop-blur-sm border border-white/10 rounded-xl p-3 text-center">
+                            <div class="text-xl font-black text-blue-300">24+</div>
+                            <div class="text-xs text-gray-400 font-medium mt-0.5">Tỉnh thành</div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Hero Image -->
                 <div class="relative hidden lg:block">
                     <div class="absolute inset-0 bg-gradient-to-tr from-solar-500/20 to-transparent rounded-3xl transform rotate-3 scale-105"></div>
-                    <img src="https://images.unsplash.com/photo-1592833159155-c62df1b65634?q=80&w=2069&auto=format&fit=crop" alt="Hệ thống điện mặt trời áp mái công nghiệp" class="relative rounded-3xl shadow-2xl object-cover h-[500px] w-full border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1592833159155-c62df1b65634?q=80&w=2069&auto=format&fit=crop" alt="Hệ thống điện mặt trời áp mái công nghiệp" class="relative rounded-3xl shadow-2xl object-cover h-[500px] w-full border border-white/10" loading="eager">
 
                     <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl border border-gray-100 flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
                         <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xl">
@@ -297,14 +313,14 @@
     <!-- ── PAIN POINTS ────────────────────────────────── -->
     <section class="py-24 bg-white" id="gioi-thieu">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-16 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">
                 <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Bức tranh năng lượng hiện tại</p>
                 <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Ba nỗi đau mà doanh nghiệp<br>không thể tiếp tục phớt lờ</h2>
                 <p class="text-lg text-gray-600">Không phải thiếu điện — mà là đang trả quá nhiều tiền cho nguồn điện không đáng tin cậy. Đã đến lúc lấy lại quyền kiểm soát.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-xl transition-all hover:-translate-y-2 group">
+                <div class="wow animate__animated animate__fadeInUp bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-xl transition-all hover:-translate-y-2 group" data-wow-delay="0s" data-wow-duration="0.6s">
                     <div class="w-16 h-16 bg-red-100 text-red-500 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-money-bill-trend-up"></i>
                     </div>
@@ -316,7 +332,7 @@
                     </a>
                 </div>
 
-                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-xl transition-all hover:-translate-y-2 group">
+                <div class="wow animate__animated animate__fadeInUp bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-xl transition-all hover:-translate-y-2 group" data-wow-delay="0.1s" data-wow-duration="0.6s">
                     <div class="w-16 h-16 bg-orange-100 text-orange-500 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-plug-circle-xmark"></i>
                     </div>
@@ -328,7 +344,7 @@
                     </a>
                 </div>
 
-                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-xl transition-all hover:-translate-y-2 group">
+                <div class="wow animate__animated animate__fadeInUp bg-gray-50 rounded-3xl p-8 border border-gray-100 hover:shadow-xl transition-all hover:-translate-y-2 group" data-wow-delay="0.2s" data-wow-duration="0.6s">
                     <div class="w-16 h-16 bg-blue-100 text-blue-500 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-car-side"></i>
                     </div>
@@ -346,7 +362,7 @@
     <!-- ── TARGET SEGMENTS ───────────────────────────── -->
     <section class="py-24 bg-gray-50 border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-16 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">
                 <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Giải pháp cá nhân hóa</p>
                 <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Bạn thuộc nhóm nào? <br>Chọn đúng — tiết kiệm đúng.</h2>
                 <p class="text-lg text-gray-600">Chúng tôi không bán thiết bị — NLP Group thiết kế giải pháp năng lượng tối ưu hóa dòng tiền cho từng mô hình kinh doanh.</p>
@@ -354,11 +370,10 @@
 
             <div class="space-y-8">
                 <!-- Group 1: Residential -->
-                <div class="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-8 items-center">
+                <div class="wow animate__animated animate__fadeInUp bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-8 items-center" data-wow-duration="0.6s">
                     <div class="w-full md:w-1/3 flex justify-center">
                         <div class="w-48 h-48 bg-blue-50 rounded-full flex items-center justify-center relative">
-                            <div class="absolute inset-0 border-2 border-blue-100 rounded-full animate-ping opacity-20"></div>
-                            <i class="fa-solid fa-house-chimney text-6xl text-blue-500"></i>
+                            <i class="fa-solid fa-house-chimney text-6xl text-blue-500 loading" loading="lazy"></i>
                         </div>
                     </div>
                     <div class="w-full md:w-2/3">
@@ -382,7 +397,7 @@
                 </div>
 
                 <!-- Group 2: B2B Solar -->
-                <div class="bg-white rounded-[2rem] p-8 md:p-12 shadow-md border border-solar-100 flex flex-col md:flex-row-reverse gap-8 items-center relative overflow-hidden">
+                <div class="wow animate__animated animate__fadeInUp bg-white rounded-[2rem] p-8 md:p-12 shadow-md border border-solar-100 flex flex-col md:flex-row-reverse gap-8 items-center relative overflow-hidden" data-wow-delay="0.05s" data-wow-duration="0.6s">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-solar-500 rounded-bl-full opacity-10"></div>
                     <div class="w-full md:w-1/3 flex justify-center">
                         <div class="w-48 h-48 bg-solar-50 rounded-full flex items-center justify-center relative">
@@ -410,7 +425,7 @@
                 </div>
 
                 <!-- Group 3: EV Charging -->
-                <div id="tru-sac" class="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-8 items-center">
+                <div id="tru-sac" class="wow animate__animated animate__fadeInUp bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-8 items-center" data-wow-delay="0.1s" data-wow-duration="0.6s">
                     <div class="w-full md:w-1/3 flex justify-center">
                         <div class="w-48 h-48 bg-purple-50 rounded-full flex items-center justify-center relative">
                             <i class="fa-solid fa-charging-station text-6xl text-purple-500"></i>
@@ -772,7 +787,7 @@
                     <ul class="space-y-4 text-sm">
                         <li class="flex items-start gap-3">
                             <i class="fa-solid fa-location-dot mt-1 text-solar-500"></i>
-                            <span>Tòa nhà Innovation, Công viên phần mềm Quang Trung, Q.12, TP.HCM</span>
+                            <span>No. 16, D1 Street, Mega Village Khang Dien, Phu Huu Ward, Thu Duc City, TP.HCM</span>
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fa-solid fa-phone text-solar-500"></i>
@@ -788,7 +803,7 @@
             </div>
 
             <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-                <p>&copy; 2026 NLP GROUP (nlpgroup.com.vn). All rights reserved.</p>
+                <p>&copy; 2025 NLP GROUP JOINT STOCK COMPANY · MST: 0316942991 · nlpgroup.com.vn</p>
                 <div class="flex gap-4">
                     <a href="pages/dieu-khoan/"   class="hover:text-white">Điều khoản</a>
                     <a href="pages/bao-mat/"       class="hover:text-white">Bảo mật</a>

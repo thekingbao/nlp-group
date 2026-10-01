@@ -176,3 +176,27 @@
 /* ── Mobile sticky bar adjustments when present ───── */
 body.has-mobile-bar .fab-phone { bottom: 10rem; }
 body.has-mobile-bar .fab-zalo  { bottom: 6.5rem; }
+
+/* ── Hero stats strip glass ───────────────────────── */
+.bg-white\/8 { background: rgba(255,255,255,0.08); }
+
+/* ── Swiper custom nav arrows ─────────────────────── */
+.swiper-button-next,
+.swiper-button-prev {
+    width: 40px; height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 12px rgba(0,0,0,.12);
+    color: #16a34a;
+    top: 40%;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after { font-size: 14px; font-weight: 900; }
+.swiper-pagination-bullet-active { background: #16a34a !important; }
+
+/* ── WOW hidden initial state fix ─────────────────── */
+.wow { visibility: hidden; }
+.animate__animated { visibility: visible; }
+
+/* ── Body bottom padding when mobile bar is present ── */
+body.has-mobile-bar { padding-bottom: 72px; }
