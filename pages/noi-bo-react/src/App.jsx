@@ -9,7 +9,7 @@ import LoginPage     from './pages/Login.jsx'
 import { useEffect } from 'react'
 
 // ─── Auth guard — redirects to /login if no access token ──────────────────────
-function RequireAuth({ children }: { children: React.ReactNode }) {
+function RequireAuth({ children }) {
   const { loading, user } = usePortal()
   if (loading) return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0f172a', color: '#94a3b8', fontSize: 14 }}>
@@ -21,7 +21,7 @@ function RequireAuth({ children }: { children: React.ReactNode }) {
 }
 
 function AppRoutes() {
-  // Apply VNKR dark theme globally
+  // Apply dark theme globally
   useEffect(() => { document.documentElement.dataset.theme = 'dark' }, [])
 
   return (
