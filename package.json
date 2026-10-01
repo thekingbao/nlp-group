@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev":     "vite --port 3000",
-    "build":   "vite build",
+    "build":   "npm run build:portal",
+    "build:portal": "cd pages/noi-bo-react && npm install && npm run build",
     "preview": "vite preview --port 3000"
   },
   "devDependencies": {

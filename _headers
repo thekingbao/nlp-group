@@ -44,3 +44,9 @@
   for = "/favicon_io/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+[[redirects]]
+  from = "/noi-bo/*"
+  to   = "/noi-bo/index.html"
+  status = 200
+
