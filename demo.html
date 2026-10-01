@@ -1,443 +1,1131 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="vi" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎯 Demo Dashboard – NLP Group Site Preview</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
-    <script>
-        tailwind.config = {
-            theme: { extend: {
-                fontFamily: { sans: ['Inter','sans-serif'] },
-                colors: { solar:{50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d'}, dark:'#0f172a' }
-            }}
-        }
-    </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; background: #f8fafc; }
-        .card-link { transition: all .2s; }
-        .card-link:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.10); }
-        .status-dot { width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px; }
-        .status-green { background:#16a34a; }
-        .status-yellow { background:#f59e0b; }
-        .status-red { background:#ef4444; }
-        .badge { display:inline-block;padding:2px 8px;border-radius:999px;font-size:.72rem;font-weight:700; }
-        .badge-solar { background:#dcfce7;color:#15803d; }
-        .badge-ev { background:#ede9fe;color:#6d28d9; }
-        .badge-partner { background:#dbeafe;color:#1d4ed8; }
-        .stat-num { font-size:2rem;font-weight:900;line-height:1; }
-        @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.5} }
-        .live-dot { animation:pulse 2s infinite; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NLP-EGREEN — Kế hoạch Thương hiệu & Demo UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════
+   NLP-EGREEN DESIGN SYSTEM — Brand Plan Demo UI
+   Học từ TMT-EGREEN + NLP Group Identity
+   Font: Plus Jakarta Sans (chủ lực), Inter, JetBrains Mono
+   ══════════════════════════════════════════════════════════ */
+:root {
+  /* ── Brand Colors (NLP-EGREEN) ── */
+  --c-brand:       #1D3A8A;   /* Navy đậm — logo, tiêu đề, icon */
+  --c-brand-alt:   #2a4fa3;   /* Hover / pressed navy */
+  --c-accent:      #00C27A;   /* Xanh lá — CTA chính, highlight */
+  --c-accent-h:    #00a869;   /* Hover accent */
+  --c-gold:        #F0A500;   /* Gold — badge đặc biệt, số liệu nổi bật */
+
+  /* ── TLP Protocol ── */
+  --tlp-safe:      #00D68F;
+  --tlp-caution:   #FFAA00;
+  --tlp-blocked:   #FF3D71;
+  --tlp-system:    #57606A;
+
+  /* ── Surface ── */
+  --bg:            #f6f8f7;   /* Nền tổng (học tmt) */
+  --surface:       #ffffff;
+  --surface-2:     #f0f4f2;
+  --border:        #E5ECE8;   /* Border card nhẹ */
+  --border-dark:   #d0dbd4;
+
+  /* ── Text ── */
+  --text:          #192031;   /* Chữ chính — navy */
+  --muted:         #57606a;
+  --faint:         #8b949e;
+
+  /* ── Dark surface (glassmorphism sections) ── */
+  --dark-bg:       #0f172a;
+  --dark-surface:  #1e293b;
+  --dark-border:   #334155;
+  --dark-text:     #e2e8f0;
+  --dark-muted:    #94a3b8;
+
+  /* ── Spacing ── */
+  --r: 16px; --r-lg: 24px; --r-pill: 999px;
+  --nav-h: 68px;
+  --tr: .22s ease;
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 3px; border-radius: 4px; }
+img { max-width: 100%; }
+
+/* ══ CONTAINER ══ */
+.container { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+/* ══ NAVBAR ══ */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  background: var(--c-brand);
+  border-bottom: 3px solid var(--c-accent);
+  display: flex; align-items: center;
+}
+.navbar__inner { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.125rem; color: #fff; }
+.nav-logo__mark { width: 38px; height: 38px; background: var(--c-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; color: #fff; flex-shrink: 0; letter-spacing: -.03em; }
+.nav-logo em { color: var(--c-accent); font-style: normal; }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { color: rgba(255,255,255,.75); font-size: .875rem; font-weight: 600; transition: color var(--tr); }
+.nav-links a:hover { color: var(--c-gold); }
+.nav-cta { display: flex; gap: 10px; }
+.hamburger-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger-btn span { display: block; width: 22px; height: 2.5px; background: #fff; border-radius: 2px; transition: var(--tr); }
+
+/* ══ HERO ══ */
+.hero {
+  background: linear-gradient(150deg, #0a2457 0%, var(--c-brand) 45%, #1a4a6e 100%);
+  color: #fff;
+  padding: 80px 0 64px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 50% 55% at 80% 35%, rgba(0,194,122,.12) 0%, transparent 65%); pointer-events:none; }
+.hero::after  { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 35% 45% at 15% 70%, rgba(240,165,0,.08) 0%, transparent 65%); pointer-events:none; }
+.hero__inner { display: grid; grid-template-columns: 1fr 440px; gap: 64px; align-items: center; position: relative; }
+.hero__tag { display: inline-flex; align-items: center; gap: 6px; background: var(--c-accent); color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; padding: 5px 14px; border-radius: var(--r-pill); margin-bottom: 20px; }
+.hero__title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 900; line-height: 1.08; letter-spacing: -.03em; margin-bottom: 18px; }
+.hero__title .accent { color: var(--c-accent); }
+.hero__title .gold   { color: var(--c-gold); }
+.hero__slogan { font-size: 1.0625rem; color: rgba(255,255,255,.75); max-width: 480px; margin-bottom: 32px; line-height: 1.7; }
+.hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+.hero__stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.15); }
+.hero-stat { text-align: center; }
+.hero-stat__num { font-size: 1.875rem; font-weight: 900; color: var(--c-gold); font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -.03em; }
+.hero-stat__lbl { font-size: .72rem; color: rgba(255,255,255,.6); margin-top: 3px; text-transform: uppercase; letter-spacing: .06em; }
+
+/* ══ BUTTONS ══ */
+.btn { display: inline-flex; align-items: center; gap: 7px; padding: 12px 28px; border-radius: var(--r-pill); font-weight: 700; font-size: .9375rem; transition: all var(--tr); cursor: pointer; border: none; white-space: nowrap; }
+.btn-primary { background: var(--c-accent); color: #fff; box-shadow: 0 4px 16px rgba(0,194,122,.35); }
+.btn-primary:hover { background: var(--c-accent-h); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,194,122,.4); }
+.btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.45); }
+.btn-outline-white:hover { border-color: var(--c-gold); color: var(--c-gold); }
+.btn-brand { background: var(--c-brand); color: #fff; }
+.btn-brand:hover { background: var(--c-brand-alt); transform: translateY(-2px); }
+.btn-sm { padding: 7px 16px; font-size: .825rem; }
+.btn-xs { padding: 4px 12px; font-size: .75rem; }
+
+/* ══ SECTION ══ */
+section { padding: 80px 0; }
+.section-label { display: inline-flex; align-items: center; gap: 6px; font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--c-accent); margin-bottom: 10px; }
+.section-label span { width: 6px; height: 6px; border-radius: 50%; background: var(--c-accent); }
+.section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.5rem, 2.8vw, 2.125rem); font-weight: 900; letter-spacing: -.03em; margin-bottom: 10px; }
+.section-desc { color: var(--muted); font-size: 1.0625rem; max-width: 580px; line-height: 1.7; }
+.divider { width: 36px; height: 4px; border-radius: 2px; background: var(--c-accent); margin-bottom: 24px; }
+.text-center { text-align: center; }
+.text-center .divider { margin-left: auto; margin-right: auto; }
+.text-center .section-desc { margin: 0 auto; }
+
+/* ══ CARDS ══ */
+.card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--r-lg); padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,.04); transition: transform var(--tr), box-shadow var(--tr), border-color var(--tr); }
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,.09); }
+.card-accent:hover { border-color: var(--c-accent); }
+.card-brand:hover  { border-color: var(--c-brand); }
+
+/* ══ BADGES ══ */
+.badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px; border-radius: var(--r-pill); font-size: .72rem; font-weight: 800; border: 1px solid; }
+.badge-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.badge-green  { background: #e6f9f1; color: #007c52; border-color: #00a869; }
+.badge-green .badge-dot { background: var(--c-accent); }
+.badge-navy   { background: #e8edf8; color: var(--c-brand); border-color: var(--c-brand); }
+.badge-gold   { background: #fef6e0; color: #7a5200; border-color: var(--c-gold); }
+.badge-red    { background: #fdecea; color: #8b1c09; border-color: #e84118; }
+.badge-gray   { background: #f0f2f4; color: var(--muted); border-color: #d1dce8; }
+.badge-safe    { background: rgba(0,214,143,.1); color: #007c52; border-color: var(--tlp-safe); }
+.badge-caution { background: rgba(255,170,0,.1); color: #7a5200; border-color: var(--tlp-caution); }
+.badge-blocked { background: rgba(255,61,113,.1); color: #8b1c09; border-color: var(--tlp-blocked); }
+
+/* ══ GRIDS ══ */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+
+/* ══ DARK SECTION ══ */
+.section-dark {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+.section-dark .section-title { color: var(--c-gold); }
+.section-dark .section-desc  { color: var(--dark-muted); }
+.section-dark .divider        { background: var(--c-gold); }
+.section-dark .section-label  { color: var(--c-gold); }
+.section-dark .section-label span { background: var(--c-gold); }
+
+.glass-card {
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  transition: border-color var(--tr), background var(--tr);
+}
+.glass-card:hover { border-color: rgba(0,194,122,.35); background: rgba(255,255,255,.09); }
+
+/* ══ PHONE MOCKUP ══ */
+.phone-wrap { display: flex; gap: 12px; justify-content: center; align-items: flex-end; }
+.phone-frame {
+  background: #161B22;
+  border: 1.5px solid #30363D;
+  border-radius: 32px;
+  padding: 9px;
+  box-shadow: 0 24px 56px rgba(0,0,0,.5);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.phone-frame--main {
+  box-shadow: 0 28px 64px rgba(0,0,0,.65), 0 0 0 1px rgba(0,194,122,.15), 0 0 32px rgba(0,194,122,.08);
+  border-color: rgba(0,194,122,.2);
+}
+.phone-notch { width: 65px; height: 16px; background: #0D1117; border-radius: 0 0 10px 10px; margin: 0 auto 5px; }
+.phone-screen { border-radius: 22px; overflow: hidden; }
+
+/* ══ MAP HUB SCREEN ══ */
+.ms-map { background: #0D1117; padding: 7px; min-height: 320px; display: flex; flex-direction: column; gap: 5px; font-size: 7px; font-family: 'Plus Jakarta Sans', sans-serif; }
+.ms-brand { color: #00C27A; font-weight: 800; font-size: 7.5px; letter-spacing: .05em; }
+.ms-search { background: #22272E; border: 1px solid #30363D; border-radius: 8px; padding: 4px 7px; display: flex; align-items: center; gap: 4px; color: #57606A; }
+.ms-map-area { flex: 1; background: linear-gradient(140deg, #0b1e14 0%, #0a1820 100%); border-radius: 8px; position: relative; min-height: 160px; overflow: hidden; }
+.ms-pin { position: absolute; transform: translate(-50%,-50%); }
+.ms-pin-inner { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid #0D1117; }
+.ms-user-dot { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #00C27A; border: 1.5px solid #0D1117; box-shadow: 0 0 6px rgba(0,194,122,.7); }
+.ms-grid-line { position: absolute; background: rgba(0,194,122,.04); }
+.ms-bottom { background: #1C2128; border: 1px solid #30363D; border-radius: 8px; padding: 5px 7px; display: flex; justify-content: space-between; align-items: center; }
+
+/* ══ STATION DETAIL ══ */
+.sd-screen { background: #161B22; padding: 7px; min-height: 320px; display: flex; flex-direction: column; gap: 6px; font-size: 7.5px; font-family: 'Plus Jakarta Sans', sans-serif; }
+.sd-slot { background: #22272E; border-radius: 6px; padding: 5px; border: 1px solid; }
+.sd-slot-available { border-color: rgba(190,255,108,.35); }
+.sd-slot-charging  { border-color: rgba(255,170,0,.3); }
+.sd-slot-blocked   { border-color: rgba(255,61,113,.2); }
+
+/* ══ CHARGE HUD ══ */
+.hud-screen { background: #0D1117; padding: 8px; min-height: 320px; display: flex; flex-direction: column; align-items: center; gap: 7px; font-size: 7.5px; font-family: 'JetBrains Mono', monospace; }
+
+/* ══ BENEFIT CARDS ══ */
+.benefit-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 14px; flex-shrink: 0; }
+.benefit-num  { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 900; color: var(--c-brand); letter-spacing: -.04em; }
+.benefit-unit { font-size: .8rem; color: var(--muted); margin-top: 2px; }
+
+/* ══ STEP FLOW ══ */
+.step-flow { display: flex; gap: 0; }
+.step-item { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; }
+.step-item:not(:last-child)::after { content: '→'; position: absolute; right: -8px; top: 14px; color: var(--c-accent); font-size: 1rem; font-weight: 700; }
+.step-num { width: 34px; height: 34px; border-radius: 50%; background: var(--c-brand); color: #fff; font-weight: 800; font-size: .875rem; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+.step-title { font-size: .8rem; font-weight: 700; margin-bottom: 4px; }
+.step-desc { font-size: .73rem; color: var(--muted); }
+
+/* ══ PRICING TABLE ══ */
+.price-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+.price-row:last-child { border-bottom: none; }
+.price-period { font-weight: 700; font-size: .9rem; }
+.price-val { font-family: 'JetBrains Mono', monospace; font-size: 1.125rem; font-weight: 700; color: var(--c-brand); }
+.price-badge { font-size: .68rem; padding: 3px 8px; border-radius: var(--r-pill); font-weight: 800; }
+
+/* ══ TOKEN TABLE ══ */
+.token-table { width: 100%; border-collapse: collapse; font-size: .845rem; }
+.token-table th { text-align: left; padding: 8px 14px; font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); border-bottom: 2px solid var(--border); }
+.token-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.token-table tr:hover td { background: var(--surface-2); }
+.token-name { font-family: 'JetBrains Mono', monospace; font-size: .775rem; color: var(--c-brand); }
+.token-hex  { font-family: 'JetBrains Mono', monospace; font-size: .775rem; color: var(--muted); }
+.color-swatch { width: 26px; height: 26px; border-radius: 6px; border: 2px solid rgba(0,0,0,.06); display: inline-block; vertical-align: middle; }
+
+/* ══ SPRINTS ══ */
+.sprint-card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--r-lg); padding: 24px; position: relative; overflow: hidden; }
+.sprint-card::before { content:''; position:absolute; top:0;left:0; width:5px; height:100%; border-radius:16px 0 0 16px; }
+.sc-1::before { background: var(--c-accent); }
+.sc-2::before { background: #f59e0b; }
+.sc-3::before { background: var(--c-brand); }
+.sc-4::before { background: var(--c-gold); }
+.sprint-num   { font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--faint); margin-bottom: 5px; }
+.sprint-title { font-size: 1rem; font-weight: 800; margin-bottom: 4px; }
+.sprint-weeks { font-size: .75rem; font-family: 'JetBrains Mono', monospace; color: var(--c-accent); margin-bottom: 14px; }
+.sprint-task  { display: flex; gap: 7px; font-size: .8rem; color: var(--muted); margin-bottom: 5px; }
+.sprint-task::before { content: '→'; color: var(--c-accent); flex-shrink: 0; font-weight: 700; }
+.sprint-done  { display: flex; gap: 7px; font-size: .8rem; color: #007c52; margin-bottom: 5px; }
+.sprint-done::before { content: '✓'; color: var(--c-accent); flex-shrink: 0; font-weight: 800; }
+.sprint-wait  { display: flex; gap: 7px; font-size: .8rem; color: var(--faint); margin-bottom: 5px; }
+.sprint-wait::before { content: '○'; color: var(--faint); flex-shrink: 0; }
+.sprint-tag { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: var(--r-pill); font-size: .68rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; margin-top: 12px; margin-right: 5px; }
+
+/* ══ PROGRESS BAR ══ */
+.prog-bar { height: 8px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 99px; background: var(--c-accent); transition: width .5s; }
+
+/* ══ PARTNER ROI ══ */
+.roi-card { background: linear-gradient(135deg, var(--c-brand) 0%, #1a4a6e 100%); color: #fff; border-radius: var(--r-lg); padding: 28px; }
+.roi-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.5rem; font-weight: 900; color: var(--c-gold); letter-spacing: -.04em; }
+.roi-label { font-size: .8rem; color: rgba(255,255,255,.65); text-transform: uppercase; letter-spacing: .06em; margin-top: 4px; }
+
+/* ══ SITE MAP ══ */
+.sitemap-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 10px; background: var(--surface); border: 1.5px solid var(--border); transition: var(--tr); text-decoration: none; color: var(--text); }
+.sitemap-item:hover { border-color: var(--c-accent); transform: translateX(4px); }
+.sitemap-item__icon { font-size: 18px; width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.sitemap-item__path { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--faint); margin-top: 2px; }
+
+/* ══ CHECKLIST ══ */
+.checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.checklist-item:last-child { border-bottom: none; }
+.check-icon { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+.check-done    { background: #e6f9f1; color: #007c52; }
+.check-wait    { background: #fef6e0; color: #7a5200; }
+.check-pending { background: #f0f2f4; color: var(--muted); }
+
+/* ══ TABS ══ */
+.tab-bar { display: flex; gap: 4px; background: var(--surface-2); padding: 5px; border-radius: 12px; margin-bottom: 24px; }
+.tab-btn { flex: 1; padding: 8px 14px; border-radius: 9px; font-size: .845rem; font-weight: 700; color: var(--muted); transition: var(--tr); text-align: center; cursor: pointer; }
+.tab-btn.active { background: var(--surface); color: var(--c-brand); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+
+/* ══ REVEAL ══ */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+
+/* ══ MOBILE NAV ══ */
+.mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; background: var(--c-brand); padding: 16px 20px; z-index: 99; flex-direction: column; gap: 4px; border-bottom: 3px solid var(--c-accent); }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { padding: 9px 14px; color: rgba(255,255,255,.8); font-weight: 600; font-size: .9rem; border-radius: 8px; }
+.mobile-nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+/* ══ FOOTER ══ */
+.footer { background: var(--dark-bg); color: var(--dark-text); padding: 48px 0 24px; }
+.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer__brand { font-size: .875rem; color: var(--dark-muted); line-height: 1.7; }
+.footer__brand strong { display: block; font-size: 1.0625rem; color: var(--dark-text); font-weight: 800; margin-bottom: 8px; }
+.footer__col-title { font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--dark-muted); margin-bottom: 12px; }
+.footer__link { display: block; color: var(--dark-muted); font-size: .845rem; padding: 4px 0; transition: color var(--tr); }
+.footer__link:hover { color: var(--c-accent); }
+.footer__bottom { border-top: 1px solid var(--dark-border); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: .78rem; color: var(--dark-muted); }
+
+/* ══ SCROLLBAR ══ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 900px) {
+  .hero__inner { grid-template-columns: 1fr; }
+  .hero__stats { grid-template-columns: repeat(2,1fr); }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger-btn { display: flex; }
+  .phone-wrap { flex-wrap: wrap; }
+  .footer__grid { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 540px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .step-flow { flex-direction: column; gap: 16px; }
+  .step-item::after { display: none; }
+}
+</style>
 </head>
-<body class="text-gray-800">
+<body>
 
-<!-- TOPBAR -->
-<div class="bg-dark text-white px-6 py-3 flex items-center justify-between text-sm">
-    <div class="flex items-center gap-3">
-        <span class="font-black text-lg">NLP <span class="text-solar-500">GROUP</span></span>
-        <span class="bg-solar-600 text-white px-2 py-0.5 rounded text-xs font-bold">DEMO MODE</span>
-        <span class="live-dot status-dot status-green"></span>
-        <span class="text-gray-400 text-xs" id="seedStatus">Đang kiểm tra dữ liệu...</span>
+<!-- ════════════════ NAVBAR ════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <div class="nav-logo">
+      <div class="nav-logo__mark">N</div>
+      <span>NLP-<em>EGREEN</em></span>
     </div>
-    <div class="flex items-center gap-4">
-        <button onclick="resetDemo()" class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-rotate-right mr-1"></i>Reset demo data</button>
-        <a href="index.html" class="bg-solar-600 hover:bg-solar-500 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-colors">
-            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Mở trang chủ thật
-        </a>
+    <ul class="nav-links">
+      <li><a href="#brand">Thương hiệu</a></li>
+      <li><a href="#products">Sản phẩm</a></li>
+      <li><a href="#app">App</a></li>
+      <li><a href="#partner">Đối tác</a></li>
+      <li><a href="#roadmap">Lộ trình</a></li>
+      <li><a href="#sitemap">Trang web</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="pages/tim-kiem-tram-sac/index.html" class="btn btn-primary btn-sm">🗺 Tìm trạm sạc</a>
+      <a href="pages/dang-ky-doi-tac/index.html" class="btn btn-outline-white btn-sm">Đăng ký đối tác</a>
     </div>
+    <button class="hamburger-btn" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#brand">🎨 Thương hiệu</a>
+  <a href="#products">⚡ Sản phẩm</a>
+  <a href="#app">📱 App</a>
+  <a href="#partner">🤝 Đối tác</a>
+  <a href="#roadmap">📅 Lộ trình</a>
+  <a href="#sitemap">🗺 Trang web</a>
+  <a href="pages/tim-kiem-tram-sac/index.html">🔍 Tìm trạm sạc</a>
 </div>
 
-<div class="max-w-7xl mx-auto px-4 py-8">
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+      <!-- Left -->
+      <div>
+        <div class="hero__tag">⚡ Kế hoạch Thương hiệu NLP-EGREEN</div>
+        <h1 class="hero__title">
+          <span class="accent">Mở cổng sạc</span><br>
+          cho <span class="gold">tất cả</span><br>
+          dòng xe điện
+        </h1>
+        <p class="hero__slogan">
+          Nền tảng trạm sạc thông minh quốc gia — chuẩn CCS2 Châu Âu, IoT realtime, 80% lợi nhuận cho đối tác nhượng quyền. Mục tiêu 2030: <strong style="color:#fff">30.000 trụ / 60.000 cổng</strong> trên toàn quốc.
+        </p>
+        <div class="hero__ctas">
+          <a href="#app" class="btn btn-primary">📱 Xem App Demo</a>
+          <a href="#partner" class="btn btn-outline-white">🤝 Mô hình đối tác</a>
+        </div>
+        <div class="hero__stats">
+          <div class="hero-stat"><div class="hero-stat__num">30.000</div><div class="hero-stat__lbl">Trụ sạc 2030</div></div>
+          <div class="hero-stat"><div class="hero-stat__num">60.000</div><div class="hero-stat__lbl">Cổng sạc 2030</div></div>
+          <div class="hero-stat"><div class="hero-stat__num">44+</div><div class="hero-stat__lbl">Tỉnh / Thành</div></div>
+          <div class="hero-stat"><div class="hero-stat__num">80%</div><div class="hero-stat__lbl">Lợi nhuận chia sẻ</div></div>
+        </div>
+      </div>
+      <!-- Right: phone mockups -->
+      <div class="phone-wrap" style="align-items:flex-end">
+        <!-- Phone 1: Map Hub -->
+        <div class="phone-frame" style="width:178px">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="ms-map">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span class="ms-brand">NLP-EGREEN</span>
+                <span style="color:#57606A;font-size:6.5px">9:41 ▲</span>
+              </div>
+              <div class="ms-search">🔍 <span>Tìm trạm sạc gần đây...</span></div>
+              <div class="ms-map-area">
+                <div class="ms-grid-line" style="top:25%;left:0;right:0;height:1px"></div>
+                <div class="ms-grid-line" style="top:55%;left:0;right:0;height:1px"></div>
+                <div class="ms-grid-line" style="left:25%;top:0;bottom:0;width:1px"></div>
+                <div class="ms-grid-line" style="left:65%;top:0;bottom:0;width:1px"></div>
+                <div class="ms-pin" style="left:30%;top:32%"><div class="ms-pin-inner" style="background:#00D68F;box-shadow:0 0 5px #00D68F88"></div></div>
+                <div class="ms-pin" style="left:57%;top:48%"><div class="ms-pin-inner" style="background:#00C27A;box-shadow:0 0 4px #00C27A66"></div></div>
+                <div class="ms-pin" style="left:72%;top:26%"><div class="ms-pin-inner" style="background:#FFAA00"></div></div>
+                <div class="ms-pin" style="left:44%;top:63%"><div class="ms-pin-inner" style="background:#FF3D71"></div></div>
+                <div class="ms-pin" style="left:20%;top:54%"><div class="ms-pin-inner" style="background:#57606A"></div></div>
+                <div class="ms-user-dot" style="left:47%;top:46%"></div>
+              </div>
+              <!-- Bộ lọc nhanh -->
+              <div style="display:flex;gap:3px;flex-wrap:wrap">
+                <span style="background:rgba(0,194,122,.15);color:#00C27A;border:1px solid rgba(0,194,122,.3);border-radius:99px;padding:2px 6px;font-size:6px;font-weight:700">CCS2</span>
+                <span style="background:rgba(29,58,138,.1);color:#1D3A8A;border:1px solid rgba(29,58,138,.2);border-radius:99px;padding:2px 6px;font-size:6px;font-weight:700">120kW+</span>
+                <span style="background:rgba(255,170,0,.1);color:#7a5200;border:1px solid rgba(255,170,0,.3);border-radius:99px;padding:2px 6px;font-size:6px;font-weight:700">24/7</span>
+              </div>
+              <div class="ms-bottom">
+                <span style="color:#00C27A;font-size:7px;font-weight:800">🗺</span>
+                <span style="color:#57606A;font-size:7px">⏱</span>
+                <span style="color:#57606A;font-size:7px">👤</span>
+                <div style="width:20px;height:20px;border-radius:50%;background:#00C27A;display:flex;align-items:center;justify-content:center;font-size:9px">⚡</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Phone 2: Station Detail (main) -->
+        <div class="phone-frame phone-frame--main" style="width:196px">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="sd-screen">
+              <div style="display:flex;align-items:center;gap:5px">
+                <span style="color:#00C27A;font-size:7px">←</span>
+                <span style="font-weight:800;font-size:8px">NLP Hub — Quận 1</span>
+              </div>
+              <!-- TLP + Power -->
+              <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
+                <span style="background:rgba(0,214,143,.12);color:#00D68F;border:1px solid rgba(0,214,143,.3);border-radius:3px;padding:2px 6px;font-size:6.5px;font-weight:800">● TLP SAFE</span>
+                <span style="background:rgba(0,194,122,.1);color:#00C27A;border:1px solid rgba(0,194,122,.2);border-radius:3px;padding:2px 6px;font-size:6.5px;font-weight:800;font-family:monospace">⚡ 180kW</span>
+              </div>
+              <!-- Slots -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+                <div class="sd-slot sd-slot-available">
+                  <div style="font-weight:800;font-size:7px;color:#BEFF6C">A1</div>
+                  <div style="font-family:monospace;font-size:6.5px;color:#8B949E">180kW · CCS2</div>
+                  <div style="font-size:6.5px;color:#BEFF6C;margin-top:1px">Sẵn sàng</div>
+                </div>
+                <div class="sd-slot sd-slot-charging">
+                  <div style="font-weight:800;font-size:7px;color:#FFAA00">A2</div>
+                  <div style="font-family:monospace;font-size:6.5px;color:#8B949E">180kW · CCS2</div>
+                  <div style="font-size:6.5px;color:#FFAA00;margin-top:1px">Đang sạc 62%</div>
+                </div>
+                <div class="sd-slot sd-slot-available">
+                  <div style="font-weight:800;font-size:7px;color:#BEFF6C">B1</div>
+                  <div style="font-family:monospace;font-size:6.5px;color:#8B949E">60kW · CCS2</div>
+                  <div style="font-size:6.5px;color:#BEFF6C;margin-top:1px">Sẵn sàng</div>
+                </div>
+                <div class="sd-slot sd-slot-blocked">
+                  <div style="font-weight:800;font-size:7px;color:#FF3D71">B2</div>
+                  <div style="font-family:monospace;font-size:6.5px;color:#8B949E">60kW · Type 2</div>
+                  <div style="font-size:6.5px;color:#FF3D71;margin-top:1px">Mất tín hiệu</div>
+                </div>
+              </div>
+              <!-- Amenities -->
+              <div style="display:flex;gap:4px">
+                <span style="background:#22272E;border:1px solid #30363D;border-radius:5px;padding:3px 5px;font-size:10px">☕</span>
+                <span style="background:#22272E;border:1px solid #30363D;border-radius:5px;padding:3px 5px;font-size:10px">🚻</span>
+                <span style="background:#22272E;border:1px solid #30363D;border-radius:5px;padding:3px 5px;font-size:10px">🛡️</span>
+                <span style="background:#22272E;border:1px solid #30363D;border-radius:5px;padding:3px 5px;font-size:10px">🅿️</span>
+              </div>
+              <!-- Waitlist info -->
+              <div style="background:#22272E;border:1px solid #30363D;border-radius:6px;padding:5px 7px;display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:6.5px;color:#8B949E">Hàng chờ ảo</span>
+                <span style="font-size:7px;font-weight:800;color:#00C27A">2 xe · ~18 phút</span>
+              </div>
+              <button style="background:#00C27A;color:#fff;border-radius:10px;padding:6px;font-size:7.5px;font-weight:800;border:none;width:100%">⚡ Đặt chỗ — Cổng A1</button>
+            </div>
+          </div>
+        </div>
+        <!-- Phone 3: Charge HUD -->
+        <div class="phone-frame" style="width:178px;transform:translateY(18px)">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="hud-screen">
+              <div style="font-weight:800;font-size:7.5px;color:#E6EDF3;align-self:stretch">Đang sạc · Cổng A1</div>
+              <!-- SVG ring -->
+              <div style="position:relative;width:92px;height:92px">
+                <svg width="92" height="92" viewBox="0 0 92 92">
+                  <circle cx="46" cy="46" r="38" fill="none" stroke="#22272E" stroke-width="7"/>
+                  <circle cx="46" cy="46" r="38" fill="none" stroke="#00C27A" stroke-width="7"
+                    stroke-dasharray="177.9 239.6"
+                    stroke-dashoffset="59.9"
+                    stroke-linecap="round"
+                    style="transform:rotate(-90deg);transform-origin:50% 50%"/>
+                </svg>
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                  <span style="font-size:22px;font-weight:900;color:#E6EDF3;line-height:1;font-family:'Plus Jakarta Sans',sans-serif">74%</span>
+                  <span style="font-size:6.5px;color:#00C27A;font-weight:700">SoC</span>
+                </div>
+              </div>
+              <!-- Telemetry -->
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;align-self:stretch">
+                <div style="background:#22272E;border-radius:5px;padding:4px;text-align:center">
+                  <div style="font-weight:700;font-size:8.5px;color:#00C27A">385V</div>
+                  <div style="font-size:6px;color:#57606A;margin-top:1px">Điện áp</div>
+                </div>
+                <div style="background:#22272E;border-radius:5px;padding:4px;text-align:center">
+                  <div style="font-weight:700;font-size:8.5px;color:#00C27A">195A</div>
+                  <div style="font-size:6px;color:#57606A;margin-top:1px">Dòng điện</div>
+                </div>
+                <div style="background:#22272E;border-radius:5px;padding:4px;text-align:center">
+                  <div style="font-weight:700;font-size:8.5px;color:#00C27A">75.2kW</div>
+                  <div style="font-size:6px;color:#57606A;margin-top:1px">Công suất</div>
+                </div>
+              </div>
+              <!-- Cost -->
+              <div style="background:#161B22;border:1px solid #30363D;border-radius:6px;padding:4px 7px;align-self:stretch;display:flex;justify-content:space-between">
+                <span style="font-size:6.5px;color:#8B949E">Chi phí tạm tính</span>
+                <span style="font-size:7.5px;font-weight:700;color:#BEFF6C">45.800 đ</span>
+              </div>
+              <!-- Emergency slider -->
+              <div style="align-self:stretch;background:rgba(255,61,113,.08);border:1px solid rgba(255,61,113,.25);border-radius:10px;padding:5px 8px;display:flex;align-items:center;gap:5px">
+                <div style="width:16px;height:16px;border-radius:50%;background:#FF3D71;display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0">⏹</div>
+                <span style="font-size:6.5px;color:#FF3D71;font-weight:600">← Trượt ngắt sạc khẩn</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- HEADER -->
-    <div class="mb-8">
-        <h1 class="text-3xl font-black text-gray-900 mb-2">🎯 Demo Experience Dashboard</h1>
-        <p class="text-gray-500">Tất cả trang và tính năng của <strong>nlpgroup.com.vn</strong> — click để trải nghiệm trực tiếp.</p>
+<!-- ════════════════ BRAND SECTION ════════════════ -->
+<section id="brand" style="background:var(--surface)">
+  <div class="container">
+    <div class="section-label"><span></span> Nhận diện thương hiệu</div>
+    <h2 class="section-title">NLP-EGREEN Design System</h2>
+    <div class="divider"></div>
+    <p class="section-desc">Hệ thống màu sắc và tokens thiết kế — từ nền bản đồ dark mode đến 4 cấp độ TLP Trust Level Protocol xác thực thực địa.</p>
+
+    <div class="grid-2" style="margin-top:40px;align-items:start">
+      <!-- Token table -->
+      <div class="card" style="padding:0;overflow:hidden">
+        <div style="padding:16px 20px;border-bottom:2px solid var(--border);font-weight:800;font-size:.875rem">Design Tokens — Màu sắc</div>
+        <table class="token-table">
+          <thead><tr><th>Token</th><th></th><th>Hex</th><th>Mục đích</th></tr></thead>
+          <tbody>
+            <tr><td><span class="token-name">--c-brand</span></td><td><span class="color-swatch" style="background:#1D3A8A"></span></td><td><span class="token-hex">#1D3A8A</span></td><td style="font-size:.78rem;color:var(--muted)">Logo, tiêu đề, icon chính</td></tr>
+            <tr><td><span class="token-name">--c-accent</span></td><td><span class="color-swatch" style="background:#00C27A"></span></td><td><span class="token-hex">#00C27A</span></td><td style="font-size:.78rem;color:var(--muted)">CTA, highlight, nút sạc</td></tr>
+            <tr><td><span class="token-name">--c-gold</span></td><td><span class="color-swatch" style="background:#F0A500"></span></td><td><span class="token-hex">#F0A500</span></td><td style="font-size:.78rem;color:var(--muted)">Số liệu KPI, badge đặc biệt</td></tr>
+            <tr><td><span class="token-name">--tlp-safe</span></td><td><span class="color-swatch" style="background:#00D68F"></span></td><td><span class="token-hex">#00D68F</span></td><td style="font-size:.78rem;color:var(--muted)">Trụ online, giao dịch &lt; 15p</td></tr>
+            <tr><td><span class="token-name">--tlp-caution</span></td><td><span class="color-swatch" style="background:#FFAA00"></span></td><td><span class="token-hex">#FFAA00</span></td><td style="font-size:.78rem;color:var(--muted)">Không có phiên sạc &gt; 4h</td></tr>
+            <tr><td><span class="token-name">--tlp-blocked</span></td><td><span class="color-swatch" style="background:#FF3D71"></span></td><td><span class="token-hex">#FF3D71</span></td><td style="font-size:.78rem;color:var(--muted)">Mất tín hiệu / hỏng / mất điện</td></tr>
+            <tr><td><span class="token-name">--tlp-system</span></td><td><span class="color-swatch" style="background:#57606A"></span></td><td><span class="token-hex">#57606A</span></td><td style="font-size:.78rem;color:var(--muted)">Bảo trì, mạng lưới nội bộ</td></tr>
+            <tr><td><span class="token-name">--bg</span></td><td><span class="color-swatch" style="background:#f6f8f7;border:2px solid #ddd"></span></td><td><span class="token-hex">#f6f8f7</span></td><td style="font-size:.78rem;color:var(--muted)">Nền trang (xám lạnh nhẹ)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- TLP + badges showcase -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <!-- TLP 4 levels -->
+        <div class="card card-accent">
+          <div style="font-weight:800;font-size:.845rem;margin-bottom:14px">TLP Trust Level Protocol</div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(0,214,143,.06);border:1px solid rgba(0,214,143,.2);border-radius:10px">
+              <div>
+                <span class="badge badge-safe"><span class="badge-dot" style="background:var(--tlp-safe)"></span>TLP Safe</span>
+                <div style="font-size:.78rem;color:var(--muted);margin-top:4px">Trụ online OCPP + giao dịch &lt; 15p + chỗ trống</div>
+              </div>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--tlp-safe)">#00D68F</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,170,0,.06);border:1px solid rgba(255,170,0,.2);border-radius:10px">
+              <div>
+                <span class="badge badge-caution"><span class="badge-dot" style="background:var(--tlp-caution)"></span>TLP Caution</span>
+                <div style="font-size:.78rem;color:var(--muted);margin-top:4px">Không có phiên &gt; 4h hoặc xe xăng lấn</div>
+              </div>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--tlp-caution)">#FFAA00</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,61,113,.06);border:1px solid rgba(255,61,113,.2);border-radius:10px">
+              <div>
+                <span class="badge badge-blocked"><span class="badge-dot" style="background:var(--tlp-blocked)"></span>TLP Blocked</span>
+                <div style="font-size:.78rem;color:var(--muted);margin-top:4px">Mất tín hiệu / hỏng ngàm / cúp điện</div>
+              </div>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--tlp-blocked)">#FF3D71</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(87,96,106,.08);border:1px solid rgba(87,96,106,.2);border-radius:10px">
+              <div>
+                <span class="badge badge-gray"><span class="badge-dot"></span>TLP System</span>
+                <div style="font-size:.78rem;color:var(--muted);margin-top:4px">Bảo trì định kỳ / mạng lưới nội bộ</div>
+              </div>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--tlp-system)">#57606A</span>
+            </div>
+          </div>
+        </div>
+        <!-- Component preview -->
+        <div class="card">
+          <div style="font-weight:800;font-size:.845rem;margin-bottom:12px">Components Preview</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+            <button class="btn btn-primary btn-sm">⚡ Bắt đầu sạc</button>
+            <button class="btn btn-brand btn-sm">🗺 Dẫn đường</button>
+            <button class="btn btn-sm" style="background:rgba(255,61,113,.1);color:#FF3D71;border:1.5px solid rgba(255,61,113,.3);border-radius:99px">⏹ Dừng khẩn cấp</button>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+            <span style="background:rgba(0,194,122,.1);color:#00C27A;border:1px solid rgba(0,194,122,.2);border-radius:4px;padding:3px 8px;font-size:.72rem;font-weight:800;font-family:'JetBrains Mono',monospace">⚡ 11kW</span>
+            <span style="background:rgba(0,194,122,.1);color:#00C27A;border:1px solid rgba(0,194,122,.2);border-radius:4px;padding:3px 8px;font-size:.72rem;font-weight:800;font-family:'JetBrains Mono',monospace">⚡ 60kW</span>
+            <span style="background:rgba(0,194,122,.1);color:#00C27A;border:1px solid rgba(0,194,122,.2);border-radius:4px;padding:3px 8px;font-size:.72rem;font-weight:800;font-family:'JetBrains Mono',monospace">⚡ 120kW</span>
+            <span style="background:rgba(0,194,122,.1);color:#00C27A;border:1px solid rgba(0,194,122,.2);border-radius:4px;padding:3px 8px;font-size:.72rem;font-weight:800;font-family:'JetBrains Mono',monospace">⚡ 240kW</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="background:#f0f2f4;color:var(--muted);border:1px solid var(--border);border-radius:99px;padding:3px 10px;font-size:.72rem;font-weight:600">🔌 CCS2</span>
+            <span style="background:#f0f2f4;color:var(--muted);border:1px solid var(--border);border-radius:99px;padding:3px 10px;font-size:.72rem;font-weight:600">🔋 Type 2</span>
+            <span style="background:#f0f2f4;color:var(--muted);border:1px solid var(--border);border-radius:99px;padding:3px 10px;font-size:.72rem;font-weight:600">⚡ GB/T</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ PRODUCTS ════════════════ -->
+<section id="products">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label" style="justify-content:center"><span></span>Danh mục sản phẩm</div>
+      <h2 class="section-title">Dải trụ sạc 30kW → 400kW</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Toàn bộ dải công suất từ AC 22kW cho bãi đỗ xe đến siêu trạm DC 400kW thương mại quy mô lớn.</p>
     </div>
 
-    <!-- LIVE STATS -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" id="liveStats">
-        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-            <p class="text-xs text-gray-400 font-bold uppercase mb-2">Leads trong demo</p>
-            <p class="stat-num text-solar-600" id="statLeads">–</p>
-            <p class="text-xs text-gray-400 mt-1">Solar + EV + Đối tác</p>
+    <div class="grid-4" style="margin-top:40px">
+      <!-- Product cards -->
+      <div class="card card-accent reveal d1">
+        <div style="font-size:28px;margin-bottom:10px">🔌</div>
+        <div style="font-weight:800;margin-bottom:4px">AC 7.4–22kW</div>
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:12px">Nhà ở, căn hộ, khách sạn, sạc qua đêm</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px">
+          <span class="badge badge-navy">Type 2</span>
+          <span class="badge badge-green">2 súng</span>
         </div>
-        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-            <p class="text-xs text-gray-400 font-bold uppercase mb-2">Trạm sạc online</p>
-            <p class="stat-num text-blue-600">6/8</p>
-            <p class="text-xs text-gray-400 mt-1">2 maintenance/offline</p>
+      </div>
+      <div class="card card-accent reveal d2">
+        <div style="font-size:28px;margin-bottom:10px">⚡</div>
+        <div style="font-weight:800;margin-bottom:4px">DC 30–60kW</div>
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:12px">Bãi đỗ xe văn phòng, tòa nhà, siêu thị</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px">
+          <span class="badge badge-navy">CCS2</span>
+          <span class="badge badge-green">Compact</span>
         </div>
-        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-            <p class="text-xs text-gray-400 font-bold uppercase mb-2">DT tháng (demo)</p>
-            <p class="stat-num text-purple-600">145M</p>
-            <p class="text-xs text-gray-400 mt-1">8 trạm cộng gộp</p>
+      </div>
+      <div class="card card-accent reveal d3">
+        <div style="font-size:28px;margin-bottom:10px">🏎</div>
+        <div style="font-weight:800;margin-bottom:4px">DC 120–180kW</div>
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:12px">Trạm dừng nghỉ quốc lộ, bãi xe thương mại</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px">
+          <span class="badge badge-navy">CCS2</span>
+          <span class="badge badge-gold">Fast DC</span>
         </div>
-        <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
-            <p class="text-xs text-gray-400 font-bold uppercase mb-2">Trang đã xây</p>
-            <p class="stat-num text-orange-500">22</p>
-            <p class="text-xs text-gray-400 mt-1">Sprint 1+2+3 done</p>
+      </div>
+      <div class="card card-accent reveal d4">
+        <div style="font-size:28px;margin-bottom:10px">🚀</div>
+        <div style="font-weight:800;margin-bottom:4px">DC 240–400kW</div>
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:12px">Trạm siêu tốc thương mại, đội xe logistics</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px">
+          <span class="badge badge-navy">CCS2</span>
+          <span class="badge badge-red">Ultra Fast</span>
         </div>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- 4 benefits -->
+    <div class="grid-4" style="margin-top:24px">
+      <div class="card reveal d1" style="text-align:center">
+        <div class="benefit-icon" style="background:#e8edf8;margin:0 auto 10px">🌐</div>
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--c-accent);margin-bottom:6px">Tiêu chuẩn Châu Âu</div>
+        <div style="font-weight:800;font-size:.9375rem;margin-bottom:6px">Chuẩn sạc CCS2</div>
+        <div style="font-size:.8rem;color:var(--muted)">Tương thích tất cả hãng xe điện — không phân biệt thương hiệu</div>
+      </div>
+      <div class="card reveal d2" style="text-align:center">
+        <div class="benefit-icon" style="background:#e6f9f1;margin:0 auto 10px">📍</div>
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--c-accent);margin-bottom:6px">Đa dụng</div>
+        <div style="font-weight:800;font-size:.9375rem;margin-bottom:6px">Mạng lưới Toàn quốc</div>
+        <div style="font-size:.8rem;color:var(--muted)">30.000 trụ / 60.000 cổng tại 44+ tỉnh thành đến 2030</div>
+      </div>
+      <div class="card reveal d3" style="text-align:center">
+        <div class="benefit-icon" style="background:#fef6e0;margin:0 auto 10px">📱</div>
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--c-accent);margin-bottom:6px">IoT System</div>
+        <div style="font-weight:800;font-size:.9375rem;margin-bottom:6px">Sạc thông minh</div>
+        <div style="font-size:.8rem;color:var(--muted)">Tìm trạm, theo dõi pin, kiểm soát chi phí realtime qua app</div>
+      </div>
+      <div class="card reveal d4" style="text-align:center">
+        <div class="benefit-icon" style="background:#fdecea;margin:0 auto 10px">📈</div>
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--c-accent);margin-bottom:6px">Thu hồi vốn</div>
+        <div style="font-weight:800;font-size:.9375rem;margin-bottom:6px">Đầu tư sinh lời</div>
+        <div style="font-size:.8rem;color:var(--muted)">Chia sẻ lên tới <strong>80%</strong> lợi nhuận/kWh, thanh toán hàng tuần</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- ── CỘT TRÁI: TRANG KHÁCH HÀNG ── -->
-        <div class="lg:col-span-2 space-y-6">
+<!-- ════════════════ APP ════════════════ -->
+<section id="app" class="section-dark">
+  <div class="container">
+    <div class="section-label"><span style="background:var(--c-gold)"></span> App NLP-EGREEN</div>
+    <h2 class="section-title">6 Module Ứng dụng</h2>
+    <div class="divider" style="background:var(--c-gold)"></div>
+    <p class="section-desc">Kiến trúc ứng dụng mobile — từ onboarding đến lịch sử phiên sạc chi tiết.</p>
 
-            <!-- PUBLIC PAGES -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-2">
-                    <i class="fa-solid fa-globe text-solar-600"></i>
-                    <h2 class="font-black text-gray-900">Trang khách hàng (Public)</h2>
-                </div>
-                <div class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-                    <a href="index.html" class="card-link block bg-gradient-to-br from-solar-600 to-solar-700 text-white rounded-xl p-4">
-                        <div class="flex items-center gap-3 mb-2">
-                            <i class="fa-solid fa-house text-xl"></i>
-                            <span class="font-bold">Trang chủ</span>
-                            <span class="ml-auto text-xs bg-white/20 px-2 py-0.5 rounded">Hero + Swiper + WOW</span>
-                        </div>
-                        <p class="text-solar-100 text-xs">Hero stats, 5 sản phẩm Swiper, calculator ROI, WOW animations</p>
-                        <p class="text-solar-200 text-xs mt-1 font-mono">index.html</p>
-                    </a>
-
-                    <a href="pages/ve-chung-toi/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-solar-200">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fa-solid fa-building text-solar-600 text-lg"></i>
-                            <span class="font-bold">Về chúng tôi</span>
-                        </div>
-                        <p class="text-gray-500 text-xs">Timeline NLP Group, số liệu ấn tượng, đội ngũ, glassmorphism hero</p>
-                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/ve-chung-toi/</p>
-                    </a>
-
-                    <a href="pages/dien-mat-troi/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-solar-200">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fa-solid fa-solar-panel text-yellow-500 text-lg"></i>
-                            <span class="font-bold">Điện mặt trời</span>
-                        </div>
-                        <p class="text-gray-500 text-xs">Biến tần DEYE/SOLIS, tấm pin, pin lưu trữ, calculator ROI</p>
-                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/dien-mat-troi/</p>
-                    </a>
-
-                    <a href="pages/tru-sac/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-purple-200">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fa-solid fa-charging-station text-purple-600 text-lg"></i>
-                            <span class="font-bold">Trạm sạc xe điện</span>
-                        </div>
-                        <p class="text-gray-500 text-xs">DC 120/240kW, AC 7-22kW, ROI calculator, bản đồ trạm</p>
-                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/tru-sac/</p>
-                    </a>
-
-                    <a href="pages/doi-tac/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-blue-200">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fa-solid fa-handshake text-blue-600 text-lg"></i>
-                            <span class="font-bold">Đăng ký Đối tác</span>
-                        </div>
-                        <p class="text-gray-500 text-xs">4 benefit cards, form cascade tỉnh/phường, glassmorphism dark</p>
-                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/doi-tac/</p>
-                    </a>
-
-                    <a href="pages/du-an/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-green-200">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fa-solid fa-map-location-dot text-green-600 text-lg"></i>
-                            <span class="font-bold">Dự án & Bản đồ</span>
-                        </div>
-                        <p class="text-gray-500 text-xs">Leaflet.js bản đồ 10 markers, filter solar/EV, case studies grid</p>
-                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/du-an/</p>
-                    </a>
-
-                    <a href="pages/tin-tuc/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-orange-200">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fa-solid fa-newspaper text-orange-500 text-lg"></i>
-                            <span class="font-bold">Tin tức & Blog</span>
-                        </div>
-                        <p class="text-gray-500 text-xs">6 bài viết, filter theo chuyên mục, featured post, Schema Article</p>
-                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/tin-tuc/</p>
-                    </a>
-
-                    <a href="pages/lien-he/" class="card-link block bg-white rounded-xl p-4 border-2 border-gray-100 hover:border-gray-300">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fa-solid fa-phone text-gray-600 text-lg"></i>
-                            <span class="font-bold">Liên hệ</span>
-                        </div>
-                        <p class="text-gray-500 text-xs">Form tư vấn, bản đồ, hotline, LocalBusiness Schema</p>
-                        <p class="text-gray-400 text-xs mt-1 font-mono">pages/lien-he/</p>
-                    </a>
-
-                </div>
-            </div>
-
-            <!-- BLOG ARTICLES -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-2">
-                    <i class="fa-solid fa-file-lines text-orange-500"></i>
-                    <h2 class="font-black text-gray-900">6 Bài blog có nội dung thực</h2>
-                </div>
-                <div class="divide-y divide-gray-50">
-                    <a href="pages/tin-tuc/nd-135-2024-dien-mat-troi-tu-san-tu-tieu/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
-                        <span class="badge badge-solar">Chính sách</span>
-                        <span class="text-sm font-semibold text-gray-800 flex-1">NĐ 135/2024: Điện mặt trời tự sản tự tiêu — Cơ hội vàng</span>
-                        <span class="text-xs text-gray-400">22/11/2024</span>
-                    </a>
-                    <a href="pages/tin-tuc/deye-vs-solis-2026/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
-                        <span class="badge" style="background:#dcfce7;color:#15803d">Công nghệ</span>
-                        <span class="text-sm font-semibold text-gray-800 flex-1">DEYE vs SOLIS 2026: So sánh biến tần Hybrid 6kW & 10kW</span>
-                        <span class="text-xs text-gray-400">10/06/2026</span>
-                    </a>
-                    <a href="pages/tin-tuc/bieu-gia-dien-sac-xe-2026/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
-                        <span class="badge" style="background:#fef3c7;color:#92400e">Thị trường</span>
-                        <span class="text-sm font-semibold text-gray-800 flex-1">Biểu giá điện sạc xe 2026: 3.651đ – 7.436đ/kWh</span>
-                        <span class="text-xs text-gray-400">15/07/2026</span>
-                    </a>
-                    <a href="pages/tin-tuc/case-study-khach-san-da-nang/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
-                        <span class="badge" style="background:#ffedd5;color:#9a3412">Dự án</span>
-                        <span class="text-sm font-semibold text-gray-800 flex-1">Case study: Khách sạn Đà Nẵng tiết kiệm 68% hóa đơn</span>
-                        <span class="text-xs text-gray-400">05/05/2026</span>
-                    </a>
-                    <a href="pages/tin-tuc/roi-tram-sac-dc-120kw/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
-                        <span class="badge badge-ev">Xe điện</span>
-                        <span class="text-sm font-semibold text-gray-800 flex-1">Đầu tư trạm sạc DC 120kW: ROI thực tế sau 18 tháng</span>
-                        <span class="text-xs text-gray-400">20/04/2026</span>
-                    </a>
-                    <a href="pages/tin-tuc/pin-lithium-lifepo4-solar-hybrid/" class="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 transition-colors">
-                        <span class="badge" style="background:#dcfce7;color:#15803d">Công nghệ</span>
-                        <span class="text-sm font-semibold text-gray-800 flex-1">Pin LiFePO4 cho Solar Hybrid: Tất cả những gì cần biết</span>
-                        <span class="text-xs text-gray-400">12/03/2026</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- DEMO LEADS PREVIEW -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-user-group text-blue-500"></i>
-                        <h2 class="font-black text-gray-900">Leads demo (localStorage)</h2>
-                    </div>
-                    <a href="admin/leads.html" class="text-xs text-solar-600 font-semibold hover:underline">Xem trong Admin →</a>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Họ tên</th>
-                                <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">SĐT</th>
-                                <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Loại</th>
-                                <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Tỉnh</th>
-                                <th class="px-4 py-2 text-left text-xs font-bold text-gray-500 uppercase">Thời gian</th>
-                            </tr>
-                        </thead>
-                        <tbody id="demoLeadsBody" class="divide-y divide-gray-50">
-                            <tr><td colspan="5" class="px-4 py-4 text-center text-gray-400 text-sm">Đang tải...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- ── CỘT PHẢI: ADMIN + PHÁP LÝ ── -->
-        <div class="space-y-6">
-
-            <!-- ADMIN PAGES -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
-                    <i class="fa-solid fa-lock text-gray-500"></i>
-                    <h2 class="font-black text-gray-900">Admin Panel</h2>
-                    <span class="ml-auto text-xs text-gray-400">admin / nlpgroup2025</span>
-                </div>
-                <div class="p-4 space-y-2">
-                    <a href="admin/index.html" class="card-link flex items-center gap-3 bg-gray-900 text-white rounded-xl p-3.5 hover:bg-gray-800">
-                        <i class="fa-solid fa-gauge-high text-solar-400"></i>
-                        <div>
-                            <p class="font-bold text-sm">Dashboard Tổng quan</p>
-                            <p class="text-gray-400 text-xs">KPI, trạm sạc, NFC, BCTC, HR</p>
-                        </div>
-                    </a>
-                    <a href="admin/leads.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-blue-200">
-                        <i class="fa-solid fa-user-group text-blue-500"></i>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">Danh sách Leads</p>
-                            <p class="text-gray-400 text-xs">20 demo leads · Export CSV</p>
-                        </div>
-                        <span class="ml-auto bg-blue-100 text-blue-700 text-xs font-bold px-2 py-0.5 rounded-full" id="adminLeadBadge">20</span>
-                    </a>
-                    <a href="admin/stations.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-green-200">
-                        <i class="fa-solid fa-charging-station text-green-600"></i>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">Quản lý Trạm sạc</p>
-                            <p class="text-gray-400 text-xs">8 trạm, bản đồ, OCPP simulator</p>
-                        </div>
-                    </a>
-                    <a href="admin/nfc.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-teal-200">
-                        <i class="fa-solid fa-id-card text-teal-600"></i>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">NFC Manager</p>
-                            <p class="text-gray-400 text-xs">5 thẻ, simulator quét NFC</p>
-                        </div>
-                    </a>
-                    <a href="admin/finance.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-purple-200">
-                        <i class="fa-solid fa-chart-pie text-purple-600"></i>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">BCTC B01–B03</p>
-                            <p class="text-gray-400 text-xs">Bảng cân đối, lợi nhuận, dòng tiền</p>
-                        </div>
-                    </a>
-                    <a href="admin/employees.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-orange-200">
-                        <i class="fa-solid fa-users-gear text-orange-500"></i>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">HR & Thuế TNCN</p>
-                            <p class="text-gray-400 text-xs">7 nhân viên, bảng lương, TNCN 7 bậc</p>
-                        </div>
-                    </a>
-                    <a href="admin/settings.html" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3.5 hover:border-gray-300">
-                        <i class="fa-solid fa-gear text-gray-500"></i>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">Cài đặt Site</p>
-                            <p class="text-gray-400 text-xs">SĐT, GA4, FB Pixel, bảo trì</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- LEGAL PAGES -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
-                    <i class="fa-solid fa-scale-balanced text-gray-500"></i>
-                    <h2 class="font-black text-gray-900">Pháp lý & Chính sách</h2>
-                </div>
-                <div class="p-4 space-y-2">
-                    <a href="pages/dieu-khoan/" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3 hover:border-gray-300">
-                        <i class="fa-solid fa-file-contract text-gray-500"></i>
-                        <div>
-                            <p class="font-semibold text-sm text-gray-900">Điều khoản Sử dụng</p>
-                            <p class="text-gray-400 text-xs">8 điều, MST 0316942991, địa chỉ thực</p>
-                        </div>
-                    </a>
-                    <a href="pages/bao-mat/" class="card-link flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-3 hover:border-gray-300">
-                        <i class="fa-solid fa-shield-halved text-gray-500"></i>
-                        <div>
-                            <p class="font-semibold text-sm text-gray-900">Chính sách Bảo mật</p>
-                            <p class="text-gray-400 text-xs">NĐ 13/2023, PDPA-compliant tiếng Việt</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- TECH STACK -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                <div class="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
-                    <i class="fa-solid fa-microchip text-gray-500"></i>
-                    <h2 class="font-black text-gray-900">Tech Stack</h2>
-                </div>
-                <div class="p-4 space-y-2 text-sm">
-                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
-                        <span class="text-gray-600">CSS Framework</span>
-                        <span class="font-semibold text-gray-900">Tailwind CSS CDN</span>
-                    </div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
-                        <span class="text-gray-600">Animations</span>
-                        <span class="font-semibold text-gray-900">WOW.js + Animate.css</span>
-                    </div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
-                        <span class="text-gray-600">Slider</span>
-                        <span class="font-semibold text-gray-900">Swiper.js v11</span>
-                    </div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
-                        <span class="text-gray-600">Maps</span>
-                        <span class="font-semibold text-gray-900">Leaflet.js + OSM</span>
-                    </div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
-                        <span class="text-gray-600">Icons</span>
-                        <span class="font-semibold text-gray-900">Font Awesome 6.4</span>
-                    </div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
-                        <span class="text-gray-600">Data store</span>
-                        <span class="font-semibold text-gray-900">admin/db.json + localStorage</span>
-                    </div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-50">
-                        <span class="text-gray-600">PWA</span>
-                        <span class="font-semibold text-green-700">sw.js v2 ✅</span>
-                    </div>
-                    <div class="flex justify-between items-center py-1">
-                        <span class="text-gray-600">Deploy</span>
-                        <span class="font-semibold text-gray-900">Cloudflare Pages</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CHECKLIST -->
-            <div class="bg-solar-50 rounded-2xl border border-solar-100 p-5">
-                <p class="font-black text-solar-900 mb-3 flex items-center gap-2"><i class="fa-solid fa-clipboard-check"></i> Sprint Status</p>
-                <div class="space-y-1.5 text-sm">
-                    <div class="flex items-center gap-2 text-solar-800"><i class="fa-solid fa-check-circle text-solar-600"></i> Sprint 1 — P1 (5/5 done)</div>
-                    <div class="flex items-center gap-2 text-solar-800"><i class="fa-solid fa-check-circle text-solar-600"></i> Sprint 2 — P2 (5/5 done)</div>
-                    <div class="flex items-center gap-2 text-solar-800"><i class="fa-solid fa-check-circle text-solar-600"></i> Sprint 3 — P3 (4/5 done)</div>
-                    <div class="flex items-center gap-2 text-gray-500"><i class="fa-regular fa-circle text-gray-400"></i> T3.4 Zalo OA — chờ OA ID</div>
-                    <div class="flex items-center gap-2 text-gray-500"><i class="fa-regular fa-circle text-gray-400"></i> GA4 — chờ G-XXXXXXXXXX</div>
-                </div>
-            </div>
-
-        </div>
+    <div class="grid-3" style="margin-top:40px">
+      <div class="glass-card reveal d1">
+        <div style="font-size:24px;margin-bottom:8px">🔑</div>
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--dark-muted);margin-bottom:4px">Module 01</div>
+        <div style="font-weight:800;font-size:.9375rem;margin-bottom:8px">Onboarding & Auth</div>
+        <div style="font-size:.8rem;color:var(--dark-muted);line-height:1.6">Splash · Đăng ký SĐT/Apple/Google · OTP · Cấu hình dòng xe (CCS2, Type 2, dung lượng pin)</div>
+      </div>
+      <div class="glass-card reveal d2" style="border-color:rgba(0,194,122,.2)">
+        <div style="font-size:24px;margin-bottom:8px">🗺️</div>
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--dark-muted);margin-bottom:4px">Module 02</div>
+        <div style="font-weight:800;font-size:.9375rem;margin-bottom:8px;color:var(--c-accent)">Map Hub & Micro-Nav</div>
+        <div style="font-size:.8rem;color:var(--dark-muted);line-height:1.6">Cluster TLP · Bộ lọc công suất · Ghim ram dốc hầm B2 · Barie · Giới hạn chiều cao</div>
+      </div>
+      <div class="glass-card reveal d3">
+        <div style="font-size:24px;margin-bottom:8px">🏪</div>
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--dark-muted);margin-bottom:4px">Module 03</div>
+        <div style="font-weight:800;font-size:.9375rem;margin-bottom:8px">Station Detail & Waitlist</div>
+        <div style="font-size:.8rem;color:var(--dark-muted);line-height:1.6">Sơ đồ slot trực quan · Tiện ích xung quanh · Hàng chờ ảo · 1-Tap Crowdsource Check-in</div>
+      </div>
+      <div class="glass-card reveal d1" style="border-color:rgba(0,214,143,.15)">
+        <div style="font-size:24px;margin-bottom:8px">⚡</div>
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--dark-muted);margin-bottom:4px">Module 04</div>
+        <div style="font-weight:800;font-size:.9375rem;margin-bottom:8px;color:#00D68F">Active Charging HUD</div>
+        <div style="font-size:.8rem;color:var(--dark-muted);line-height:1.6">SVG tiến trình SoC · Telemetry 385V/195A · Chi phí thời gian thực · Slider dừng khẩn cấp</div>
+      </div>
+      <div class="glass-card reveal d2">
+        <div style="font-size:24px;margin-bottom:8px">🧭</div>
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--dark-muted);margin-bottom:4px">Module 05</div>
+        <div style="font-weight:800;font-size:.9375rem;margin-bottom:8px">Smart Route Planner</div>
+        <div style="font-size:.8rem;color:var(--dark-muted);line-height:1.6">Lập lộ trình theo độ dốc · Chiến thuật sạc 10%→70% · Cảnh báo pin tụt · Trạm dự phòng</div>
+      </div>
+      <div class="glass-card reveal d3">
+        <div style="font-size:24px;margin-bottom:8px">👤</div>
+        <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--dark-muted);margin-bottom:4px">Module 06</div>
+        <div style="font-weight:800;font-size:.9375rem;margin-bottom:8px">Profile & History</div>
+        <div style="font-size:.8rem;color:var(--dark-muted);line-height:1.6">Ví sạc · MoMo / Thẻ / VETC · Lịch sử kWh + chi phí · Hóa đơn VAT · CO₂ tiết kiệm</div>
+      </div>
     </div>
 
-</div>
+    <!-- 4-step guide -->
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;margin-top:32px">
+      <div style="font-weight:800;font-size:.845rem;margin-bottom:20px;color:var(--dark-text)">Hướng dẫn sử dụng 4 bước</div>
+      <div class="step-flow">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-title" style="color:var(--dark-text)">Tải app & Nạp tiền</div>
+          <div class="step-desc">NLP-EGREEN → Đăng ký → Nạp ví sạc</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background:var(--c-accent)">2</div>
+          <div class="step-title" style="color:var(--dark-text)">Tìm trạm</div>
+          <div class="step-desc">Mở app → Bản đồ → Kiểm tra TLP</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background:var(--c-accent)">3</div>
+          <div class="step-title" style="color:var(--dark-text)">Quét QR & Cắm sạc</div>
+          <div class="step-desc">Đến trụ → Quét QR → Cắm súng sạc</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background:var(--c-gold)">4</div>
+          <div class="step-title" style="color:var(--dark-text)">Theo dõi & Rút súng</div>
+          <div class="step-desc">Theo dõi SoC → Rút đúng vị trí</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<script src="js/demo-seed.js"></script>
+<!-- ════════════════ PARTNER ════════════════ -->
+<section id="partner" style="background:var(--surface)">
+  <div class="container">
+    <div class="section-label"><span></span> Mô hình đối tác</div>
+    <h2 class="section-title">Nhượng quyền trạm sạc</h2>
+    <div class="divider"></div>
+    <p class="section-desc">3 mô hình hợp tác linh hoạt — từ Zero Capital đến tự mua trụ, chia sẻ lên đến 80% lợi nhuận mỗi kWh.</p>
+
+    <div class="grid-3" style="margin-top:40px">
+      <!-- ROI models -->
+      <div class="roi-card reveal d1">
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:8px">Mô hình 1</div>
+        <div style="font-weight:900;font-size:1.0625rem;color:#fff;margin-bottom:4px">TMT Đầu tư 100%</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.65);margin-bottom:16px">Không cần bỏ vốn ban đầu</div>
+        <div class="roi-num">800đ</div>
+        <div class="roi-label">/kWh chia sẻ lợi nhuận</div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.15);font-size:.78rem;color:rgba(255,255,255,.6)">Phù hợp: Mặt bằng đắc địa chưa có vốn</div>
+      </div>
+      <div class="roi-card reveal d2" style="background:linear-gradient(135deg,#00a869 0%,#007c52 100%)">
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.7);margin-bottom:8px">Mô hình 2 ✦ Phổ biến</div>
+        <div style="font-weight:900;font-size:1.0625rem;color:#fff;margin-bottom:4px">Cùng làm — Cùng chia</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.75);margin-bottom:16px">Chủ đầu tư góp mặt bằng + hạ tầng</div>
+        <div class="roi-num">1.000đ</div>
+        <div class="roi-label">/kWh chia sẻ lợi nhuận</div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.2);font-size:.78rem;color:rgba(255,255,255,.7)">Hợp đồng 10 năm · PCCC chuẩn hóa</div>
+      </div>
+      <div class="roi-card reveal d3" style="background:linear-gradient(135deg,#F0A500 0%,#d49200 100%)">
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(0,0,0,.55);margin-bottom:8px">Mô hình 3</div>
+        <div style="font-weight:900;font-size:1.0625rem;color:#000;margin-bottom:4px">Tự mua trụ — Toàn quyền</div>
+        <div style="font-size:.8rem;color:rgba(0,0,0,.55);margin-bottom:16px">Chủ đầu tư mua trụ và tự vận hành</div>
+        <div class="roi-num" style="color:#0f172a">1.500đ</div>
+        <div class="roi-label" style="color:rgba(0,0,0,.6)">/kWh chia sẻ lợi nhuận</div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(0,0,0,.1);font-size:.78rem;color:rgba(0,0,0,.55)">Phù hợp: Nhà đầu tư chiến lược dài hạn</div>
+      </div>
+    </div>
+
+    <!-- Pricing table -->
+    <div class="card" style="padding:0;overflow:hidden;margin-top:32px">
+      <div style="padding:16px 20px;border-bottom:2px solid var(--border);font-weight:800;font-size:.875rem">Bảng giá điện — Hiệu lực từ 15/07/2026</div>
+      <div class="price-row">
+        <div>
+          <div class="price-period">🌙 Giờ thấp điểm</div>
+          <div style="font-size:.78rem;color:var(--muted)">22:00 — 06:00</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="badge badge-green">Tiết kiệm nhất</span>
+          <span class="price-val">3.651 đ/kWh</span>
+        </div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="price-period">☀️ Giờ bình thường</div>
+          <div style="font-size:.78rem;color:var(--muted)">06:00 — 09:30 · 11:30 — 17:00 · 20:00 — 22:00</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="badge badge-navy">Thông thường</span>
+          <span class="price-val">4.984 đ/kWh</span>
+        </div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="price-period">🔥 Giờ cao điểm</div>
+          <div style="font-size:.78rem;color:var(--muted)">09:30 — 11:30 · 17:00 — 20:00</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="badge badge-red">Đắt nhất</span>
+          <span class="price-val">7.436 đ/kWh</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ ROADMAP ════════════════ -->
+<section id="roadmap">
+  <div class="container">
+    <div class="section-label"><span></span> Lộ trình phát triển</div>
+    <h2 class="section-title">Sprint Roadmap — Kế hoạch Triển khai</h2>
+    <div class="divider"></div>
+
+    <div class="grid-2" style="margin-top:36px">
+      <!-- Sprint cards -->
+      <div class="sprint-card sc-1 reveal d1">
+        <div class="sprint-num">Sprint P1 — Tuần 1</div>
+        <div class="sprint-title">Hạ tầng & Nội dung Cốt lõi</div>
+        <div class="sprint-weeks">T1.1 → T1.5</div>
+        <div class="sprint-done">Trang "Về chúng tôi" + Timeline</div>
+        <div class="sprint-done">Trang Đăng ký đối tác (cascade tỉnh/phường)</div>
+        <div class="sprint-done">Schema.org SEO — 6 bài blog + sản phẩm</div>
+        <div class="sprint-done">Admin panel: leads, settings, pages CRUD</div>
+        <div class="sprint-done">MST 0316942991 xác nhận vào db.json</div>
+        <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:5px">
+          <span class="sprint-tag badge-green">✅ Done 5/5</span>
+        </div>
+      </div>
+
+      <div class="sprint-card sc-2 reveal d2">
+        <div class="sprint-num">Sprint P2 — Tuần 2</div>
+        <div class="sprint-title">UI/UX Nâng cấp & Blog</div>
+        <div class="sprint-weeks">T2.1 → T2.6</div>
+        <div class="sprint-done">WOW.js scroll animations toàn bộ trang</div>
+        <div class="sprint-done">Swiper slider sản phẩm — mobile 1 card/slide</div>
+        <div class="sprint-done">Hero stats strip — số dự án / kWp / khách hàng</div>
+        <div class="sprint-done">Footer MST + địa chỉ pháp nhân + social</div>
+        <div class="sprint-done">6 bài blog thực có Schema.org Article</div>
+        <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:5px">
+          <span class="sprint-tag badge-green">✅ Done 5/5</span>
+          <span class="sprint-tag badge-gray">⏳ Hero ảnh thực — chờ client</span>
+        </div>
+      </div>
+
+      <div class="sprint-card sc-3 reveal d1">
+        <div class="sprint-num">Sprint P3-P4 — Tuần 3–4</div>
+        <div class="sprint-title">Tính năng Nâng cao & Mobile UX</div>
+        <div class="sprint-weeks">T3.1 → T3.5 + Mobile Sprint</div>
+        <div class="sprint-done">Bản đồ dự án Leaflet.js + filter solar/EV</div>
+        <div class="sprint-done">Trang Điều khoản + Bảo mật (NĐ 13/2023)</div>
+        <div class="sprint-done">PWA sw.js v2 — cache-first, 9 trang preload</div>
+        <div class="sprint-done">Bottom nav 4-tab app-like trên 27 sub-pages</div>
+        <div class="sprint-done">Scroll-hide navbar + Swipe-to-close modal</div>
+        <div class="sprint-wait">Zalo OA Widget — chờ zalo_oa_id từ client</div>
+        <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:5px">
+          <span class="sprint-tag badge-green">✅ Done 5/6</span>
+          <span class="sprint-tag badge-gold">⏳ 1 task chờ client</span>
+        </div>
+      </div>
+
+      <div class="sprint-card sc-4 reveal d2">
+        <div class="sprint-num">Sprint P5-P7 — Tuần 5–7</div>
+        <div class="sprint-title">React App + Internal Portal + EV Kit</div>
+        <div class="sprint-weeks">noi-bo-react/ + @vnkr-labs/ui</div>
+        <div class="sprint-done">3 portal nội bộ HTML: Admin, Pháp chế, Tài chính</div>
+        <div class="sprint-done">React app — Vite + React Router HashRouter</div>
+        <div class="sprint-done">@vnkr-labs/ui Design System tích hợp</div>
+        <div class="sprint-done">PortalProvider Context + useReducer shared state</div>
+        <div class="sprint-done">NLP-EGREEN UI Kit — TLP tokens, 6 modules, sprint roadmap</div>
+        <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:5px">
+          <span class="sprint-tag badge-green">✅ Build 55 modules — 0 errors</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending items -->
+    <div class="card" style="margin-top:28px">
+      <div style="font-weight:800;font-size:.875rem;margin-bottom:16px">Còn chờ từ client</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <div class="checklist-item">
+          <div class="check-icon check-wait">⏳</div>
+          <div><div style="font-weight:700;font-size:.845rem">Google Maps API Key</div><div style="font-size:.78rem;color:var(--muted)">Kích hoạt bản đồ tìm trạm realtime</div></div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-icon check-wait">⏳</div>
+          <div><div style="font-weight:700;font-size:.845rem">GA4 Measurement ID</div><div style="font-size:.78rem;color:var(--muted)">Tracking 7 events — G-XXXXXXXXXX</div></div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-icon check-wait">⏳</div>
+          <div><div style="font-weight:700;font-size:.845rem">Logo PNG/SVG thực</div><div style="font-size:.78rem;color:var(--muted)">Thay CSS text logo trên header</div></div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-icon check-wait">⏳</div>
+          <div><div style="font-weight:700;font-size:.845rem">Hotline NLP-EGREEN mới</div><div style="font-size:.78rem;color:var(--muted)">Nếu đổi số từ TMT-EGREEN</div></div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-icon check-wait">⏳</div>
+          <div><div style="font-weight:700;font-size:.845rem">Zalo OA ID</div><div style="font-size:.78rem;color:var(--muted)">Widget chat nhúng vào tất cả trang</div></div>
+        </div>
+        <div class="checklist-item">
+          <div class="check-icon check-wait">⏳</div>
+          <div><div style="font-weight:700;font-size:.845rem">Ảnh thực Hero 1200×630px</div><div style="font-size:.78rem;color:var(--muted)">OpenGraph + LCP performance</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ SITEMAP ════════════════ -->
+<section id="sitemap" style="background:var(--surface)">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label" style="justify-content:center"><span></span>Trang web</div>
+      <h2 class="section-title">Sitemap — Các trang đã xây dựng</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Toàn bộ trang web nlpgroup.com.vn đã triển khai — click để truy cập trực tiếp.</p>
+    </div>
+
+    <div class="grid-3" style="margin-top:36px">
+      <!-- Main pages -->
+      <div>
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--c-brand);margin-bottom:12px">Trang chính</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#e8edf8">🏠</div>
+            <div><div style="font-weight:700">Trang chủ</div><div class="sitemap-item__path">index.html</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/ve-chung-toi/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#e8edf8">👥</div>
+            <div><div style="font-weight:700">Về chúng tôi</div><div class="sitemap-item__path">pages/ve-chung-toi/</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/dang-ky-doi-tac/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#e6f9f1">🤝</div>
+            <div><div style="font-weight:700">Đăng ký đối tác</div><div class="sitemap-item__path">pages/dang-ky-doi-tac/</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/tin-tuc/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#fef6e0">📰</div>
+            <div><div style="font-weight:700">Tin tức</div><div class="sitemap-item__path">pages/tin-tuc/</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/lien-he/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#fdecea">📞</div>
+            <div><div style="font-weight:700">Liên hệ</div><div class="sitemap-item__path">pages/lien-he/</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--c-brand);margin-bottom:12px">Sản phẩm & Dịch vụ</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="pages/tru-sac/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#e6f9f1">⚡</div>
+            <div><div style="font-weight:700">Trụ sạc xe điện</div><div class="sitemap-item__path">pages/tru-sac/</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/dien-mat-troi/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#fef6e0">☀️</div>
+            <div><div style="font-weight:700">Điện mặt trời</div><div class="sitemap-item__path">pages/dien-mat-troi/</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/dich-vu/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#e8edf8">🔧</div>
+            <div><div style="font-weight:700">Dịch vụ</div><div class="sitemap-item__path">pages/dich-vu/</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/du-an/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#e6f9f1">📍</div>
+            <div><div style="font-weight:700">Dự án thực tế</div><div class="sitemap-item__path">pages/du-an/</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/tim-kiem-tram-sac/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#e8edf8">🗺</div>
+            <div><div style="font-weight:700">Tìm trạm sạc</div><div class="sitemap-item__path">pages/tim-kiem-tram-sac/</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Portals & tools -->
+      <div>
+        <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--c-brand);margin-bottom:12px">Portal Nội bộ & Tools</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="pages/noi-bo/admin.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#e6f9f1">📊</div>
+            <div><div style="font-weight:700">Admin Dashboard (HTML)</div><div class="sitemap-item__path">pages/noi-bo/admin.html</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/noi-bo/legal.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#f3e8ff">⚖️</div>
+            <div><div style="font-weight:700">Phòng Pháp chế</div><div class="sitemap-item__path">pages/noi-bo/legal.html</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/noi-bo/finance.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#e8edf8">💰</div>
+            <div><div style="font-weight:700">Phòng Tài chính</div><div class="sitemap-item__path">pages/noi-bo/finance.html</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+          <a href="pages/noi-bo-react/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#e6f9f1">⚛️</div>
+            <div><div style="font-weight:700">React Portal App</div><div class="sitemap-item__path">pages/noi-bo-react/ (Vite build)</div></div>
+            <span class="badge badge-navy" style="margin-left:auto">npm run dev</span>
+          </a>
+          <a href="pages/voltsync-concept/index.html" class="sitemap-item">
+            <div class="sitemap-item__icon" style="background:#0D1117">⚡</div>
+            <div><div style="font-weight:700">VoltSync Concept</div><div class="sitemap-item__path">pages/voltsync-concept/</div></div>
+            <span class="badge badge-green" style="margin-left:auto">Live</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom:12px">
+          <div class="nav-logo__mark">N</div>
+          <span style="color:#fff">NLP-<em style="color:var(--c-accent)">EGREEN</em></span>
+        </div>
+        <div class="footer__brand">
+          <strong>NLP GROUP JOINT STOCK COMPANY</strong>
+          Nền tảng trạm sạc xe điện thông minh quốc gia — chuẩn CCS2 Châu Âu, IoT realtime, 80% lợi nhuận cho đối tác nhượng quyền.
+          <br><br>
+          <span style="color:#94a3b8;font-size:.78rem">MST: 0316942991 · No. 16, D1 St, Mega Village Khang Dien, Phu Huu Ward, Thu Duc City, HCMC</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Trang web</div>
+        <a href="index.html" class="footer__link">Trang chủ</a>
+        <a href="pages/ve-chung-toi/index.html" class="footer__link">Về chúng tôi</a>
+        <a href="pages/dang-ky-doi-tac/index.html" class="footer__link">Đăng ký đối tác</a>
+        <a href="pages/du-an/index.html" class="footer__link">Dự án</a>
+        <a href="pages/tin-tuc/index.html" class="footer__link">Tin tức</a>
+        <a href="pages/lien-he/index.html" class="footer__link">Liên hệ</a>
+      </div>
+      <div>
+        <div class="footer__col-title">Pháp lý</div>
+        <a href="pages/dieu-khoan/index.html" class="footer__link">Điều khoản sử dụng</a>
+        <a href="pages/bao-mat/index.html" class="footer__link">Chính sách bảo mật</a>
+        <a href="pages/bieu-phi/index.html" class="footer__link">Biểu phí</a>
+        <div class="footer__col-title" style="margin-top:16px">Ngân hàng</div>
+        <span class="footer__link">MB Bank — An Phu Branch</span>
+        <span class="footer__link" style="font-family:'JetBrains Mono',monospace;font-size:.75rem">VND: 797968999999</span>
+        <span class="footer__link" style="font-family:'JetBrains Mono',monospace;font-size:.75rem">SWIFT: MSCBVNVX</span>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 NLP GROUP JOINT STOCK COMPANY · MST 0316942991</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#475569">Built with IBM Bob · Cloudflare Pages · github.com/thekingbao/vnsolar</span>
+    </div>
+  </div>
+</footer>
+
 <script>
-function resetDemo() {
-    if (!confirm('Reset toàn bộ dữ liệu demo về ban đầu?')) return;
-    localStorage.removeItem('nlpgroup_demo_seeded');
-    localStorage.removeItem('nlpgroup_leads');
-    localStorage.removeItem('nlpgroup_calc_history');
-    localStorage.removeItem('nlpgroup_notifications');
-    location.reload();
-}
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+  mobileNav.classList.toggle('open');
+  mobileNav.style.top = document.getElementById('navbar').offsetHeight + 'px';
+});
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
 
-function loadLeadsPreview() {
-    const leads = JSON.parse(localStorage.getItem('nlpgroup_leads') || '[]');
-    document.getElementById('statLeads').textContent = leads.length;
-    document.getElementById('adminLeadBadge').textContent = leads.length;
-
-    const body = document.getElementById('demoLeadsBody');
-    const preview = leads.slice(0, 8);
-    if (!preview.length) {
-        body.innerHTML = '<tr><td colspan="5" class="px-4 py-4 text-center text-gray-400">Chưa có leads</td></tr>';
-        return;
-    }
-    body.innerHTML = preview.map(l => {
-        const typeColor = l.type === 'partner' ? 'badge-partner' : (l.service||'').includes('sạc') ? 'badge-ev' : 'badge-solar';
-        const typeLabel = l.type === 'partner' ? '🤝 Đối tác' : (l.service||'').includes('sạc') ? '⚡ EV' : '☀️ Solar';
-        const dt = new Date(l.time);
-        const ago = Math.round((Date.now() - dt.getTime()) / 3600000);
-        const timeStr = ago < 24 ? ago + 'h trước' : Math.round(ago/24) + 'ngày trước';
-        return `<tr class="hover:bg-gray-50">
-            <td class="px-4 py-2.5 font-semibold text-sm">${l.name}</td>
-            <td class="px-4 py-2.5 text-sm text-blue-600">${l.phone}</td>
-            <td class="px-4 py-2.5"><span class="badge ${typeColor}">${typeLabel}</span></td>
-            <td class="px-4 py-2.5 text-xs text-gray-500">${l.province || '—'}</td>
-            <td class="px-4 py-2.5 text-xs text-gray-400 whitespace-nowrap">${timeStr}</td>
-        </tr>`;
-    }).join('');
-
-    if (leads.length > 8) {
-        body.innerHTML += `<tr><td colspan="5" class="px-4 py-2 text-center text-xs text-solar-600 font-semibold">
-            <a href="admin/leads.html">+ ${leads.length - 8} leads khác → Xem toàn bộ trong Admin</a>
-        </td></tr>`;
-    }
-}
-
-document.getElementById('seedStatus').textContent =
-    localStorage.getItem('nlpgroup_demo_seeded') === 'v3'
-        ? '✅ Demo data đã seed — ' + JSON.parse(localStorage.getItem('nlpgroup_leads')||'[]').length + ' leads'
-        : '⚠️ Demo data chưa seed';
-
-loadLeadsPreview();
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
-
 </body>
 </html>
