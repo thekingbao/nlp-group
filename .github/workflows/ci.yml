@@ -1,0 +1,56 @@
+name: 🔍 CI — Lint & Type Check
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci-portal:
+    name: Portal — Type check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: pages/noi-bo-react/package-lock.json
+
+      - name: Install
+        working-directory: pages/noi-bo-react
+        run: npm ci
+
+      - name: Build check (Vite)
+        working-directory: pages/noi-bo-react
+        run: npm run build
+        env:
+          VITE_API_URL: ''
+
+  ci-workers:
+    name: Workers — Type check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: workers/package-lock.json
+
+      - name: Install
+        working-directory: workers
+        run: npm ci
+
+      - name: Type check
+        working-directory: workers
+        run: npm run typecheck
