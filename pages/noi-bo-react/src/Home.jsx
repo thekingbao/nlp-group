@@ -12,7 +12,7 @@ export default function Home() {
       </div>
 
       {/* Portal cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20, width: '100%', maxWidth: 880 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 20, width: '100%', maxWidth: 880, marginBottom: 16 }}>
         <PortalCard
           to="/admin/dashboard"
           icon="📊"
@@ -39,7 +39,19 @@ export default function Home() {
         />
       </div>
 
-      <div style={{ marginTop: 48, fontSize: '.78rem', color: 'var(--text-muted)', textAlign: 'center' }}>
+      {/* EV Kit standalone card */}
+      <div style={{ width: '100%', maxWidth: 880 }}>
+        <PortalCard
+          to="/evkit"
+          icon="⚡"
+          name="NLP-EGREEN UI Kit"
+          desc="Kế hoạch thiết kế Design System & Sprint Roadmap cho app sạc xe điện — TLP Protocol, Design Tokens, 6 Modules, Flutter prototype."
+          tag="Sprint Roadmap · @vnkr-labs/ui-kit"
+          color="#49DBC8"
+        />
+      </div>
+
+      <div style={{ marginTop: 40, fontSize: '.78rem', color: 'var(--text-muted)', textAlign: 'center' }}>
         NLP Group · Hệ thống quản trị nội bộ · Built with React + @vnkr-labs/ui
       </div>
     </div>
