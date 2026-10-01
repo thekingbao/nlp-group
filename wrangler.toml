@@ -13,8 +13,8 @@ pages_build_output_dir = "."
 # ─── D1 Database ──────────────────────────────────────────────────────────────
 [[d1_databases]]
 binding      = "DB"
-database_name = "nlpgroup-db"
-database_id  = "REPLACE_WITH_D1_ID"   # wrangler d1 create nlpgroup-db
+database_name = "nlpgroup"
+database_id  = "REPLACE_WITH_D1_ID"   # wrangler d1 create nlpgroup
 
 # ─── R2 Object Storage ────────────────────────────────────────────────────────
 [[r2_buckets]]
@@ -36,7 +36,7 @@ name = "nlpgroup-local"
 
 [[env.local.d1_databases]]
 binding      = "DB"
-database_name = "nlpgroup-db"
+database_name = "nlpgroup"
 database_id  = "REPLACE_WITH_D1_ID"
 
 [[env.local.r2_buckets]]
@@ -49,7 +49,7 @@ name = "nlpgroup"
 
 [[env.production.d1_databases]]
 binding      = "DB"
-database_name = "nlpgroup-db"
+database_name = "nlpgroup"
 database_id  = "REPLACE_WITH_D1_ID"
 
 [[env.production.r2_buckets]]
