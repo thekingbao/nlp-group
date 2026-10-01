@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="../../css/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif']},colors:{solar:{50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d',900:'#14532d'},dark:'#0f172a'}}}}</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
 
@@ -70,7 +72,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-14">
       <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Danh mục sản phẩm</p>
-      <h2 class="text-3xl font-black text-gray-900 mb-3">Chọn đúng thiết bị – Tối ưu bài toán kinh tế</h2>
+      <h2 class="text-3xl font-black text-gray-900 mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Chọn đúng thiết bị – Tối ưu bài toán kinh tế</h2>
       <p class="text-gray-500 max-w-xl mx-auto">Mỗi mô hình tiêu thụ điện cần một giải pháp khác nhau. NLP Group tư vấn miễn phí để chọn đúng thiết bị ngay lần đầu.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -128,7 +130,7 @@
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
       <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">So sánh giải pháp</p>
-      <h2 class="text-3xl font-black text-gray-900">Hòa lưới hay Hybrid — nên chọn loại nào?</h2>
+      <h2 class="text-3xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Hòa lưới hay Hybrid — nên chọn loại nào?</h2>
     </div>
     <div class="overflow-x-auto">
       <table class="w-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
@@ -161,7 +163,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div>
         <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Tại sao chọn NLP Group</p>
-        <h2 class="text-3xl font-black text-gray-900 mb-6">Cam kết rõ ràng —<br>Không mơ hồ về số liệu</h2>
+        <h2 class="text-3xl font-black text-gray-900 mb-6 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Cam kết rõ ràng —<br>Không mơ hồ về số liệu</h2>
         <div class="space-y-5">
           <div class="flex gap-4 items-start"><div class="w-10 h-10 bg-solar-100 rounded-xl flex items-center justify-center text-solar-600 shrink-0"><i class="fa-solid fa-check-double"></i></div><div><h4 class="font-bold text-gray-900 mb-1">Tư vấn kỹ thuật miễn phí tại công trình</h4><p class="text-sm text-gray-500">Kỹ sư khảo sát biểu đồ phụ tải, thiết kế hệ thống chuẩn xác — không gợi ý thừa công suất.</p></div></div>
           <div class="flex gap-4 items-start"><div class="w-10 h-10 bg-solar-100 rounded-xl flex items-center justify-center text-solar-600 shrink-0"><i class="fa-solid fa-certificate"></i></div><div><h4 class="font-bold text-gray-900 mb-1">Thiết bị chính hãng 100%</h4><p class="text-sm text-gray-500">DEYE & SOLIS nhập khẩu chính ngạch, tem IEC/CE, đầy đủ C/O C/Q, hóa đơn VAT.</p></div></div>
@@ -184,7 +186,7 @@
 <!-- CTA BANNER -->
 <section class="py-16 bg-solar-600">
   <div class="max-w-4xl mx-auto px-4 text-center">
-    <h2 class="text-3xl font-black text-white mb-4">Bắt đầu tiết kiệm ngay hôm nay</h2>
+    <h2 class="text-3xl font-black text-white mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Bắt đầu tiết kiệm ngay hôm nay</h2>
     <p class="text-solar-100 text-lg mb-8">Khảo sát tại công trình 100% miễn phí · Báo giá trong 24h · Thi công theo tiêu chuẩn IEC</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <button onclick="openModal()" class="bg-white text-solar-700 hover:bg-gray-100 px-8 py-4 rounded-xl font-bold transition-colors shadow-lg"><i class="fa-solid fa-calendar-check mr-2"></i>Đặt lịch khảo sát</button>
@@ -297,5 +299,7 @@
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

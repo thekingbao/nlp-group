@@ -103,6 +103,7 @@
         .value-card:hover { transform: translateY(-6px); }
         .value-card { transition: transform .25s ease, box-shadow .25s ease; }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-white">
 
@@ -231,7 +232,7 @@
             <!-- Text -->
             <div class="order-1 lg:order-2">
                 <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Chúng tôi là ai</p>
-                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">
                     Công ty hội tụ hai<br>xu hướng lớn nhất<br>
                     <span class="text-solar-600">thập kỷ này</span>
                 </h2>
@@ -269,7 +270,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-16">
             <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Nền tảng hoạt động</p>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900">Bốn giá trị định hướng<br>mọi quyết định của chúng tôi</h2>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Bốn giá trị định hướng<br>mọi quyết định của chúng tôi</h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="value-card bg-white rounded-3xl p-8 border-2 border-gray-100 hover:border-solar-200 hover:shadow-2xl hover:shadow-solar-500/10">
@@ -309,7 +310,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Hành trình phát triển</p>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900">Từ khởi nghiệp đến<br>dẫn đầu ngành</h2>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Từ khởi nghiệp đến<br>dẫn đầu ngành</h2>
         </div>
 
         <div class="relative timeline-line">
@@ -405,7 +406,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Thông tin doanh nghiệp</p>
-            <h2 class="text-2xl md:text-3xl font-black text-gray-900">Pháp nhân & Đăng ký kinh doanh</h2>
+            <h2 class="text-2xl md:text-3xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Pháp nhân & Đăng ký kinh doanh</h2>
         </div>
         <div class="bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-sm">
             <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-100">
@@ -458,7 +459,7 @@
     </div>
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <p class="text-solar-400 font-bold uppercase tracking-widest text-sm mb-4">Sẵn sàng bắt đầu?</p>
-        <h2 class="text-3xl md:text-4xl font-black text-white mb-6 leading-tight">
+        <h2 class="text-3xl md:text-4xl font-black text-white mb-6 leading-tight wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">
             Cùng NLP Group kiến tạo<br>hạ tầng năng lượng xanh<br>
             <span class="text-solar-400">cho doanh nghiệp của bạn</span>
         </h2>
@@ -588,5 +589,7 @@
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

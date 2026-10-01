@@ -46,6 +46,8 @@
         .leaflet-popup-content { font-family: 'Inter', sans-serif; font-size: 13px; margin: 12px 16px; }
         .map-filter-btn.active { background: #16a34a; color: white; }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
 
@@ -107,7 +109,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-8">
             <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Bản đồ tương tác</p>
-            <h2 class="text-3xl font-black text-gray-900 mb-4">Dự án NLP Group trên bản đồ</h2>
+            <h2 class="text-3xl font-black text-gray-900 mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Dự án NLP Group trên bản đồ</h2>
             <p class="text-gray-600">Click vào marker để xem thông tin chi tiết từng dự án</p>
         </div>
 
@@ -131,7 +133,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Nổi bật</p>
-            <h2 class="text-3xl font-black text-gray-900">Dự án tiêu biểu</h2>
+            <h2 class="text-3xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Dự án tiêu biểu</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
@@ -217,7 +219,7 @@
 <!-- CTA -->
 <section class="py-20 bg-dark">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-        <h2 class="text-3xl font-black text-white mb-4">Muốn dự án của bạn có mặt trên bản đồ này?</h2>
+        <h2 class="text-3xl font-black text-white mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Muốn dự án của bạn có mặt trên bản đồ này?</h2>
         <p class="text-gray-400 text-lg mb-8">Hãy để NLP Group khảo sát miễn phí và lên phương án tối ưu nhất cho mặt bằng của bạn.</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <button onclick="openModal()" class="bg-solar-600 hover:bg-solar-700 text-white px-10 py-4 rounded-xl font-bold transition-all shadow-lg shadow-solar-500/30 flex items-center justify-center gap-2">
@@ -359,5 +361,7 @@ function filterMap(type) {
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

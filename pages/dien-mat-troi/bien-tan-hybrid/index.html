@@ -27,6 +27,8 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
 
@@ -90,7 +92,7 @@
 <section class="py-16 bg-white" id="san-pham">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-black text-dark mb-3">Sản phẩm Biến tần Hybrid</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Sản phẩm Biến tần Hybrid</h2>
       <p class="text-gray-500 max-w-xl mx-auto">DEYE và SOLIS – hai thương hiệu hàng đầu thế giới, phân phối chính hãng tại Việt Nam.</p>
     </div>
 
@@ -205,7 +207,7 @@
 <section class="py-16 bg-gray-50" id="nguyen-ly">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-black text-dark mb-3">Nguyên lý hoạt động Hybrid</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Nguyên lý hoạt động Hybrid</h2>
       <p class="text-gray-500 max-w-xl mx-auto">Hệ thống quản lý năng lượng thông minh – tự động tối ưu theo thời gian thực.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
@@ -245,7 +247,7 @@
 <section class="py-16 bg-white" id="so-sanh">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10">
-      <h2 class="text-3xl font-black text-dark mb-3">So sánh DEYE vs SOLIS</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">So sánh DEYE vs SOLIS</h2>
       <p class="text-gray-500">Chọn thương hiệu phù hợp với nhu cầu của bạn</p>
     </div>
     <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
@@ -293,7 +295,7 @@
 <section class="py-16 bg-gray-50" id="faq">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10">
-      <h2 class="text-3xl font-black text-dark mb-3">Câu hỏi thường gặp</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Câu hỏi thường gặp</h2>
       <p class="text-gray-500">Giải đáp nhanh về biến tần Hybrid</p>
     </div>
     <div class="space-y-4">
@@ -331,7 +333,7 @@
 <!-- CTA -->
 <section class="py-16 bg-gradient-to-br from-solar-900 to-dark">
   <div class="max-w-3xl mx-auto px-4 text-center">
-    <h2 class="text-3xl font-black text-white mb-4">Sẵn sàng lắp đặt Hybrid?</h2>
+    <h2 class="text-3xl font-black text-white mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Sẵn sàng lắp đặt Hybrid?</h2>
     <p class="text-gray-300 mb-8 text-lg">Đội kỹ thuật NLP tư vấn miễn phí, khảo sát tại chỗ, báo giá trong 24 giờ.</p>
     <button onclick="openModal()" class="bg-solar-600 hover:bg-solar-500 text-white px-10 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-solar-500/40 inline-flex items-center gap-3">
       <i class="fa-solid fa-calendar-check"></i> Đặt lịch tư vấn miễn phí
@@ -439,5 +441,7 @@
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

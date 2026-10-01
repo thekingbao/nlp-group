@@ -27,6 +27,8 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
 
@@ -91,7 +93,7 @@
 <section class="py-16 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-black text-dark mb-3">Tại sao chọn Hòa lưới?</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Tại sao chọn Hòa lưới?</h2>
       <p class="text-gray-500 max-w-xl mx-auto">3 lợi thế vượt trội của hệ thống On-grid so với các giải pháp khác.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -124,7 +126,7 @@
 <section class="py-16 bg-gray-50" id="san-pham">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-black text-dark mb-3">Sản phẩm Biến tần Hòa lưới</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Sản phẩm Biến tần Hòa lưới</h2>
       <p class="text-gray-500 max-w-xl mx-auto">Từ hộ gia đình đến nhà máy công nghiệp – đủ công suất từ 5kW đến 30kW.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -200,7 +202,7 @@
 <section class="py-16 bg-white" id="so-sanh">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10">
-      <h2 class="text-3xl font-black text-dark mb-3">On-grid vs Hybrid</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">On-grid vs Hybrid</h2>
       <p class="text-gray-500">Lựa chọn giải pháp đúng theo nhu cầu sử dụng</p>
     </div>
     <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
@@ -248,7 +250,7 @@
 <section class="py-16 bg-gray-50" id="truong-hop">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-black text-dark mb-3">Nên chọn Hòa lưới khi nào?</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Nên chọn Hòa lưới khi nào?</h2>
       <p class="text-gray-500 max-w-xl mx-auto">3 trường hợp điển hình được hưởng lợi nhiều nhất từ hệ thống On-grid.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -292,7 +294,7 @@
 <!-- CTA -->
 <section class="py-16 bg-gradient-to-br from-blue-900 to-dark">
   <div class="max-w-3xl mx-auto px-4 text-center">
-    <h2 class="text-3xl font-black text-white mb-4">Bắt đầu tiết kiệm điện ngay hôm nay</h2>
+    <h2 class="text-3xl font-black text-white mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Bắt đầu tiết kiệm điện ngay hôm nay</h2>
     <p class="text-gray-300 mb-8 text-lg">Nhận báo giá hòa lưới trong 24 giờ. Khảo sát miễn phí tại chỗ, tư vấn chọn đúng công suất.</p>
     <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-blue-500/40 inline-flex items-center gap-3">
       <i class="fa-solid fa-calendar-check"></i> Đặt lịch tư vấn miễn phí
@@ -401,5 +403,7 @@
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

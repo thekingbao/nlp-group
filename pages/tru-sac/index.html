@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="../../css/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif']},colors:{solar:{50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d',900:'#14532d'},dark:'#0f172a'}}}}</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
 
@@ -68,7 +70,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-14">
       <p class="text-purple-600 font-bold uppercase tracking-wider text-sm mb-2">Danh mục sản phẩm</p>
-      <h2 class="text-3xl font-black text-gray-900">Chọn loại trụ sạc phù hợp mô hình</h2>
+      <h2 class="text-3xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Chọn loại trụ sạc phù hợp mô hình</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <!-- DC -->
@@ -108,7 +110,7 @@
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
       <p class="text-purple-600 font-bold uppercase tracking-wider text-sm mb-2">Bài toán kinh tế</p>
-      <h2 class="text-3xl font-black text-gray-900">Trụ sạc sinh lời bao nhiêu mỗi tháng?</h2>
+      <h2 class="text-3xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Trụ sạc sinh lời bao nhiêu mỗi tháng?</h2>
     </div>
     <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-5 text-center mb-8">
@@ -143,7 +145,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
       <p class="text-purple-600 font-bold uppercase tracking-wider text-sm mb-2">Đối tượng đầu tư</p>
-      <h2 class="text-3xl font-black text-gray-900">Ai nên lắp trạm sạc xe điện?</h2>
+      <h2 class="text-3xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Ai nên lắp trạm sạc xe điện?</h2>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all">
@@ -280,5 +282,7 @@
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

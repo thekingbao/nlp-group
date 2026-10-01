@@ -26,6 +26,8 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
 
@@ -94,7 +96,7 @@
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <p class="text-blue-600 font-bold uppercase tracking-wider text-sm mb-3">Cách thức hoạt động</p>
-      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Chỉ 3 bước đơn giản</h2>
+      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Chỉ 3 bước đơn giản</h2>
       <p class="text-gray-500 max-w-xl mx-auto">Sở hữu hệ thống điện mặt trời và bắt đầu tiết kiệm điện ngay, không cần vốn lớn.</p>
     </div>
     <div class="relative">
@@ -134,7 +136,7 @@
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <p class="text-blue-600 font-bold uppercase tracking-wider text-sm mb-3">Kế hoạch tài chính</p>
-      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Bảng kế hoạch trả góp</h2>
+      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Bảng kế hoạch trả góp</h2>
       <p class="text-gray-500 max-w-xl mx-auto">Tham khảo kế hoạch tài chính ví dụ cho 2 quy mô hệ thống phổ biến nhất.</p>
     </div>
     <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
@@ -197,7 +199,7 @@
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <p class="text-blue-600 font-bold uppercase tracking-wider text-sm mb-3">So sánh tài chính</p>
-      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Tiết kiệm vs Tiền trả góp</h2>
+      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Tiết kiệm vs Tiền trả góp</h2>
       <p class="text-gray-500 max-w-xl mx-auto">Tiền điện tiết kiệm hàng tháng gần như bù đắp hoặc vượt qua khoản trả góp — bạn gần như "miễn phí" sở hữu hệ thống.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -296,7 +298,7 @@
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <p class="text-blue-600 font-bold uppercase tracking-wider text-sm mb-3">Hỗ trợ tài chính</p>
-      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Hợp tác ngân hàng</h2>
+      <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Hợp tác ngân hàng</h2>
       <p class="text-gray-500 max-w-xl mx-auto">NLP Group hợp tác với ngân hàng lớn để hỗ trợ hồ sơ vay vốn, giúp bạn có thêm đòn bẩy tài chính nếu cần.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -355,7 +357,7 @@
     <div class="inline-flex items-center gap-2 bg-white/20 border border-white/30 text-white px-4 py-1.5 rounded-full text-sm font-bold mb-8">
       <i class="fa-solid fa-percent"></i> Trả góp 0% – Sở hữu ngay – Tiết kiệm liền
     </div>
-    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">Bắt đầu tiết kiệm điện<br>với 30% vốn ban đầu?</h2>
+    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Bắt đầu tiết kiệm điện<br>với 30% vốn ban đầu?</h2>
     <p class="text-lg text-blue-200 mb-10 max-w-2xl mx-auto leading-relaxed">Kỹ sư NLP Group sẽ liên hệ trong <strong class="text-white">15 phút</strong>, tư vấn chọn hệ thống phù hợp và lập kế hoạch tài chính chi tiết cho bạn.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <button onclick="openModal()" class="bg-white hover:bg-blue-50 text-blue-700 px-10 py-4 rounded-xl font-black text-lg transition-all shadow-xl hover:-translate-y-1 flex items-center justify-center gap-2">
@@ -475,5 +477,7 @@
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nlp-egreen Flutter UI Kit – Giao diện Trạm Sạc Xe Điện</title>
+<meta name="description" content="nlp-egreen Flutter UI Kit – Bộ giao diện ứng dụng tìm kiếm trạm sạc xe điện hoàn chỉnh. 30+ màn hình, cross-platform, dark mode, thiết kế hiện đại.">
+<meta name="keywords" content="flutter ui kit, trạm sạc xe điện, ev charging app, nlp-egreen, dart, mobile app template">
+<meta property="og:title" content="nlp-egreen Flutter UI Kit – Giao diện Trạm Sạc Xe Điện">
+<meta property="og:description" content="Bộ giao diện Flutter hoàn chỉnh cho ứng dụng tìm kiếm trạm sạc xe điện. 30+ màn hình, cross-platform.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   CSS VARIABLES
+══════════════════════════════════════════ */
+:root {
+  --primary:       #00E676;
+  --primary-dim:   #00C853;
+  --accent:        #69F0AE;
+  --bg:            #0A0F0D;
+  --surface:       #121A15;
+  --card:          #1A2B1F;
+  --card-hover:    #1F3325;
+  --text-primary:  #F0FFF4;
+  --text-secondary:#8BA899;
+  --text-muted:    #5A7A68;
+  --border:        #243328;
+  --border-hover:  #00E676;
+  --warn-bg:       #1A1A00;
+  --warn-border:   #FFD600;
+  --radius-card:   16px;
+  --radius-btn:    8px;
+  --sp-1: 8px; --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+  --sp-5: 48px; --sp-6: 64px; --sp-7: 96px;
+  --nav-h: 68px;
+  --transition: 300ms ease;
+}
+[data-theme="light"] {
+  --bg:            #F4FAF6;
+  --surface:       #FFFFFF;
+  --card:          #EBF5EE;
+  --card-hover:    #DFF0E4;
+  --text-primary:  #0D1F12;
+  --text-secondary:#3A6B4A;
+  --text-muted:    #7AAA8A;
+  --border:        #C8E6C9;
+  --border-hover:  #00C853;
+  --warn-bg:       #FFFDE7;
+  --warn-border:   #F9A825;
+}
+
+/* ══════════════════════════════════════════
+   RESET
+══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Work Sans',system-ui,sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;overflow-x:hidden;transition:background var(--transition),color var(--transition)}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:4px}
+
+/* ══════════════════════════════════════════
+   BASE
+══════════════════════════════════════════ */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 var(--sp-3)}
+h1{font-size:clamp(2.5rem,5vw,5rem);font-weight:700;line-height:1.1;letter-spacing:-.02em}
+h2{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.125rem;font-weight:600}
+p{color:var(--text-secondary);line-height:1.7}
+section{padding:var(--sp-7) 0}
+.section-label{display:inline-flex;align-items:center;gap:var(--sp-1);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:var(--sp-2)}
+.section-title{margin-bottom:var(--sp-2)}
+.section-desc{max-width:600px;font-size:1.0625rem}
+
+/* ══════════════════════════════════════════
+   COMPONENTS
+══════════════════════════════════════════ */
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:var(--sp-1);padding:12px var(--sp-3);border-radius:var(--radius-btn);font-weight:600;font-size:.9375rem;transition:all var(--transition);white-space:nowrap}
+.btn-primary{background:var(--primary);color:#040A06}
+.btn-primary:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,230,118,.3)}
+.btn-outline{background:transparent;color:var(--text-primary);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);background:rgba(0,230,118,.06)}
+.btn-sm{padding:8px var(--sp-2);font-size:.875rem}
+
+/* Badge pill */
+.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.25);color:var(--primary);font-size:.8125rem;font-weight:600;border-radius:999px;letter-spacing:.02em}
+.badge-stat{padding:6px 14px;background:var(--card);border:1px solid var(--border);color:var(--text-secondary);font-size:.8125rem;font-weight:500;border-radius:999px}
+.badge-stat span{color:var(--primary);font-weight:700}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);padding:var(--sp-3);transition:border-color var(--transition),background var(--transition),transform var(--transition),box-shadow var(--transition)}
+.card:hover{border-color:var(--border-hover);background:var(--card-hover);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,230,118,.12)}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* Divider */
+.divider{width:48px;height:3px;background:var(--primary);border-radius:2px;margin-bottom:var(--sp-3)}
+
+/* ══════════════════════════════════════════
+   NAVBAR
+══════════════════════════════════════════ */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;transition:background var(--transition),box-shadow var(--transition);border-bottom:1px solid transparent}
+.navbar.scrolled{background:rgba(10,15,13,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom-color:var(--border);box-shadow:0 2px 20px rgba(0,0,0,.4)}
+[data-theme="light"] .navbar.scrolled{background:rgba(244,250,246,.88)}
+.navbar__inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1200px;margin:0 auto;padding:0 var(--sp-3)}
+.navbar__logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.125rem;color:var(--text-primary)}
+.navbar__logo svg{flex-shrink:0}
+.navbar__logo em{color:var(--primary);font-style:normal}
+.navbar__links{display:flex;align-items:center;gap:var(--sp-3)}
+.navbar__links a{font-size:.9rem;font-weight:500;color:var(--text-secondary);transition:color var(--transition)}
+.navbar__links a:hover{color:var(--primary)}
+.navbar__actions{display:flex;align-items:center;gap:var(--sp-2)}
+.theme-toggle{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--border);color:var(--text-secondary);transition:all var(--transition)}
+.theme-toggle:hover{border-color:var(--primary);color:var(--primary)}
+.hamburger{display:none;flex-direction:column;gap:5px;width:36px;height:36px;align-items:center;justify-content:center;background:var(--card);border:1px solid var(--border);border-radius:8px}
+.hamburger span{display:block;width:18px;height:2px;background:var(--text-primary);transition:all var(--transition);transform-origin:center}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:var(--sp-3);z-index:99;flex-direction:column;gap:var(--sp-1)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:10px var(--sp-2);border-radius:8px;font-weight:500;color:var(--text-secondary);transition:all var(--transition)}
+.mobile-menu a:hover{background:var(--card);color:var(--primary)}
+.mobile-menu .btn{margin-top:var(--sp-1);justify-content:center}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:var(--nav-h);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 50%,rgba(0,230,118,.06) 0%,transparent 70%);pointer-events:none}
+.hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-6);align-items:center}
+.hero__badge-row{display:flex;flex-wrap:wrap;gap:var(--sp-1);margin-bottom:var(--sp-3)}
+.hero__title{margin-bottom:var(--sp-3)}
+.hero__title em{font-style:normal;color:var(--primary)}
+.hero__sub{font-size:1.125rem;max-width:480px;margin-bottom:var(--sp-4)}
+.hero__ctas{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+.hero__stats{display:flex;flex-wrap:wrap;gap:var(--sp-1)}
+
+/* Phone mockup */
+.phone-wrap{display:flex;justify-content:center;align-items:center;position:relative}
+.phone{width:240px;height:490px;background:var(--card);border:2px solid var(--border);border-radius:40px;padding:12px;box-shadow:0 32px 80px rgba(0,0,0,.5),0 0 0 1px rgba(0,230,118,.08);position:relative;overflow:hidden}
+.phone__notch{width:80px;height:22px;background:var(--bg);border-radius:0 0 14px 14px;margin:0 auto 8px;position:relative;z-index:2}
+.phone__screen{background:linear-gradient(160deg,#0A1A0F 0%,#0F2A18 50%,#0A1A0F 100%);border-radius:28px;height:calc(100% - 30px);padding:var(--sp-2);display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.phone__top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.phone__top-bar span{font-size:9px;font-weight:600;color:var(--text-muted)}
+.phone__brand{font-size:10px;font-weight:700;color:var(--primary);letter-spacing:.05em}
+.phone__screen-item{background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.12);border-radius:8px;padding:6px 10px;font-size:9px;font-weight:500;color:var(--accent);display:flex;align-items:center;gap:6px}
+.phone__screen-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--primary);flex-shrink:0}
+.phone__glow{position:absolute;width:120px;height:120px;background:radial-gradient(circle,rgba(0,230,118,.18) 0%,transparent 70%);bottom:-20px;right:-20px;pointer-events:none}
+.phone-badge{position:absolute;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:.75rem;font-weight:600;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.phone-badge--tl{top:10%;left:-40px;color:var(--primary)}
+.phone-badge--br{bottom:15%;right:-50px;color:var(--accent)}
+
+/* ══════════════════════════════════════════
+   NOTICE BANNER
+══════════════════════════════════════════ */
+.notice{background:var(--warn-bg);border-left:4px solid var(--warn-border);border-radius:0 var(--radius-card) var(--radius-card) 0;padding:var(--sp-4);margin:var(--sp-5) 0}
+.notice__header{display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2)}
+.notice__title{font-size:1.0625rem;font-weight:700;color:#FFD600}
+.notice__list{display:flex;flex-direction:column;gap:10px;margin-top:var(--sp-2)}
+.notice__item{display:flex;align-items:flex-start;gap:10px;font-size:.9375rem;color:var(--text-secondary)}
+.notice__item::before{content:'•';color:#FFD600;flex-shrink:0;margin-top:2px}
+.notice__item strong{color:var(--text-primary)}
+
+/* ══════════════════════════════════════════
+   FEATURES
+══════════════════════════════════════════ */
+.features__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);margin-top:var(--sp-5)}
+.feat-card{display:flex;flex-direction:column;gap:var(--sp-2)}
+.feat-card__icon{width:48px;height:48px;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background var(--transition)}
+.feat-card:hover .feat-card__icon{background:rgba(0,230,118,.2)}
+.feat-card__name{font-size:1rem;font-weight:600;color:var(--text-primary)}
+.feat-card__desc{font-size:.875rem;line-height:1.6;color:var(--text-secondary)}
+
+/* ══════════════════════════════════════════
+   MODULES
+══════════════════════════════════════════ */
+.modules-wrap{margin-top:var(--sp-5)}
+/* Tabs desktop */
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:var(--sp-3);background:var(--card);padding:4px;border-radius:12px;border:1px solid var(--border)}
+.tab-btn{padding:8px 14px;border-radius:8px;font-size:.875rem;font-weight:500;color:var(--text-secondary);transition:all var(--transition);background:transparent;white-space:nowrap}
+.tab-btn.active{background:var(--primary);color:#040A06;font-weight:700}
+.tab-btn:hover:not(.active){color:var(--primary)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.tab-panel__inner{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-card);padding:var(--sp-4)}
+.tab-panel__screens{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--sp-1);margin-top:var(--sp-2)}
+.screen-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:.875rem;color:var(--text-secondary)}
+.screen-item svg{flex-shrink:0;color:var(--primary)}
+/* Accordion mobile */
+.accordion{display:none;flex-direction:column;gap:4px}
+.acc-item{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.acc-header{display:flex;justify-content:space-between;align-items:center;padding:var(--sp-2) var(--sp-3);background:var(--card);cursor:pointer;font-weight:600;font-size:.9375rem;transition:background var(--transition)}
+.acc-header:hover{background:var(--card-hover)}
+.acc-header svg{transition:transform var(--transition);flex-shrink:0}
+.acc-item.open .acc-header svg{transform:rotate(180deg)}
+.acc-body{display:none;padding:var(--sp-2) var(--sp-3) var(--sp-3);background:var(--surface)}
+.acc-item.open .acc-body{display:block}
+.modules-count{display:flex;justify-content:center;margin-top:var(--sp-4)}
+
+/* ══════════════════════════════════════════
+   TECH REQUIREMENTS
+══════════════════════════════════════════ */
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);margin-top:var(--sp-5)}
+.tech-block{display:flex;flex-direction:column;gap:var(--sp-2)}
+.tech-block__title{font-size:1.0625rem;font-weight:700;color:var(--text-primary);margin-bottom:var(--sp-1)}
+.tech-item{display:flex;align-items:center;gap:10px;padding:10px var(--sp-2);background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:.9375rem;color:var(--text-secondary)}
+.tech-check{width:20px;height:20px;background:rgba(0,230,118,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem}
+
+/* ══════════════════════════════════════════
+   DOWNLOAD
+══════════════════════════════════════════ */
+.download-card{background:linear-gradient(135deg,var(--card) 0%,rgba(0,230,118,.08) 100%);border:1px solid rgba(0,230,118,.25);border-radius:24px;padding:var(--sp-6);text-align:center;max-width:640px;margin:0 auto}
+.download-card h2{margin-bottom:var(--sp-2)}
+.download-card p{max-width:440px;margin:0 auto var(--sp-4)}
+.download-card__ctas{display:flex;flex-wrap:wrap;gap:var(--sp-2);justify-content:center;margin-bottom:var(--sp-3)}
+.download-card__note{font-size:.875rem;color:var(--text-muted)}
+.download-card__note a{color:var(--primary)}
+.dev-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:999px;font-size:.8125rem;font-weight:600;color:var(--text-secondary);margin-top:var(--sp-2)}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer{border-top:1px solid var(--border);padding:var(--sp-5) 0 var(--sp-4)}
+.footer__inner{display:flex;flex-wrap:wrap;gap:var(--sp-4);justify-content:space-between;align-items:flex-start;margin-bottom:var(--sp-4)}
+.footer__brand{max-width:360px}
+.footer__logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.0625rem;margin-bottom:var(--sp-2)}
+.footer__logo em{color:var(--primary);font-style:normal}
+.footer__desc{font-size:.9rem;color:var(--text-secondary);line-height:1.7}
+.footer__links{display:flex;gap:var(--sp-3);flex-wrap:wrap;align-items:center}
+.footer__links a{font-size:.9rem;color:var(--text-secondary);transition:color var(--transition)}
+.footer__links a:hover{color:var(--primary)}
+.footer__bottom{border-top:1px solid var(--border);padding-top:var(--sp-3);display:flex;flex-wrap:wrap;gap:var(--sp-2);justify-content:space-between;align-items:center;font-size:.875rem;color:var(--text-muted)}
+
+/* ══════════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════════ */
+.text-center{text-align:center}
+.text-primary-color{color:var(--primary)}
+.mt-1{margin-top:var(--sp-1)}
+.mt-2{margin-top:var(--sp-2)}
+.mt-3{margin-top:var(--sp-3)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* ══════════════════════════════════════════
+   MEDIA QUERIES
+══════════════════════════════════════════ */
+@media(max-width:1200px){
+  .hero__grid{gap:var(--sp-5)}
+  .features__grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  :root{--sp-7:64px;--sp-6:48px}
+  .navbar__links,.navbar__actions .btn{display:none}
+  .hamburger{display:flex}
+  .hero__grid{grid-template-columns:1fr;text-align:center}
+  .hero__badge-row{justify-content:center}
+  .hero__ctas{justify-content:center}
+  .hero__stats{justify-content:center}
+  .hero__sub{margin:0 auto var(--sp-4)}
+  .phone-wrap{margin-top:var(--sp-4);transform:scale(.9)}
+  .phone-badge--tl{left:-20px}
+  .phone-badge--br{right:-30px}
+  .features__grid{grid-template-columns:1fr}
+  .tech-grid{grid-template-columns:1fr}
+  .tabs{display:none}
+  .tab-panel{display:none!important}
+  .accordion{display:flex}
+  .footer__inner{flex-direction:column}
+}
+@media(max-width:480px){
+  .phone{width:200px;height:410px}
+  h1{font-size:2.25rem}
+}
+</style>
+</head>
+<body data-theme="dark">
+
+<!-- ══ NAVBAR ══════════════════════════════════ -->
+<header>
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Điều hướng chính">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo" aria-label="Trang chủ nlp-egreen">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2C6.5 2 3 7 3 12c0 2.5 1 4.8 2.5 6.5L12 22l6.5-3.5C20 17 21 14.5 21 12c0-5-3.5-10-9-10z" fill="currentColor" style="color:#00E676"/>
+          <path d="M8 14c1.5-2 4-4 4-8 0 4 2.5 6 4 8" stroke="#040A06" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>nlp-<em>egreen</em></span>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="#overview">Tổng quan</a></li>
+        <li><a href="#features">Tính năng</a></li>
+        <li><a href="#modules">Màn hình</a></li>
+        <li><a href="#requirements">Yêu cầu</a></li>
+        <li><a href="#support">Hỗ trợ</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Chuyển giao diện sáng/tối" title="Chuyển giao diện">
+          <svg id="iconDark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg id="iconLight" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <a href="#demo-apk" class="btn btn-primary btn-sm">Tải Demo APK</a>
+        <button class="hamburger" id="hamburger" aria-label="Mở menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu" role="menu">
+    <a href="#overview" role="menuitem">Tổng quan</a>
+    <a href="#features" role="menuitem">Tính năng</a>
+    <a href="#modules" role="menuitem">Màn hình</a>
+    <a href="#requirements" role="menuitem">Yêu cầu</a>
+    <a href="#support" role="menuitem">Hỗ trợ</a>
+    <a href="#demo-apk" class="btn btn-primary">Tải Demo APK</a>
+  </div>
+</header>
+
+<!-- ══ MAIN ════════════════════════════════════ -->
+<main>
+
+<!-- ══ HERO ══════════════════════════════════ -->
+<section class="hero" id="overview" aria-label="Giới thiệu">
+  <div class="container">
+    <div class="hero__grid">
+      <div>
+        <div class="hero__badge-row reveal">
+          <span class="badge">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><circle cx="6" cy="6" r="6"/></svg>
+            Flutter UI Kit • EV Charging App
+          </span>
+        </div>
+        <h1 class="hero__title reveal reveal-delay-1">
+          Giao diện sạc xe điện<br><em>thế hệ mới</em>
+        </h1>
+        <p class="hero__sub reveal reveal-delay-2">
+          nlp-egreen cung cấp bộ giao diện Flutter hoàn chỉnh cho ứng dụng tìm kiếm trạm sạc xe điện — thiết kế tối, hiện đại, sẵn sàng tùy chỉnh với 30+ màn hình chuyên nghiệp cho Android &amp; iOS.
+        </p>
+        <div class="hero__ctas reveal reveal-delay-2">
+          <a href="#demo-apk" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Xem Demo APK
+          </a>
+          <a href="#modules" class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Tài liệu hỗ trợ
+          </a>
+        </div>
+        <div class="hero__stats reveal reveal-delay-3">
+          <span class="badge-stat"><span class="counter" data-target="30">0</span>+ Màn hình</span>
+          <span class="badge-stat">Cross-Platform</span>
+          <span class="badge-stat">100% Free Fonts</span>
+        </div>
+      </div>
+      <!-- Phone Mockup -->
+      <div class="phone-wrap reveal reveal-delay-2" aria-label="Minh họa giao diện ứng dụng">
+        <div class="phone" role="img" aria-label="Màn hình điện thoại hiển thị ứng dụng nlp-egreen">
+          <div class="phone__notch"></div>
+          <div class="phone__screen">
+            <div class="phone__top-bar">
+              <span>9:41</span>
+              <span class="phone__brand">nlp-egreen</span>
+              <span>100%</span>
+            </div>
+            <div class="phone__screen-item">Màn hình Đăng nhập</div>
+            <div class="phone__screen-item">Bản đồ Trạm sạc</div>
+            <div class="phone__screen-item">Chi tiết Trạm sạc</div>
+            <div class="phone__screen-item">Đặt chỗ sạc</div>
+            <div class="phone__screen-item">Lịch sử sạc điện</div>
+            <div class="phone__screen-item">Hàng chờ trạm</div>
+            <div class="phone__screen-item">Ước tính phạm vi</div>
+            <div class="phone__screen-item">Tuyến yêu thích</div>
+          </div>
+          <div class="phone__glow"></div>
+        </div>
+        <div class="phone-badge phone-badge--tl">⚡ 30+ Màn hình</div>
+        <div class="phone-badge phone-badge--br">🎨 Dark Mode</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NOTICE ════════════════════════════════ -->
+<section aria-label="Lưu ý quan trọng" style="padding:0">
+  <div class="container">
+    <div class="notice reveal">
+      <div class="notice__header">
+        <span style="font-size:1.5rem" aria-hidden="true">⚠️</span>
+        <h2 class="notice__title">Lưu ý quan trọng</h2>
+      </div>
+      <div class="notice__list">
+        <p class="notice__item">Đây là <strong>UI Kit / App Template</strong>, không bao gồm backend, admin panel, cơ sở dữ liệu, máy chủ xác thực, cổng thanh toán, live chat server hay bất kỳ API service nào.</p>
+        <p class="notice__item">Tính năng <strong>tìm kiếm trạm sạc là UI demo với mock data</strong>; bản đồ, vị trí trạm, lập lịch tuyến đường và tính năng trạm lân cận đều là màn hình UI phi chức năng — không tích hợp Google Maps, geolocation, navigation hay live API.</p>
+        <p class="notice__item">Người mua cần <strong>tự tích hợp</strong> map SDK, location services, backend và APIs để có chức năng thực tế trên môi trường production.</p>
+        <p class="notice__item">Tất cả màn hình chỉ dùng cho <strong>mục đích demo UI</strong>. Không có dữ liệu thực, không có kết nối mạng thực trong bản demo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURES ══════════════════════════════ -->
+<section id="features" aria-labelledby="features-heading">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label reveal">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Tính năng
+      </div>
+      <h2 id="features-heading" class="section-title reveal">Tính năng nổi bật</h2>
+      <div class="divider" style="margin:0 auto var(--sp-2)"></div>
+      <p class="section-desc reveal" style="margin:0 auto">Bộ công cụ UI đầy đủ được xây dựng theo chuẩn Flutter hiện đại, tối ưu cho trải nghiệm người dùng trên cả Android lẫn iOS.</p>
+    </div>
+    <div class="features__grid">
+
+      <article class="card feat-card reveal">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3 class="feat-card__name">Cross-Platform Ready</h3>
+        <p class="feat-card__desc">Hỗ trợ đồng thời Android và iOS từ một codebase duy nhất. Triển khai nhanh, tiết kiệm thời gian phát triển lên đến 60%.</p>
+      </article>
+
+      <article class="card feat-card reveal reveal-delay-1">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3 class="feat-card__name">Powered by Dart</h3>
+        <p class="feat-card__desc">Toàn bộ mã nguồn viết bằng Dart thuần — ngôn ngữ tối ưu cho hiệu năng Flutter, biên dịch native, khởi động siêu nhanh.</p>
+      </article>
+
+      <article class="card feat-card reveal reveal-delay-2">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3 class="feat-card__name">Modern UI/UX Design</h3>
+        <p class="feat-card__desc">Thiết kế theo chuẩn Material 3 kết hợp ngôn ngữ thiết kế EV riêng — dark mode mặc định, tương phản cao, dễ đọc khi lái xe.</p>
+      </article>
+
+      <article class="card feat-card reveal">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3 class="feat-card__name">Professional Layouts</h3>
+        <p class="feat-card__desc">Các layout đã được cân chỉnh tỉ mỉ: khoảng cách nhất quán, grid căn chỉnh pixel-perfect, phù hợp với mọi kích thước màn hình.</p>
+      </article>
+
+      <article class="card feat-card reveal reveal-delay-1">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>
+        </div>
+        <h3 class="feat-card__name">Fluid Animations</h3>
+        <p class="feat-card__desc">Hiệu ứng chuyển màn hình mượt mà, micro-interactions phản hồi tức thì — tất cả chạy ổn định ở 60fps trên thiết bị tầm trung.</p>
+      </article>
+
+      <article class="card feat-card reveal reveal-delay-2">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3 class="feat-card__name">Rich Iconography</h3>
+        <p class="feat-card__desc">Bộ icon EV chuyên biệt gồm biểu tượng trạm sạc, connector CCS2/CHAdeMO, pin xe điện — đồng bộ về visual language trên toàn app.</p>
+      </article>
+
+      <article class="card feat-card reveal">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+        </div>
+        <h3 class="feat-card__name">Flexible Typography</h3>
+        <p class="feat-card__name">Hệ thống kiểu chữ linh hoạt</h3>
+        <p class="feat-card__desc">Sử dụng Work Sans làm font chính — hỗ trợ đầy đủ tiếng Việt, scale tốt từ caption 11px đến display 48px, dễ thay thế bằng font khác.</p>
+      </article>
+
+      <article class="card feat-card reveal reveal-delay-1">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3 class="feat-card__name">Dynamic Theming</h3>
+        <p class="feat-card__desc">Hệ thống token màu linh hoạt — chỉ cần thay đổi một biến để cập nhật toàn bộ palette. Dễ dàng tích hợp brand color riêng của doanh nghiệp.</p>
+      </article>
+
+      <article class="card feat-card reveal reveal-delay-2">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+        </div>
+        <h3 class="feat-card__name">Fully Responsive</h3>
+        <p class="feat-card__desc">Layout thích ứng hoàn toàn từ màn hình 4.7" iPhone SE đến tablet 12.9" iPad Pro, không bị vỡ layout hay tràn nội dung.</p>
+      </article>
+
+      <article class="card feat-card reveal">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="12" y1="2" x2="12" y2="22" stroke-dasharray="3 3"/></svg>
+        </div>
+        <h3 class="feat-card__name">Clean Codebase</h3>
+        <p class="feat-card__desc">Cấu trúc thư mục rõ ràng theo kiến trúc Feature-first, comment đầy đủ bằng tiếng Anh, tuân thủ Effective Dart style guide.</p>
+      </article>
+
+      <article class="card feat-card reveal reveal-delay-1">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <h3 class="feat-card__name">Effortless Customization</h3>
+        <p class="feat-card__desc">Mọi màn hình được tách thành widget độc lập, tái sử dụng được. Thêm màn hình mới, thay màu hay đổi font chỉ mất vài phút.</p>
+      </article>
+
+      <article class="card feat-card reveal reveal-delay-2">
+        <div class="feat-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00E676" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3 class="feat-card__name">Built-in Splash Screen</h3>
+        <p class="feat-card__desc">Màn hình khởi động được thiết kế sẵn với logo animation mượt mà, hỗ trợ cấu hình thời gian và màu nền theo brand identity riêng.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ MODULES ═══════════════════════════════ -->
+<section id="modules" aria-labelledby="modules-heading" style="background:var(--surface)">
+  <div class="container">
+    <div class="section-label reveal">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+      Modules & Màn hình
+    </div>
+    <h2 id="modules-heading" class="section-title reveal">Modules &amp; Màn hình</h2>
+    <div class="divider reveal"></div>
+    <p class="section-desc reveal">Hơn 30 màn hình được tổ chức thành 9 module chức năng rõ ràng — từ xác thực, bản đồ trạm sạc đến quản lý tuyến đường yêu thích.</p>
+
+    <div class="modules-wrap">
+      <!-- Desktop tabs -->
+      <div class="tabs reveal" role="tablist" aria-label="Modules">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-auth" data-tab="auth">Xác thực</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-home" data-tab="home">Trang chủ</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-stations" data-tab="stations">Trạm sạc</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-waitlist" data-tab="waitlist">Hàng chờ</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-bookings" data-tab="bookings">Đặt chỗ</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-saved" data-tab="saved">Đã lưu</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-routes" data-tab="routes">Tuyến đường</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-history" data-tab="history">Lịch sử sạc</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-range" data-tab="range">Ước tính</button>
+      </div>
+
+      <!-- Tab panels desktop -->
+      <div id="tab-auth" class="tab-panel active" role="tabpanel">
+        <div class="tab-panel__inner">
+          <h3 style="color:var(--primary);margin-bottom:8px">Module 1 — Xác thực (Authentication)</h3>
+          <p style="font-size:.9rem;margin-bottom:var(--sp-2)">Các màn hình đầu vào: từ giới thiệu ứng dụng đến đăng ký tài khoản và khôi phục mật khẩu qua OTP.</p>
+          <div class="tab-panel__screens">
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Splash Screen</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Onboarding (3 slide)</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Đăng nhập</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Đăng ký tài khoản</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Quên mật khẩu</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Xác minh OTP</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-home" class="tab-panel" role="tabpanel">
+        <div class="tab-panel__inner">
+          <h3 style="color:var(--primary);margin-bottom:8px">Module 2 — Trang chủ (Home)</h3>
+          <p style="font-size:.9rem;margin-bottom:var(--sp-2)">Dashboard tổng quan với bản đồ trạm gần nhất và hoạt động gần đây của người dùng.</p>
+          <div class="tab-panel__screens">
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Dashboard chính</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Trạm sạc lân cận</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Hoạt động gần đây</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-stations" class="tab-panel" role="tabpanel">
+        <div class="tab-panel__inner">
+          <h3 style="color:var(--primary);margin-bottom:8px">Module 3 — Trạm sạc (Stations)</h3>
+          <p style="font-size:.9rem;margin-bottom:var(--sp-2)">Tìm kiếm, xem chi tiết và lập lịch tuyến đường đến trạm sạc mong muốn.</p>
+          <div class="tab-panel__screens">
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Danh sách trạm</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Chi tiết trạm sạc</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Lập lịch tuyến đường</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Bộ lọc tìm kiếm</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-waitlist" class="tab-panel" role="tabpanel">
+        <div class="tab-panel__inner">
+          <h3 style="color:var(--primary);margin-bottom:8px">Module 4 — Hàng chờ (Station Waitlist)</h3>
+          <p style="font-size:.9rem;margin-bottom:var(--sp-2)">Quản lý hàng chờ khi trạm bận — xem vị trí xếp hàng và nhận thông báo đến lượt.</p>
+          <div class="tab-panel__screens">
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Tham gia hàng chờ</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Trạng thái hàng chờ</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Thông báo đến lượt</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-bookings" class="tab-panel" role="tabpanel">
+        <div class="tab-panel__inner">
+          <h3 style="color:var(--primary);margin-bottom:8px">Module 5 — Đặt chỗ (Bookings)</h3>
+          <p style="font-size:.9rem;margin-bottom:var(--sp-2)">Xem đặt chỗ đang hoạt động, chi tiết từng lần đặt và lịch sử toàn bộ giao dịch.</p>
+          <div class="tab-panel__screens">
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Đặt chỗ đang hoạt động</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Chi tiết đặt chỗ</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Lịch sử đặt chỗ</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-saved" class="tab-panel" role="tabpanel">
+        <div class="tab-panel__inner">
+          <h3 style="color:var(--primary);margin-bottom:8px">Module 6 — Trạm đã lưu (Saved Stations)</h3>
+          <p style="font-size:.9rem;margin-bottom:var(--sp-2)">Lưu và quản lý danh sách trạm sạc yêu thích để truy cập nhanh khi cần.</p>
+          <div class="tab-panel__screens">
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Danh sách trạm đã lưu</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Chi tiết trạm yêu thích</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Xóa trạm đã lưu</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-routes" class="tab-panel" role="tabpanel">
+        <div class="tab-panel__inner">
+          <h3 style="color:var(--primary);margin-bottom:8px">Module 7 — Tuyến yêu thích (Favorite Routes)</h3>
+          <p style="font-size:.9rem;margin-bottom:var(--sp-2)">Lưu và tối ưu hóa các tuyến đường thường đi kèm điểm sạc trên lộ trình.</p>
+          <div class="tab-panel__screens">
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Tuyến đường của tôi</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Chi tiết tuyến đường</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Đường đi tối ưu</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-history" class="tab-panel" role="tabpanel">
+        <div class="tab-panel__inner">
+          <h3 style="color:var(--primary);margin-bottom:8px">Module 8 — Lịch sử sạc (Charging History)</h3>
+          <p style="font-size:.9rem;margin-bottom:var(--sp-2)">Theo dõi toàn bộ lịch sử phiên sạc, tiêu thụ kWh và báo cáo chi phí hàng tháng.</p>
+          <div class="tab-panel__screens">
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Danh sách phiên sạc</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Tóm tắt sử dụng</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Báo cáo hàng tháng</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-range" class="tab-panel" role="tabpanel">
+        <div class="tab-panel__inner">
+          <h3 style="color:var(--primary);margin-bottom:8px">Module 9 — Ước tính phạm vi (Range Estimator)</h3>
+          <p style="font-size:.9rem;margin-bottom:var(--sp-2)">Nhập thông số pin, điều kiện lái xe để ước tính quãng đường có thể đi và trạm sạc cần dừng.</p>
+          <div class="tab-panel__screens">
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Nhập thông số pin</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Kết quả ước tính</div>
+            <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Điều kiện lái xe</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile accordion -->
+      <div class="accordion">
+        <div class="acc-item open">
+          <div class="acc-header" role="button" tabindex="0" aria-expanded="true">
+            <span>Module 1 — Xác thực</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="acc-body">
+            <div class="tab-panel__screens">
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Splash Screen</div>
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Onboarding</div>
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Đăng nhập</div>
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Đăng ký</div>
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Quên mật khẩu</div>
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Xác minh OTP</div>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" role="button" tabindex="0" aria-expanded="false">
+            <span>Module 2 — Trang chủ</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="acc-body">
+            <div class="tab-panel__screens">
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Dashboard chính</div>
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Trạm sạc lân cận</div>
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Hoạt động gần đây</div>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" role="button" tabindex="0" aria-expanded="false">
+            <span>Module 3 — Trạm sạc</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="acc-body">
+            <div class="tab-panel__screens">
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Danh sách trạm</div>
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Chi tiết trạm</div>
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Lập lịch tuyến đường</div>
+              <div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Bộ lọc tìm kiếm</div>
+            </div>
+          </div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" role="button" tabindex="0" aria-expanded="false"><span>Module 4 — Hàng chờ</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="acc-body"><div class="tab-panel__screens"><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Tham gia hàng chờ</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Trạng thái hàng chờ</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Thông báo đến lượt</div></div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" role="button" tabindex="0" aria-expanded="false"><span>Module 5 — Đặt chỗ</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="acc-body"><div class="tab-panel__screens"><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Đặt chỗ đang hoạt động</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Chi tiết đặt chỗ</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Lịch sử đặt chỗ</div></div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" role="button" tabindex="0" aria-expanded="false"><span>Module 6 — Trạm đã lưu</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="acc-body"><div class="tab-panel__screens"><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Danh sách đã lưu</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Chi tiết yêu thích</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Xóa trạm đã lưu</div></div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" role="button" tabindex="0" aria-expanded="false"><span>Module 7 — Tuyến yêu thích</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="acc-body"><div class="tab-panel__screens"><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Tuyến đường của tôi</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Chi tiết tuyến đường</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Đường đi tối ưu</div></div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" role="button" tabindex="0" aria-expanded="false"><span>Module 8 — Lịch sử sạc</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="acc-body"><div class="tab-panel__screens"><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Danh sách phiên sạc</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Tóm tắt sử dụng</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Báo cáo hàng tháng</div></div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header" role="button" tabindex="0" aria-expanded="false"><span>Module 9 — Ước tính phạm vi</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="acc-body"><div class="tab-panel__screens"><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Nhập thông số pin</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Kết quả ước tính</div><div class="screen-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Điều kiện lái xe</div></div></div>
+        </div>
+      </div><!-- /accordion -->
+
+      <div class="modules-count reveal">
+        <span class="badge" style="font-size:1rem;padding:10px 20px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          30+ Màn hình trong 9 Modules
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TECH REQUIREMENTS ═════════════════════ -->
+<section id="requirements" aria-labelledby="req-heading">
+  <div class="container">
+    <div class="section-label reveal">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
+      Yêu cầu
+    </div>
+    <h2 id="req-heading" class="section-title reveal">Yêu cầu kỹ thuật</h2>
+    <div class="divider reveal"></div>
+    <p class="section-desc reveal">Đảm bảo môi trường phát triển của bạn đáp ứng các yêu cầu tối thiểu để biên dịch và chạy dự án thành công.</p>
+    <div class="tech-grid">
+      <div class="tech-block reveal">
+        <h3 class="tech-block__title">Flutter / Dart SDK</h3>
+        <div class="tech-item"><span class="tech-check">✅</span> Flutter SDK <strong style="color:var(--primary);margin-left:4px">3.44.8</strong> trở lên</div>
+        <div class="tech-item"><span class="tech-check">✅</span> Dart SDK <strong style="color:var(--primary);margin-left:4px">3.12.2</strong> trở lên</div>
+        <div class="tech-item"><span class="tech-check">✅</span> Hỗ trợ Android (API 21+)</div>
+        <div class="tech-item"><span class="tech-check">✅</span> Hỗ trợ iOS (iOS 12.0+)</div>
+        <div class="tech-item"><span class="tech-check">✅</span> Material 3 widgets đầy đủ</div>
+      </div>
+      <div class="tech-block reveal reveal-delay-1">
+        <h3 class="tech-block__title">Hệ thống & Công cụ</h3>
+        <div class="tech-item"><span class="tech-check">✅</span> Android Studio (Khuyến nghị)</div>
+        <div class="tech-item"><span class="tech-check">✅</span> Visual Studio Code + Dart extension</div>
+        <div class="tech-item"><span class="tech-check">✅</span> Android Emulator hoặc thiết bị thực</div>
+        <div class="tech-item"><span class="tech-check">✅</span> Windows 10 trở lên</div>
+        <div class="tech-item"><span class="tech-check">✅</span> macOS 12 (Monterey) trở lên</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DOWNLOAD ══════════════════════════════ -->
+<section id="support" aria-labelledby="dl-heading" style="background:var(--surface)" id="demo-apk">
+  <div class="container">
+    <div class="download-card reveal">
+      <div class="section-label" style="justify-content:center;margin-bottom:var(--sp-2)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Tải xuống & Hỗ trợ
+      </div>
+      <h2 id="dl-heading">Tải xuống &amp; Hỗ trợ</h2>
+      <p>Trải nghiệm trực tiếp 30+ màn hình giao diện EV sạc xe điện hiện đại. Bản demo APK giúp bạn đánh giá toàn bộ UI trước khi tích hợp backend.</p>
+      <div class="download-card__ctas">
+        <a href="#demo-apk" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Tải Demo APK
+        </a>
+        <a href="#modules" class="btn btn-outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Xem Tài liệu
+        </a>
+      </div>
+      <p class="download-card__note">
+        Để được hỗ trợ thêm, vui lòng sử dụng tab <strong>Bình luận</strong> hoặc <strong>Hỗ trợ</strong> trên trang này,<br>
+        hoặc truy cập <a href="#support">DevDiceStudio</a> và gửi email cho chúng tôi.
+      </p>
+      <div class="dev-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:var(--primary)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        DevDiceStudio
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ FOOTER ════════════════════════════════ -->
+<footer aria-label="Chân trang">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2C6.5 2 3 7 3 12c0 2.5 1 4.8 2.5 6.5L12 22l6.5-3.5C20 17 21 14.5 21 12c0-5-3.5-10-9-10z" fill="#00E676"/>
+          </svg>
+          nlp-<em>egreen</em>
+        </div>
+        <p class="footer__desc">nlp-egreen cung cấp nền tảng hoàn chỉnh để xây dựng ứng dụng tìm kiếm trạm sạc xe điện, giảm thiểu công sức phát triển trong khi vẫn đảm bảo tính toàn vẹn mã nguồn xuất sắc và trải nghiệm người dùng liền mạch.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <ul class="footer__links" role="list">
+          <li><a href="#overview">Tổng quan</a></li>
+          <li><a href="#features">Tính năng</a></li>
+          <li><a href="#support">Hỗ trợ</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 DevDiceStudio. All rights reserved.</span>
+      <span>nlp-egreen — Nền tảng UI hoàn chỉnh cho ứng dụng tìm kiếm trạm sạc xe điện</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ══ THEME TOGGLE ══════════════════════════ */
+const html = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
+const iconDark = document.getElementById('iconDark');
+const iconLight = document.getElementById('iconLight');
+
+function setTheme(t) {
+  html.setAttribute('data-theme', t);
+  localStorage.setItem('nlp-egreen-theme', t);
+  if (t === 'light') { iconDark.style.display = 'none'; iconLight.style.display = 'block'; }
+  else               { iconDark.style.display = 'block'; iconLight.style.display = 'none'; }
+}
+const saved = localStorage.getItem('nlp-egreen-theme') || 'dark';
+setTheme(saved);
+themeToggle.addEventListener('click', () => setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+/* ══ STICKY NAVBAR ═════════════════════════ */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 80), { passive: true });
+
+/* ══ HAMBURGER ═════════════════════════════ */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', false);
+}));
+
+/* ══ SMOOTH SCROLL ═════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* ══ SCROLL REVEAL ═════════════════════════ */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ══ COUNTER ANIMATION ═════════════════════ */
+const counters = document.querySelectorAll('.counter');
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.getAttribute('data-target');
+    let start = 0;
+    const step = target / 40;
+    const tick = () => {
+      start = Math.min(start + step, target);
+      el.textContent = Math.floor(start);
+      if (start < target) requestAnimationFrame(tick);
+    };
+    tick();
+    counterObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+/* ══ TABS (desktop) ════════════════════════ */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.getAttribute('data-tab');
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const panel = document.getElementById('tab-' + tab);
+    if (panel) panel.classList.add('active');
+  });
+});
+
+/* ══ ACCORDION (mobile) ════════════════════ */
+document.querySelectorAll('.acc-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const item = header.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item').forEach(i => { i.classList.remove('open'); i.querySelector('.acc-header').setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) { item.classList.add('open'); header.setAttribute('aria-expanded', 'true'); }
+  });
+  header.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); header.click(); } });
+});
+</script>
+</body>
+</html>

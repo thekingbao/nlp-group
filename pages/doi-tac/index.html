@@ -98,6 +98,8 @@
             margin-bottom: .4rem;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-white">
 
@@ -264,7 +266,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-16">
             <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Tại sao chọn NLP Group?</p>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900">4 lý do đối tác<br>thành công cùng chúng tôi</h2>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">4 lý do đối tác<br>thành công cùng chúng tôi</h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Card 1 -->
@@ -312,7 +314,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-16">
             <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Chương trình đối tác</p>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900">3 hạng đối tác —<br>chọn cấp phù hợp với bạn</h2>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">3 hạng đối tác —<br>chọn cấp phù hợp với bạn</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             <!-- Silver -->
@@ -394,7 +396,7 @@
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center mb-16">
             <p class="text-solar-400 font-bold uppercase tracking-wider text-sm mb-3">Quy trình đơn giản</p>
-            <h2 class="text-3xl md:text-4xl font-black text-white">4 bước để trở thành<br>đối tác NLP Group</h2>
+            <h2 class="text-3xl md:text-4xl font-black text-white wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">4 bước để trở thành<br>đối tác NLP Group</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
             <!-- Connector line desktop -->
@@ -444,7 +446,7 @@
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-3">Câu hỏi thường gặp</p>
-            <h2 class="text-2xl md:text-3xl font-black text-gray-900">Bạn có thắc mắc?<br>Chúng tôi có câu trả lời</h2>
+            <h2 class="text-2xl md:text-3xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Bạn có thắc mắc?<br>Chúng tôi có câu trả lời</h2>
         </div>
         <div class="space-y-4" id="faq-list">
             <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
@@ -703,5 +705,7 @@ document.getElementById('partner-form').addEventListener('submit', function(e) {
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

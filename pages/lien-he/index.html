@@ -52,6 +52,8 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
 
@@ -152,7 +154,7 @@
 
             <!-- ── CỘT TRÁI: Kênh liên hệ + bản đồ ── -->
             <div>
-                <h2 class="text-2xl font-black text-gray-900 mb-8">Kênh liên hệ trực tiếp</h2>
+                <h2 class="text-2xl font-black text-gray-900 mb-8 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Kênh liên hệ trực tiếp</h2>
                 <div class="space-y-4">
 
                     <!-- Hotline -->
@@ -218,7 +220,7 @@
 
             <!-- ── CỘT PHẢI: Form liên hệ ── -->
             <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-sm">
-                <h2 class="text-2xl font-black text-gray-900 mb-1">Gửi yêu cầu tư vấn</h2>
+                <h2 class="text-2xl font-black text-gray-900 mb-1 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Gửi yêu cầu tư vấn</h2>
                 <p class="text-gray-500 text-sm mb-8">Điền form bên dưới — kỹ sư sẽ gọi lại trong vòng <strong class="text-gray-700">15 phút</strong> làm việc.</p>
 
                 <form id="contactPageForm" onsubmit="submitContactPage(event)" novalidate>
@@ -312,7 +314,7 @@
 <!-- ── THÔNG TIN VĂN PHÒNG ────────────────────────────────── -->
 <section class="py-16 bg-gray-50 border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl font-black text-gray-900 mb-10 text-center">Hệ thống văn phòng</h2>
+        <h2 class="text-2xl font-black text-gray-900 mb-10 text-center wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Hệ thống văn phòng</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
@@ -396,7 +398,7 @@
 <section class="py-20 bg-white border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-black text-gray-900 mb-3">Tại sao chọn NLP Group?</h2>
+            <h2 class="text-3xl font-black text-gray-900 mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Tại sao chọn NLP Group?</h2>
             <p class="text-gray-500 max-w-xl mx-auto">Chúng tôi không chỉ bán sản phẩm — chúng tôi đồng hành từ tư vấn, thiết kế đến vận hành bảo trì.</p>
         </div>
 
@@ -681,5 +683,7 @@ function submitModal(e) {
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

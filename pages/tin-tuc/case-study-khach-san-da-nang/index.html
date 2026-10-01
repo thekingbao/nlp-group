@@ -27,6 +27,8 @@
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif']},colors:{solar:{50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d'},dark:'#0f172a'}}}}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Case Study: Khách sạn 4 sao Đà Nẵng tiết kiệm 68%","datePublished":"2026-05-05","author":{"@type":"Organization","name":"NLP Group"},"publisher":{"@type":"Organization","name":"NLP Group","url":"https://nlpgroup.com.vn"}}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://nlpgroup.com.vn"},{"@type":"ListItem","position":2,"name":"Tin tức","item":"https://nlpgroup.com.vn/pages/tin-tuc/"},{"@type":"ListItem","position":3,"name":"Case Study Đà Nẵng","item":"https://nlpgroup.com.vn/pages/tin-tuc/case-study-khach-san-da-nang/"}]}</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
 <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100" id="navbar">
@@ -71,11 +73,11 @@
                 <div class="bg-solar-50 rounded-xl border border-solar-100 p-4"><p class="text-2xl font-black text-solar-600">3.8 Năm</p><p class="text-xs text-gray-500 uppercase font-semibold mt-1">Thời gian hoàn vốn</p></div>
             </div>
 
-            <h2 class="text-2xl font-black text-gray-900">Thách thức ban đầu</h2>
+            <h2 class="text-2xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Thách thức ban đầu</h2>
             <p>Khách sạn 4 sao 8 tầng tại trung tâm Đà Nẵng với 120 phòng đang phải trả hóa đơn điện trung bình <strong>100 triệu đồng/tháng</strong> — chiếm 22% chi phí vận hành. Điều hòa không khí là nguồn tiêu thụ lớn nhất (chiếm ~60% tổng điện năng), hoạt động 16–18 giờ/ngày.</p>
             <p>Ban quản lý khách sạn đặt ra yêu cầu: giảm chi phí điện xuống dưới 50 triệu/tháng mà không ảnh hưởng đến trải nghiệm khách hàng và không cần nguồn vốn trả trước lớn.</p>
 
-            <h2 class="text-2xl font-black text-gray-900">Giải pháp NLP Group đề xuất</h2>
+            <h2 class="text-2xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Giải pháp NLP Group đề xuất</h2>
             <div class="bg-white rounded-2xl border border-gray-200 p-6 space-y-4">
                 <div class="flex items-start gap-4">
                     <div class="w-8 h-8 bg-solar-100 rounded-full flex items-center justify-center text-solar-600 font-bold text-sm shrink-0">1</div>
@@ -91,7 +93,7 @@
                 </div>
             </div>
 
-            <h2 class="text-2xl font-black text-gray-900">Kết quả sau 14 tháng vận hành</h2>
+            <h2 class="text-2xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Kết quả sau 14 tháng vận hành</h2>
             <div class="overflow-x-auto rounded-xl border border-gray-200">
                 <table class="w-full text-sm">
                     <thead><tr class="bg-gray-800 text-white"><th class="px-4 py-3 text-left">Chỉ số</th><th class="px-4 py-3 text-center">Trước Solar</th><th class="px-4 py-3 text-center bg-solar-700">Sau Solar (TB 14 tháng)</th></tr></thead>
@@ -181,5 +183,7 @@
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

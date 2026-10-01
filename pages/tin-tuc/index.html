@@ -96,7 +96,7 @@
         <div id="post-featured" data-cat="chinh-sach" class="blog-card mb-12 bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 grid grid-cols-1 lg:grid-cols-2">
             <div class="bg-gradient-to-br from-solar-600 to-solar-700 p-10 flex flex-col justify-center">
                 <span class="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4 w-fit">Chính sách · Nổi bật</span>
-                <h2 class="text-2xl md:text-3xl font-black text-white mb-4">Nghị định 135/2024: Điện mặt trời tự sản tự tiêu — Cơ hội vàng doanh nghiệp không thể bỏ qua</h2>
+                <h2 class="text-2xl md:text-3xl font-black text-white mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Nghị định 135/2024: Điện mặt trời tự sản tự tiêu — Cơ hội vàng doanh nghiệp không thể bỏ qua</h2>
                 <p class="text-solar-100 mb-6 leading-relaxed">Từ ngày 22/11/2024, NĐ 135/2024/NĐ-CP chính thức cho phép doanh nghiệp lắp điện mặt trời tự dùng không cần bán lưới, không phụ thuộc hạn mức. Đây là bước ngoặt pháp lý quan trọng nhất ngành năng lượng tái tạo Việt Nam trong 5 năm qua.</p>
                 <div class="flex items-center gap-4 text-solar-200 text-sm">
                     <span><i class="fa-regular fa-calendar mr-1"></i> 22/11/2024</span>
@@ -252,7 +252,7 @@
 <!-- CTA BANNER -->
 <section class="py-16 bg-dark">
     <div class="max-w-4xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-black text-white mb-4">Muốn nhận bản tin chuyên ngành hàng tuần?</h2>
+        <h2 class="text-3xl font-black text-white mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Muốn nhận bản tin chuyên ngành hàng tuần?</h2>
         <p class="text-gray-400 mb-8">Cập nhật chính sách, giá điện, công nghệ mới — gửi thẳng vào email mỗi thứ Hai.</p>
         <div class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
             <input type="email" placeholder="email@congty.com.vn" class="flex-1 px-4 py-3 rounded-xl border border-gray-600 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:border-solar-500">
@@ -384,5 +384,7 @@ function filterPosts(cat) {
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>

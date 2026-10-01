@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoltSync — Real-time Truth. Zero Anxiety. | Concept App Sạc Xe Điện Thế Hệ Mới</title>
+<meta name="description" content="VoltSync – NLP-EGREEN: Nền tảng điều phối hạ tầng sạc mở tích hợp AI/Crowdsource và Telemetry. 5 giải pháp đột phá, hệ thống TLP Trust Level Protocol.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   DESIGN TOKENS — VoltSync Brand
+══════════════════════════════════════ */
+:root {
+  /* Background layers */
+  --color-background-primary:  #0D1117;
+  --color-background-secondary:#161B22;
+  --color-surface-default:     #1C2128;
+  --color-surface-raised:      #22272E;
+  --color-surface-overlay:     #2D333B;
+
+  /* Borders */
+  --color-border-default:      #30363D;
+  --color-border-subtle:       #21262D;
+  --color-border-muted:        #191D23;
+
+  /* Text */
+  --color-text-primary:        #E6EDF3;
+  --color-text-secondary:      #8B949E;
+  --color-text-muted:          #57606A;
+  --color-text-on-brand:       #000000;
+
+  /* Brand */
+  --primitive-brand-teal:      #49DBC8;
+  --primitive-brand-teal-dim:  #2FB8A5;
+  --primitive-brand-green:     #BEFF6C;
+  --primitive-brand-green-dim: #9FE050;
+
+  /* TLP Trust Level Protocol */
+  --tlp-safe:                  #00D68F;
+  --tlp-safe-bg:               rgba(0, 214, 143, .12);
+  --tlp-safe-text:             #00D68F;
+  --tlp-caution:               #FFAA00;
+  --tlp-caution-bg:            rgba(255, 170, 0, .12);
+  --tlp-caution-text:          #FFAA00;
+  --tlp-blocked:               #FF3D71;
+  --tlp-blocked-bg:            rgba(255, 61, 113, .12);
+  --tlp-blocked-text:          #FF3D71;
+  --tlp-system:                #57606A;
+  --tlp-system-bg:             rgba(87, 96, 106, .18);
+  --tlp-system-text:           #8B949E;
+
+  /* Accent */
+  --color-accent-teal:         #49DBC8;
+  --primitive-error-500:       #FF3D71;
+  --primitive-warning-500:     #FFAA00;
+  --primitive-grey-400:        #57606A;
+
+  /* Radius */
+  --radius-input:   12px;
+  --radius-badge:   4px;
+  --radius-card:    16px;
+  --radius-button:  24px;
+  --radius-pill:    999px;
+
+  /* Typography */
+  --font-sans: 'Work Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+  --type-h1:    48px;
+  --type-h2:    60px;
+  --type-h3:    24px;
+  --type-body:  16px;
+  --type-body-sm: 14px;
+  --type-caption: 12px;
+
+  /* Spacing */
+  --sp-1: 8px; --sp-2: 16px; --sp-3: 24px;
+  --sp-4: 32px; --sp-5: 48px; --sp-6: 64px; --sp-7: 96px;
+  --nav-h: 64px;
+  --transition: 280ms ease;
+}
+
+/* ══════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-sans);background:var(--color-background-primary);color:var(--color-text-primary);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+:focus-visible{outline:2px solid var(--primitive-brand-teal);outline-offset:3px;border-radius:4px}
+
+/* ══════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════ */
+.container{width:100%;max-width:1160px;margin:0 auto;padding:0 var(--sp-3)}
+section{padding:var(--sp-7) 0}
+.section-label{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--primitive-brand-teal);margin-bottom:var(--sp-2)}
+.section-dot{width:6px;height:6px;border-radius:50%;background:var(--primitive-brand-teal)}
+.section-title{font-size:clamp(1.75rem,3vw,2.25rem);font-weight:700;letter-spacing:-.02em;margin-bottom:var(--sp-2)}
+.section-desc{color:var(--color-text-secondary);max-width:600px;font-size:1.0625rem;line-height:1.7}
+.divider{width:40px;height:3px;background:var(--primitive-brand-teal);border-radius:2px;margin-bottom:var(--sp-3)}
+.text-center{text-align:center}
+.text-center .divider{margin-left:auto;margin-right:auto}
+.text-center .section-desc{margin:0 auto}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3)}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-3)}
+
+/* ══════════════════════════════════════
+   COMPONENTS
+══════════════════════════════════════ */
+.btn{display:inline-flex;align-items:center;gap:var(--sp-1);padding:12px var(--sp-3);border-radius:var(--radius-button);font-weight:600;font-size:.9375rem;transition:all var(--transition)}
+.btn-teal{background:var(--primitive-brand-teal);color:#000}
+.btn-teal:hover{background:var(--primitive-brand-green);transform:translateY(-2px);box-shadow:0 8px 24px rgba(73,219,200,.25)}
+.btn-outline{border:1.5px solid var(--color-border-default);color:var(--color-text-primary)}
+.btn-outline:hover{border-color:var(--primitive-brand-teal);color:var(--primitive-brand-teal);background:rgba(73,219,200,.06)}
+
+.badge-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:600}
+.badge-teal{background:rgba(73,219,200,.12);border:1px solid rgba(73,219,200,.3);color:var(--primitive-brand-teal)}
+.badge-green{background:rgba(190,255,108,.12);border:1px solid rgba(190,255,108,.3);color:var(--primitive-brand-green)}
+
+/* TLP Badges */
+.tlp-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--radius-badge);font-size:.8125rem;font-weight:700}
+.tlp-safe{background:var(--tlp-safe-bg);color:var(--tlp-safe-text);border:1px solid rgba(0,214,143,.25)}
+.tlp-caution{background:var(--tlp-caution-bg);color:var(--tlp-caution-text);border:1px solid rgba(255,170,0,.25)}
+.tlp-blocked{background:var(--tlp-blocked-bg);color:var(--tlp-blocked-text);border:1px solid rgba(255,61,113,.25)}
+.tlp-system{background:var(--tlp-system-bg);color:var(--tlp-system-text);border:1px solid rgba(87,96,106,.3)}
+.tlp-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.tlp-dot-safe{background:var(--tlp-safe)}
+.tlp-dot-caution{background:var(--tlp-caution)}
+.tlp-dot-blocked{background:var(--tlp-blocked)}
+.tlp-dot-system{background:var(--tlp-system)}
+
+.card{background:var(--color-surface-raised);border:1px solid var(--color-border-default);border-radius:var(--radius-card);padding:var(--sp-3);transition:border-color var(--transition),background var(--transition)}
+.card:hover{border-color:rgba(73,219,200,.35);background:var(--color-surface-overlay)}
+
+.mono{font-family:var(--font-mono);font-size:var(--type-caption);color:var(--color-text-secondary)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+.reveal.visible{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ══════════════════════════════════════
+   NAVBAR
+══════════════════════════════════════ */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;border-bottom:1px solid transparent;transition:all var(--transition)}
+.navbar.scrolled{background:rgba(13,17,23,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--color-border-default)}
+.navbar__inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1160px;margin:0 auto;padding:0 var(--sp-3)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.125rem}
+.nav-logo__mark{width:32px;height:32px;border-radius:8px;background:var(--primitive-brand-teal);display:flex;align-items:center;justify-content:center}
+.nav-logo em{color:var(--primitive-brand-teal);font-style:normal}
+.nav-links{display:flex;align-items:center;gap:var(--sp-3)}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--color-text-secondary);transition:color var(--transition)}
+.nav-links a:hover{color:var(--primitive-brand-teal)}
+.hamburger{display:none;flex-direction:column;gap:5px;width:36px;height:36px;align-items:center;justify-content:center;background:var(--color-surface-raised);border:1px solid var(--color-border-default);border-radius:8px}
+.hamburger span{display:block;width:18px;height:2px;background:var(--color-text-primary);transition:all var(--transition);transform-origin:center}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--color-surface-default);border-bottom:1px solid var(--color-border-default);padding:var(--sp-3);z-index:99;flex-direction:column;gap:4px}
+.mobile-nav.open{display:flex}
+.mobile-nav a{padding:10px var(--sp-2);border-radius:8px;font-weight:500;color:var(--color-text-secondary);transition:all var(--transition)}
+.mobile-nav a:hover{background:var(--color-surface-raised);color:var(--primitive-brand-teal)}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero{min-height:100svh;display:flex;align-items:center;padding-top:var(--nav-h);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 80% 40%, rgba(73,219,200,.055) 0%, transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 40% 40% at 20% 70%, rgba(190,255,108,.04) 0%, transparent 70%);pointer-events:none}
+.hero__inner{display:grid;grid-template-columns:1fr 460px;gap:var(--sp-6);align-items:center}
+.hero__eyebrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:var(--sp-3)}
+.hero__title{font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:var(--sp-3)}
+.hero__title-teal{color:var(--primitive-brand-teal)}
+.hero__title-green{color:var(--primitive-brand-green)}
+.hero__tagline{font-size:1.125rem;color:var(--color-text-secondary);max-width:500px;margin-bottom:var(--sp-4);line-height:1.7}
+.hero__ctas{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+.hero__stats{display:flex;flex-wrap:wrap;gap:var(--sp-2)}
+.stat-pill{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--color-surface-raised);border:1px solid var(--color-border-default);border-radius:var(--radius-pill);font-size:.875rem}
+.stat-pill__label{color:var(--color-text-muted);font-size:.8rem}
+.stat-pill__val{font-weight:700;color:var(--color-text-primary)}
+
+/* ══════════════════════════════════════
+   PHONE SCREENS MOCKUP
+══════════════════════════════════════ */
+.phones-showcase{position:relative;display:flex;gap:12px;justify-content:center;align-items:flex-end}
+.phone-frame{width:200px;flex-shrink:0;background:var(--color-surface-default);border:1.5px solid var(--color-border-default);border-radius:36px;padding:10px;box-shadow:0 24px 64px rgba(0,0,0,.6),0 0 0 1px rgba(73,219,200,.06);position:relative;overflow:hidden}
+.phone-frame--main{width:220px;box-shadow:0 32px 80px rgba(0,0,0,.7),0 0 40px rgba(73,219,200,.08),0 0 0 1px rgba(73,219,200,.12)}
+.phone-frame__notch{width:70px;height:18px;background:var(--color-background-primary);border-radius:0 0 12px 12px;margin:0 auto 6px}
+.phone-screen{border-radius:24px;overflow:hidden;font-size:8px;font-family:var(--font-sans)}
+
+/* Map Hub Screen */
+.screen-map{background:var(--color-background-primary);padding:8px;min-height:340px;position:relative;display:flex;flex-direction:column;gap:5px}
+.screen-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
+.screen-topbar span{font-size:7px;font-weight:600;color:var(--color-text-muted)}
+.screen-brand{font-size:8px;font-weight:700;color:var(--primitive-brand-teal);letter-spacing:.05em}
+.search-bar{background:var(--color-surface-raised);border:1px solid var(--color-border-subtle);border-radius:8px;padding:5px 8px;display:flex;align-items:center;gap:5px;color:var(--color-text-muted);font-size:7px}
+.map-bg{flex:1;background:linear-gradient(135deg,#0F1A14 0%,#0D1A20 100%);border-radius:8px;position:relative;overflow:hidden;min-height:160px}
+.map-grid{position:absolute;inset:0;opacity:.15;background-image:linear-gradient(var(--color-border-default) 1px,transparent 1px),linear-gradient(90deg,var(--color-border-default) 1px,transparent 1px);background-size:20px 20px}
+.map-pin{position:absolute;width:10px;height:12px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:1.5px solid rgba(0,0,0,.3)}
+.map-pin-safe{background:var(--tlp-safe);box-shadow:0 0 6px rgba(0,214,143,.6)}
+.map-pin-caution{background:var(--tlp-caution);box-shadow:0 0 6px rgba(255,170,0,.6)}
+.map-pin-blocked{background:var(--tlp-blocked);box-shadow:0 0 6px rgba(255,61,113,.6)}
+.map-bottom-bar{background:var(--color-surface-default);border-radius:8px;padding:5px 6px;display:flex;justify-content:space-around;align-items:center;border-top:1px solid var(--color-border-default)}
+.nav-icon{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:6px;color:var(--color-text-muted)}
+.nav-icon--active{color:var(--color-text-on-brand)}
+.nav-icon__dot{width:14px;height:14px;border-radius:50%;background:var(--color-surface-raised);display:flex;align-items:center;justify-content:center}
+.nav-icon__dot--teal{background:var(--primitive-brand-teal)}
+
+/* Station Detail Screen */
+.screen-station{background:var(--color-background-primary);padding:8px;min-height:340px;display:flex;flex-direction:column;gap:4px}
+.station-header{font-size:8px;font-weight:700;color:var(--color-text-primary);margin-bottom:2px}
+.station-sub{font-size:6px;color:var(--color-text-muted)}
+.station-trust{background:var(--tlp-safe-bg);border:1px solid rgba(0,214,143,.25);border-radius:3px;padding:3px 6px;display:inline-flex;align-items:center;gap:4px;font-size:7px;font-weight:700;color:var(--tlp-safe-text);align-self:flex-start}
+.slot-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:3px}
+.slot-item{border-radius:5px;padding:5px;font-size:6px;font-weight:600;border:1px solid}
+.slot-available{background:rgba(190,255,108,.1);border-color:rgba(190,255,108,.3);color:var(--primitive-brand-green)}
+.slot-occupied{background:rgba(87,96,106,.12);border-color:rgba(87,96,106,.25);color:var(--color-text-muted)}
+.station-info-row{display:flex;gap:4px;flex-wrap:wrap}
+.info-chip{background:var(--color-surface-raised);border:1px solid var(--color-border-default);border-radius:4px;padding:3px 6px;font-size:6px;color:var(--color-text-secondary)}
+.station-cta{background:var(--primitive-brand-teal);color:#000;font-weight:700;font-size:7px;text-align:center;padding:5px;border-radius:6px;margin-top:auto}
+
+/* Charge Screen */
+.screen-charge{background:var(--color-background-primary);padding:8px;min-height:360px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.charge-ring-wrap{position:relative;width:90px;height:90px;margin:4px 0}
+.charge-ring-wrap svg{width:90px;height:90px}
+.charge-ring-bg{fill:none;stroke:var(--color-surface-raised);stroke-width:7}
+.charge-ring-fill{fill:none;stroke:var(--primitive-brand-teal);stroke-width:7;stroke-linecap:round;stroke-dasharray:220;stroke-dashoffset:55;transform-origin:center;transform:rotate(-90deg)}
+.charge-soc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.charge-soc__num{font-size:18px;font-weight:700;color:var(--color-text-primary);line-height:1}
+.charge-soc__unit{font-size:7px;color:var(--color-text-muted)}
+.charge-telemetry{width:100%;background:var(--color-surface-raised);border:1px solid var(--color-border-default);border-radius:6px;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.tele-row{display:flex;flex-direction:column;gap:1px}
+.tele-label{font-size:5.5px;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.05em}
+.tele-val{font-size:8px;font-weight:700;color:var(--color-accent-teal);font-family:var(--font-mono)}
+.tele-val--white{color:var(--color-text-primary)}
+.charge-stop-btn{width:100%;background:transparent;border:1.5px solid var(--primitive-error-500);border-radius:10px;padding:5px 8px;font-size:7px;font-weight:700;color:var(--primitive-error-500);display:flex;align-items:center;justify-content:center;gap:4px;margin-top:auto}
+
+/* ══════════════════════════════════════
+   TLP SECTION
+══════════════════════════════════════ */
+.tlp-section{background:var(--color-background-secondary)}
+.tlp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-3);margin-top:var(--sp-4)}
+.tlp-card{background:var(--color-surface-default);border:1px solid var(--color-border-default);border-radius:var(--radius-card);padding:var(--sp-3);display:flex;flex-direction:column;gap:var(--sp-2);transition:all var(--transition)}
+.tlp-card:hover{transform:translateY(-3px)}
+.tlp-card--safe{border-left:3px solid var(--tlp-safe)}
+.tlp-card--caution{border-left:3px solid var(--tlp-caution)}
+.tlp-card--blocked{border-left:3px solid var(--tlp-blocked)}
+.tlp-card--system{border-left:3px solid var(--tlp-system)}
+.tlp-card__header{display:flex;align-items:center;gap:var(--sp-2)}
+.tlp-card__dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.tlp-card__title{font-size:1rem;font-weight:700}
+.tlp-card__token{font-family:var(--font-mono);font-size:.75rem;color:var(--color-text-muted)}
+.tlp-card__condition{font-size:.875rem;color:var(--color-text-secondary);line-height:1.6}
+.tlp-card__status{font-size:.8125rem;font-weight:600;padding:4px 10px;border-radius:var(--radius-badge);align-self:flex-start}
+
+/* ══════════════════════════════════════
+   SOLUTIONS
+══════════════════════════════════════ */
+.solution-card{background:var(--color-surface-raised);border:1px solid var(--color-border-default);border-radius:var(--radius-card);padding:var(--sp-4);display:flex;flex-direction:column;gap:var(--sp-2);transition:all var(--transition)}
+.solution-card:hover{border-color:rgba(73,219,200,.3);background:var(--color-surface-overlay);transform:translateY(-3px)}
+.solution-card__num{width:36px;height:36px;border-radius:8px;background:rgba(73,219,200,.1);border:1px solid rgba(73,219,200,.2);display:flex;align-items:center;justify-content:center;font-size:.9375rem;font-weight:700;color:var(--primitive-brand-teal)}
+.solution-card__title{font-size:1rem;font-weight:700;color:var(--color-text-primary)}
+.solution-card__desc{font-size:.875rem;color:var(--color-text-secondary);line-height:1.7}
+
+/* ══════════════════════════════════════
+   SCREEN FLOW
+══════════════════════════════════════ */
+.flow-section{background:var(--color-background-secondary)}
+.flow-list{display:flex;flex-wrap:wrap;gap:0;margin-top:var(--sp-4);position:relative}
+.flow-step{display:flex;align-items:center;gap:10px;flex:1;min-width:140px}
+.flow-step__node{width:40px;height:40px;border-radius:50%;background:var(--color-surface-raised);border:2px solid var(--color-border-default);display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;color:var(--primitive-brand-teal);flex-shrink:0;position:relative;z-index:1}
+.flow-step__node--active{border-color:var(--primitive-brand-teal);background:rgba(73,219,200,.12)}
+.flow-step__arrow{flex:1;height:2px;background:var(--color-border-default);position:relative;min-width:16px}
+.flow-step__arrow::after{content:'▶';position:absolute;right:-4px;top:50%;transform:translateY(-50%);font-size:7px;color:var(--color-border-default)}
+.flow-step__label{font-size:.75rem;font-weight:600;color:var(--color-text-secondary);white-space:nowrap;margin-top:4px}
+.flow-col{display:flex;flex-direction:column;align-items:center;flex:1;min-width:100px}
+
+/* ══════════════════════════════════════
+   DESIGN TOKENS TABLE
+══════════════════════════════════════ */
+.token-table{width:100%;border-collapse:collapse;margin-top:var(--sp-3);font-size:.875rem}
+.token-table th{text-align:left;padding:10px var(--sp-2);color:var(--color-text-muted);font-size:.8125rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--color-border-default)}
+.token-table td{padding:10px var(--sp-2);border-bottom:1px solid var(--color-border-muted);vertical-align:middle}
+.token-table tr:last-child td{border-bottom:none}
+.token-swatch{display:inline-block;width:20px;height:20px;border-radius:4px;border:1px solid rgba(255,255,255,.1);vertical-align:middle;margin-right:8px}
+.token-name{font-family:var(--font-mono);font-size:.8rem;color:var(--primitive-brand-teal)}
+.token-hex{font-family:var(--font-mono);font-size:.8rem;color:var(--color-text-secondary)}
+.token-role{color:var(--color-text-secondary)}
+
+/* ══════════════════════════════════════
+   INVESTMENT TABLE
+══════════════════════════════════════ */
+.invest-section{background:var(--color-background-secondary)}
+.invest-table-wrap{overflow-x:auto;margin-top:var(--sp-4)}
+.invest-table{width:100%;border-collapse:collapse;font-size:.875rem;min-width:700px}
+.invest-table th{text-align:left;padding:12px var(--sp-2);background:var(--color-surface-default);color:var(--color-text-secondary);font-size:.8125rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--color-border-default)}
+.invest-table th:first-child{border-radius:8px 0 0 0;color:var(--primitive-brand-teal)}
+.invest-table td{padding:12px var(--sp-2);border:1px solid var(--color-border-muted);vertical-align:top;line-height:1.5;color:var(--color-text-secondary)}
+.invest-table td:first-child{font-weight:600;color:var(--color-text-primary);background:var(--color-surface-default);white-space:nowrap}
+.invest-table tr:hover td{background:var(--color-surface-raised)}
+.invest-table .highlight{color:var(--primitive-brand-teal);font-weight:700}
+.invest-table .warn{color:var(--primitive-error-500);font-weight:600}
+.invest-table .caution{color:var(--tlp-caution);font-weight:600}
+
+/* ══════════════════════════════════════
+   MODEL PROS/CONS
+══════════════════════════════════════ */
+.model-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-3);margin-top:var(--sp-4)}
+.model-card{background:var(--color-surface-default);border:1px solid var(--color-border-default);border-radius:var(--radius-card);padding:var(--sp-3);display:flex;flex-direction:column;gap:var(--sp-2)}
+.model-card__title{font-size:1rem;font-weight:700;color:var(--color-text-primary)}
+.model-card__tag{display:inline-block;font-size:.75rem;font-weight:600;padding:3px 8px;border-radius:var(--radius-badge)}
+.tag-best{background:rgba(0,214,143,.15);color:var(--tlp-safe);border:1px solid rgba(0,214,143,.25)}
+.tag-ok{background:rgba(73,219,200,.1);color:var(--primitive-brand-teal);border:1px solid rgba(73,219,200,.2)}
+.tag-warn{background:rgba(255,170,0,.1);color:var(--tlp-caution);border:1px solid rgba(255,170,0,.2)}
+.tag-risk{background:rgba(255,61,113,.1);color:var(--tlp-blocked);border:1px solid rgba(255,61,113,.2)}
+.pros-list,.cons-list{display:flex;flex-direction:column;gap:6px}
+.pros-list li,.cons-list li{display:flex;align-items:flex-start;gap:8px;font-size:.875rem;line-height:1.5;color:var(--color-text-secondary)}
+.pros-list li::before{content:'✓';color:var(--tlp-safe);font-weight:700;flex-shrink:0;margin-top:1px}
+.cons-list li::before{content:'✗';color:var(--tlp-blocked);font-weight:700;flex-shrink:0;margin-top:1px}
+.model-divider{height:1px;background:var(--color-border-default);margin:4px 0}
+
+/* ══════════════════════════════════════
+   ROADMAP
+══════════════════════════════════════ */
+.roadmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);margin-top:var(--sp-4)}
+.roadmap-card{background:var(--color-surface-raised);border:1px solid var(--color-border-default);border-radius:var(--radius-card);padding:var(--sp-3);display:flex;flex-direction:column;gap:var(--sp-2);position:relative;overflow:hidden}
+.roadmap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.roadmap-card--1::before{background:var(--primitive-brand-teal)}
+.roadmap-card--2::before{background:var(--primitive-brand-green)}
+.roadmap-card--3::before{background:var(--tlp-caution)}
+.roadmap-card__phase{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--color-text-muted)}
+.roadmap-card__title{font-size:1.0625rem;font-weight:700;color:var(--color-text-primary)}
+.roadmap-card__desc{font-size:.875rem;color:var(--color-text-secondary);line-height:1.6}
+.roadmap-tasks{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.roadmap-task{display:flex;align-items:center;gap:8px;font-size:.8125rem;color:var(--color-text-secondary)}
+.roadmap-task::before{content:'→';color:var(--primitive-brand-teal);font-size:.9rem}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{border-top:1px solid var(--color-border-default);padding:var(--sp-5) 0 var(--sp-4)}
+.footer__inner{display:flex;flex-wrap:wrap;gap:var(--sp-4);justify-content:space-between;align-items:flex-start;margin-bottom:var(--sp-4)}
+.footer__brand p{font-size:.9rem;color:var(--color-text-secondary);max-width:320px;line-height:1.7;margin-top:8px}
+.footer__logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.0625rem}
+.footer__logo em{color:var(--primitive-brand-teal);font-style:normal}
+.footer__bottom{border-top:1px solid var(--color-border-default);padding-top:var(--sp-3);display:flex;flex-wrap:wrap;gap:var(--sp-2);justify-content:space-between;align-items:center;font-size:.875rem;color:var(--color-text-muted)}
+.made-with{text-align:center;padding-top:var(--sp-3);border-top:1px solid var(--color-border-subtle);font-size:.75rem;color:var(--color-text-muted);margin-top:var(--sp-3)}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:1024px){
+  .hero__inner{grid-template-columns:1fr;text-align:center}
+  .hero__tagline{margin:0 auto var(--sp-4)}
+  .hero__ctas{justify-content:center}
+  .hero__stats{justify-content:center}
+  .phones-showcase{margin-top:var(--sp-4);transform:scale(.9)}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  :root{--sp-7:64px;--sp-6:48px}
+  section{padding:var(--sp-5) 0}
+  .nav-links,.navbar .btn{display:none}
+  .hamburger{display:flex}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .tlp-grid,.model-grid,.roadmap-grid{grid-template-columns:1fr}
+  .phones-showcase{transform:scale(.85)}
+  .phone-frame{width:160px}
+  .phone-frame--main{width:175px}
+}
+@media(max-width:480px){
+  .phones-showcase{transform:scale(.75)}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══════════════════════════════ -->
+<header>
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo__mark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#000" stroke="#000" stroke-width=".5"/>
+          </svg>
+        </div>
+        <span>Volt<em>Sync</em></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#tlp">TLP System</a></li>
+        <li><a href="#solutions">Giải pháp</a></li>
+        <li><a href="#screens">Màn hình</a></li>
+        <li><a href="#tokens">Design Tokens</a></li>
+        <li><a href="#invest">Đầu tư</a></li>
+        <li><a href="#roadmap">Lộ trình</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:var(--sp-2)">
+        <a href="#screens" class="btn btn-teal btn-sm" style="padding:8px 18px;font-size:.875rem;border-radius:var(--radius-button)">Xem Concept</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#tlp">TLP System</a>
+    <a href="#solutions">Giải pháp</a>
+    <a href="#screens">Màn hình</a>
+    <a href="#tokens">Design Tokens</a>
+    <a href="#invest">Đầu tư</a>
+    <a href="#roadmap">Lộ trình</a>
+  </div>
+</header>
+
+<!-- ══ HERO ════════════════════════════════ -->
+<section class="hero" id="overview" style="padding-bottom:var(--sp-7)">
+  <div class="container">
+    <div class="hero__inner">
+      <div>
+        <div class="hero__eyebrow reveal">
+          <span class="badge-pill badge-teal">NLP-EGREEN</span>
+          <span class="badge-pill badge-green">Open Roaming Aggregator</span>
+        </div>
+        <h1 class="hero__title reveal d1">
+          <span class="hero__title-teal">Real-time</span> Truth.<br>
+          <span class="hero__title-green">Zero</span> Anxiety.
+        </h1>
+        <p class="hero__tagline reveal d2">Nền tảng điều phối hạ tầng sạc mở tích hợp xác thực thực địa bằng AI &amp; Crowdsource, kết nối dữ liệu xe thông minh theo thời gian thực.</p>
+        <div class="hero__ctas reveal d2">
+          <a href="#tlp" class="btn btn-teal">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Khám phá TLP System
+          </a>
+          <a href="#invest" class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Phân tích Đầu tư
+          </a>
+        </div>
+        <div class="hero__stats reveal d3">
+          <div class="stat-pill">
+            <div class="tlp-dot tlp-dot-safe"></div>
+            <span class="stat-pill__val">5</span>
+            <span class="stat-pill__label">Giải pháp đột phá</span>
+          </div>
+          <div class="stat-pill">
+            <div class="tlp-dot" style="background:var(--primitive-brand-teal)"></div>
+            <span class="stat-pill__val">6</span>
+            <span class="stat-pill__label">Màn hình nòng cốt</span>
+          </div>
+          <div class="stat-pill">
+            <div class="tlp-dot" style="background:var(--primitive-brand-green)"></div>
+            <span class="stat-pill__val">4</span>
+            <span class="stat-pill__label">Mô hình đầu tư</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Mockups -->
+      <div class="phones-showcase reveal d2" aria-label="Minh họa màn hình app">
+        <!-- Screen 1: Station Detail -->
+        <div class="phone-frame">
+          <div class="phone-frame__notch"></div>
+          <div class="phone-screen">
+            <div class="screen-station">
+              <div class="screen-topbar"><span>9:41</span><span style="color:var(--primitive-brand-teal);font-size:7px;font-weight:700">VoltSync</span><span>98%</span></div>
+              <div class="station-header">Vinfast Center HCMC</div>
+              <div class="station-sub">Q.1 · 0.8 km · B2 Hầm</div>
+              <div class="station-trust">
+                <div class="tlp-dot tlp-dot-safe"></div>
+                Tin cậy 98% · TLP Safe
+              </div>
+              <div class="slot-grid">
+                <div class="slot-available">A1 · 180kW<br>✓ Sẵn sàng</div>
+                <div class="slot-occupied">A2 · 180kW<br>⏱ 12 phút</div>
+                <div class="slot-available">B1 · 60kW<br>✓ Sẵn sàng</div>
+                <div class="slot-occupied">B2 · 60kW<br>⏱ 25 phút</div>
+              </div>
+              <div class="station-info-row">
+                <span class="info-chip">Phí gửi xe: 5k/h</span>
+                <span class="info-chip">CCS2 · CHAdeMO</span>
+                <span class="info-chip">24/7 mở cửa</span>
+              </div>
+              <div class="station-cta">🗺 Dẫn đường &nbsp;·&nbsp; Đặt chỗ</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 2: Map Hub (main / taller) -->
+        <div class="phone-frame phone-frame--main">
+          <div class="phone-frame__notch"></div>
+          <div class="phone-screen">
+            <div class="screen-map">
+              <div class="screen-topbar"><span>9:41</span><span class="screen-brand">VoltSync</span><span>100%</span></div>
+              <div class="search-bar">
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Tìm trạm sạc…
+              </div>
+              <div class="map-bg">
+                <div class="map-grid"></div>
+                <!-- pins -->
+                <div class="map-pin map-pin-safe" style="top:30%;left:45%"></div>
+                <div class="map-pin map-pin-safe" style="top:55%;left:25%"></div>
+                <div class="map-pin map-pin-caution" style="top:40%;left:70%"></div>
+                <div class="map-pin map-pin-blocked" style="top:65%;left:60%"></div>
+                <div class="map-pin map-pin-safe" style="top:20%;left:60%"></div>
+                <div class="map-pin map-pin-caution" style="top:75%;left:35%"></div>
+                <!-- TLP legend -->
+                <div style="position:absolute;bottom:4px;left:4px;background:rgba(13,17,23,.85);border-radius:4px;padding:3px 5px;display:flex;gap:5px;font-size:5.5px">
+                  <span style="color:var(--tlp-safe)">● Safe</span>
+                  <span style="color:var(--tlp-caution)">● Caution</span>
+                  <span style="color:var(--tlp-blocked)">● Blocked</span>
+                </div>
+              </div>
+              <div class="map-bottom-bar">
+                <div class="nav-icon">
+                  <div class="nav-icon__dot nav-icon__dot--teal">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </div>
+                  <span style="color:var(--primitive-brand-teal)">Bản đồ</span>
+                </div>
+                <div class="nav-icon">
+                  <div class="nav-icon__dot">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  </div>
+                  <span>Tôi</span>
+                </div>
+                <div class="nav-icon">
+                  <div class="nav-icon__dot">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  </div>
+                  <span>Lộ trình</span>
+                </div>
+                <div class="nav-icon">
+                  <div class="nav-icon__dot">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+                  </div>
+                  <span>Lịch sử</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 3: Active Charge -->
+        <div class="phone-frame">
+          <div class="phone-frame__notch"></div>
+          <div class="phone-screen">
+            <div class="screen-charge">
+              <div class="screen-topbar" style="width:100%"><span>9:41</span><span style="color:var(--primitive-brand-teal);font-size:7px;font-weight:700">Đang sạc</span><span>98%</span></div>
+              <div style="font-size:7px;color:var(--color-text-secondary);width:100%">Trụ A1 · CCS2 · 180kW Max</div>
+              <div class="charge-ring-wrap">
+                <svg viewBox="0 0 90 90">
+                  <circle cx="45" cy="45" r="35" class="charge-ring-bg"/>
+                  <circle cx="45" cy="45" r="35" class="charge-ring-fill"/>
+                </svg>
+                <div class="charge-soc">
+                  <div class="charge-soc__num">75<span style="font-size:10px">%</span></div>
+                  <div class="charge-soc__unit">SoC</div>
+                </div>
+              </div>
+              <div class="charge-telemetry">
+                <div class="tele-row">
+                  <span class="tele-label">Công suất</span>
+                  <span class="tele-val">75.2 kW</span>
+                </div>
+                <div class="tele-row">
+                  <span class="tele-label">Còn lại</span>
+                  <span class="tele-val tele-val--white">~18 phút</span>
+                </div>
+                <div class="tele-row">
+                  <span class="tele-label">Điện áp/Dòng</span>
+                  <span class="tele-val" style="font-size:6.5px">385V · 195A</span>
+                </div>
+                <div class="tele-row">
+                  <span class="tele-label">Năng lượng</span>
+                  <span class="tele-val tele-val--white">18.4 kWh</span>
+                </div>
+              </div>
+              <div class="charge-stop-btn">
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+                ← Vuốt để Dừng sạc
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TLP SYSTEM ══════════════════════════ -->
+<section id="tlp" class="tlp-section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label"><div class="section-dot"></div>Trust Level Protocol</div>
+      <h2 class="section-title">Giao thức TLP — Triệt tiêu "Cổng Trống Ảo"</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Hệ thống phân loại mức độ sẵn sàng của cổng sạc dựa trên đa nguồn dữ liệu real-time: API OCPP, cảm biến, AI và Crowdsource.</p>
+    </div>
+
+    <div class="tlp-grid">
+      <div class="tlp-card tlp-card--safe reveal d1">
+        <div class="tlp-card__header">
+          <div class="tlp-card__dot" style="background:var(--tlp-safe)"></div>
+          <div>
+            <div class="tlp-card__title" style="color:var(--tlp-safe)">TLP Safe</div>
+            <div class="tlp-card__token">--tlp-safe · #00D68F</div>
+          </div>
+          <div style="margin-left:auto;width:20px;height:20px;border-radius:50%;background:var(--tlp-safe);box-shadow:0 0 12px rgba(0,214,143,.5)"></div>
+        </div>
+        <p class="tlp-card__condition">Trụ online qua API OCPP + có giao dịch sạc thành công &lt; 15 phút + cảm biến/AI xác nhận ô trống.</p>
+        <div class="tlp-card__status tlp-safe">✓ Khả dụng cao — Đảm bảo cắm sạc được ngay</div>
+      </div>
+
+      <div class="tlp-card tlp-card--caution reveal d2">
+        <div class="tlp-card__header">
+          <div class="tlp-card__dot" style="background:var(--tlp-caution)"></div>
+          <div>
+            <div class="tlp-card__title" style="color:var(--tlp-caution)">TLP Caution</div>
+            <div class="tlp-card__token">--tlp-caution · #FFAA00</div>
+          </div>
+          <div style="margin-left:auto;width:20px;height:20px;border-radius:50%;background:var(--tlp-caution);box-shadow:0 0 12px rgba(255,170,0,.5)"></div>
+        </div>
+        <p class="tlp-card__condition">Trụ online nhưng không có dữ liệu giao dịch &gt; 4 giờ, hoặc có báo cáo xe xăng đỗ lấn một phần.</p>
+        <div class="tlp-card__status tlp-caution">⚠ Cần lưu ý — Nguy cơ nghẽn hoặc bị cản trở</div>
+      </div>
+
+      <div class="tlp-card tlp-card--blocked reveal d3">
+        <div class="tlp-card__header">
+          <div class="tlp-card__dot" style="background:var(--tlp-blocked)"></div>
+          <div>
+            <div class="tlp-card__title" style="color:var(--tlp-blocked)">TLP Blocked</div>
+            <div class="tlp-card__token">--tlp-blocked · #FF3D71</div>
+          </div>
+          <div style="margin-left:auto;width:20px;height:20px;border-radius:50%;background:var(--tlp-blocked);box-shadow:0 0 12px rgba(255,61,113,.5)"></div>
+        </div>
+        <p class="tlp-card__condition">Trụ mất tín hiệu, hỏng ngàm súng sạc, trạm mất điện hoặc bị rào chắn hoàn toàn.</p>
+        <div class="tlp-card__status tlp-blocked">✗ Tạm dừng — Phong tỏa hoặc hỏng thiết bị</div>
+      </div>
+
+      <div class="tlp-card tlp-card--system reveal d4">
+        <div class="tlp-card__header">
+          <div class="tlp-card__dot" style="background:var(--tlp-system)"></div>
+          <div>
+            <div class="tlp-card__title" style="color:var(--tlp-system-text)">TLP System</div>
+            <div class="tlp-card__token">--tlp-system · #57606A</div>
+          </div>
+          <div style="margin-left:auto;width:20px;height:20px;border-radius:50%;background:var(--tlp-system)"></div>
+        </div>
+        <p class="tlp-card__condition">Trạm bảo trì định kỳ hoặc thuộc mạng lưới nội bộ restricted, không phục vụ công cộng.</p>
+        <div class="tlp-card__status tlp-system">○ Hệ thống nội bộ — Không phục vụ công cộng</div>
+      </div>
+    </div>
+
+    <!-- Crowdsource Check-in -->
+    <div class="card reveal" style="margin-top:var(--sp-4);border-color:rgba(73,219,200,.2)">
+      <div style="display:flex;align-items:flex-start;gap:var(--sp-3)">
+        <div style="width:44px;height:44px;border-radius:10px;background:rgba(73,219,200,.1);border:1px solid rgba(73,219,200,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primitive-brand-teal)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <div style="font-size:1rem;font-weight:700;margin-bottom:6px">Check-in 1-Tap Crowdsourcing</div>
+          <p style="font-size:.9rem;color:var(--color-text-secondary);line-height:1.7">Tài xế cắm sạc xác nhận trạng thái thực tế chỉ 1 thao tác vuốt — <em style="color:var(--primitive-brand-green);font-style:normal">"Trụ số 2 hỏng súng"</em>, <em style="color:var(--primitive-brand-green);font-style:normal">"Bị xe xăng đỗ chắn"</em>. Hệ thống tự động thưởng <strong style="color:var(--primitive-brand-teal)">điểm token / voucher sạc</strong> trực tiếp vào tài khoản. Phản hồi Haptic &amp; Visual trong &lt; 200ms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 5 SOLUTIONS ══════════════════════════ -->
+<section id="solutions">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label"><div class="section-dot"></div>5 Giải pháp Đột phá</div>
+      <h2 class="section-title">Triệt hạ Nhược điểm Cố hữu</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="grid-3" style="margin-top:var(--sp-4)">
+      <div class="solution-card reveal d1">
+        <div class="solution-card__num">01</div>
+        <div class="solution-card__title">Triệt tiêu "Cổng Trống Ảo" — TLP Protocol</div>
+        <p class="solution-card__desc">Giao thức TLP phân loại thời gian thực từ đa nguồn OCPP API + cảm biến + AI crowdsource. Badge tín nhiệm 98% ngay trên card trạm.</p>
+      </div>
+      <div class="solution-card reveal d2">
+        <div class="solution-card__num">02</div>
+        <div class="solution-card__title">Dẫn đường Vi mô — Micro-Navigation</div>
+        <p class="solution-card__desc">Ghim chính xác ram dốc hầm B2, giới hạn chiều cao, cổng bảo vệ. Hiển thị minh bạch phí gửi xe, giờ đóng cửa, hỗ trợ bảo vệ dẫn chỗ đỗ.</p>
+      </div>
+      <div class="solution-card reveal d3">
+        <div class="solution-card__num">03</div>
+        <div class="solution-card__title">Lập Lộ trình Động học — SoC &amp; Elevation Routing</div>
+        <p class="solution-card__desc">Kết nối BLE OBD2/Apple CarKey/Google Auto API đọc % SoC thực tế. Thuật toán bù địa hình &amp; tải trọng, tự tìm trạm thay thế khi pin tụt nhanh.</p>
+      </div>
+      <div class="solution-card reveal d1">
+        <div class="solution-card__num">04</div>
+        <div class="solution-card__title">Thanh toán "Zero-Lock" — Escrow Block</div>
+        <p class="solution-card__desc">Tiền sạc giữ trong tài khoản trung gian theo từng block 10.000đ. Trụ ngắt đột ngột → phiên hủy trong 3 giây, hoàn tiền ngay — không khóa cọc.</p>
+      </div>
+      <div class="solution-card reveal d2">
+        <div class="solution-card__num">05</div>
+        <div class="solution-card__title">Tối ưu Hiệu năng — Viewport Culling</div>
+        <p class="solution-card__desc">Chỉ render trạm trong bán kính tầm nhìn bản đồ, giảm 70% tải RAM/GPU. Duy trì 60/120fps tại Hà Nội và TP.HCM mật độ cao.</p>
+      </div>
+      <div class="solution-card reveal d3" style="border-color:rgba(190,255,108,.2);background:rgba(190,255,108,.04)">
+        <div class="solution-card__num" style="background:rgba(190,255,108,.1);border-color:rgba(190,255,108,.2);color:var(--primitive-brand-green)">AI</div>
+        <div class="solution-card__title" style="color:var(--primitive-brand-green)">Thiết kế Tối giản — Anti-Glare Dark Mode</div>
+        <p class="solution-card__desc">Bảng màu semantic tối giản, không dùng hiệu ứng 3D gây hao pin. Tông nền <span class="mono">#0D1117</span> chống chói ban đêm. Font Work Sans tối ưu tốc độ đọc khi lái xe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCREEN FLOW ══════════════════════════ -->
+<section id="screens" class="flow-section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label"><div class="section-dot"></div>Interaction Architecture</div>
+      <h2 class="section-title">Luồng Thao tác Người dùng</h2>
+      <div class="divider"></div>
+      <p class="section-desc">6 màn hình nòng cốt được thiết kế theo luồng tối ưu dành riêng cho tài xế — từ bản đồ đến hoàn tất thanh toán.</p>
+    </div>
+
+    <!-- Flow diagram -->
+    <div style="overflow-x:auto;margin-top:var(--sp-4)">
+      <div style="display:flex;align-items:center;gap:0;min-width:760px;padding:var(--sp-3) 0">
+        <!-- step macro -->
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:100px">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(73,219,200,.15);border:2px solid var(--primitive-brand-teal);display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;color:var(--primitive-brand-teal)">1</div>
+          <div style="font-size:.75rem;font-weight:600;color:var(--color-text-secondary);text-align:center;margin-top:8px;white-space:nowrap">Map Hub</div>
+        </div>
+        <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--primitive-brand-teal),var(--color-border-default));min-width:16px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:100px">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(73,219,200,.1);border:2px solid rgba(73,219,200,.4);display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;color:var(--primitive-brand-teal)">2</div>
+          <div style="font-size:.75rem;font-weight:600;color:var(--color-text-secondary);text-align:center;margin-top:8px;white-space:nowrap">Station Details</div>
+        </div>
+        <div style="flex:1;height:2px;background:var(--color-border-default);min-width:16px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:100px">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--color-surface-raised);border:2px solid var(--color-border-default);display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;color:var(--color-text-secondary)">3</div>
+          <div style="font-size:.75rem;font-weight:600;color:var(--color-text-muted);text-align:center;margin-top:8px;white-space:nowrap">Micro-Nav</div>
+        </div>
+        <div style="flex:1;height:2px;background:var(--color-border-default);min-width:16px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:100px">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--color-surface-raised);border:2px solid var(--color-border-default);display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;color:var(--color-text-secondary)">4</div>
+          <div style="font-size:.75rem;font-weight:600;color:var(--color-text-muted);text-align:center;margin-top:8px;white-space:nowrap">QR Auth</div>
+        </div>
+        <div style="flex:1;height:2px;background:var(--color-border-default);min-width:16px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:100px">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(73,219,200,.1);border:2px solid rgba(73,219,200,.5);display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;color:var(--primitive-brand-teal)">5</div>
+          <div style="font-size:.75rem;font-weight:600;color:var(--color-text-secondary);text-align:center;margin-top:8px;white-space:nowrap">Active Charge</div>
+        </div>
+        <div style="flex:1;height:2px;background:var(--color-border-default);min-width:16px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:100px">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--color-surface-raised);border:2px solid var(--color-border-default);display:flex;align-items:center;justify-content:center;font-size:.875rem;font-weight:700;color:var(--color-text-secondary)">6</div>
+          <div style="font-size:.75rem;font-weight:600;color:var(--color-text-muted);text-align:center;margin-top:8px;white-space:nowrap">Payment &amp; Settlement</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen cards -->
+    <div class="grid-3" style="margin-top:var(--sp-4)">
+      <div class="card reveal d1">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--sp-2)">
+          <span class="tlp-badge tlp-safe">Map Hub</span>
+        </div>
+        <div style="font-size:.9375rem;font-weight:700;margin-bottom:6px">Màn hình 1 — Bản đồ Chính</div>
+        <p style="font-size:.875rem;color:var(--color-text-secondary);line-height:1.6">Floating Search Bar <span class="mono">--radius-input: 12px</span>. Ghim TLP 4 màu thời gian thực. Bottom Nav với nút Sạc Nhanh <span class="mono">--primitive-brand-teal</span> trung tâm. Viewport Culling 60/120fps.</p>
+      </div>
+      <div class="card reveal d2">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--sp-2)">
+          <span class="tlp-badge tlp-safe">Station Details</span>
+        </div>
+        <div style="font-size:.9375rem;font-weight:700;margin-bottom:6px">Màn hình 2 — Chi tiết Trạm</div>
+        <p style="font-size:.875rem;color:var(--color-text-secondary);line-height:1.6">Trust Index Badge <span class="mono">--radius-badge: 4px</span> ngay dưới tên trạm. Sơ đồ slot A1/A2/B1 màu brand-green/grey. Ảnh micro-guide ram dốc &amp; barie.</p>
+      </div>
+      <div class="card reveal d3">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--sp-2)">
+          <span class="badge-pill badge-teal" style="font-size:.75rem">Active</span>
+        </div>
+        <div style="font-size:.9375rem;font-weight:700;margin-bottom:6px">Màn hình 5 — Active Charge Dashboard</div>
+        <p style="font-size:.875rem;color:var(--color-text-secondary);line-height:1.6">SVG ring tiến trình viền <span class="mono">--primitive-brand-teal</span>. SoC <span class="mono">--type-h2: 60px</span>. Live telemetry mono font. Slider Stop Button <span class="mono">--radius-button: 24px</span>.</p>
+      </div>
+      <div class="card reveal d1">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--sp-2)">
+          <span class="badge-pill badge-green" style="font-size:.75rem">Smart Planner</span>
+        </div>
+        <div style="font-size:.9375rem;font-weight:700;margin-bottom:6px">Smart Dynamic Planner</div>
+        <p style="font-size:.875rem;color:var(--color-text-secondary);line-height:1.6">Đồ thị Elevation &amp; SoC toàn hành trình. Cảnh báo <span class="mono">--primitive-warning-500</span> đèo dốc +18%. Đề xuất sạc 10% → 65% tối ưu thời gian chờ.</p>
+      </div>
+      <div class="card reveal d2">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--sp-2)">
+          <span class="badge-pill" style="background:rgba(87,96,106,.18);color:var(--color-text-muted);font-size:.75rem">Escrow</span>
+        </div>
+        <div style="font-size:.9375rem;font-weight:700;margin-bottom:6px">Màn hình 6 — Payment &amp; Settlement</div>
+        <p style="font-size:.875rem;color:var(--color-text-secondary);line-height:1.6">Escrow Block 10.000đ / block. Sự cố → hủy phiên trong 3s + hoàn tiền ngay. Không khóa cọc, không chặn trụ kế tiếp.</p>
+      </div>
+      <div class="card reveal d3" style="border-color:rgba(190,255,108,.18);background:rgba(190,255,108,.03)">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--sp-2)">
+          <span class="badge-pill badge-green" style="font-size:.75rem">Haptic</span>
+        </div>
+        <div style="font-size:.9375rem;font-weight:700;margin-bottom:6px">Tương tác Tối ưu Lái xe</div>
+        <p style="font-size:.875rem;color:var(--color-text-secondary);line-height:1.6">1-Tap Check-in nổi góc phải bottom bar. Phản hồi Haptic &amp; Visual mọi TLP state change. Độ trễ &lt; 200ms. Không thao tác quá 2 bước khi đang lái.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DESIGN TOKENS ════════════════════════ -->
+<section id="tokens">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label"><div class="section-dot"></div>Design System</div>
+      <h2 class="section-title">Quy chuẩn Token UI — Map Hub Dark Mode</h2>
+      <div class="divider"></div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="token-table reveal">
+        <thead>
+          <tr>
+            <th>Thành phần UI</th>
+            <th>Design Token</th>
+            <th>Màu sắc</th>
+            <th>Giá trị</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="token-role">Nền App / Background</td>
+            <td><span class="token-name">--color-background-primary</span></td>
+            <td><span class="token-swatch" style="background:#0D1117"></span><span class="token-hex">#0D1117</span></td>
+            <td class="token-hex">Dark Base</td>
+          </tr>
+          <tr>
+            <td class="token-role">Surface thứ cấp</td>
+            <td><span class="token-name">--color-background-secondary</span></td>
+            <td><span class="token-swatch" style="background:#161B22"></span><span class="token-hex">#161B22</span></td>
+            <td class="token-hex">Sections</td>
+          </tr>
+          <tr>
+            <td class="token-role">Floating Search Bar</td>
+            <td><span class="token-name">--color-surface-raised</span></td>
+            <td><span class="token-swatch" style="background:#22272E"></span><span class="token-hex">#22272E</span></td>
+            <td class="token-hex">Radius 12px</td>
+          </tr>
+          <tr>
+            <td class="token-role">Viền thanh tìm kiếm</td>
+            <td><span class="token-name">--color-border-subtle</span></td>
+            <td><span class="token-swatch" style="background:#21262D"></span><span class="token-hex">#21262D</span></td>
+            <td class="token-hex">1px</td>
+          </tr>
+          <tr>
+            <td class="token-role">Bottom Navigation Bar</td>
+            <td><span class="token-name">--color-surface-default</span></td>
+            <td><span class="token-swatch" style="background:#1C2128"></span><span class="token-hex">#1C2128</span></td>
+            <td class="token-hex">Border-top: #30363D</td>
+          </tr>
+          <tr>
+            <td class="token-role">Nút Sạc Nhanh (Centre CTA)</td>
+            <td><span class="token-name">--primitive-brand-teal</span></td>
+            <td><span class="token-swatch" style="background:#49DBC8"></span><span class="token-hex">#49DBC8</span></td>
+            <td class="token-hex">Icon: #000</td>
+          </tr>
+          <tr>
+            <td class="token-role">Ghim trạm Safe</td>
+            <td><span class="token-name">--tlp-safe</span></td>
+            <td><span class="token-swatch" style="background:#00D68F"></span><span class="token-hex">#00D68F</span></td>
+            <td class="token-hex">20px icon</td>
+          </tr>
+          <tr>
+            <td class="token-role">Ghim trạm Caution</td>
+            <td><span class="token-name">--tlp-caution</span></td>
+            <td><span class="token-swatch" style="background:#FFAA00"></span><span class="token-hex">#FFAA00</span></td>
+            <td class="token-hex">20px icon</td>
+          </tr>
+          <tr>
+            <td class="token-role">Trạng thái Blocked</td>
+            <td><span class="token-name">--tlp-blocked / --primitive-error-500</span></td>
+            <td><span class="token-swatch" style="background:#FF3D71"></span><span class="token-hex">#FF3D71</span></td>
+            <td class="token-hex">Stop Slider</td>
+          </tr>
+          <tr>
+            <td class="token-role">Slot sẵn sàng / Brand Energy</td>
+            <td><span class="token-name">--primitive-brand-green</span></td>
+            <td><span class="token-swatch" style="background:#BEFF6C"></span><span class="token-hex">#BEFF6C</span></td>
+            <td class="token-hex">Energy state</td>
+          </tr>
+          <tr>
+            <td class="token-role">Font chữ chủ đạo</td>
+            <td><span class="token-name">--font-sans</span></td>
+            <td style="color:var(--color-text-secondary)">Work Sans</td>
+            <td class="token-hex">Body 14–16px</td>
+          </tr>
+          <tr>
+            <td class="token-role">SoC Display Number</td>
+            <td><span class="token-name">--type-h2</span></td>
+            <td style="color:var(--color-text-secondary)">Semi-bold</td>
+            <td class="token-hex">60px</td>
+          </tr>
+          <tr>
+            <td class="token-role">Telemetry Readings</td>
+            <td><span class="token-name">--font-mono / --type-caption</span></td>
+            <td style="color:var(--color-text-secondary)">JetBrains Mono</td>
+            <td class="token-hex">12px</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INVESTMENT ════════════════════════════ -->
+<section id="invest" class="invest-section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label"><div class="section-dot"></div>Phân tích Chiến lược</div>
+      <h2 class="section-title">So sánh 4 Mô hình Đầu tư Hạ tầng Sạc</h2>
+      <div class="divider"></div>
+      <p class="section-desc">Đánh giá chi tiết các mô hình hợp tác CPO để tích hợp vào hệ sinh thái VoltSync Aggregator.</p>
+    </div>
+
+    <div class="invest-table-wrap reveal">
+      <table class="invest-table">
+        <thead>
+          <tr>
+            <th>Tiêu chí</th>
+            <th>TMT-EGREEN</th>
+            <th>VN SOLAR (BESS)</th>
+            <th>ABB 24kW</th>
+            <th>Nhượng quyền VP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bản chất mô hình</td>
+            <td>Mạng lưới CPO quốc gia, đa dạng hợp tác Zero Capital → Nhượng quyền</td>
+            <td>Solar áp mái + BESS + Trụ sạc, Zero Capital thiết bị</td>
+            <td>Trụ DC 24kW độc lập, chia doanh thu cố định với App</td>
+            <td>Bán/nhượng quyền phần cứng DC lớn, chủ đầu tư tự vận hành</td>
+          </tr>
+          <tr>
+            <td>Phân khúc công suất</td>
+            <td><span class="highlight">AC 7.4–22kW → DC 60–1040kW</span></td>
+            <td>Phụ thuộc BESS &amp; Solar</td>
+            <td><span class="caution">Cố định DC 24kW</span></td>
+            <td>DC 40 / 60 / 120 / 240kW</td>
+          </tr>
+          <tr>
+            <td>Chi phí đầu tư ban đầu</td>
+            <td><span class="highlight">0đ (TMT đầu tư 100%)</span></td>
+            <td><span class="highlight">0đ thiết bị</span></td>
+            <td><span class="caution">135 triệu VNĐ</span></td>
+            <td><span class="warn">Vốn lớn theo công suất</span></td>
+          </tr>
+          <tr>
+            <td>Cơ chế lợi nhuận</td>
+            <td>TMT bao: 800đ/kWh<br>Cùng làm: 1.000đ/kWh<br>Tự mua: 1.500đ/kWh</td>
+            <td>400đ/kWh + tiết kiệm điện ~1.652đ/kWh</td>
+            <td><span class="caution">33% doanh thu</span><br>(EVN 48%, App 19%)</td>
+            <td><span class="highlight">~3.500đ/kWh</span><br>(thu 7k - EVN 50%)</td>
+          </tr>
+          <tr>
+            <td>Nguồn khách sạc</td>
+            <td><span class="highlight">VETC, Grab Driver, Wuling, HOWO</span></td>
+            <td>Khách vãng lai địa điểm</td>
+            <td>Vãng lai qua App liên kết</td>
+            <td>Tự tìm kiếm / app đối tác</td>
+          </tr>
+          <tr>
+            <td>Cam kết tối thiểu</td>
+            <td>Hợp đồng 10 năm</td>
+            <td>Không rõ</td>
+            <td>3.3 triệu/tháng</td>
+            <td>Không cam kết</td>
+          </tr>
+          <tr>
+            <td>Rủi ro chính</td>
+            <td>Yêu cầu 3 pha + 2 ô đỗ chuẩn</td>
+            <td>Thu nhập thấp, phụ thuộc thời tiết</td>
+            <td><span class="warn">Tỷ lệ phân chia bất lợi. Rủi ro vắng khách</span></td>
+            <td><span class="warn">Gánh vận hành, phạt công suất EVN</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4 model cards -->
+    <div class="model-grid" style="margin-top:var(--sp-5)">
+      <div class="model-card reveal d1">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <div class="model-card__title">1. TMT-EGREEN</div>
+          <span class="model-card__tag tag-best">Toàn diện nhất</span>
+        </div>
+        <ul class="pros-list">
+          <li>Hệ sinh thái kéo khách vượt trội: VETC + Grab + xe thương mại</li>
+          <li>Linh hoạt vốn đầu tư: 0đ → tự mua để nhận 1.500đ/kWh</li>
+          <li>Pháp lý &amp; chuẩn hóa rõ ràng (PCCC, trạm biến áp, 10 năm)</li>
+        </ul>
+        <div class="model-divider"></div>
+        <ul class="cons-list">
+          <li>Yêu cầu nguồn điện 3 pha công nghiệp &amp; tối thiểu 2 ô đỗ chuẩn</li>
+          <li>Biên lợi nhuận bị chia sẻ thấp hơn mô hình tự làm chủ 100%</li>
+        </ul>
+      </div>
+
+      <div class="model-card reveal d2">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <div class="model-card__title">2. VN SOLAR + BESS</div>
+          <span class="model-card__tag tag-ok">Vùng lưới yếu</span>
+        </div>
+        <ul class="pros-list">
+          <li>Khắc phục quá tải trạm biến áp &amp; cúp điện lưới</li>
+          <li>Zero Capital thiết bị + tiết kiệm ~1.652đ/kWh điện tại chỗ</li>
+        </ul>
+        <div class="model-divider"></div>
+        <ul class="cons-list">
+          <li>Thu nhập từ sạc xe thấp (400đ/kWh)</li>
+          <li>Phụ thuộc diện tích mái lớn &amp; điều kiện thời tiết</li>
+        </ul>
+      </div>
+
+      <div class="model-card reveal d3">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <div class="model-card__title">3. ABB 24kW — Trụ Độc lập</div>
+          <span class="model-card__tag tag-warn">⚠ Bẫy lợi nhuận</span>
+        </div>
+        <ul class="cons-list">
+          <li>Công suất 24kW "lửng lơ" — quá chậm cho trạm dừng nghỉ, quá đắt so với AC qua đêm</li>
+          <li>Nhà đầu tư chịu 100% rủi ro phần cứng nhưng chỉ nhận 33% doanh thu</li>
+          <li>Rủi ro thiếu dòng xe điều hướng nếu vị trí vắng vẻ</li>
+        </ul>
+      </div>
+
+      <div class="model-card reveal d4">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <div class="model-card__title">4. Nhượng quyền VP 40–240kW</div>
+          <span class="model-card__tag tag-risk">Rủi ro vận hành</span>
+        </div>
+        <ul class="pros-list">
+          <li>Biên lợi nhuận gộp lớn ~3.500đ/kWh</li>
+          <li>Dải công suất chuẩn công nghiệp, 2 súng cân bằng tải</li>
+        </ul>
+        <div class="model-divider"></div>
+        <ul class="cons-list">
+          <li>Thời gian hoàn vốn &lt;1 năm là lý tưởng hóa</li>
+          <li>Tự gánh vắng khách, khấu hao, phạt công suất EVN &amp; sự cố kỹ thuật</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Strategy recommendation -->
+    <div class="card reveal" style="margin-top:var(--sp-4);border-color:rgba(73,219,200,.2);background:rgba(73,219,200,.03)">
+      <div style="font-size:1rem;font-weight:700;color:var(--primitive-brand-teal);margin-bottom:var(--sp-2)">⚡ Định vị chiến lược VoltSync Aggregator</div>
+      <p style="font-size:.9375rem;color:var(--color-text-secondary);line-height:1.7;margin-bottom:var(--sp-2)">VoltSync là <strong style="color:var(--color-text-primary)">Aggregator tích hợp đa mô hình</strong>, giúp tài xế nhận diện chính xác công suất thực tế (BESS hay điện lưới) và mức TLP Trust Level của từng trạm — tối ưu lưu lượng xe cho mọi mô hình đối tác.</p>
+      <div class="grid-3" style="gap:var(--sp-2)">
+        <div style="background:var(--color-surface-raised);border:1px solid var(--color-border-default);border-radius:10px;padding:var(--sp-2);font-size:.875rem">
+          <div style="color:var(--primitive-brand-teal);font-weight:600;margin-bottom:4px">Mặt bằng đắc địa</div>
+          <p style="color:var(--color-text-secondary)">Quốc lộ, cây xăng, bãi xe: ưu tiên TMT-EGREEN — nguồn xe cố định từ hệ sinh thái.</p>
+        </div>
+        <div style="background:var(--color-surface-raised);border:1px solid var(--color-border-default);border-radius:10px;padding:var(--sp-2);font-size:.875rem">
+          <div style="color:var(--primitive-brand-green);font-weight:600;margin-bottom:4px">Vùng điện yếu</div>
+          <p style="color:var(--color-text-secondary)">Mái xưởng, khu công nghiệp: kết hợp BESS + Solar để giảm áp lực trạm biến áp.</p>
+        </div>
+        <div style="background:var(--color-surface-raised);border:1px solid var(--color-border-default);border-radius:10px;padding:var(--sp-2);font-size:.875rem">
+          <div style="color:var(--tlp-blocked);font-weight:600;margin-bottom:4px">Tránh</div>
+          <p style="color:var(--color-text-secondary)">Trụ công suất lửng lơ 24kW thiếu kết nối nền tảng — biên lợi nhuận thấp, rủi ro cao.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ROADMAP ═══════════════════════════════ -->
+<section id="roadmap">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label"><div class="section-dot"></div>Lộ trình Phát triển</div>
+      <h2 class="section-title">3 Giai đoạn Triển khai</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="roadmap-grid">
+      <div class="roadmap-card roadmap-card--1 reveal d1">
+        <div class="roadmap-card__phase">Giai đoạn 1</div>
+        <div class="roadmap-card__title">MVP Aggregator</div>
+        <p class="roadmap-card__desc">Xây dựng bản đồ tích hợp chuẩn OCPI kết nối các bên thứ 3, triển khai cơ chế xác thực TLP bằng đóng góp cộng đồng.</p>
+        <div class="roadmap-tasks">
+          <div class="roadmap-task">Tích hợp OCPI / OCPP API đa CPO</div>
+          <div class="roadmap-task">TLP Crowdsource validation engine</div>
+          <div class="roadmap-task">Map Hub + Station Details MVP</div>
+          <div class="roadmap-task">Thanh toán Escrow Block 10k</div>
+        </div>
+      </div>
+      <div class="roadmap-card roadmap-card--2 reveal d2">
+        <div class="roadmap-card__phase">Giai đoạn 2</div>
+        <div class="roadmap-card__title">Micro-Data Standard</div>
+        <p class="roadmap-card__desc">Chuẩn hóa tọa độ ram dốc, lối vào hầm và tình trạng barie của 100% trạm sạc tại các đô thị loại 1.</p>
+        <div class="roadmap-tasks">
+          <div class="roadmap-task">Khảo sát &amp; số hóa Ingress Pin HN, HCM</div>
+          <div class="roadmap-task">Database hầm B2/barie/giờ đóng cửa</div>
+          <div class="roadmap-task">Micro-Navigation turn-by-turn</div>
+          <div class="roadmap-task">Smart Dynamic Planner elevation routing</div>
+        </div>
+      </div>
+      <div class="roadmap-card roadmap-card--3 reveal d3">
+        <div class="roadmap-card__phase">Giai đoạn 3</div>
+        <div class="roadmap-card__title">Hardware Integration</div>
+        <p class="roadmap-card__desc">Ra mắt thiết bị kết nối BLE Dongle, đưa VoltSync trở thành ứng dụng tiên phong tại Việt Nam điều phối lộ trình sạc theo năng lượng thực tế.</p>
+        <div class="roadmap-tasks">
+          <div class="roadmap-task">BLE OBD2 Dongle hardware launch</div>
+          <div class="roadmap-task">Apple CarKey / Android Auto API</div>
+          <div class="roadmap-task">Telemetry SoC real-time routing</div>
+          <div class="roadmap-task">Fleet / B2B dashboard cho doanh nghiệp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <div class="nav-logo__mark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#000"/></svg>
+          </div>
+          <span>Volt<em>Sync</em> &mdash; NLP-EGREEN</span>
+        </div>
+        <p>Nền tảng điều phối hạ tầng sạc mở thế hệ mới. <em>Real-time Truth. Zero Anxiety.</em></p>
+      </div>
+      <div>
+        <div style="font-size:.8125rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);margin-bottom:var(--sp-2)">Design System</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:.875rem;color:var(--color-text-secondary)">Font: Work Sans</span>
+          <span style="font-size:.875rem;color:var(--color-text-secondary)">Mono: JetBrains Mono</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+            <span style="width:20px;height:20px;border-radius:4px;background:#49DBC8;display:inline-block" title="--primitive-brand-teal"></span>
+            <span style="width:20px;height:20px;border-radius:4px;background:#BEFF6C;display:inline-block" title="--primitive-brand-green"></span>
+            <span style="width:20px;height:20px;border-radius:4px;background:#00D68F;display:inline-block" title="--tlp-safe"></span>
+            <span style="width:20px;height:20px;border-radius:4px;background:#FFAA00;display:inline-block" title="--tlp-caution"></span>
+            <span style="width:20px;height:20px;border-radius:4px;background:#FF3D71;display:inline-block" title="--tlp-blocked"></span>
+            <span style="width:20px;height:20px;border-radius:4px;background:#57606A;display:inline-block" title="--tlp-system"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 VoltSync · NLP-EGREEN Concept</span>
+      <span>Design System v1.0 · Dark Mode Only</span>
+    </div>
+    <div class="made-with">Made with IBM Bob</div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+}, {passive:true});
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+mobileNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

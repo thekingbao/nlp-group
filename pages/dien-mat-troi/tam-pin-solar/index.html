@@ -27,6 +27,8 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-gray-50">
 
@@ -91,7 +93,7 @@
 <section class="py-16 bg-white" id="cong-nghe">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-black text-dark mb-3">Mono PERC vs TOPCon</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Mono PERC vs TOPCon</h2>
       <p class="text-gray-500 max-w-xl mx-auto">Hai công nghệ tấm pin tiên tiến nhất hiện nay – chọn đúng theo ngân sách và mục tiêu.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -172,7 +174,7 @@
 <section class="py-16 bg-gray-50" id="san-pham">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-black text-dark mb-3">Tấm pin Solar chính hãng</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Tấm pin Solar chính hãng</h2>
       <p class="text-gray-500 max-w-xl mx-auto">Jinko, LONGi, Canadian, Risen – Top 4 nhà sản xuất lớn nhất thế giới, phân phối chính thức tại Việt Nam.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -252,7 +254,7 @@
 <section class="py-16 bg-white" id="huong-dan">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-black text-dark mb-3">Hướng dẫn chọn tấm pin</h2>
+      <h2 class="text-3xl font-black text-dark mb-3 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Hướng dẫn chọn tấm pin</h2>
       <p class="text-gray-500 max-w-xl mx-auto">3 yếu tố chính giúp bạn chọn đúng tấm pin phù hợp nhất.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -323,7 +325,7 @@
 <!-- CTA -->
 <section class="py-16 bg-gradient-to-br from-yellow-900 via-amber-900 to-dark">
   <div class="max-w-3xl mx-auto px-4 text-center">
-    <h2 class="text-3xl font-black text-white mb-4">Không chắc chọn tấm pin nào?</h2>
+    <h2 class="text-3xl font-black text-white mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Không chắc chọn tấm pin nào?</h2>
     <p class="text-gray-300 mb-8 text-lg">Kỹ sư NLP tư vấn miễn phí – đề xuất đúng tấm pin theo mái nhà và ngân sách của bạn.</p>
     <button onclick="openModal()" class="bg-yellow-600 hover:bg-yellow-500 text-white px-10 py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-yellow-500/40 inline-flex items-center gap-3">
       <i class="fa-solid fa-comments"></i> Nhận tư vấn miễn phí
@@ -432,5 +434,7 @@
             <i class="fa-solid fa-map-location-dot"></i>
             <span>D&#7921; &#225;n</span>
         </a>
-    </nav></body>
+    </nav>
+    <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+</body>
 </html>
