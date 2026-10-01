@@ -1,0 +1,50 @@
+:root {
+  --ss-border-radius: 1rem;
+  --ss-primary-color: #003086;
+}
+
+.ss-main {
+  height: 55px;
+}
+
+.ss-main .ss-arrow path {
+  display: none;
+}
+
+.ss-main .ss-arrow {
+  background-image: url("../images/chevon_down.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+.ss-main .ss-values .ss-single {
+  color: var(--color-v3);
+  font-size: 0.875rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  background: url("../images/chevon_down.svg") no-repeat right 1rem
+    center/1.5rem auto;
+}
+
+select:focus {
+  color: var(--color-main);
+}
+
+input::placeholder{
+  color: var(--color-v3);
+}
+
+.ss-main.ss-disabled {
+  background: #fff;
+}

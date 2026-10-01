@@ -1,18 +1,18 @@
-﻿<!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="vi" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="manifest" href="../favicon_io/site.webmanifest">
     <link rel="icon" type="image/x-icon" href="../favicon_io/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tìm Trạm Sạc Gần Nhất – NLP-EGREEN | NLP Group</title>
-    <meta name="description" content="Tra cứu bản đồ trạm sạc xe điện NLP-EGREEN gần bạn nhất. Hệ thống 24+ tỉnh thành, sạc DC nhanh CCS2 tiêu chuẩn châu Âu, hoạt động 24/7.">
-    <meta name="keywords" content="tìm trạm sạc xe điện, trạm sạc gần nhất, NLP EGREEN, bản đồ trạm sạc, CCS2">
+    <title>Tìm Trạm Sạc Gần Nhất – NLP-EGREEN | Bản đồ trạm sạc xe điện toàn quốc</title>
+    <meta name="description" content="Tra cứu bản đồ trạm sạc xe điện NLP-EGREEN gần bạn nhất. Hệ thống 30+ tỉnh thành, sạc DC nhanh CCS2 tiêu chuẩn châu Âu, hoạt động 24/7.">
+    <meta name="keywords" content="tìm trạm sạc xe điện, trạm sạc gần nhất, NLP EGREEN, bản đồ trạm sạc, CCS2, TMT">
     <meta property="og:title" content="Tìm Trạm Sạc Gần Nhất – NLP-EGREEN">
-    <meta property="og:description" content="Bản đồ 24+ trạm sạc xe điện NLP-EGREEN toàn quốc. DC nhanh 120–240kW, hoạt động 24/7.">
+    <meta property="og:description" content="Bản đồ 30+ trạm sạc xe điện NLP-EGREEN toàn quốc. DC nhanh, hoạt động 24/7.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nlpgroup.com.vn/pages/tim-kiem-tram-sac/">
     <meta property="og:image" content="https://nlpgroup.com.vn/favicon_io/og-image.png">
@@ -20,458 +20,483 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://nlpgroup.com.vn/favicon_io/og-image.png">
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLc=" crossorigin=""></script>
-    <script>
-        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'] }, colors: { solar: { 50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d' }, dark:'#0f172a' } } } }
-    </script>
-    <!-- BreadcrumbList Schema -->
+    <link rel="canonical" href="https://nlpgroup.com.vn/pages/tim-kiem-tram-sac/">
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
         {"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://nlpgroup.com.vn"},
-        {"@type":"ListItem","position":2,"name":"Tìm trạm sạc","item":"https://nlpgroup.com.vn/pages/tim-kiem-tram-sac/"}
+        {"@type":"ListItem","position":2,"name":"Tìm trạm sạc gần nhất","item":"https://nlpgroup.com.vn/pages/tim-kiem-tram-sac/"}
     ]}
     </script>
+
+    <!-- TMT-EGREEN CSS Framework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
-</head>
-<body class="font-sans antialiased text-gray-800 bg-gray-50">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../../public/tmt-assets/css/fonts.css">
+    <link rel="stylesheet" href="../../public/tmt-assets/css/output.css">
+    <link rel="stylesheet" href="../../public/tmt-assets/css/custom-select.css">
+    <link rel="stylesheet" href="../../public/tmt-assets/css/main.css">
+    <link rel="stylesheet" href="../../public/tmt-assets/css/add.css">
 
-<!-- NAVBAR (shared) -->
-<nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100" id="navbar">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
-        <a href="../../index.html" class="text-xl font-black text-dark tracking-tighter">NLP <span class="text-solar-600">GROUP</span></a>
-        <div class="hidden md:flex space-x-6 items-center text-sm font-semibold text-gray-600">
-            <a href="../../pages/ve-chung-toi/"  class="hover:text-solar-600">Về chúng tôi</a>
-            <a href="../../pages/tru-sac/"       class="hover:text-solar-600">Trụ sạc</a>
-            <a href="../../pages/bieu-phi/"      class="hover:text-solar-600">Biểu phí</a>
-            <a href="../../pages/app/"           class="hover:text-solar-600">Ứng dụng</a>
-            <a href="../../pages/lien-he/"       class="hover:text-solar-600">Liên hệ</a>
-            <a href="../../pages/doi-tac/" class="bg-solar-600 hover:bg-solar-700 text-white px-4 py-1.5 rounded-full">🤝 Đối tác</a>
-        </div>
-        <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600"><i class="fa-solid fa-bars text-xl"></i></button>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-2">
-        <a href="../../pages/tru-sac/"      class="block py-2 font-medium text-gray-700">Trụ sạc</a>
-        <a href="../../pages/bieu-phi/"     class="block py-2 font-medium text-gray-700">Biểu phí điện</a>
-        <a href="../../pages/app/"          class="block py-2 font-medium text-gray-700">Ứng dụng</a>
-        <a href="../../pages/lien-he/"      class="block py-2 font-medium text-gray-700">Liên hệ</a>
-        <a href="../../pages/doi-tac/"      class="block py-2 font-bold text-solar-600">🤝 Đăng ký Đối tác</a>
-    </div>
-</nav>
+    <!-- NLP Config (Google Maps key, GA4, etc.) -->
+    <script src="../../public/tmt-assets/js/nlp-config.js"></script>
 
-<!-- HERO -->
-<section class="pt-24 pb-10 bg-dark text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="breadcrumb mb-4">
-            <a href="../../index.html">Trang chủ</a><span>/</span>
-            <span class="text-gray-400">Tìm trạm sạc</span>
-        </nav>
-        <div class="flex flex-col md:flex-row justify-between items-start gap-6">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-solar-400 text-xs font-bold uppercase tracking-wider mb-4">
-                    <i class="fa-solid fa-bolt"></i> NLP-EGREEN Network
-                </div>
-                <h1 class="text-3xl md:text-4xl font-black mb-3">Tìm Trạm Sạc Gần Bạn</h1>
-                <p class="text-gray-400 max-w-xl">Hơn 24 tỉnh thành trên toàn quốc. Trạm sạc DC nhanh 120–240kW CCS2, hoạt động 24/7. Nhập địa chỉ hoặc bật định vị để tìm trạm sạc gần nhất.</p>
-            </div>
-            <div class="flex gap-3">
-                <a href="../app/" class="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-4 py-2 rounded-xl text-sm font-semibold transition-colors">
-                    <i class="fa-solid fa-mobile-screen-button"></i> Tải App
-                </a>
-                <a href="../doi-tac/" class="flex items-center gap-2 bg-solar-600 hover:bg-solar-500 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-colors">
-                    <i class="fa-solid fa-handshake"></i> Đầu tư trạm
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+    <script type="text/javascript">
+        var showNotify = "";
+        var messageNotify = "";
+        var typeNotify = "";
+        var typePopup = "";
+        var emailSocial = "";
+        var auth = "";
+        var redirect = "";
+        var onOffModalPartner = "0";
+        var timeShowModalPartner = "6000";
+    </script>
 
-<!-- SEARCH + MAP -->
-<section class="py-8 bg-white border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Search bar -->
-        <div class="flex gap-3 mb-6">
-            <div class="flex-1 relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input id="searchInput" type="text" placeholder="Nhập tỉnh thành, quận huyện..." class="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-solar-500 focus:border-solar-500 outline-none text-sm">
-            </div>
-            <button onclick="locateMe()" class="flex items-center gap-2 bg-solar-600 hover:bg-solar-700 text-white px-5 py-3 rounded-xl font-semibold text-sm transition-colors whitespace-nowrap">
-                <i class="fa-solid fa-location-crosshairs"></i> <span class="hidden sm:inline">Vị trí của tôi</span>
-            </button>
-        </div>
-
-        <!-- Filter chips -->
-        <div class="flex flex-wrap gap-2 mb-6">
-            <button onclick="filterStations('all')" class="filter-chip active px-4 py-1.5 rounded-full text-xs font-bold border-2 border-solar-600 bg-solar-600 text-white transition-all">Tất cả</button>
-            <button onclick="filterStations('dc')"  class="filter-chip px-4 py-1.5 rounded-full text-xs font-bold border-2 border-gray-300 text-gray-600 hover:border-solar-600 hover:text-solar-600 transition-all">⚡ DC Nhanh</button>
-            <button onclick="filterStations('ac')"  class="filter-chip px-4 py-1.5 rounded-full text-xs font-bold border-2 border-gray-300 text-gray-600 hover:border-solar-600 hover:text-solar-600 transition-all">🔌 AC</button>
-            <button onclick="filterStations('open')" class="filter-chip px-4 py-1.5 rounded-full text-xs font-bold border-2 border-gray-300 text-gray-600 hover:border-solar-600 hover:text-solar-600 transition-all">✅ Đang mở</button>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Map -->
-            <div class="lg:col-span-2">
-                <div id="station-map" class="rounded-2xl overflow-hidden border border-gray-200 shadow-sm" style="height:480px; z-index:0;"></div>
-                <p class="text-xs text-gray-400 mt-2 text-center">* Nhấn "Vị trí của tôi" để tìm trạm sạc gần bạn nhất. Dữ liệu cập nhật thời gian thực.</p>
-            </div>
-
-            <!-- Station list -->
-            <div class="overflow-y-auto" style="max-height:500px;" id="stationList">
-                <div class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Danh sách trạm sạc (<span id="stationCount">24</span>)</div>
-                <!-- Stations rendered by JS -->
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- HOW TO CHARGE -->
-<section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Quy trình đơn giản</p>
-            <h2 class="text-3xl font-black text-gray-900 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Sạc xe điện chỉ 4 bước</h2>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-solar-100 rounded-2xl flex items-center justify-center text-2xl text-solar-600 mx-auto mb-4 font-black">1</div>
-                <h3 class="font-bold text-gray-900 mb-2">Mở App</h3>
-                <p class="text-sm text-gray-500">Tải app NLP-EGREEN, đăng nhập tài khoản hoặc dùng QR nhanh</p>
-            </div>
-            <div class="text-center">
-                <div class="w-16 h-16 bg-solar-100 rounded-2xl flex items-center justify-center text-2xl text-solar-600 mx-auto mb-4 font-black">2</div>
-                <h3 class="font-bold text-gray-900 mb-2">Tìm Trạm</h3>
-                <p class="text-sm text-gray-500">Định vị bản đồ, chọn trạm sạc gần nhất còn trống</p>
-            </div>
-            <div class="text-center">
-                <div class="w-16 h-16 bg-solar-100 rounded-2xl flex items-center justify-center text-2xl text-solar-600 mx-auto mb-4 font-black">3</div>
-                <h3 class="font-bold text-gray-900 mb-2">Cắm & Quét</h3>
-                <p class="text-sm text-gray-500">Cắm đầu CCS2, quét QR trên trụ để kích hoạt phiên sạc</p>
-            </div>
-            <div class="text-center">
-                <div class="w-16 h-16 bg-solar-100 rounded-2xl flex items-center justify-center text-2xl text-solar-600 mx-auto mb-4 font-black">4</div>
-                <h3 class="font-bold text-gray-900 mb-2">Thanh Toán</h3>
-                <p class="text-sm text-gray-500">Tự động trừ ví app. Nhận hóa đơn điện tử ngay sau khi sạc</p>
-            </div>
-        </div>
-        <div class="mt-10 text-center">
-            <a href="../app/" class="inline-flex items-center gap-2 bg-solar-600 hover:bg-solar-700 text-white px-8 py-3 rounded-xl font-bold transition-colors shadow-lg shadow-solar-500/30">
-                <i class="fa-solid fa-mobile-screen-button"></i> Tải App NLP-EGREEN Ngay
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- TARIFF PREVIEW -->
-<section class="py-16 bg-white border-t border-gray-100">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p class="text-solar-600 font-bold uppercase tracking-wider text-sm mb-2">Biểu giá điện sạc</p>
-        <h2 class="text-3xl font-black text-gray-900 mb-4 wow animate__animated animate__fadeInUp" data-wow-duration="0.7s">Giá sạc điện từ 15/07/2026</h2>
-        <p class="text-gray-500 mb-8">Theo quyết định EVN – 3 khung giờ tối ưu hóa chi phí sạc cho tài xế</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-green-50 rounded-2xl p-6 border border-green-100">
-                <div class="text-xs font-bold text-green-600 uppercase tracking-wider mb-2">🌙 Giờ Thấp Điểm</div>
-                <div class="text-3xl font-black tariff-off mb-1">3.651 đ</div>
-                <div class="text-sm text-gray-500 font-medium">mỗi kWh</div>
-                <div class="mt-3 text-xs text-gray-400">22:00 – 06:00</div>
-            </div>
-            <div class="bg-yellow-50 rounded-2xl p-6 border border-yellow-100 pricing-card-featured">
-                <div class="text-xs font-bold text-yellow-600 uppercase tracking-wider mb-2">☀️ Giờ Bình Thường</div>
-                <div class="text-3xl font-black tariff-norm mb-1">4.984 đ</div>
-                <div class="text-sm text-gray-500 font-medium">mỗi kWh</div>
-                <div class="mt-3 text-xs text-gray-400">06:00 – 09:30 | 11:30 – 17:00 | 20:00 – 22:00</div>
-            </div>
-            <div class="bg-red-50 rounded-2xl p-6 border border-red-100">
-                <div class="text-xs font-bold text-red-600 uppercase tracking-wider mb-2">⚡ Giờ Cao Điểm</div>
-                <div class="text-3xl font-black tariff-peak mb-1">7.436 đ</div>
-                <div class="text-sm text-gray-500 font-medium">mỗi kWh</div>
-                <div class="mt-3 text-xs text-gray-400">09:30 – 11:30 | 17:00 – 20:00</div>
-            </div>
-        </div>
-        <a href="../bieu-phi/" class="text-solar-600 font-semibold hover:underline text-sm">Xem chi tiết biểu phí đầy đủ →</a>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-dark text-gray-400 py-8 border-t-4 border-solar-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-sm">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-            <span class="font-black text-white">NLP <span class="text-solar-500">GROUP</span></span>
-            <p>&copy; 2026 NLP GROUP. Hotline: <a href="tel:0944086788" class="text-solar-400 font-bold">0333.864.000</a></p>
-            <div class="flex gap-4">
-                <a href="../../index.html" class="hover:text-white">Trang chủ</a>
-                <a href="../lien-he/" class="hover:text-white">Liên hệ</a>
-            </div>
-        </div>
-        <div class="border-t border-gray-800 pt-4 flex flex-wrap justify-center gap-4 text-xs text-gray-500">
-            <a href="../../pages/dieu-khoan/" class="hover:text-white transition-colors">Điều khoản sử dụng</a>
-            <a href="../../pages/bao-mat/"    class="hover:text-white transition-colors">Chính sách bảo mật</a>
-            <a href="../../pages/tin-tuc/"    class="hover:text-white transition-colors">Tin tức</a>
-            <a href="../lien-he/"             class="hover:text-white transition-colors">Liên hệ</a>
-        </div>
-    </div>
-</footer>
-
-
-<script src="../../js/main.js"></script>
-<script>
-/* ── TLP Trust Level Protocol color map ─────────────── */
-const TLP = {
-    safe:    { color: '#00D68F', label: 'TLP Safe',    text: 'Khả dụng cao',    badge: 'bg-emerald-100 text-emerald-700' },
-    caution: { color: '#FFAA00', label: 'TLP Caution', text: 'Cần lưu ý',       badge: 'bg-yellow-100 text-yellow-700'   },
-    blocked: { color: '#FF3D71', label: 'TLP Blocked', text: 'Tạm ngưng',       badge: 'bg-red-100 text-red-700'         },
-    system:  { color: '#57606A', label: 'TLP System',  text: 'Nội bộ/Bảo trì', badge: 'bg-gray-100 text-gray-600'       },
-};
-
-/* ── Station data with TLP field ─────────────────────── */
-const STATIONS = [
-    { id:1,  name:'Trạm Hà Nội – Cầu Giấy',       province:'Hà Nội',      type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:21.0353, lng:105.7916 },
-    { id:2,  name:'Trạm Hà Nội – Hoàng Mai',       province:'Hà Nội',      type:'dc', power:'240kW', ports:4, status:'open',        tlp:'safe',    lat:20.9851, lng:105.8539 },
-    { id:3,  name:'Trạm HCM – Quận 7',             province:'TP.HCM',      type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:10.7297, lng:106.7210 },
-    { id:4,  name:'Trạm HCM – Bình Thạnh',         province:'TP.HCM',      type:'dc', power:'240kW', ports:4, status:'open',        tlp:'caution', lat:10.8122, lng:106.7120 },
-    { id:5,  name:'Trạm Đà Nẵng – Hải Châu',      province:'Đà Nẵng',     type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:16.0678, lng:108.2208 },
-    { id:6,  name:'Trạm Huế – TP Huế',             province:'Huế',         type:'ac', power:'22kW',  ports:2, status:'open',        tlp:'safe',    lat:16.4637, lng:107.5909 },
-    { id:7,  name:'Trạm Bình Định – Quy Nhơn',    province:'Bình Định',   type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:13.7706, lng:109.2188 },
-    { id:8,  name:'Trạm Hưng Yên – Yên Mỹ',       province:'Hưng Yên',    type:'ac', power:'22kW',  ports:2, status:'maintenance', tlp:'system',  lat:20.9018, lng:106.0618 },
-    { id:9,  name:'Trạm Bắc Ninh – TP Bắc Ninh',  province:'Bắc Ninh',    type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:21.1861, lng:106.0763 },
-    { id:10, name:'Trạm Phú Thọ – Việt Trì',      province:'Phú Thọ',     type:'ac', power:'22kW',  ports:2, status:'open',        tlp:'caution', lat:21.3220, lng:105.4018 },
-    { id:11, name:'Trạm Thanh Hóa – TP TH',       province:'Thanh Hóa',   type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:19.8078, lng:105.7851 },
-    { id:12, name:'Trạm Nghệ An – Vinh',           province:'Nghệ An',     type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:18.6790, lng:105.6818 },
-    { id:13, name:'Trạm Hải Phòng – Lê Chân',     province:'Hải Phòng',   type:'dc', power:'240kW', ports:4, status:'open',        tlp:'safe',    lat:20.8449, lng:106.6881 },
-    { id:14, name:'Trạm Quảng Ninh – Hạ Long',    province:'Quảng Ninh',  type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:20.9698, lng:107.0468 },
-    { id:15, name:'Trạm Khánh Hòa – Nha Trang',   province:'Khánh Hòa',   type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:12.2388, lng:109.1967 },
-    { id:16, name:'Trạm Lâm Đồng – Đà Lạt',       province:'Lâm Đồng',    type:'ac', power:'22kW',  ports:2, status:'open',        tlp:'caution', lat:11.9404, lng:108.4583 },
-    { id:17, name:'Trạm Bình Dương – Thủ Dầu Một', province:'Bình Dương', type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:10.9804, lng:106.6519 },
-    { id:18, name:'Trạm Đồng Nai – Biên Hòa',     province:'Đồng Nai',    type:'dc', power:'240kW', ports:4, status:'open',        tlp:'safe',    lat:10.9572, lng:106.8426 },
-    { id:19, name:'Trạm Cần Thơ – Ninh Kiều',     province:'Cần Thơ',     type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:10.0341, lng:105.7880 },
-    { id:20, name:'Trạm Vũng Tàu – TP Vũng Tàu',  province:'Vũng Tàu',   type:'dc', power:'120kW', ports:2, status:'open',        tlp:'caution', lat:10.3460, lng:107.0843 },
-    { id:21, name:'Trạm Nam Định – TP Nam Định',   province:'Nam Định',    type:'ac', power:'22kW',  ports:2, status:'open',        tlp:'safe',    lat:20.4204, lng:106.1683 },
-    { id:22, name:'Trạm Thái Nguyên – TP TN',     province:'Thái Nguyên', type:'ac', power:'22kW',  ports:2, status:'maintenance', tlp:'system',  lat:21.5942, lng:105.8481 },
-    { id:23, name:'Trạm Quảng Nam – Hội An',      province:'Quảng Nam',   type:'ac', power:'22kW',  ports:2, status:'open',        tlp:'safe',    lat:15.8801, lng:108.3380 },
-    { id:24, name:'Trạm Gia Lai – Pleiku',         province:'Gia Lai',     type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:13.9833, lng:108.0000 },
-];
-
-/* ── Leaflet Map ─────────────────────────────────────── */
-let map, markersLayer;
-
-function tlpMarkerIcon(tlp) {
-    const c = TLP[tlp]?.color || '#57606A';
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36">
-        <path d="M14 0C6.27 0 0 6.27 0 14c0 9.6 14 22 14 22S28 23.6 28 14C28 6.27 21.73 0 14 0z" fill="${c}" stroke="white" stroke-width="1.5"/>
-        <text x="14" y="18" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">⚡</text>
-    </svg>`;
-    return L.divIcon({
-        html: svg,
-        className: '',
-        iconSize: [28, 36],
-        iconAnchor: [14, 36],
-        popupAnchor: [0, -36]
-    });
-}
-
-function initMap() {
-    map = L.map('station-map', { zoomControl: true, scrollWheelZoom: false })
-        .setView([16.5, 107.5], 6);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        maxZoom: 18
-    }).addTo(map);
-
-    markersLayer = L.layerGroup().addTo(map);
-    renderMarkers(STATIONS);
-}
-
-function renderMarkers(stations) {
-    markersLayer.clearLayers();
-    stations.forEach(s => {
-        const t = TLP[s.tlp] || TLP.system;
-        const marker = L.marker([s.lat, s.lng], { icon: tlpMarkerIcon(s.tlp) });
-        marker.bindPopup(`
-            <div style="min-width:200px;font-family:Inter,sans-serif">
-                <div style="font-weight:800;font-size:13px;margin-bottom:4px">${s.name}</div>
-                <div style="display:flex;gap:6px;align-items:center;margin-bottom:8px">
-                    <span style="background:${t.color}20;color:${t.color};padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700">${t.label}</span>
-                    <span style="color:#64748b;font-size:11px">${s.type.toUpperCase()} · ${s.power}</span>
-                </div>
-                <div style="color:#64748b;font-size:11px;margin-bottom:8px">${s.ports} cổng · ${s.province}</div>
-                <button onclick="showStation(${s.id})" style="width:100%;background:#16a34a;color:white;border:none;padding:7px 0;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer">Xem chi tiết</button>
-            </div>
-        `, { maxWidth: 240 });
-        marker.on('click', () => map.panTo([s.lat, s.lng]));
-        markersLayer.addLayer(marker);
-    });
-}
-
-/* ── Filter & List render ────────────────────────────── */
-let activeFilter = 'all';
-
-function renderList(stations) {
-    const list = document.getElementById('stationList');
-    document.getElementById('stationCount').textContent = stations.length;
-    let html = '';
-    stations.forEach(s => {
-        const t = TLP[s.tlp] || TLP.system;
-        const typeLabel = s.type === 'dc' ? '⚡ DC' : '🔌 AC';
-        html += `<div class="bg-white rounded-xl border border-gray-200 p-4 mb-3 hover:border-solar-400 hover:shadow-md transition-all cursor-pointer" onclick="showStation(${s.id})" data-id="${s.id}">
-            <div class="flex justify-between items-start mb-2">
-                <div class="text-sm font-bold text-gray-900 leading-tight pr-2">${s.name}</div>
-                <span class="shrink-0 text-xs px-2 py-0.5 rounded-full font-semibold ${t.badge}">${t.label}</span>
-            </div>
-            <div class="flex gap-3 text-xs text-gray-500">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-map-marker-alt" style="color:${t.color}"></i> ${s.province}</span>
-                <span>${typeLabel} ${s.power}</span>
-                <span><i class="fa-solid fa-plug text-gray-400"></i> ${s.ports} cổng</span>
-            </div>
-        </div>`;
-    });
-    list.innerHTML = '<div class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">Danh sách trạm sạc (<span id="stationCount">' + stations.length + '</span>)</div>' + (html || '<p class="text-gray-400 text-sm text-center py-8">Không tìm thấy trạm sạc phù hợp.</p>');
-}
-
-function filterStations(type) {
-    activeFilter = type;
-    document.querySelectorAll('.filter-chip').forEach(c => {
-        c.classList.remove('active','bg-solar-600','text-white','border-solar-600');
-        c.classList.add('border-gray-300','text-gray-600');
-    });
-    event.target.classList.add('active','bg-solar-600','text-white','border-solar-600');
-    event.target.classList.remove('border-gray-300','text-gray-600');
-    let filtered = STATIONS;
-    if (type === 'dc')   filtered = STATIONS.filter(s => s.type === 'dc');
-    if (type === 'ac')   filtered = STATIONS.filter(s => s.type === 'ac');
-    if (type === 'open') filtered = STATIONS.filter(s => s.status === 'open');
-    renderList(filtered);
-    if (map) renderMarkers(filtered);
-}
-
-function showStation(id) {
-    const s = STATIONS.find(x => x.id === id);
-    if (!s) return;
-    const t = TLP[s.tlp] || TLP.system;
-    document.getElementById('stationModalName').textContent   = s.name;
-    document.getElementById('stationModalType').textContent   = s.type.toUpperCase() + ' · ' + s.power;
-    document.getElementById('stationModalPorts').textContent  = s.ports + ' cổng sạc';
-    // TLP badge
-    const statusEl = document.getElementById('stationModalStatus');
-    statusEl.textContent = t.label + ' — ' + t.text;
-    statusEl.className   = 'inline-block px-2 py-0.5 rounded-full text-xs font-semibold ' + t.badge;
-    document.getElementById('stationModalMap').href =
-        `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
-    // Pan map to station
-    if (map) { map.panTo([s.lat, s.lng]); map.setZoom(13); }
-    const sheet = document.getElementById('stationSheet');
-    sheet.classList.remove('translate-y-full');
-    sheet.classList.add('translate-y-0');
-    document.body.style.overflow = 'hidden';
-}
-function closeStationSheet() {
-    const sheet = document.getElementById('stationSheet');
-    sheet.classList.remove('translate-y-0');
-    sheet.classList.add('translate-y-full');
-    document.body.style.overflow = '';
-}
-
-function locateMe() {
-    if (!navigator.geolocation) { alert('Trình duyệt không hỗ trợ định vị.'); return; }
-    navigator.geolocation.getCurrentPosition(pos => {
-        const { latitude: lat, longitude: lng } = pos.coords;
-        if (map) {
-            map.setView([lat, lng], 11);
-            L.circleMarker([lat, lng], { radius: 10, fillColor: '#3b82f6', fillOpacity: 0.9, color: 'white', weight: 2 })
-                .addTo(map).bindPopup('Vị trí của bạn').openPopup();
+    <!-- GA4 Tracking: Bấm chỉ đường trạm -->
+    <script>
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('a[onclick*="SEARCH_MAP.openDirection"]');
+        if (!btn) return;
+        const popup = btn.closest('.map-small');
+        let tenTram = '', diaChi = '';
+        if (popup) {
+            tenTram = (popup.querySelector('.name-info') || {}).textContent?.trim() || '';
+            diaChi  = (popup.querySelector('.map-info')  || {}).textContent?.trim() || '';
         }
-        const sorted = [...STATIONS].sort((a, b) =>
-            Math.hypot(a.lat-lat, a.lng-lng) - Math.hypot(b.lat-lat, b.lng-lng)
-        );
-        renderList(sorted);
-        if (map) renderMarkers(sorted);
-    }, () => alert('Không thể lấy vị trí. Vui lòng nhập địa chỉ tìm kiếm.'));
-}
+        if (!tenTram) {
+            let card = btn.parentElement, depth = 0;
+            while (card && card !== document.body && depth < 8) {
+                const h = card.querySelector('h3');
+                if (h) {
+                    tenTram = h.textContent.trim();
+                    const next = h.nextElementSibling;
+                    diaChi = (next && next.tagName === 'P') ? next.textContent.trim() : (card.querySelector('p') || {}).textContent?.trim() || '';
+                    break;
+                }
+                card = card.parentElement; depth++;
+            }
+        }
+        tenTram = tenTram.replace(/^Tên:\s*/i, '').trim();
+        diaChi  = diaChi.replace(/^Địa\s*Chỉ:\s*/i, '').trim();
+        let tinhThanh = '';
+        const parts = diaChi.split(',');
+        for (const p of parts.reverse()) {
+            const m = p.trim().match(/^(?:thành phố|tp\.?)\s+(.+)$/i);
+            if (m) { tinhThanh = m[1].trim(); break; }
+        }
+        const ep = { ten_tram: tenTram, vi_tri_nut: popup ? 'chi_duong_ban_do' : 'chi_duong_danh_sach', trang_nguon: window.location.pathname };
+        if (tinhThanh) ep.tinh_thanh = tinhThanh;
+        if (typeof gtag === 'function') gtag('event', 'bam_chi_duong_tram', ep);
+    }, true);
+    </script>
 
-document.getElementById('searchInput').addEventListener('input', function() {
-    const q = this.value.toLowerCase();
-    const filtered = STATIONS.filter(s => s.name.toLowerCase().includes(q) || s.province.toLowerCase().includes(q));
-    renderList(filtered);
-    if (map) renderMarkers(filtered);
-});
+    <!-- GA4 Tracking: Bấm gọi hotline -->
+    <script>
+    document.addEventListener('click', function(e) {
+        const btn = e.target.closest('a[href^="tel:"]');
+        if (!btn) return;
+        const so = (btn.getAttribute('href') || '').replace('tel:', '').replace(/\s+/g, '').trim();
+        let viTri = 'trong_bai';
+        if (btn.closest('header')) viTri = 'dau_trang';
+        else if (btn.closest('footer')) viTri = 'chan_trang';
+        else if (window.getComputedStyle(btn).position === 'fixed' || btn.closest('[class*="fixed"]')) viTri = 'nut_noi';
+        if (typeof gtag === 'function') gtag('event', 'bam_goi_hotline', { so_dien_thoai: so, vi_tri_nut: viTri, trang_nguon: window.location.pathname, loai_thiet_bi: /Android|iPhone|iPod|Mobile/i.test(navigator.userAgent) ? 'dien_thoai' : 'may_tinh' });
+    }, true);
+    </script>
 
-// Init on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-    renderList(STATIONS);
-    initMap();
-});
-</script>
+    <!-- GA4 Tracking: Xem chi tiết trạm -->
+    <script>
+    document.addEventListener('click', function(e) {
+        var btn = e.target.closest('a[data-action*="/station/detail/station/"]');
+        if (!btn) return;
+        var popup = btn.closest('.map-small');
+        var nameEl = popup ? popup.querySelector('.name-info') : null;
+        var tenTram = nameEl ? nameEl.textContent.trim().replace(/^Tên:\s*/i,'') : '';
+        var tramId = ((btn.getAttribute('data-action') || '').match(/\/station\/(\d+)/) || [])[1] || '';
+        if (typeof gtag === 'function') gtag('event', 'xem_chi_tiet_tram', { ten_tram: tenTram, tram_id: tramId, vi_tri_nut: 'chi_tiet_ban_do', trang_nguon: window.location.pathname });
+    }, true);
+    </script>
 
-<!-- ── STATION DETAIL SHEET ───────────────────────────────────────── -->
-<div id="stationSheet"
-     class="fixed inset-x-0 bottom-0 z-[9998] transform translate-y-full transition-transform duration-300 ease-out"
-     style="padding-bottom: env(safe-area-inset-bottom);">
-    <!-- backdrop -->
-    <div class="absolute inset-x-0 bottom-full h-screen bg-black/40 -z-10" onclick="closeStationSheet()"></div>
-    <div class="bg-white rounded-t-2xl shadow-2xl px-5 pt-4 pb-8 max-w-lg mx-auto">
-        <!-- drag handle -->
-        <div class="w-10 h-1 bg-gray-300 rounded-full mx-auto mb-4"></div>
-        <!-- header -->
-        <div class="flex items-start justify-between gap-3 mb-4">
-            <div>
-                <h3 id="stationModalName" class="text-base font-bold text-gray-900 leading-tight"></h3>
-                <p id="stationModalType" class="text-sm text-gray-500 mt-0.5"></p>
+    <!-- GA4 Tracking: Tìm kiếm / lọc -->
+    <script>
+    document.addEventListener('click', function(e) {
+        var dd = e.target.closest('a[onclick*="SEARCH_MAP.chooseAddress"]');
+        if (dd) { if (typeof gtag === 'function') gtag('event', 'tim_kiem_tram_sac', { kieu_tim_kiem: 'dia_diem_goi_y', vi_tri_nut: 'goi_y_tim_kiem', trang_nguon: window.location.pathname }); return; }
+        var tinh = e.target.closest('li[onclick*="AJAX_CALL_API.handleSelectProvince"]');
+        if (tinh) { if (typeof gtag === 'function') gtag('event', 'tim_kiem_tram_sac', { kieu_tim_kiem: 'tinh_thanh', tinh_thanh_tim_kiem: (tinh.textContent || '').trim(), vi_tri_nut: 'bo_loc_tinh_thanh', trang_nguon: window.location.pathname }); }
+    }, true);
+    </script>
+</head>
+
+<body class="">
+    <div class="header-scroll-watcher"></div>
+
+    <!-- ══ NAVBAR — NLP Group ══════════════════════════════════════ -->
+    <header class="transition-all duration-300 bg-white" id="navbar">
+        <div class="container flex items-center justify-between py-3">
+            <a href="../../index.html" class="h-[58px] md:h-[70px] max-sm:w-[92px] img__contain img__h-full block logo__header">
+                <img src="https://nlp-egreen.com/uploads/logo/NLP-EGREEN-xanh-w300.png"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+                     alt="NLP-EGREEN" class="img-fluid h-full" width="300" height="192">
+                <span style="display:none;font-size:1.25rem;font-weight:900;color:#263B7F">NLP <span style="color:#16a34a">GROUP</span></span>
+            </a>
+            <div class="main-menu">
+                <a href="../../index.html" class="h-[58px] img__contain img__h-full block px-4 lg:hidden my-5">
+                    <img src="https://nlp-egreen.com/uploads/logo/NLP-EGREEN-xanh-w300.png" alt="NLP-EGREEN" class="img-fluid h-full" width="300" height="192">
+                </a>
+                <ul class="">
+                    <li><a href="../../index.html" title="Trang chủ" class=" ">Trang chủ</a></li>
+                    <li><a href="/pages/tim-kiem-tram-sac/#oto" title="Tra cứu trạm sạc" class="active">Tra cứu trạm sạc</a>
+                        <ul class="">
+                            <li><a href="/pages/tim-kiem-tram-sac/#oto" title="Trạm sạc gần nhất" class="active">Trạm sạc gần nhất</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../../pages/doi-tac/" title="Đăng ký đối tác" class=" ">Đăng ký đối tác</a></li>
+                    <li><a href="../../pages/ve-chung-toi/" title="Về chúng tôi" class=" ">Về chúng tôi</a></li>
+                    <li><a href="../../pages/tin-tuc/" title="Tin tức" class=" ">Tin tức</a></li>
+                    <li><a href="../../pages/app/" title="App NLP-EGREEN" class=" ">App</a></li>
+                </ul>
+                <p class="my-4 font-semibold text-center text-v2 lg:hidden">Theo dõi chúng tôi</p>
+                <div class="flex gap-2.5 lg:hidden justify-center">
+                    <a href="https://www.facebook.com/tramsac.nlpegreen" target="_blank" rel="noopener" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                        <svg viewBox="0 0 7 14" fill="none"><path d="M2.14405 13.2218V7.38249H0.555664V5.28007H2.14405V3.48432C2.14405 2.07321 3.08232 0.777344 5.24429 0.777344C6.11964 0.777344 6.76692 0.858917 6.76692 0.858917L6.71591 2.82223C6.71591 2.82223 6.05579 2.81598 5.33544 2.81598C4.5558 2.81598 4.43089 3.16523 4.43089 3.74491V5.28007H6.77789L6.67577 7.38249H4.43089V13.2218H2.14405Z" fill="#192031"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@tramsac.nlpegreen" target="_blank" rel="noopener" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                        <svg viewBox="0 0 640 640"><path d="M581.7 188.1C575.5 164.4 556.9 145.8 533.4 139.5C490.9 128 320.1 128 320.1 128C320.1 128 149.3 128 106.7 139.5C83.2 145.8 64.7 164.4 58.4 188.1C47 231 47 320.4 47 320.4C47 320.4 47 409.8 58.4 452.7C64.7 476.3 83.2 494.2 106.7 500.5C149.3 512 320.1 512 320.1 512C320.1 512 490.9 512 533.5 500.5C557 494.2 575.5 476.3 581.8 452.7C593.2 409.8 593.2 320.4 593.2 320.4C593.2 320.4 593.2 231 581.8 188.1zM264.2 401.6L264.2 239.2L406.9 320.4L264.2 401.6z" fill="#192031"/></svg>
+                    </a>
+                </div>
             </div>
-            <button onclick="closeStationSheet()" class="text-gray-400 hover:text-gray-600 mt-0.5 flex-shrink-0">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
+            <div class="lg:hidden">
+                <div class="hamburger hamburger--squeeze btn-menu-mobile">
+                    <div class="hamburger-box"><div class="hamburger-inner"></div></div>
+                </div>
+            </div>
         </div>
-        <!-- info row -->
-        <div class="flex items-center gap-3 mb-5">
-            <span id="stationModalStatus" class="inline-block px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700"></span>
-            <span class="flex items-center gap-1 text-sm text-gray-600">
-                <i class="fa-solid fa-plug text-solar-600"></i>
-                <span id="stationModalPorts"></span>
+        <div class="main-menu-overlay lg:hidden fixed top-0 right-0 w-full h-full bg-black/50 z-[99] transition-all duration-300 invisible opacity-0 pointer-events-none"></div>
+    </header>
+
+    <style>
+        @media (min-width: 960px) {
+            .main-menu > ul > li:has(a[href*="tim-kiem-tram-sac"]) {
+                background: var(--color-v1);
+                color: #fff;
+            }
+        }
+    </style>
+
+    <!-- ══ BODY CONTENT — Giữ nguyên từ TMT-EGREEN ═════════════ -->
+    <div class="container flex justify-center gap-4 py-8 md:gap-6">
+        <a href="../../pages/tim-kiem-tram-sac/" class="flex max-md:flex-col max-md:text-center max-md:text-[0.875rem] items-center p-3 rounded-[1rem] border border-v3 shadow-[0_5px_20px_0_rgba(0,0,0,.15)] font-bold hover:bg-v1 hover:text-white hover__image">
+            <span class="img__contain img__h-full size-[2.125rem] shrink-0 md:mr-4">
+                <img src="https://nlp-egreen.com/theme/frontend/images/find_station_3.svg" alt="Tìm trạm sạc ô tô gần nhất">
             </span>
-        </div>
-        <!-- actions -->
-        <div class="grid grid-cols-2 gap-3">
-            <a id="stationModalMap"
-               href="#" target="_blank" rel="noopener"
-               class="flex items-center justify-center gap-2 bg-solar-600 hover:bg-solar-700 text-white font-semibold py-3 rounded-xl text-sm transition-colors">
-                <i class="fa-solid fa-map-location-dot"></i> Chỉ đường
-            </a>
-            <a href="tel:0944086788"
-               class="flex items-center justify-center gap-2 border border-solar-600 text-solar-700 font-semibold py-3 rounded-xl text-sm hover:bg-solar-50 transition-colors">
-                <i class="fa-solid fa-phone"></i> Hỗ trợ
-            </a>
-        </div>
+            Tìm trạm sạc ô tô gần nhất
+        </a>
     </div>
-</div>
-    <!-- Mobile Bottom Navigation (4-tab app-like) -->
-    <nav class="mobile-cta-bar md:hidden" id="mobileBottomNav" aria-label="Mobile navigation">
-        <a href="../index.html" class="nav-tab" id="nav-home">
-            <i class="fa-solid fa-house"></i>
-            <span>Trang ch&#7911;</span>
+
+    <section class="container" id="oto">
+        <div class="flex max-w-[582px] mx-auto rounded-[1.25rem] border border-v1 divide-x divide-v1 overflow-hidden mb-10">
+            <label for="label-type-2" class="flex-1 text-center py-5 leading-[130%] md:text-[1.3125rem] font-semibold hover:bg-v1 hover:text-white cursor-pointer transition-all duration-300 flex items-center justify-center">
+                <input type="radio" name="station_type" onchange="SEARCH_MAP.submitSearchStation();" value="2" id="label-type-2" checked hidden>
+                Trạm sạc ô tô
+            </label>
+        </div>
+
+        <div class="flex flex-wrap mb-5 -mx-2 custom-select custom-select-home">
+            <div class="w-1/2 p-2 lg:w-1/3 max-sm:order-2">
+                <p class="text-[1.3125rem] font-semibold mb-3 max-sm:hidden">Tỉnh/Thành Phố</p>
+                <select name="province" data-action="https://nlp-egreen.com/load-ward" id="select-province" class="w-full find_nearest_station_province">
+                    <option hidden>Chọn tỉnh/thành phố</option>
+                    <option value="11" data-lat="21.02827835" data-lng="105.85388184">Hà Nội</option>
+                    <option value="12" data-lat="10.75374031" data-lng="106.69180298">Hồ Chí Minh</option>
+                    <option value="13" data-lat="16.075243" data-lng="108.22414398">Đà Nẵng</option>
+                    <option value="14" data-lat="20.8647213" data-lng="106.68383026">Hải Phòng</option>
+                    <option value="15" data-lat="10.03620052" data-lng="105.7880249">Cần Thơ</option>
+                    <option value="16" data-lat="16.3317852" data-lng="107.51277161">Huế</option>
+                    <option value="17" data-lat="10.51084805" data-lng="10.51084805">An Giang</option>
+                    <option value="18" data-lat="21.18541527" data-lng="106.0750351">Bắc Ninh</option>
+                    <option value="19" data-lat="9.1766758" data-lng="105.15153503">Cà Mau</option>
+                    <option value="20" data-lat="22.66864395" data-lng="106.25783539">Cao Bằng</option>
+                    <option value="21" data-lat="12.824841" data-lng="108.205833">Đắk Lắk</option>
+                    <option value="22" data-lat="21.71076012" data-lng="103.02302551">Điện Biên</option>
+                    <option value="23" data-lat="11.58340168" data-lng="107.36209106">Đồng Nai</option>
+                    <option value="24" data-lat="10.45921803" data-lng="105.63167572">Đồng Tháp</option>
+                    <option value="25" data-lat="13.79759502" data-lng="108.24095154">Gia Lai</option>
+                    <option value="26" data-lat="18.28988075" data-lng="105.73725128">Hà Tĩnh</option>
+                    <option value="27" data-lat="20.65440178" data-lng="106.05730438">Hưng Yên</option>
+                    <option value="28" data-lat="12.3352232" data-lng="109.02896881">Khánh Hòa</option>
+                    <option value="29" data-lat="22.31705284" data-lng="103.18743896">Lai Châu</option>
+                    <option value="30" data-lat="11.75080681" data-lng="108.09565735">Lâm Đồng</option>
+                    <option value="31" data-lat="21.84640121" data-lng="106.7532959">Lạng Sơn</option>
+                    <option value="32" data-lat="22.36502838" data-lng="104.11287689">Lào Cai</option>
+                    <option value="33" data-lat="19.23662376" data-lng="104.94567108">Nghệ An</option>
+                    <option value="34" data-lat="20.24882317" data-lng="105.97868347">Ninh Bình</option>
+                    <option value="35" data-lat="21.32284355" data-lng="105.39972687">Phú Thọ</option>
+                    <option value="36" data-lat="15.12232685" data-lng="108.79935455">Quảng Ngãi</option>
+                    <option value="37" data-lat="21.26178741" data-lng="107.25923157">Quảng Ninh</option>
+                    <option value="38" data-lat="16.7538681" data-lng="107.1867218">Quảng Trị</option>
+                    <option value="39" data-lat="21.33163071" data-lng="103.90287781">Sơn La</option>
+                    <option value="40" data-lat="11.3145752" data-lng="106.09425354">Tây Ninh</option>
+                    <option value="41" data-lat="21.55111504" data-lng="105.86340332">Thái Nguyên</option>
+                    <option value="42" data-lat="19.80939293" data-lng="105.78043365">Thanh Hóa</option>
+                    <option value="43" data-lat="22.11313248" data-lng="105.26831818">Tuyên Quang</option>
+                    <option value="44" data-lat="10.24875832" data-lng="105.96956635">Vĩnh Long</option>
+                </select>
+            </div>
+            <div class="w-1/2 p-2 lg:w-1/3 max-sm:order-3">
+                <p class="text-[1.3125rem] font-semibold mb-3 max-sm:hidden">Phường/Xã</p>
+                <select name="ward" id="select-district" class="w-full find_nearest_station_province_ward">
+                    <option hidden>Chọn phường/xã</option>
+                </select>
+            </div>
+            <div class="w-full p-2 lg:w-1/3 max-sm:order-1">
+                <p class="text-[1.3125rem] font-semibold mb-3 max-sm:hidden">Tìm địa điểm</p>
+                <div class="relative cursor-pointer module-search-location box_item_search_map">
+                    <input type="text" placeholder="Vị trí của bạn"
+                        class="h-[55px] rounded-[1rem] border border-[#D9D9D9] sm:bg-[#F4F4F4] w-full p-4 pr-10"
+                        oninput="SEARCH_MAP.searchByName(this,document.getElementById('result_address'));"
+                        onfocus="SEARCH_MAP.getLocationCurrent(this,document.getElementById('result_address'))"
+                        data-action-location-current="#"
+                        data-action="https://nlp-egreen.com/location/name"
+                        data-action-search="#"
+                        data-province="" data-ward="" data-item-type="all"
+                        id="input_address_search_station">
+                    <a href="javascript:void(0);" onclick="SEARCH_MAP.submitSearchStation();" class="absolute -translate-y-1/2 cursor-pointer right-4 top-1/2" style="height:100%;width:45px;right:0;display:flex;align-items:center;justify-content:center;">
+                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none"><circle cx="12.1323" cy="11.2236" r="8.72358" stroke="#252525" stroke-width="1.5"/><path d="M17.5845 18.8564L20.4357 22.4997" stroke="#252525" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </a>
+                    <div class="module-search-location-result absolute z-[100] rounded-b-[1rem] left-0 w-full border border-[#D9D9D9] top-full bg-[#F4F4F4] origin-top scale-y-0 transition-all duration-300" id="result_address"></div>
+                </div>
+            </div>
+            <div class="w-full p-2 lg:w-1/3 max-sm:order-4">
+                <div class="h-[55px] rounded-[1rem] border border-[#D9D9D9] w-full p-4 flex gap-2 items-center">
+                    <span class="font-semibold">Lọc theo</span>
+                    <span class="size-3.5 ml-auto border border-[#E0E0E0] rounded-full"></span>
+                    <select name="filter_active" onchange="SEARCH_MAP.submitSearchStation();" style="width:150px;">
+                        <option value="0" hidden>Trạng thái</option>
+                        <option value="1">Đang bảo trì</option>
+                        <option value="2">Đang hoạt động</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative">
+            <div class="sm:rounded-xl lg:rounded-[1.25rem] overflow-hidden max-sm:w-[calc(100%+2rem)] max-sm:-mx-4">
+                <div id="map_near_station" class="min-h-[626px]"
+                     data-icon="https://nlp-egreen.com/theme/frontend/images/map_icon.svg">
+                </div>
+            </div>
+            <div class="px-11">
+                <p class="text-[1.3125rem] font-semibold my-5">Các trạm sạc trong khu vực</p>
+                <div class="mb-5 swiper swiper-find-station result_find_station" id="result_near_station">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="col-span-1 px-3 py-2 border cursor-pointer md:px-6 md:py-4 rounded-xl border-v3 item" onclick="AJAX_CALL_API.initModulePopupChargingStationDetail(this)" data-action="https://nlp-egreen.com/station/detail/station/22" data-lat="10.862604097278" data-lng="106.65531737185" data-name="TS_TĐT Wuling Hồ Chí Minh" data-address="Ngã 3 Đ. Lê Thị Riêng, Thới An" data-phone="22" data-icon="https://nlp-egreen.com/theme/frontend/images/khadung.svg">
+                                <p class="mb-1 line-clamp-1">TS_TĐT Wuling Hồ Chí Minh</p>
+                                <div class="flex items-center text-v3"><span class="size-[13px] rounded-full mr-2 bg-[#00AE00] animate-pulse"></span>Còn chỗ</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="col-span-1 px-3 py-2 border cursor-pointer md:px-6 md:py-4 rounded-xl border-v3 item" onclick="AJAX_CALL_API.initModulePopupChargingStationDetail(this)" data-action="https://nlp-egreen.com/station/detail/station/32" data-lat="21.051675474256" data-lng="105.89146572238" data-name="TS_LK Wuling Long Biên" data-address="Wuling HTA đường Nguyễn Văn Linh, Việt Hưng" data-phone="32" data-icon="https://nlp-egreen.com/theme/frontend/images/khadung.svg">
+                                <p class="mb-1 line-clamp-1">TS_LK Wuling Long Biên</p>
+                                <div class="flex items-center text-v3"><span class="size-[13px] rounded-full mr-2 bg-[#00AE00] animate-pulse"></span>Còn chỗ</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="col-span-1 px-3 py-2 border cursor-pointer md:px-6 md:py-4 rounded-xl border-v3 item" onclick="AJAX_CALL_API.initModulePopupChargingStationDetail(this)" data-action="https://nlp-egreen.com/station/detail/station/41" data-lat="20.67788472924" data-lng="106.0583979475" data-name="TS_TĐT Wuling Hưng Yên" data-address="58 Nguyễn Văn Linh, Phường Phố Hiến, TP Hưng Yên" data-phone="41" data-icon="https://nlp-egreen.com/theme/frontend/images/khadung.svg">
+                                <p class="mb-1 line-clamp-1">TS_TĐT Wuling Hưng Yên</p>
+                                <div class="flex items-center text-v3"><span class="size-[13px] rounded-full mr-2 bg-[#00AE00] animate-pulse"></span>Còn chỗ</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="col-span-1 px-3 py-2 border cursor-pointer md:px-6 md:py-4 rounded-xl border-v3 item" onclick="AJAX_CALL_API.initModulePopupChargingStationDetail(this)" data-action="https://nlp-egreen.com/station/detail/station/44" data-lat="21.187777878845" data-lng="106.06807412699" data-name="TS_LK Ô TÔ KINH BẮC" data-address="Showroom BESTUNE Bắc Ninh - 233 đường Hồ Ngọc Lân, Phường Kinh Bắc" data-phone="44" data-icon="https://nlp-egreen.com/theme/frontend/images/khadung.svg">
+                                <p class="mb-1 line-clamp-1">TS_LK Ô TÔ KINH BẮC</p>
+                                <div class="flex items-center text-v3"><span class="size-[13px] rounded-full mr-2 bg-[#00AE00] animate-pulse"></span>Còn chỗ</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="col-span-1 px-3 py-2 border cursor-pointer md:px-6 md:py-4 rounded-xl border-v3 item" onclick="AJAX_CALL_API.initModulePopupChargingStationDetail(this)" data-action="https://nlp-egreen.com/station/detail/station/46" data-lat="21.363536749818" data-lng="105.36521640675" data-name="TS_LK WULING PHÚ THỌ" data-address="Đ. Trường Chinh, Khu 7, Vân Phú, Phú Thọ" data-phone="46" data-icon="https://nlp-egreen.com/theme/frontend/images/khadung.svg">
+                                <p class="mb-1 line-clamp-1">TS_LK WULING PHÚ THỌ</p>
+                                <div class="flex items-center text-v3"><span class="size-[13px] rounded-full mr-2 bg-[#00AE00] animate-pulse"></span>Còn chỗ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center swiper-pagination-find-station"></div>
+                </div>
+                <div class="space-y-5 module-statis">
+                    <div class="wow fadeInLeft" data-wow-delay="0.15s">
+                        <p class="text-v6 text-[6rem] xs:text-[7rem] leading-[100%] font-extrabold font-archivo-condensed">
+                            <span class="count" tech5s-number="30">0</span>/34
+                        </p>
+                        <p class="text-[1.375rem] font-bold uppercase leading-none">Tỉnh thành đã phủ sạc</p>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.25s">
+                        <p class="text-v6 text-[6rem] xs:text-[7rem] leading-[100%] font-extrabold font-archivo-condensed count" tech5s-number="30.000">0</p>
+                        <p class="text-[1.375rem] font-bold uppercase leading-none">Trạm sạc khắp cả nước</p>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.35s">
+                        <p class="text-v6 text-[6rem] xs:text-[7rem] leading-[100%] font-extrabold font-archivo-condensed count" tech5s-number="200+">0</p>
+                        <p class="text-[1.375rem] font-bold uppercase leading-none">Trạm sạc sắp mở</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App section -->
+    <section class="container pt-10">
+        <h2 class="mb-6 title__all wow fadeIn" data-wow-delay="0.1s">ỨNG DỤNG SẠC THÔNG MINH NLP-EGREEN</h2>
+        <div class="mb-5 s-content wow fadeIn" data-wow-delay="0.2s">
+            <p>Ứng dụng NLP-EGREEN tích hợp trên điện thoại giúp khách hàng nhanh chóng tìm trạm sạc gần nhất, theo dõi trực tiếp dung lượng sạc pin, kiểm soát trực tiếp biến động tiền chi phí sạc.</p>
+        </div>
+        <div class="flex justify-center gap-4 mt-6 wow fadeIn" data-wow-delay="0.3s">
+            <a href="https://play.google.com/store/apps/details?id=com.nlp.egreen" target="_blank" class="btn-google-play"></a>
+            <a href="../../pages/app/" class="btn-app-store"></a>
+        </div>
+    </section>
+
+    <!-- Các bước sạc -->
+    <section class="container py-10">
+        <div class="max-w-[1000px] mx-auto">
+            <h2 class="text-v5 xs:text-center font-semibold text-[1.3125rem] mb-3 wow fadeIn" data-wow-delay="0.2s">CÁC BƯỚC THỰC HIỆN SẠC TẠI TRẠM SẠC NLP-EGREEN</h2>
+            <div class="flex flex-wrap -mx-4 lg:-mx-7">
+                <div class="w-1/2 p-4 lg:px-7 md:w-1/4">
+                    <p class="text-v5 text-[1.3125rem] font-semibold mb-2 mt-3 wow fadeIn" data-wow-delay="0s">Bước 1: Dành cho người mới sử dụng</p>
+                    <div class="opacity-75 text-v5 wow fadeIn" data-wow-delay="0s"><ul><li>- Tải ứng dụng NLP-EGREEN.</li><li>- Đăng ký tài khoản.</li><li>- Nạp tiền theo hướng dẫn trên ứng dụng.</li></ul></div>
+                </div>
+                <div class="w-1/2 p-4 lg:px-7 md:w-1/4">
+                    <p class="text-v5 text-[1.3125rem] font-semibold mb-2 mt-3 wow fadeIn" data-wow-delay="0.15s">Bước 2: Tìm trạm sạc</p>
+                    <div class="opacity-75 text-v5 wow fadeIn" data-wow-delay="0.15s"><ul><li>- Mở ứng dụng NLP-EGREEN.</li><li>- Tìm trạm sạc trên bản đồ.</li><li>- Kiểm tra số dư, nạp tiền (nếu cần).</li></ul></div>
+                </div>
+                <div class="w-1/2 p-4 lg:px-7 md:w-1/4">
+                    <p class="text-v5 text-[1.3125rem] font-semibold mb-2 mt-3 wow fadeIn" data-wow-delay="0.3s">Bước 3: Kết nối sạc</p>
+                    <div class="opacity-75 text-v5 wow fadeIn" data-wow-delay="0.3s"><ul><li>- Đi xe đến vị trí sạc.</li><li>- Mở ứng dụng, quét QR tại trụ để đăng ký sạc.</li><li>- Kết nối súng sạc vào xe.</li></ul></div>
+                </div>
+                <div class="w-1/2 p-4 lg:px-7 md:w-1/4">
+                    <p class="text-v5 text-[1.3125rem] font-semibold mb-2 mt-3 wow fadeIn" data-wow-delay="0.45s">Bước 4: Theo dõi và kết thúc phiên sạc</p>
+                    <div class="opacity-75 text-v5 wow fadeIn" data-wow-delay="0.45s"><ul><li>- Theo dõi sạc tại trụ hoặc ứng dụng NLP-EGREEN.</li><li>- Giám sát dung lượng pin trong quá trình sạc.</li><li>- Rút và gắn súng đúng vị trí tại trụ sau khi sạc xong.</li></ul></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popup chi tiết trạm -->
+    <div class="module-popup-charging-station-details bg-black/40 fixed inset-0 z-[999] flex items-center px-4 opacity-0 invisible pointer-events-none transition-all duration-300 [&.active]:opacity-100 [&.active]:visible [&.active]:pointer-events-auto" id="popup-charging-station-details"></div>
+
+    <!-- ══ FOOTER — TMT-EGREEN ══════════════════════════════════ -->
+    <footer>
+        <div class="container flex gap-y-5 gap-x-14 justify-between py-10 max-lg:flex-col">
+            <div class="w-full lg:max-w-[350px] xl:max-w-[400px] shrink-0">
+                <a href="../../index.html" class="h-[70px] img__contain img__h-full block mb-5 w-fit">
+                    <img src="https://nlp-egreen.com/uploads/logo/NLP-EGREEN-xanh-w300.png" alt="NLP-EGREEN" class="img-fluid" width="300" height="192">
+                </a>
+                <div class="s-content text-[0.875rem] font-medium mb-5 text-[#755151]">
+                    NLP GROUP JOINT STOCK COMPANY · MST: 0316942991<br>
+                    Số 16, đường D1, Mega Village Khang Điền, Phú Hữu, Tp. Thủ Đức, TP.HCM
+                </div>
+                <div class="flex gap-2.5 mb-10">
+                    <a href="https://www.facebook.com/tramsac.nlpegreen" target="_blank" rel="noopener" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                        <svg viewBox="0 0 7 14" fill="none"><path d="M2.14405 13.2218V7.38249H0.555664V5.28007H2.14405V3.48432C2.14405 2.07321 3.08232 0.777344 5.24429 0.777344C6.11964 0.777344 6.76692 0.858917 6.76692 0.858917L6.71591 2.82223C6.71591 2.82223 6.05579 2.81598 5.33544 2.81598C4.5558 2.81598 4.43089 3.16523 4.43089 3.74491V5.28007H6.77789L6.67577 7.38249H4.43089V13.2218H2.14405Z" fill="#192031"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@tramsac.nlpegreen" target="_blank" rel="noopener" class="size-[1.875rem] py-1.5 *:size-full rounded-full hover:shadow-[0_3px_12px_var(--color-v1)]">
+                        <svg viewBox="0 0 640 640"><path d="M581.7 188.1C575.5 164.4 556.9 145.8 533.4 139.5C490.9 128 320.1 128 320.1 128C320.1 128 149.3 128 106.7 139.5C83.2 145.8 64.7 164.4 58.4 188.1C47 231 47 320.4 47 320.4C47 320.4 47 409.8 58.4 452.7C64.7 476.3 83.2 494.2 106.7 500.5C149.3 512 320.1 512 320.1 512C320.1 512 490.9 512 533.5 500.5C557 494.2 575.5 476.3 581.8 452.7C593.2 409.8 593.2 320.4 593.2 320.4C593.2 320.4 593.2 231 581.8 188.1zM264.2 401.6L264.2 239.2L406.9 320.4L264.2 401.6z" fill="#192031"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-between flex-1 gap-5 lg:max-w-[700px]">
+                <div class="order-1 w-[calc(50%-1.125rem)] md:w-fit">
+                    <p class="mb-5 font-semibold md:mb-8 text-v2">Điều hướng</p>
+                    <ul class="menu__footer text-[#755151] text-[0.875rem] space-y-2">
+                        <li><a href="../../index.html">Trang chủ</a></li>
+                        <li><a href="../../pages/ve-chung-toi/">Về chúng tôi</a></li>
+                        <li><a href="../../pages/doi-tac/">Đăng ký đối tác</a></li>
+                        <li><a href="../../pages/tim-kiem-tram-sac/#oto">Tra cứu trạm sạc ô tô</a></li>
+                        <li><a href="../../pages/app/">App NLP-EGREEN</a></li>
+                    </ul>
+                </div>
+                <div class="order-4 w-[calc(50%-1.125rem)] md:order-2 md:w-fit">
+                    <p class="mb-5 font-semibold md:mb-8 text-v2">Chính sách</p>
+                    <ul class="menu__footer text-[#755151] text-[0.875rem] space-y-2">
+                        <li><a href="../../pages/bao-mat/">Chính sách bảo mật</a></li>
+                        <li><a href="../../pages/dieu-khoan/">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+                <div class="w-[calc(50%-1.125rem)] md:w-fit md:max-w-[210px] order-3">
+                    <p class="mb-5 font-semibold md:mb-8 text-[#755151]">Liên hệ</p>
+                    <a href="tel:0944086788" class="flex mb-3 text-[0.875rem] text-[#755151] btn-contact hover:text-v1">
+                        <svg class="mr-1.5 w-5 shrink-0" viewBox="0 0 20 22" fill="none"><path d="M1.13919 5.01816L3.35794 2.8015C3.51446 2.6443 3.70049 2.51957 3.90535 2.43448C4.11021 2.34939 4.32986 2.30561 4.55169 2.30566C5.00378 2.30566 5.42877 2.48275 5.74752 2.8015L8.13503 5.189C8.29223 5.34551 8.41695 5.53154 8.50205 5.7364C8.58714 5.94126 8.63091 6.16092 8.63086 6.38275C8.63086 6.83483 8.45378 7.25983 8.13503 7.57858L6.38919 9.32441C6.79785 10.2252 7.36602 11.0446 8.06628 11.7432C8.76477 12.4451 9.58413 13.0154 10.485 13.4265L12.2309 11.6807C12.3874 11.5235 12.5734 11.3987 12.7783 11.3136C12.9831 11.2286 13.2028 11.1848 13.4246 11.1848C13.8767 11.1848 14.3017 11.3619 14.6204 11.6807L17.01 14.0661C17.1674 14.2229 17.2923 14.4093 17.3773 14.6145C17.4624 14.8197 17.5061 15.0397 17.5059 15.2619C17.5059 15.714 17.3288 16.139 17.01 16.4577L14.7954 18.6723C14.2871 19.1827 13.585 19.4723 12.8642 19.4723C12.7121 19.4723 12.5663 19.4598 12.4225 19.4348C9.61419 18.9723 6.82877 17.4786 4.58086 15.2327C2.33503 12.989 0.843359 10.2057 0.374609 7.389C0.232943 6.52858 0.51836 5.64316 1.13919 5.01816V5.01816Z" fill="#192031"/></svg>
+                        0944.086.788
+                    </a>
+                    <a href="mailto:contact@nlpgroup.com.vn" class="flex mb-3 text-[0.875rem] text-[#755151] btn-contact hover:text-v1">
+                        <svg class="mr-1.5 w-5 shrink-0" viewBox="0 0 20 23" fill="none"><path d="M4.07697 5.15552H16.819C18.0211 5.15552 18.627 5.78485 18.627 7.06485V16.0462C18.627 17.3155 18.0211 17.9555 16.819 17.9555H4.07697C2.87489 17.9555 2.26904 17.3155 2.26904 16.0462V7.06485C2.26904 5.78485 2.87489 5.15552 4.07697 5.15552ZM10.4432 14.3289L16.9248 8.43018C17.1556 8.21685 17.3383 7.72618 17.0498 7.28885C16.771 6.85152 16.2613 6.84085 15.9247 7.10752L10.4432 11.2249L4.97132 7.10752C4.63474 6.84085 4.12506 6.85152 3.84617 7.28885C3.55767 7.72618 3.74039 8.21685 3.97119 8.43018L10.4432 14.3289Z" fill="#192031"/></svg>
+                        contact@nlpgroup.com.vn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="btn-to-top fixed z-[9] right-5 bottom-20 xs:bottom-7 rounded-md hidden items-center justify-center size-10 group bg-v1 hover:bg-v3 hover:-translate-y-1 shadow-[0_5px_10px_var(--color-v1)]">
+        <i class="text-white fa-solid fa-angles-up"></i>
+    </button>
+
+    <!-- Side contacts -->
+    <div class="fixed right-5 top-1/2 -translate-y-1/2 z-10 max-xs:hidden z-[20]">
+        <a href="../../pages/doi-tac/" class="size-[3.25rem] rounded-full border border-v1 flex items-center justify-center bg-white mb-5 hover:shadow-[0_5px_10px_var(--color-v1)] hover:scale-110 transition-all duration-300 relative group">
+            <i class="fa-solid fa-handshake text-v1"></i>
+            <p class="absolute top-1/2 right-[3.75rem] p-2 whitespace-nowrap font-medium bg-white rounded-md -translate-y-1/2 shadow-[rgba(0,0,0,.35)_0px_5px_15px] text-[0.875rem] !text-main invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300">Đăng ký trở thành đối tác</p>
         </a>
-        <a href="../pages/dien-mat-troi/" class="nav-tab" id="nav-solar">
-            <i class="fa-solid fa-solar-panel"></i>
-            <span>Solar</span>
+        <a href="https://zalo.me/0944086788" class="size-[3.25rem] rounded-full border border-v1 flex items-center justify-center bg-white mb-5 hover:shadow-[0_5px_10px_var(--color-v1)] hover:scale-110 transition-all duration-300 relative group">
+            <i class="fa-brands fa-telegram text-v1"></i>
+            <p class="absolute top-1/2 right-[3.75rem] p-2 whitespace-nowrap font-medium bg-white rounded-md -translate-y-1/2 shadow-[rgba(0,0,0,.35)_0px_5px_15px] text-[0.875rem] !text-main invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300">Zalo</p>
         </a>
-        <button class="nav-tab cta-primary" onclick="openModal()" id="nav-cta">
-            <i class="fa-solid fa-phone-volume"></i>
-            <span>T&#432; v&#7845;n</span>
-        </button>
-        <a href="../pages/tru-sac/" class="nav-tab" id="nav-ev">
-            <i class="fa-solid fa-charging-station"></i>
-            <span>Tr&#7841;m s&#7841;c</span>
+        <a href="tel:0944086788" class="size-[3.25rem] rounded-full border border-v1 flex items-center justify-center bg-white hover:shadow-[0_5px_10px_var(--color-v1)] hover:scale-110 transition-all duration-300 relative group">
+            <i class="fa-solid fa-phone text-v1"></i>
+            <p class="absolute top-1/2 right-[3.75rem] p-2 whitespace-nowrap font-medium bg-white rounded-md -translate-y-1/2 shadow-[rgba(0,0,0,.35)_0px_5px_15px] text-[0.875rem] !text-main invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300">Liên hệ ngay</p>
         </a>
-        <a href="../pages/du-an/" class="nav-tab" id="nav-project">
-            <i class="fa-solid fa-map-location-dot"></i>
-            <span>D&#7921; &#225;n</span>
+    </div>
+
+    <!-- Mobile bottom nav -->
+    <div class="sticky bottom-0 right-0 z-[20] bg-[#323E4F] h-[72px] flex items-center justify-around px-2 border-t border-white/5 xs:hidden pb-[env(safe-area-inset-bottom)]">
+        <a href="../../index.html" class="flex flex-col flex-1 gap-1 items-center text-gray-400">
+            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span class="text-[11px] font-medium">Trang chủ</span>
         </a>
-    </nav>
+        <a href="#oto" class="flex flex-col flex-1 gap-1 items-center text-white">
+            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+            <span class="text-[11px] font-medium">Bản đồ</span>
+        </a>
+        <div class="flex relative -top-6 flex-1 justify-center h-full pointer-events-none">
+            <a href="tel:0944086788" class="size-[64px] rounded-full bg-[var(--color-v1)] border-[6px] border-[#f6f8f7] shadow-[0_8px_25px_rgba(0,0,0,0.15)] flex items-center justify-center text-white transition-transform active:scale-90 pointer-events-auto">
+                <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </a>
+        </div>
+        <a href="../../pages/doi-tac/" class="flex flex-col flex-1 gap-1 items-center text-gray-400">
+            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span class="text-[11px] font-medium line-clamp-1">Đăng ký...</span>
+        </a>
+        <a href="../../pages/ve-chung-toi/" class="flex flex-col flex-1 gap-1 items-center text-gray-400">
+            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="text-[11px] font-medium">Về chúng tôi</span>
+        </a>
+    </div>
+
+    <!-- ══ SCRIPTS ══════════════════════════════════════════════ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" defer></script>
+    <script src="../../public/tmt-assets/js/XHR.js" defer></script>
+    <script src="../../public/tmt-assets/js/ValidateForm.js" type="module" defer></script>
+    <script src="../../public/tmt-assets/js/script.js" defer></script>
+    <script src="../../public/tmt-assets/js/ajax.js" defer></script>
+    <script src="../../public/tmt-assets/js/add/map.js" defer></script>
+    <script src="../../public/tmt-assets/js/add/route-map.js" defer></script>
+    <script src="../../public/tmt-assets/js/add/map-init.js" defer></script>
+    <script src="../../public/tmt-assets/js/add/map-search.js" defer></script>
+    <script src="../../public/tmt-assets/js/add/loading.js" defer></script>
+    <script src="../../public/tmt-assets/js/add/script.js" defer></script>
     <script>document.addEventListener("DOMContentLoaded",function(){new WOW({offset:60,mobile:false,live:false}).init();});</script>
+    <div id="map"></div>
 </body>
 </html>
