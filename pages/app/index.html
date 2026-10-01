@@ -341,10 +341,28 @@
             </a>
         </div>
         <p class="text-solar-200 text-sm">Đang được phát triển — đăng ký nhận thông báo khi ra mắt chính thức</p>
-        <div class="flex gap-3 max-w-sm mx-auto mt-4">
-            <input type="tel" placeholder="Số điện thoại của bạn" class="flex-1 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-solar-200 focus:outline-none focus:border-white text-sm">
-            <button class="bg-white text-solar-700 font-bold px-5 py-3 rounded-xl hover:bg-solar-50 transition-colors whitespace-nowrap text-sm">Nhắc tôi</button>
+        <div class="flex gap-3 max-w-sm mx-auto mt-4" id="waitlistForm">
+            <input id="waitlistPhone" type="tel" placeholder="Số điện thoại của bạn"
+                class="flex-1 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-solar-200 focus:outline-none focus:border-white text-sm"
+                pattern="[0-9]{9,11}">
+            <button onclick="submitWaitlist()" class="bg-white text-solar-700 font-bold px-5 py-3 rounded-xl hover:bg-solar-50 transition-colors whitespace-nowrap text-sm">Nhắc tôi</button>
         </div>
+        <p id="waitlistMsg" class="text-solar-200 text-sm mt-2 hidden"></p>
+        <script>
+        function submitWaitlist() {
+            const phone = document.getElementById('waitlistPhone').value.trim();
+            if (!phone || phone.length < 9) {
+                document.getElementById('waitlistMsg').textContent = '⚠️ Vui lòng nhập số điện thoại hợp lệ.';
+                document.getElementById('waitlistMsg').classList.remove('hidden');
+                return;
+            }
+            const leads = JSON.parse(localStorage.getItem('nlpgroup_leads') || '[]');
+            leads.unshift({ type: 'lead', name: 'App Waitlist', phone, service: 'App NLP-EGREEN Waitlist', source: '/pages/app/', time: new Date().toISOString() });
+            localStorage.setItem('nlpgroup_leads', JSON.stringify(leads));
+            document.getElementById('waitlistForm').innerHTML = '<p class="text-white font-bold text-center w-full py-3">✅ Đã đăng ký! Chúng tôi sẽ nhắc bạn khi app ra mắt.</p>';
+            document.getElementById('waitlistMsg').classList.add('hidden');
+        }
+        </script>
     </div>
 </section>
 
@@ -368,15 +386,6 @@
     </div>
 </footer>
 
-<!-- Mobile sticky -->
-<div class="mobile-cta-bar md:hidden">
-    <a href="tel:0944086788" class="flex-1 flex items-center justify-center gap-2 bg-solar-600 text-white font-bold py-3 rounded-xl text-sm">
-        <i class="fa-solid fa-phone"></i> Gọi ngay
-    </a>
-    <a href="#download" class="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white font-bold py-3 rounded-xl text-sm">
-        <i class="fa-solid fa-download"></i> Tải App
-    </a>
-</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <script src="../../js/main.js"></script>

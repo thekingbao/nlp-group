@@ -20,10 +20,14 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://nlpgroup.com.vn/favicon_io/og-image.png">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLc=" crossorigin=""></script>
     <script>
         tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'] }, colors: { solar: { 50:'#f0fdf4',100:'#dcfce7',500:'#22c55e',600:'#16a34a',700:'#15803d' }, dark:'#0f172a' } } } }
     </script>
@@ -112,30 +116,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- Map -->
             <div class="lg:col-span-2">
-                <div id="station-map" class="bg-gray-100 rounded-2xl flex items-center justify-center relative overflow-hidden border border-gray-200" style="height:480px;">
-                    <!-- Placeholder map with SVG Vietnam outline -->
-                    <div class="text-center text-gray-500 p-8">
-                        <div class="w-20 h-20 bg-solar-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa-solid fa-map-location-dot text-4xl text-solar-600"></i>
-                        </div>
-                        <p class="font-bold text-gray-700 mb-2">Bản đồ trạm sạc</p>
-                        <p class="text-sm text-gray-500 mb-4">Nhập Google Maps API key trong Admin > Settings để kích hoạt bản đồ tương tác.</p>
-                        <div class="grid grid-cols-3 gap-2 text-xs text-left max-w-sm mx-auto">
-                            <div class="bg-solar-50 rounded-lg p-2 text-center">
-                                <div class="font-black text-solar-600 text-lg">24+</div>
-                                <div class="text-gray-500">Tỉnh thành</div>
-                            </div>
-                            <div class="bg-solar-50 rounded-lg p-2 text-center">
-                                <div class="font-black text-solar-600 text-lg">100+</div>
-                                <div class="text-gray-500">Trạm sạc</div>
-                            </div>
-                            <div class="bg-solar-50 rounded-lg p-2 text-center">
-                                <div class="font-black text-solar-600 text-lg">24/7</div>
-                                <div class="text-gray-500">Hoạt động</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div id="station-map" class="rounded-2xl overflow-hidden border border-gray-200 shadow-sm" style="height:480px; z-index:0;"></div>
                 <p class="text-xs text-gray-400 mt-2 text-center">* Nhấn "Vị trí của tôi" để tìm trạm sạc gần bạn nhất. Dữ liệu cập nhật thời gian thực.</p>
             </div>
 
@@ -235,48 +216,98 @@
     </div>
 </footer>
 
-<!-- Mobile sticky -->
-<div class="mobile-cta-bar md:hidden">
-    <a href="tel:0944086788" class="flex-1 flex items-center justify-center gap-2 bg-solar-600 text-white font-bold py-3 rounded-xl text-sm">
-        <i class="fa-solid fa-phone"></i> Gọi ngay
-    </a>
-    <a href="https://zalo.me/0944086788" target="_blank" class="flex-1 flex items-center justify-center gap-2 bg-[#0068ff] text-white font-bold py-3 rounded-xl text-sm">
-        <i class="fa-solid fa-comment-dots"></i> Zalo
-    </a>
-    <a href="../app/" class="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white font-bold py-3 rounded-xl text-sm">
-        <i class="fa-solid fa-mobile-screen-button"></i> App
-    </a>
-</div>
 
 <script src="../../js/main.js"></script>
 <script>
+/* ── TLP Trust Level Protocol color map ─────────────── */
+const TLP = {
+    safe:    { color: '#00D68F', label: 'TLP Safe',    text: 'Khả dụng cao',    badge: 'bg-emerald-100 text-emerald-700' },
+    caution: { color: '#FFAA00', label: 'TLP Caution', text: 'Cần lưu ý',       badge: 'bg-yellow-100 text-yellow-700'   },
+    blocked: { color: '#FF3D71', label: 'TLP Blocked', text: 'Tạm ngưng',       badge: 'bg-red-100 text-red-700'         },
+    system:  { color: '#57606A', label: 'TLP System',  text: 'Nội bộ/Bảo trì', badge: 'bg-gray-100 text-gray-600'       },
+};
+
+/* ── Station data with TLP field ─────────────────────── */
 const STATIONS = [
-    { id:1,  name:'Trạm Hà Nội – Cầu Giấy',      province:'Hà Nội',      type:'dc', power:'120kW', ports:2, status:'open', lat:21.0353, lng:105.7916 },
-    { id:2,  name:'Trạm Hà Nội – Hoàng Mai',      province:'Hà Nội',      type:'dc', power:'240kW', ports:4, status:'open', lat:20.9851, lng:105.8539 },
-    { id:3,  name:'Trạm HCM – Quận 7',            province:'TP.HCM',      type:'dc', power:'120kW', ports:2, status:'open', lat:10.7297, lng:106.7210 },
-    { id:4,  name:'Trạm HCM – Bình Thạnh',        province:'TP.HCM',      type:'dc', power:'240kW', ports:4, status:'open', lat:10.8122, lng:106.7120 },
-    { id:5,  name:'Trạm Đà Nẵng – Hải Châu',     province:'Đà Nẵng',     type:'dc', power:'120kW', ports:2, status:'open', lat:16.0678, lng:108.2208 },
-    { id:6,  name:'Trạm Huế – TP Huế',            province:'Huế',         type:'ac', power:'22kW',  ports:2, status:'open', lat:16.4637, lng:107.5909 },
-    { id:7,  name:'Trạm Bình Định – Quy Nhơn',   province:'Bình Định',   type:'dc', power:'120kW', ports:2, status:'open', lat:13.7706, lng:109.2188 },
-    { id:8,  name:'Trạm Hưng Yên – Yên Mỹ',      province:'Hưng Yên',    type:'ac', power:'22kW',  ports:2, status:'maintenance', lat:20.9018, lng:106.0618 },
-    { id:9,  name:'Trạm Bắc Ninh – TP Bắc Ninh', province:'Bắc Ninh',    type:'dc', power:'120kW', ports:2, status:'open', lat:21.1861, lng:106.0763 },
-    { id:10, name:'Trạm Phú Thọ – Việt Trì',     province:'Phú Thọ',     type:'ac', power:'22kW',  ports:2, status:'open', lat:21.3220, lng:105.4018 },
-    { id:11, name:'Trạm Thanh Hóa – TP TH',      province:'Thanh Hóa',   type:'dc', power:'120kW', ports:2, status:'open', lat:19.8078, lng:105.7851 },
-    { id:12, name:'Trạm Nghệ An – Vinh',          province:'Nghệ An',     type:'dc', power:'120kW', ports:2, status:'open', lat:18.6790, lng:105.6818 },
-    { id:13, name:'Trạm Hải Phòng – Lê Chân',    province:'Hải Phòng',   type:'dc', power:'240kW', ports:4, status:'open', lat:20.8449, lng:106.6881 },
-    { id:14, name:'Trạm Quảng Ninh – Hạ Long',   province:'Quảng Ninh',  type:'dc', power:'120kW', ports:2, status:'open', lat:20.9698, lng:107.0468 },
-    { id:15, name:'Trạm Khánh Hòa – Nha Trang',  province:'Khánh Hòa',   type:'dc', power:'120kW', ports:2, status:'open', lat:12.2388, lng:109.1967 },
-    { id:16, name:'Trạm Lâm Đồng – Đà Lạt',      province:'Lâm Đồng',    type:'ac', power:'22kW',  ports:2, status:'open', lat:11.9404, lng:108.4583 },
-    { id:17, name:'Trạm Bình Dương – Thủ Dầu Một',province:'Bình Dương', type:'dc', power:'120kW', ports:2, status:'open', lat:10.9804, lng:106.6519 },
-    { id:18, name:'Trạm Đồng Nai – Biên Hòa',    province:'Đồng Nai',    type:'dc', power:'240kW', ports:4, status:'open', lat:10.9572, lng:106.8426 },
-    { id:19, name:'Trạm Cần Thơ – Ninh Kiều',    province:'Cần Thơ',     type:'dc', power:'120kW', ports:2, status:'open', lat:10.0341, lng:105.7880 },
-    { id:20, name:'Trạm Vũng Tàu – TP Vũng Tàu', province:'Vũng Tàu',   type:'dc', power:'120kW', ports:2, status:'open', lat:10.3460, lng:107.0843 },
-    { id:21, name:'Trạm Nam Định – TP Nam Định',  province:'Nam Định',    type:'ac', power:'22kW',  ports:2, status:'open', lat:20.4204, lng:106.1683 },
-    { id:22, name:'Trạm Thái Nguyên – TP TN',    province:'Thái Nguyên', type:'ac', power:'22kW',  ports:2, status:'maintenance', lat:21.5942, lng:105.8481 },
-    { id:23, name:'Trạm Quảng Nam – Hội An',     province:'Quảng Nam',   type:'ac', power:'22kW',  ports:2, status:'open', lat:15.8801, lng:108.3380 },
-    { id:24, name:'Trạm Gia Lai – Pleiku',        province:'Gia Lai',     type:'dc', power:'120kW', ports:2, status:'open', lat:13.9833, lng:108.0000 },
+    { id:1,  name:'Trạm Hà Nội – Cầu Giấy',       province:'Hà Nội',      type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:21.0353, lng:105.7916 },
+    { id:2,  name:'Trạm Hà Nội – Hoàng Mai',       province:'Hà Nội',      type:'dc', power:'240kW', ports:4, status:'open',        tlp:'safe',    lat:20.9851, lng:105.8539 },
+    { id:3,  name:'Trạm HCM – Quận 7',             province:'TP.HCM',      type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:10.7297, lng:106.7210 },
+    { id:4,  name:'Trạm HCM – Bình Thạnh',         province:'TP.HCM',      type:'dc', power:'240kW', ports:4, status:'open',        tlp:'caution', lat:10.8122, lng:106.7120 },
+    { id:5,  name:'Trạm Đà Nẵng – Hải Châu',      province:'Đà Nẵng',     type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:16.0678, lng:108.2208 },
+    { id:6,  name:'Trạm Huế – TP Huế',             province:'Huế',         type:'ac', power:'22kW',  ports:2, status:'open',        tlp:'safe',    lat:16.4637, lng:107.5909 },
+    { id:7,  name:'Trạm Bình Định – Quy Nhơn',    province:'Bình Định',   type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:13.7706, lng:109.2188 },
+    { id:8,  name:'Trạm Hưng Yên – Yên Mỹ',       province:'Hưng Yên',    type:'ac', power:'22kW',  ports:2, status:'maintenance', tlp:'system',  lat:20.9018, lng:106.0618 },
+    { id:9,  name:'Trạm Bắc Ninh – TP Bắc Ninh',  province:'Bắc Ninh',    type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:21.1861, lng:106.0763 },
+    { id:10, name:'Trạm Phú Thọ – Việt Trì',      province:'Phú Thọ',     type:'ac', power:'22kW',  ports:2, status:'open',        tlp:'caution', lat:21.3220, lng:105.4018 },
+    { id:11, name:'Trạm Thanh Hóa – TP TH',       province:'Thanh Hóa',   type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:19.8078, lng:105.7851 },
+    { id:12, name:'Trạm Nghệ An – Vinh',           province:'Nghệ An',     type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:18.6790, lng:105.6818 },
+    { id:13, name:'Trạm Hải Phòng – Lê Chân',     province:'Hải Phòng',   type:'dc', power:'240kW', ports:4, status:'open',        tlp:'safe',    lat:20.8449, lng:106.6881 },
+    { id:14, name:'Trạm Quảng Ninh – Hạ Long',    province:'Quảng Ninh',  type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:20.9698, lng:107.0468 },
+    { id:15, name:'Trạm Khánh Hòa – Nha Trang',   province:'Khánh Hòa',   type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:12.2388, lng:109.1967 },
+    { id:16, name:'Trạm Lâm Đồng – Đà Lạt',       province:'Lâm Đồng',    type:'ac', power:'22kW',  ports:2, status:'open',        tlp:'caution', lat:11.9404, lng:108.4583 },
+    { id:17, name:'Trạm Bình Dương – Thủ Dầu Một', province:'Bình Dương', type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:10.9804, lng:106.6519 },
+    { id:18, name:'Trạm Đồng Nai – Biên Hòa',     province:'Đồng Nai',    type:'dc', power:'240kW', ports:4, status:'open',        tlp:'safe',    lat:10.9572, lng:106.8426 },
+    { id:19, name:'Trạm Cần Thơ – Ninh Kiều',     province:'Cần Thơ',     type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:10.0341, lng:105.7880 },
+    { id:20, name:'Trạm Vũng Tàu – TP Vũng Tàu',  province:'Vũng Tàu',   type:'dc', power:'120kW', ports:2, status:'open',        tlp:'caution', lat:10.3460, lng:107.0843 },
+    { id:21, name:'Trạm Nam Định – TP Nam Định',   province:'Nam Định',    type:'ac', power:'22kW',  ports:2, status:'open',        tlp:'safe',    lat:20.4204, lng:106.1683 },
+    { id:22, name:'Trạm Thái Nguyên – TP TN',     province:'Thái Nguyên', type:'ac', power:'22kW',  ports:2, status:'maintenance', tlp:'system',  lat:21.5942, lng:105.8481 },
+    { id:23, name:'Trạm Quảng Nam – Hội An',      province:'Quảng Nam',   type:'ac', power:'22kW',  ports:2, status:'open',        tlp:'safe',    lat:15.8801, lng:108.3380 },
+    { id:24, name:'Trạm Gia Lai – Pleiku',         province:'Gia Lai',     type:'dc', power:'120kW', ports:2, status:'open',        tlp:'safe',    lat:13.9833, lng:108.0000 },
 ];
 
+/* ── Leaflet Map ─────────────────────────────────────── */
+let map, markersLayer;
+
+function tlpMarkerIcon(tlp) {
+    const c = TLP[tlp]?.color || '#57606A';
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36">
+        <path d="M14 0C6.27 0 0 6.27 0 14c0 9.6 14 22 14 22S28 23.6 28 14C28 6.27 21.73 0 14 0z" fill="${c}" stroke="white" stroke-width="1.5"/>
+        <text x="14" y="18" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif" font-weight="bold">⚡</text>
+    </svg>`;
+    return L.divIcon({
+        html: svg,
+        className: '',
+        iconSize: [28, 36],
+        iconAnchor: [14, 36],
+        popupAnchor: [0, -36]
+    });
+}
+
+function initMap() {
+    map = L.map('station-map', { zoomControl: true, scrollWheelZoom: false })
+        .setView([16.5, 107.5], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18
+    }).addTo(map);
+
+    markersLayer = L.layerGroup().addTo(map);
+    renderMarkers(STATIONS);
+}
+
+function renderMarkers(stations) {
+    markersLayer.clearLayers();
+    stations.forEach(s => {
+        const t = TLP[s.tlp] || TLP.system;
+        const marker = L.marker([s.lat, s.lng], { icon: tlpMarkerIcon(s.tlp) });
+        marker.bindPopup(`
+            <div style="min-width:200px;font-family:Inter,sans-serif">
+                <div style="font-weight:800;font-size:13px;margin-bottom:4px">${s.name}</div>
+                <div style="display:flex;gap:6px;align-items:center;margin-bottom:8px">
+                    <span style="background:${t.color}20;color:${t.color};padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700">${t.label}</span>
+                    <span style="color:#64748b;font-size:11px">${s.type.toUpperCase()} · ${s.power}</span>
+                </div>
+                <div style="color:#64748b;font-size:11px;margin-bottom:8px">${s.ports} cổng · ${s.province}</div>
+                <button onclick="showStation(${s.id})" style="width:100%;background:#16a34a;color:white;border:none;padding:7px 0;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer">Xem chi tiết</button>
+            </div>
+        `, { maxWidth: 240 });
+        marker.on('click', () => map.panTo([s.lat, s.lng]));
+        markersLayer.addLayer(marker);
+    });
+}
+
+/* ── Filter & List render ────────────────────────────── */
 let activeFilter = 'all';
 
 function renderList(stations) {
@@ -284,16 +315,15 @@ function renderList(stations) {
     document.getElementById('stationCount').textContent = stations.length;
     let html = '';
     stations.forEach(s => {
-        const statusColor = s.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700';
-        const statusText  = s.status === 'open' ? 'Mở cửa' : 'Bảo trì';
-        const typeLabel   = s.type === 'dc' ? '⚡ DC' : '🔌 AC';
-        html += `<div class="bg-white rounded-xl border border-gray-200 p-4 mb-3 hover:border-solar-400 hover:shadow-md transition-all cursor-pointer" onclick="showStation(${s.id})">
+        const t = TLP[s.tlp] || TLP.system;
+        const typeLabel = s.type === 'dc' ? '⚡ DC' : '🔌 AC';
+        html += `<div class="bg-white rounded-xl border border-gray-200 p-4 mb-3 hover:border-solar-400 hover:shadow-md transition-all cursor-pointer" onclick="showStation(${s.id})" data-id="${s.id}">
             <div class="flex justify-between items-start mb-2">
                 <div class="text-sm font-bold text-gray-900 leading-tight pr-2">${s.name}</div>
-                <span class="shrink-0 text-xs px-2 py-0.5 rounded-full font-semibold ${statusColor}">${statusText}</span>
+                <span class="shrink-0 text-xs px-2 py-0.5 rounded-full font-semibold ${t.badge}">${t.label}</span>
             </div>
             <div class="flex gap-3 text-xs text-gray-500">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-map-marker-alt text-solar-500"></i> ${s.province}</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-map-marker-alt" style="color:${t.color}"></i> ${s.province}</span>
                 <span>${typeLabel} ${s.power}</span>
                 <span><i class="fa-solid fa-plug text-gray-400"></i> ${s.ports} cổng</span>
             </div>
@@ -304,48 +334,61 @@ function renderList(stations) {
 
 function filterStations(type) {
     activeFilter = type;
-    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active','bg-solar-600','text-white','border-solar-600'));
+    document.querySelectorAll('.filter-chip').forEach(c => {
+        c.classList.remove('active','bg-solar-600','text-white','border-solar-600');
+        c.classList.add('border-gray-300','text-gray-600');
+    });
     event.target.classList.add('active','bg-solar-600','text-white','border-solar-600');
+    event.target.classList.remove('border-gray-300','text-gray-600');
     let filtered = STATIONS;
     if (type === 'dc')   filtered = STATIONS.filter(s => s.type === 'dc');
     if (type === 'ac')   filtered = STATIONS.filter(s => s.type === 'ac');
     if (type === 'open') filtered = STATIONS.filter(s => s.status === 'open');
     renderList(filtered);
+    if (map) renderMarkers(filtered);
 }
 
 function showStation(id) {
     const s = STATIONS.find(x => x.id === id);
     if (!s) return;
-    const isOpen = s.status === 'open';
+    const t = TLP[s.tlp] || TLP.system;
     document.getElementById('stationModalName').textContent   = s.name;
     document.getElementById('stationModalType').textContent   = s.type.toUpperCase() + ' · ' + s.power;
     document.getElementById('stationModalPorts').textContent  = s.ports + ' cổng sạc';
-    document.getElementById('stationModalStatus').textContent = isOpen ? 'Đang hoạt động' : 'Bảo trì';
-    document.getElementById('stationModalStatus').className   = isOpen
-        ? 'inline-block px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700'
-        : 'inline-block px-2 py-0.5 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-700';
+    // TLP badge
+    const statusEl = document.getElementById('stationModalStatus');
+    statusEl.textContent = t.label + ' — ' + t.text;
+    statusEl.className   = 'inline-block px-2 py-0.5 rounded-full text-xs font-semibold ' + t.badge;
     document.getElementById('stationModalMap').href =
         `https://www.google.com/maps/search/?api=1&query=${s.lat},${s.lng}`;
+    // Pan map to station
+    if (map) { map.panTo([s.lat, s.lng]); map.setZoom(13); }
     const sheet = document.getElementById('stationSheet');
     sheet.classList.remove('translate-y-full');
     sheet.classList.add('translate-y-0');
+    document.body.style.overflow = 'hidden';
 }
 function closeStationSheet() {
     const sheet = document.getElementById('stationSheet');
     sheet.classList.remove('translate-y-0');
     sheet.classList.add('translate-y-full');
+    document.body.style.overflow = '';
 }
 
 function locateMe() {
     if (!navigator.geolocation) { alert('Trình duyệt không hỗ trợ định vị.'); return; }
     navigator.geolocation.getCurrentPosition(pos => {
         const { latitude: lat, longitude: lng } = pos.coords;
-        const sorted = [...STATIONS].sort((a, b) => {
-            const dA = Math.hypot(a.lat - lat, a.lng - lng);
-            const dB = Math.hypot(b.lat - lat, b.lng - lng);
-            return dA - dB;
-        });
+        if (map) {
+            map.setView([lat, lng], 11);
+            L.circleMarker([lat, lng], { radius: 10, fillColor: '#3b82f6', fillOpacity: 0.9, color: 'white', weight: 2 })
+                .addTo(map).bindPopup('Vị trí của bạn').openPopup();
+        }
+        const sorted = [...STATIONS].sort((a, b) =>
+            Math.hypot(a.lat-lat, a.lng-lng) - Math.hypot(b.lat-lat, b.lng-lng)
+        );
         renderList(sorted);
+        if (map) renderMarkers(sorted);
     }, () => alert('Không thể lấy vị trí. Vui lòng nhập địa chỉ tìm kiếm.'));
 }
 
@@ -353,10 +396,14 @@ document.getElementById('searchInput').addEventListener('input', function() {
     const q = this.value.toLowerCase();
     const filtered = STATIONS.filter(s => s.name.toLowerCase().includes(q) || s.province.toLowerCase().includes(q));
     renderList(filtered);
+    if (map) renderMarkers(filtered);
 });
 
-// Initial render
-renderList(STATIONS);
+// Init on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    renderList(STATIONS);
+    initMap();
+});
 </script>
 
 <!-- ── STATION DETAIL SHEET ───────────────────────────────────────── -->

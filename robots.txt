@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Block admin panel from indexing
+Disallow: /admin/
+Disallow: /.bob/
+Disallow: /draft/
+
+# Allow all public pages
+Allow: /pages/
+Allow: /css/
+Allow: /js/
+Allow: /favicon_io/
+Allow: /public/
+
+Sitemap: https://nlpgroup.com.vn/sitemap.xml
