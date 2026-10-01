@@ -1,4 +1,4 @@
-# OS
+﻿# OS
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -11,3 +11,15 @@ desktop.ini
 # Keep zip out of repo
 favicon_io.zip
 
+# Environment — chứa secrets, không commit
+.env
+.env.local
+.env*.local
+pages/noi-bo-react/.env.local
+
+# Build output portal
+noi-bo/
+dist/
+node_modules/
+pages/noi-bo-react/node_modules/
+workers/node_modules/
