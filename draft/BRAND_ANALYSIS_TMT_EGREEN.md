@@ -24,6 +24,35 @@
 - **Quan hệ chiến lược:** Liên doanh SAIC-GM-Wuling (SGMW) — phân phối độc quyền xe điện thương hiệu **Wuling** tại Việt Nam
 - **Mục tiêu 2030:** 30.000 trụ sạc / 60.000 cổng sạc toàn quốc
 
+### 1.3 Pháp nhân NLP GROUP (Đơn vị vận hành / Đối tác chiến lược)
+> Dữ liệu từ hồ sơ **CIS NLP GROUP.docx** — Client Information Sheet, ngày 25/10/2023
+
+| Trường | Giá trị |
+|--------|---------|
+| **Tên công ty** | NLP GROUP JOINT STOCK COMPANY (NLP GROUP) |
+| **Mã số thuế / Đăng ký KD** | 0316942991 |
+| **Địa chỉ trụ sở** | No. 16, D1 Street, Mega Village Khang Dien, Phu Huu Ward, Thu Duc City, Ho Chi Minh City, Vietnam |
+| **Người đại diện ký** | NHAM QUOC HUAN |
+| **Ngày sinh đại diện** | 26/03/1976 |
+| **Hộ chiếu** | C1299799 (cấp 25/01/2016, hết hạn 22/01/2026) |
+| **Địa chỉ cá nhân** | 05 Street 15, Zone 1, BinhTrungDong Ward, ThuDuc City, HCMC |
+
+**Thông tin ngân hàng NLP GROUP:**
+| Trường | Giá trị |
+|--------|---------|
+| **Ngân hàng** | Military Commercial Joint Stock Bank (MB Bank) — An Phu Branch |
+| **Địa chỉ chi nhánh** | Ground Floor, An Phu Building, An Phu Ward, Thu Duc City, HCMC |
+| **Số tài khoản USD** | 0000605612090 |
+| **Số tài khoản VND** | 797968999999 |
+| **Swift CODE** | MSCBVNVX |
+| **Swift GPI CODE** | MSCBVNVX |
+| **Cán bộ ngân hàng** | Mr. Luu Ngoc Phuc |
+| **Email ngân hàng** | phuc.luungoc@mbbank.com.vn |
+| **Điện thoại ngân hàng** | +84 936 611 163 |
+
+> ⚠️ **Lưu ý:** Hộ chiếu của đại diện NHAM QUOC HUAN **đã hết hạn** (22/01/2026). Cần cập nhật hộ chiếu mới trước khi dùng hồ sơ CIS cho giao dịch tài chính quốc tế.
+> ⚠️ **Account Name** trong hồ sơ CIS để trống — cần bổ sung tên chủ tài khoản đầy đủ.
+
 ---
 
 ## 2. PHÂN TÍCH HÌNH ẢNH (ĐÃ XEM TOÀN BỘ)
@@ -238,6 +267,20 @@ TMT Motors (công ty mẹ, 50 năm kinh nghiệm)
 | Email liên hệ | `admin-egreen@tmt-vietnam.com` → `contact@nlp-egreen.com` |
 | Hotline | `0375852469` → Số NLP-EGREEN mới |
 
+### 6.4 Dữ liệu pháp nhân đã xác nhận (từ CIS NLP GROUP)
+> Các giá trị này **đã có thực** — điền trực tiếp vào `admin/db.json` và Schema.org
+
+| Field `admin/db.json` | Giá trị xác nhận |
+|-----------------------|-----------------|
+| `settings.business_license` | **0316942991** |
+| `settings.company_name` | NLP GROUP JOINT STOCK COMPANY |
+| `settings.address` | No. 16, D1 Street, Mega Village Khang Dien, Phu Huu Ward, Thu Duc City, HCMC |
+| `settings.bank_name` | MB Bank — An Phu Branch |
+| `settings.bank_account_usd` | 0000605612090 |
+| `settings.bank_account_vnd` | 797968999999 |
+| `settings.bank_swift` | MSCBVNVX |
+| `settings.representative` | NHAM QUOC HUAN |
+
 ---
 
 ## 7. GAPS — NHỮNG GÌ TMT-EGREEN CÓ MÀ NLP-EGREEN CHƯA XÂY
@@ -270,24 +313,49 @@ TMT Motors (công ty mẹ, 50 năm kinh nghiệm)
 
 ## 9. KHUYẾN NGHỊ ƯU TIÊN CHO NLP-EGREEN
 
-### 🔴 Ngay lập tức (Sprint P1)
-1. **Thiết kế logo NLP-EGREEN** — giữ elip navy, đổi chữ TMT → NLP
-2. **Nhập Google Maps API key** → Admin > Cài đặt → kích hoạt bản đồ tìm trạm
-3. **Tạo trang giá điện** — tái sử dụng dữ liệu 3 khung giờ từ tmt-egreen
-4. **Thêm dữ liệu trạm sạc thực** vào `admin/db.json` field `projects[]`
+> **Cập nhật lần cuối:** 2026-10-01 — sau phiên làm việc CIS + db.json
 
-### 🟠 Ngắn hạn (Sprint P2)
-5. **Thay logo trong ảnh sản phẩm** (overlay NLP-EGREEN lên các ảnh trụ sạc)
-6. **Build landing page "Tìm trạm sạc"** — clone từ `tim-kiem-tram-sac-gan-nhat.html`, đổi sang NLP-EGREEN branding
-7. **Viết 5 bài blog** (đã có kế hoạch trong PLAN_UPDATE_NLPGROUP.md)
-8. **Tạo trang App download** — quảng bá app NLP-EGREEN khi có
+### 🔴 Sprint P1 — Trạng thái thực tế
 
-### 🟡 Trung hạn (Sprint P3)
-9. **Tích hợp App IoT** — liên kết website ↔ app mobile
-10. **Dashboard nhà đầu tư** — clone concept từ TMT INVESTOR
-11. **Hệ thống thanh toán** — backend payment gateway
+| # | Task | Trạng thái | Ghi chú |
+|---|------|-----------|---------|
+| 1 | Thiết kế logo NLP-EGREEN (elip navy, đổi TMT→NLP) | ⬜ Chờ client | Priority 1 |
+| 2 | Nhập Google Maps API key | ⬜ Chờ client | Kích hoạt bản đồ tìm trạm |
+| 3 | Tạo trang giá điện (3 khung giờ) | ⬜ Chưa làm | Dùng data 15/07/2026 có sẵn |
+| 4 | Thêm dữ liệu trạm sạc vào `projects[]` | ⬜ Chưa làm | 24+ tọa độ GPS từ TMT |
+| 5 | **MST / business_license** | ✅ **Done** | `0316942991` đã điền `db.json` |
+| 6 | Schema.org 6 bài blog | ✅ Done | Article JSON-LD đầy đủ |
+| 7 | Admin panel (leads, settings, posts) | ✅ Done | 6 posts, full settings |
+| 8 | **Trang "Về chúng tôi"** | ⬜ **NEXT UP** | `pages/ve-chung-toi/index.html` |
+| 9 | **Trang Đối tác** | ⬜ Sau T1.1 | `pages/doi-tac/index.html` |
+
+### 🟠 Sprint P2 — Trạng thái thực tế
+
+| # | Task | Trạng thái |
+|---|------|-----------|
+| 1 | 6 bài blog thực | ✅ Done |
+| 2 | Mobile sticky bar 3 nút | ✅ Done |
+| 3 | PWA Service Worker | ✅ Done |
+| 4 | Partner ROI dashboard | ✅ Done |
+| 5 | Leaflet project map | ✅ Done |
+| 6 | WOW.js scroll animations | ⬜ Chưa |
+| 7 | Swiper product slider | ⬜ Chưa |
+| 8 | Hero section nâng cấp (ảnh thực) | ⬜ Chờ ảnh từ client |
+
+### 🟡 Sprint P3 — Còn nguyên
+
+| # | Task | Trạng thái |
+|---|------|-----------|
+| 1 | App IoT tích hợp | ⬜ Chờ app |
+| 2 | Dashboard nhà đầu tư | ⬜ Chưa |
+| 3 | Hệ thống thanh toán | ⬜ Backend cần |
+| 4 | Trang Điều khoản + Bảo mật | ⬜ Chưa |
+| 5 | NFC OCPP simulator (nâng cao) | ✅ Done |
+| 6 | TNCN 7-bracket calculator | ✅ Done |
+| 7 | TT133 finance module | ✅ Done |
 
 ---
 
-*Báo cáo này được tạo sau khi đọc và phân tích toàn bộ 35+ ảnh, 5 trang HTML, 6 file JS của site gốc tmt-egreen.com*  
+*Báo cáo này được tạo sau khi đọc và phân tích toàn bộ 35+ ảnh, 5 trang HTML, 6 file JS của site gốc tmt-egreen.com*
+*Cập nhật v1.3 — 2026-10-01: tích hợp dữ liệu hồ sơ CIS NLP GROUP, MST xác nhận, sync trạng thái Sprint*
 *Sử dụng file này làm cơ sở cho mọi quyết định thiết kế và phát triển NLP-EGREEN*

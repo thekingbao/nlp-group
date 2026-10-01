@@ -1,5 +1,5 @@
 # PLAN UPDATE — nlpgroup.com.vn
-**Phiên bản:** v1.0 | **Cập nhật:** 2026-01-10  
+**Phiên bản:** v1.3 | **Cập nhật:** 2026-10-01
 **Nguồn tham khảo:** `draft/TMT-EGREEN/` (TMT-EGREEN.com)  
 **Mục tiêu:** Nâng cấp toàn diện giao diện, UX, tính năng và hạ tầng kỹ thuật của `nlpgroup.com.vn` để đạt chuẩn thương mại thực tiễn B2B/B2C có thể kinh doanh.
 
@@ -30,24 +30,28 @@
 
 ### 1.2 Thiếu so với TMT-EGREEN (Gap Analysis)
 
-| Chức năng | TMT-EGREEN | nlpgroup | Ưu tiên |
-|-----------|-----------|---------|---------|
-| Trang "Về chúng tôi" + Timeline | ✅ | ❌ | P1 |
-| Trang Đăng ký đối tác nhượng quyền | ✅ | ❌ | P1 |
-| GA4 Event Tracking chi tiết | ✅ 7 events | ❌ | P1 |
-| WOW.js scroll animations | ✅ | ❌ | P2 |
-| Swiper slider sản phẩm | ✅ | ❌ | P2 |
-| Bản đồ tương tác Leaflet | ✅ | ❌ | P2 |
-| Form đối tác cascade select (tỉnh/phường) | ✅ | ❌ | P1 |
-| App download CTAs (CH Play / App Store) | ✅ | ❌ | P3 |
-| Mobile-first design nghiêm ngặt | ✅ | Một phần | P1 |
-| Glassmorphism section tối | ✅ | Một phần | P2 |
-| Footer đầy đủ (MST, social, app store) | ✅ | Thiếu MST | P2 |
-| Trang Điều khoản + Bảo mật | ❌ | ❌ | P3 |
-| SEO Schema.org WebPage/Organization | ✅ | ❌ | P1 |
-| Admin: Quản lý Leads đầy đủ | N/A | Một phần | P1 |
-| Admin: Cài đặt site từ panel | N/A | Cơ bản | P1 |
-| Blog thực với nội dung | ✅ | Khung | P2 |
+| Chức năng | TMT-EGREEN | nlpgroup | Ưu tiên | Trạng thái |
+|-----------|-----------|---------|---------|-----------|
+| Trang "Về chúng tôi" + Timeline | ✅ | ❌ | P1 | ⬜ NEXT UP |
+| Trang Đăng ký đối tác nhượng quyền | ✅ | ❌ | P1 | ⬜ Sau T1.1 |
+| GA4 Event Tracking chi tiết | ✅ 7 events | ❌ | P1 | 🔄 Chờ GA4 ID |
+| WOW.js scroll animations | ✅ | ❌ | P2 | ⬜ Chưa làm |
+| Swiper slider sản phẩm | ✅ | ❌ | P2 | ⬜ Chưa làm |
+| Bản đồ tương tác Leaflet | ✅ | ✅ | P2 | ✅ Done |
+| Form đối tác cascade select (tỉnh/phường) | ✅ | ✅ | P1 | ✅ Done |
+| App download CTAs (CH Play / App Store) | ✅ | ❌ | P3 | ⬜ Chưa làm |
+| Mobile-first design nghiêm ngặt | ✅ | ✅ | P1 | ✅ Done (sticky bar 3 nút) |
+| Glassmorphism section tối | ✅ | Một phần | P2 | 🔄 Một phần |
+| Footer đầy đủ (MST, social, app store) | ✅ | ✅ MST có | P2 | ✅ MST = 0316942991 |
+| Trang Điều khoản + Bảo mật | ❌ | ❌ | P3 | ⬜ Chưa làm |
+| SEO Schema.org WebPage/Organization | ✅ | ✅ | P1 | ✅ Done (6 bài blog) |
+| Admin: Quản lý Leads đầy đủ | N/A | Một phần | P1 | 🔄 Một phần |
+| Admin: Cài đặt site từ panel | N/A | ✅ | P1 | ✅ Done |
+| Blog thực với nội dung | ✅ | ✅ 6 bài | P2 | ✅ Done |
+| PWA Service Worker | ❌ | ✅ | P3 | ✅ Done |
+| TT133 finance module | ❌ | ✅ | P2 | ✅ Done |
+| TNCN 7-bracket calculator | ❌ | ✅ | P2 | ✅ Done |
+| NFC OCPP simulator | ❌ | ✅ | P3 | ✅ Done |
 
 ---
 
@@ -55,7 +59,9 @@
 
 ### 🔴 P1 — Phải làm ngay (Tuần 1)
 
-#### T1.1 – Tạo trang "Về chúng tôi"
+> **Trạng thái Sprint 1:** 3/5 task done ✅  |  2 task còn lại: **T1.1**, T1.2
+
+#### T1.1 – Tạo trang "Về chúng tôi" ⬅ NEXT UP
 - **Path:** `pages/ve-chung-toi/index.html`
 - **Nội dung:** Hero banner, Timeline công ty NLP Group, Đội ngũ lãnh đạo, Sứ mệnh/Tầm nhìn, Số liệu ấn tượng (số dự án, kWp lắp đặt, khách hàng)
 - **Style học từ tmt:** Hero fullscreen với overlay tối, timeline dạng alternating left/right, glassmorphism numbers overlay
@@ -63,14 +69,14 @@
 - **Slug DB:** `ve-chung-toi`
 - **Navbar:** Thêm link "Về chúng tôi" vào menu chính
 
-#### T1.2 – Tạo trang Đăng ký đối tác
+#### T1.2 – Tạo trang Đăng ký đối tác  _(sau T1.1)_
 - **Path:** `pages/doi-tac/index.html`
 - **Nội dung:** 4 benefit cards đối tác (% hoa hồng, hỗ trợ kỹ thuật, exclusive zone), Form đăng ký 2-cột (Tên, SĐT, Tỉnh/Thành, Loại đối tác)
 - **Style học từ tmt:** `dang-ky-doi-tac.html` – backdrop blur glassmorphism dark section, cascade select tỉnh/thành
 - **API cascade tỉnh/thành:** Dùng `https://provinces.open-api.vn/api/p/` (miễn phí, không cần đăng ký)
 - **Slug DB:** `dang-ky-doi-tac`
 
-#### T1.3 – GA4 Event Tracking
+#### 🔄 T1.3 – GA4 Event Tracking _(Cơ sở xong — chờ GA4 ID từ client)_
 - **File:** `js/main.js` – bổ sung tracking events
 - **Events cần thêm:**
   - `bam_goi_hotline` – click tel: links (vị trí: header/footer/fab/trong_bai)
@@ -81,7 +87,7 @@
   - `bam_tinh_toan` – di chuyển slider calculator
 - **Setup:** Thêm `G-XXXXXXXXXX` vào `admin/db.json` → `settings.google_tag`
 
-#### T1.4 – Schema.org SEO Markup
+#### ✅ T1.4 – Schema.org SEO Markup _(Done — 6 bài blog + trang sản phẩm)_
 - **File:** `index.html` + tất cả trang trong `pages/`
 - **Schema cần thêm:**
   - `Organization` – tên, địa chỉ, SĐT, logo, sameAs (social)
@@ -90,12 +96,12 @@
   - `LocalBusiness` trên trang liên hệ
   - `FAQPage` trên các trang có FAQ accordion
 
-#### T1.5 – Admin Panel hoàn thiện
-- **Thêm trang:** `admin/pages.html` – quản lý trang/slug CRUD đầy đủ
-- **Thêm trang:** `admin/leads.html` – danh sách leads từ localStorage + export CSV
-- **Thêm trang:** `admin/settings.html` – chỉnh SĐT, email, GA4 ID, FB Pixel, bật maintenance
-- **Cải thiện:** `admin/db.json` – thêm field `meta_og_image`, `canonical`, `breadcrumb`
-- **Email thực:** Đổi `contact@muabandien.com` → `contact@nlpgroup.com.vn` trong db.json
+#### ✅ T1.5 – Admin Panel hoàn thiện _(Done)_
+- ✅ `admin/pages.html` – quản lý trang/slug CRUD
+- ✅ `admin/leads.html` – danh sách leads + export CSV
+- ✅ `admin/settings.html` – chỉnh SĐT, email, GA4 ID, FB Pixel, bật maintenance
+- ✅ `admin/db.json` – `business_license = 0316942991` đã điền
+- ✅ `posts[]` mở rộng lên 6 entries đầy đủ slug/category/url
 
 ---
 
@@ -257,7 +263,7 @@ nlpgroup.com.vn/
     "google_tag": "G-XXXXXXXXXX",          // ← Điền GA4 ID thực
     "fb_pixel": "",
     "zalo_oa_id": "",
-    "business_license": "0312XXXXXXX",    // ← MST thực
+    "business_license": "0316942991",     // ✅ XÁC NHẬN từ CIS NLP GROUP
     "maintenance": false,
     "address_hcm": "...",
     "address_hn": "..."
@@ -437,22 +443,22 @@ document.addEventListener('click', e => {
 ## 9. TIMELINE THỰC THI
 
 ### Sprint 1 – Tuần 1 (P1 tasks)
-| Ngày | Task | Output |
-|------|------|--------|
-| 1 | T1.1 Trang Về chúng tôi | `pages/ve-chung-toi/index.html` |
-| 2 | T1.2 Trang Đối tác | `pages/doi-tac/index.html` |
-| 3 | T1.3 GA4 Tracking | `js/main.js` – 7 events |
-| 4 | T1.4 Schema.org SEO | Tất cả trang có JSON-LD |
-| 5 | T1.5 Admin hoàn thiện | `admin/pages.html`, `leads.html`, `settings.html` |
+| Ngày | Task | Output | Trạng thái |
+|------|------|--------|-----------|
+| 1 | T1.1 Trang Về chúng tôi | `pages/ve-chung-toi/index.html` | ⬜ **NEXT UP** |
+| 2 | T1.2 Trang Đối tác | `pages/doi-tac/index.html` | ⬜ Sau T1.1 |
+| 3 | T1.3 GA4 Tracking | `js/main.js` – 7 events | 🔄 Chờ GA4 ID |
+| 4 | T1.4 Schema.org SEO | 6 bài blog + sản phẩm | ✅ Done |
+| 5 | T1.5 Admin hoàn thiện | `admin/` full panel | ✅ Done |
 
 ### Sprint 2 – Tuần 2 (P2 tasks)
-| Ngày | Task | Output |
-|------|------|--------|
-| 1 | T2.1 WOW.js Animations | `js/main.js` + `css/main.css` |
-| 2 | T2.2 Swiper Slider | Section sản phẩm trang chủ |
-| 3 | T2.3 Hero nâng cấp | `index.html` hero section |
-| 4 | T2.4 Footer + T2.5 Mobile bar | `index.html` + `css/main.css` |
-| 5 | T2.6 Blog 5 bài | `pages/tin-tuc/` + 5 trang detail |
+| Ngày | Task | Output | Trạng thái |
+|------|------|--------|-----------|
+| 1 | T2.1 WOW.js Animations | `js/main.js` + `css/main.css` | ⬜ Chưa |
+| 2 | T2.2 Swiper Slider | Section sản phẩm trang chủ | ⬜ Chưa |
+| 3 | T2.3 Hero nâng cấp | `index.html` hero section | ⬜ Chưa |
+| 4 | T2.4 Footer + T2.5 Mobile bar | `index.html` + `css/main.css` | ✅ Done (mobile bar 3 nút) |
+| 5 | T2.6 Blog 6 bài | `pages/tin-tuc/` + 6 trang detail | ✅ Done |
 
 ### Sprint 3 – Tuần 3+ (P3 tasks)
 - T3.1 Bản đồ dự án Leaflet
@@ -463,7 +469,34 @@ document.addEventListener('click', e => {
 
 ---
 
-## 10. CHECKLIST PHÁT TRIỂN
+## 10. DỮ LIỆU PHÁP NHÂN ĐÃ XÁC NHẬN
+
+> Nguồn: **CIS NLP GROUP.docx** — Client Information Sheet 25/10/2023
+
+| Thông tin | Giá trị | Trạng thái |
+|-----------|---------|-----------|
+| Tên pháp nhân | NLP GROUP JOINT STOCK COMPANY | ✅ Xác nhận |
+| MST / Đăng ký KD | **0316942991** | ✅ Đã điền db.json |
+| Địa chỉ trụ sở | No. 16, D1 St, Mega Village Khang Dien, Phu Huu Ward, Thu Duc City, HCMC | ✅ Xác nhận |
+| Đại diện pháp lý | NHAM QUOC HUAN (SN 26/03/1976) | ✅ Xác nhận |
+| Hộ chiếu | C1299799 — **⚠ hết hạn 22/01/2026** | ⚠ Cần gia hạn |
+| Ngân hàng | MB Bank — An Phu Branch | ✅ Xác nhận |
+| Tài khoản USD | 0000605612090 | ✅ Xác nhận |
+| Tài khoản VND | 797968999999 | ✅ Xác nhận |
+| SWIFT | MSCBVNVX | ✅ Xác nhận |
+| Account Name | NLP GROUP JOINT STOCK COMPANY | ⚠ Suy luận — cần xác nhận MB Bank |
+
+### Còn chờ client cung cấp
+- [ ] GA4 Measurement ID (`G-XXXXXXXXXX`)
+- [ ] Google Maps API Key
+- [ ] Logo PNG/SVG thực (thay CSS text logo)
+- [ ] Facebook / YouTube / TikTok handles thực
+- [ ] Hotline NLP-EGREEN mới (nếu đổi)
+- [ ] Hộ chiếu gia hạn của NHAM QUOC HUAN
+
+---
+
+## 11. CHECKLIST PHÁT TRIỂN
 
 ### Trước khi commit
 - [ ] Test trên mobile Chrome (375px) + tablet (768px) + desktop (1440px)
