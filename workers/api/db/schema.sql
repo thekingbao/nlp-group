@@ -1,7 +1,5 @@
 -- NLP Group — D1 Database Schema
--- Run: wrangler d1 execute nlpgroup-db --file=workers/api/db/schema.sql
-
-PRAGMA journal_mode = WAL;
+-- Run: wrangler d1 execute nlpgroup --remote --file=workers/api/db/schema.sql
 
 -- ─── Projects ────────────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS projects (

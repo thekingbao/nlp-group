@@ -1,0 +1,37 @@
+name                = "nlpgroup"
+compatibility_date  = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+main                = "api/index.ts"
+
+# ─── D1 Database ──────────────────────────────────────────────────────────────
+[[d1_databases]]
+binding       = "DB"
+database_name = "nlpgroup"
+database_id   = "9a82fd6b-6c3f-4b67-8228-a94be65a623b"
+
+# ─── R2 Object Storage ────────────────────────────────────────────────────────
+[[r2_buckets]]
+binding     = "FILES"
+bucket_name = "nlpgroup-files"
+
+# ─── KV ───────────────────────────────────────────────────────────────────────
+[[kv_namespaces]]
+binding = "KV"
+id      = "785f75268a2740bea26a76b6bfe970b3"
+
+# ─── Production ───────────────────────────────────────────────────────────────
+[env.production]
+name = "nlpgroup"
+
+[[env.production.d1_databases]]
+binding       = "DB"
+database_name = "nlpgroup"
+database_id   = "9a82fd6b-6c3f-4b67-8228-a94be65a623b"
+
+[[env.production.r2_buckets]]
+binding     = "FILES"
+bucket_name = "nlpgroup-files"
+
+[[env.production.kv_namespaces]]
+binding = "KV"
+id      = "785f75268a2740bea26a76b6bfe970b3"
