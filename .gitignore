@@ -18,7 +18,6 @@ favicon_io.zip
 pages/noi-bo-react/.env.local
 
 # Build output portal
-noi-bo/
 dist/
 node_modules/
 pages/noi-bo-react/node_modules/
