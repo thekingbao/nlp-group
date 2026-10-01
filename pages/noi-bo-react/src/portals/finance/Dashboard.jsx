@@ -1,4 +1,4 @@
-import { usePortal } from '../../store'
+﻿import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { KpiCard, Panel, Badge } from '../../components/UI'
 import { Link } from 'react-router-dom'
@@ -12,7 +12,7 @@ export default function FinDashboard() {
   return (
     <>
       <Topbar title="Tổng quan Tài chính" sub="Theo dõi dòng tiền, hóa đơn và công nợ">
-        <Link to="/finance/invoices" className="vnkr-btn vnkr-btn--primary btn-sm">+ Ghi nhận TT</Link>
+        <Link to="/finance/invoices" className="btn btn-primary btn-sm">+ Ghi nhận TT</Link>
       </Topbar>
       <div className="portal-content">
         <div className="kpi-grid">
@@ -36,7 +36,7 @@ export default function FinDashboard() {
 
         <Panel
           title="⚡ Hóa đơn cần xử lý"
-          actions={<Link to="/finance/invoices" className="vnkr-btn vnkr-btn--outline btn-sm">Xem tất cả</Link>}
+          actions={<Link to="/finance/invoices" className="btn btn-outline btn-sm">Xem tất cả</Link>}
         >
           {urgentInvs.length === 0
             ? <p style={{ padding: '32px', color: 'var(--text-muted)', textAlign: 'center' }}>✅ Tất cả hóa đơn đã thanh toán</p>

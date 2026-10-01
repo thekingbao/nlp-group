@@ -1,4 +1,4 @@
-import { usePortal } from '../../store'
+﻿import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { Panel, Badge } from '../../components/UI'
 
@@ -41,8 +41,8 @@ export default function LegalAlerts() {
             </div>
             <p style={{ fontSize: '.83rem', color: 'var(--text-muted)', marginBottom: 12 }}>{p.legalNote}</p>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button className="vnkr-btn vnkr-btn--primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => approveLegal(p.id, p.name)}>✅ Phê duyệt</button>
-              <button className="vnkr-btn vnkr-btn--outline btn-sm" onClick={() => requestLegal(p.id, p.name)}>📋 Yêu cầu bổ sung</button>
+              <button className="btn btn-primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => approveLegal(p.id, p.name)}>✅ Phê duyệt</button>
+              <button className="btn btn-outline btn-sm" onClick={() => requestLegal(p.id, p.name)}>📋 Yêu cầu bổ sung</button>
             </div>
           </div>
         ))}
@@ -59,7 +59,7 @@ export default function LegalAlerts() {
                 <Badge status={d.status} />
               </div>
               <div style={{ marginTop: 10 }}>
-                <button className="vnkr-btn vnkr-btn--outline btn-sm" onClick={() => alert(`📨 Đã gửi yêu cầu bổ sung: ${d.type}`)}>📨 Gửi yêu cầu bổ sung</button>
+                <button className="btn btn-outline btn-sm" onClick={() => alert(`📨 Đã gửi yêu cầu bổ sung: ${d.type}`)}>📨 Gửi yêu cầu bổ sung</button>
               </div>
             </div>
           )

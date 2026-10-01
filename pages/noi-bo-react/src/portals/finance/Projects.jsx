@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { Panel, Badge, ProgressBar, Drawer } from '../../components/UI'
@@ -39,7 +39,7 @@ export default function FinProjects() {
                     <td><Badge status={p.status} /></td>
                     <td>
                       {pendingInvs.length > 0 && (
-                        <button className="vnkr-btn vnkr-btn--primary btn-sm" onClick={() => setDrawer(pendingInvs)}>
+                        <button className="btn btn-primary btn-sm" onClick={() => setDrawer(pendingInvs)}>
                           + Thu ({pendingInvs.length})
                         </button>
                       )}
@@ -76,7 +76,7 @@ function QuickProjPayDrawer({ invs, onClose }) {
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ fontWeight: 700, fontSize: '.845rem', whiteSpace: 'nowrap' }}>{fmt(i.amount)}</span>
                 <button
-                  className="vnkr-btn vnkr-btn--primary btn-sm"
+                  className="btn btn-primary btn-sm"
                   style={{ background: 'var(--success)', border: 'none' }}
                   onClick={() => {
                     if (window.confirm(`Thu hóa đơn ${i.id}?`)) actions.updateInvoiceStatus(i.id, 'paid')

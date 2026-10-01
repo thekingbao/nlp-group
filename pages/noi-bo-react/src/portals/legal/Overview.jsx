@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { Panel, Badge, KpiCard, Drawer } from '../../components/UI'
@@ -54,9 +54,9 @@ export default function LegalOverview() {
                     <td>{contract ? <Badge status={contract.status} /> : <Badge status="missing" label="❌ Chưa có HĐ" />}</td>
                     <td style={{ fontSize: '.8rem', color: 'var(--text-muted)', maxWidth: 200 }}>{p.legalNote}</td>
                     <td style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                      <button className="vnkr-btn vnkr-btn--primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => approveLegal(p.id)}>✅ Duyệt</button>
-                      <button className="vnkr-btn vnkr-btn--outline btn-sm" onClick={() => requestLegal(p.id)}>📋 Yêu cầu</button>
-                      <button className="vnkr-btn vnkr-btn--outline btn-sm" onClick={() => setDrawerProject(p)}>📄 Hồ sơ</button>
+                      <button className="btn btn-primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => approveLegal(p.id)}>✅ Duyệt</button>
+                      <button className="btn btn-outline btn-sm" onClick={() => requestLegal(p.id)}>📋 Yêu cầu</button>
+                      <button className="btn btn-outline btn-sm" onClick={() => setDrawerProject(p)}>📄 Hồ sơ</button>
                     </td>
                   </tr>
                 )

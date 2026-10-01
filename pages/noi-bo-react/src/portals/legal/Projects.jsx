@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { Panel, Badge, FilterRow, LiveNotif } from '../../components/UI'
@@ -53,8 +53,8 @@ export default function LegalProjects() {
                   <td><Badge status={p.legalStatus} /></td>
                   <td style={{ fontSize: '.8rem', color: 'var(--text-muted)' }}>{p.legalNote}</td>
                   <td style={{ display: 'flex', gap: 6 }}>
-                    <button className="vnkr-btn vnkr-btn--primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => approveLegal(p.id, p.name)}>✅ Duyệt</button>
-                    <button className="vnkr-btn vnkr-btn--outline btn-sm" onClick={() => requestLegal(p.id, p.name)}>🔄 Bổ sung</button>
+                    <button className="btn btn-primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => approveLegal(p.id, p.name)}>✅ Duyệt</button>
+                    <button className="btn btn-outline btn-sm" onClick={() => requestLegal(p.id, p.name)}>🔄 Bổ sung</button>
                   </td>
                 </tr>
               ))}

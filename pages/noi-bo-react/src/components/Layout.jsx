@@ -6,7 +6,6 @@ export function Sidebar({ role, logoMark, accentColor, navItems, portalLinks, us
 
   return (
     <aside className="portal-sidebar">
-      {/* Logo */}
       <div className="portal-sidebar__logo">
         <div className="portal-sidebar__logo-mark" style={{ background: accentColor, color: '#fff' }}>
           {logoMark}
@@ -17,7 +16,6 @@ export function Sidebar({ role, logoMark, accentColor, navItems, portalLinks, us
         </div>
       </div>
 
-      {/* Nav */}
       <nav className="portal-sidebar__nav">
         {navItems.map(section => (
           <div key={section.section}>
@@ -39,7 +37,6 @@ export function Sidebar({ role, logoMark, accentColor, navItems, portalLinks, us
         ))}
       </nav>
 
-      {/* Footer */}
       <div className="portal-sidebar__footer">
         <div className="portal-links-group">
           {portalLinks.map(l => (
@@ -47,7 +44,9 @@ export function Sidebar({ role, logoMark, accentColor, navItems, portalLinks, us
           ))}
         </div>
         <div className="portal-user">
-          <div className="portal-user__avatar" style={{ background: accentColor }}>{userName.slice(0,2)}</div>
+          <div className="portal-user__avatar" style={{ background: accentColor }}>
+            {userName.slice(0, 2)}
+          </div>
           <div className="portal-user__info">
             {userName}
             <span>{userRole}</span>

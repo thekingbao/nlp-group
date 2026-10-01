@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { Panel, Badge, FilterRow, Drawer } from '../../components/UI'
@@ -28,7 +28,7 @@ export default function FinInvoices() {
   return (
     <>
       <Topbar title="Quản lý Hóa đơn" sub={`${invs.length} hóa đơn`}>
-        <button className="vnkr-btn vnkr-btn--primary btn-sm" onClick={() => setDrawer('new')}>+ Ghi nhận TT</button>
+        <button className="btn btn-primary btn-sm" onClick={() => setDrawer('new')}>+ Ghi nhận TT</button>
       </Topbar>
       <div className="portal-content">
         <Panel title="Danh sách hóa đơn">
@@ -51,7 +51,7 @@ export default function FinInvoices() {
                     <td><Badge status={i.status} /></td>
                     <td style={{ display: 'flex', gap: 6 }}>
                       {i.status !== 'paid' && (
-                        <button className="vnkr-btn vnkr-btn--primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => markPaid(i.id)}>✅ Thu</button>
+                        <button className="btn btn-primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => markPaid(i.id)}>✅ Thu</button>
                       )}
                       <button className="btn-icon" onClick={() => setDrawer(i)}>📋</button>
                     </td>
@@ -98,7 +98,7 @@ function InvoiceDetailDrawer({ inv, onClose, onPay }) {
           <span>Trạng thái</span><Badge status={inv.status} />
         </div>
         {inv.status !== 'paid' && (
-          <button className="vnkr-btn vnkr-btn--primary" style={{ width: '100%', justifyContent: 'center', background: 'var(--success)', border: 'none' }} onClick={() => { onPay(inv.id); onClose() }}>
+          <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', background: 'var(--success)', border: 'none' }} onClick={() => { onPay(inv.id); onClose() }}>
             ✅ Xác nhận đã thu tiền
           </button>
         )}
@@ -130,7 +130,7 @@ function QuickPayDrawer({ onClose }) {
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span style={{ fontWeight: 700, fontSize: '.845rem', whiteSpace: 'nowrap' }}>{fmt(i.amount)}</span>
-                    <button className="vnkr-btn vnkr-btn--primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => {
+                    <button className="btn btn-primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => {
                       if (window.confirm(`Thu hóa đơn ${i.id}?`)) actions.updateInvoiceStatus(i.id, 'paid')
                     }}>✅ Thu</button>
                   </div>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
 import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { Panel, Badge } from '../../components/UI'
@@ -9,7 +9,7 @@ export default function AdminLegalView() {
   return (
     <>
       <Topbar title="Pháp chế" sub="Tình trạng pháp lý các dự án">
-        <Link to="/legal/overview" className="vnkr-btn vnkr-btn--primary btn-sm">↗ Mở Portal Pháp chế</Link>
+        <Link to="/legal/overview" className="btn btn-primary btn-sm">↗ Mở Portal Pháp chế</Link>
       </Topbar>
       <div className="portal-content">
         <Panel title="Tình trạng pháp lý">
@@ -22,7 +22,7 @@ export default function AdminLegalView() {
                   <td><div className="td-name">{p.name}</div><div className="td-sub">{p.client}</div></td>
                   <td><Badge status={p.legalStatus} /></td>
                   <td style={{ fontSize: '.8rem', color: 'var(--text-muted)', maxWidth: 220 }}>{p.legalNote}</td>
-                  <td><Link to="/legal/projects" className="vnkr-btn vnkr-btn--outline btn-sm">Xem chi tiết</Link></td>
+                  <td><Link to="/legal/projects" className="btn btn-outline btn-sm">Xem chi tiết</Link></td>
                 </tr>
               ))}
             </tbody>

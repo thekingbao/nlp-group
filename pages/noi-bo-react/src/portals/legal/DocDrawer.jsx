@@ -1,4 +1,4 @@
-import { usePortal } from '../../store'
+﻿import { usePortal } from '../../store'
 import { Badge, Drawer } from '../../components/UI'
 
 export default function LegalDocDrawer({ project, onClose }) {
@@ -31,7 +31,7 @@ export default function LegalDocDrawer({ project, onClose }) {
             </div>
             <Badge status={d.status} />
             {!['approved','signed'].includes(d.status) && (
-              <button className="vnkr-btn vnkr-btn--primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => actions.updateDocStatus(d.id, 'approved')}>✅</button>
+              <button className="btn btn-primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => actions.updateDocStatus(d.id, 'approved')}>✅</button>
             )}
           </div>
         ))}

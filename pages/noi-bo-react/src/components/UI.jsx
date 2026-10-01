@@ -1,4 +1,4 @@
-// Shared badge component using VNKR tokens + portal.css classes
+// Shared UI components — self-contained, no external design system
 
 export const STATUS_MAP = {
   active:     ['badge-green',  '● Đang vận hành'],
@@ -22,7 +22,7 @@ export const STATUS_MAP = {
 export function Badge({ status, label }) {
   const [cls, defaultLabel] = STATUS_MAP[status] || ['badge-gray', status]
   return (
-    <span className={`badge-status ${cls}`}>
+    <span className={`badge ${cls}`}>
       <span className="badge-dot" />
       {label ?? defaultLabel}
     </span>
@@ -101,7 +101,7 @@ export function Drawer({ open, onClose, title, sub, children }) {
             <div className="portal-drawer__title">{title}</div>
             {sub && <div className="portal-drawer__sub">{sub}</div>}
           </div>
-          <button className="vnkr-btn vnkr-btn--outline btn-sm" onClick={onClose}>✕ Đóng</button>
+          <button className="btn btn-outline btn-sm" onClick={onClose}>✕ Đóng</button>
         </div>
         <div className="portal-drawer__body">{children}</div>
       </div>

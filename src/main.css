@@ -1,0 +1,18 @@
+/* NLP Group — Tailwind v4 entry point
+   Replaces <script src="https://cdn.tailwindcss.com"> CDN usage.
+   Import this file in index.html via <link rel="stylesheet" href="/src/main.css">
+*/
+
+@import "tailwindcss";
+
+/* ── Custom design tokens (from old tailwind.config inline script) ─────────── */
+@theme {
+  --color-solar-50:  #f0fdf4;
+  --color-solar-100: #dcfce7;
+  --color-solar-500: #22c55e;
+  --color-solar-600: #16a34a;
+  --color-solar-700: #15803d;
+  --color-solar-900: #14532d;
+  --color-dark:      #0f172a;
+  --font-sans: 'Inter', sans-serif;
+}

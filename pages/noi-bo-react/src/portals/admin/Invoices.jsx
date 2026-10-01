@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { Panel, Badge, FilterRow } from '../../components/UI'
@@ -47,7 +47,7 @@ export default function AdminInvoices() {
                     <td>
                       {i.status !== 'paid' && (
                         <button
-                          className="vnkr-btn vnkr-btn--primary btn-sm"
+                          className="btn btn-primary btn-sm"
                           onClick={() => {
                             if (window.confirm(`Xác nhận đã thu ${i.id}?`)) {
                               actions.updateInvoiceStatus(i.id, 'paid')

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
 import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { Panel, KpiCard, ProgressBar } from '../../components/UI'
@@ -10,7 +10,7 @@ export default function AdminFinView() {
   return (
     <>
       <Topbar title="Tài chính" sub="Tổng quan tài chính dự án">
-        <Link to="/finance/dashboard" className="vnkr-btn vnkr-btn--primary btn-sm">↗ Mở Portal Tài chính</Link>
+        <Link to="/finance/dashboard" className="btn btn-primary btn-sm">↗ Mở Portal Tài chính</Link>
       </Topbar>
       <div className="portal-content">
         <div className="grid-3" style={{ marginBottom: 20 }}>

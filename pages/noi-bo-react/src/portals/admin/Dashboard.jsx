@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
 import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { KpiCard, Panel, Badge } from '../../components/UI'
@@ -12,7 +12,7 @@ export default function AdminDashboard() {
   return (
     <>
       <Topbar title="Dashboard tổng quan" sub="Theo dõi toàn bộ dự án và hoạt động nội bộ">
-        <Link to="/admin/projects" className="vnkr-btn vnkr-btn--outline btn-sm">↗ Dự án</Link>
+        <Link to="/admin/projects" className="btn btn-outline btn-sm">↗ Dự án</Link>
       </Topbar>
 
       <div className="portal-content">
@@ -28,7 +28,7 @@ export default function AdminDashboard() {
           {/* Recent projects */}
           <Panel
             title="Dự án gần đây"
-            actions={<Link to="/admin/projects" className="vnkr-btn vnkr-btn--outline btn-sm">Xem tất cả</Link>}
+            actions={<Link to="/admin/projects" className="btn btn-outline btn-sm">Xem tất cả</Link>}
           >
             <table className="portal-table">
               <thead><tr><th>Mã</th><th>Dự án</th><th>Trạng thái</th><th>Pháp lý</th></tr></thead>
@@ -51,7 +51,7 @@ export default function AdminDashboard() {
           {/* Urgent invoices */}
           <Panel
             title="Hóa đơn cần xử lý"
-            actions={<Link to="/admin/invoices" className="vnkr-btn vnkr-btn--outline btn-sm">Xem tất cả</Link>}
+            actions={<Link to="/admin/invoices" className="btn btn-outline btn-sm">Xem tất cả</Link>}
           >
             {urgentInvs.length === 0
               ? <p style={{ padding: '32px', color: 'var(--text-muted)', textAlign: 'center' }}>✅ Không có hóa đơn tồn đọng</p>

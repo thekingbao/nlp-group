@@ -1,0 +1,25 @@
+{
+  "name": "nlpgroup-workers",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev":     "wrangler dev --env local",
+    "deploy":  "wrangler deploy",
+    "db:create": "wrangler d1 create nlpgroup-db",
+    "db:migrate": "wrangler d1 execute nlpgroup-db --file=api/db/schema.sql",
+    "db:seed":    "wrangler d1 execute nlpgroup-db --file=api/db/seed.sql",
+    "db:migrate:prod": "wrangler d1 execute nlpgroup-db --env production --file=api/db/schema.sql",
+    "db:seed:prod":    "wrangler d1 execute nlpgroup-db --env production --file=api/db/seed.sql",
+    "r2:create": "wrangler r2 bucket create nlpgroup-files",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.7.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250101.0",
+    "typescript": "^5.7.3",
+    "wrangler": "^3.99.0"
+  }
+}

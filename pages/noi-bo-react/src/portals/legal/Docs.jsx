@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { usePortal } from '../../store'
 import { Topbar } from '../../components/Layout'
 import { Panel, Badge, Drawer } from '../../components/UI'
@@ -23,7 +23,7 @@ export default function LegalDocs() {
   return (
     <>
       <Topbar title="Hồ sơ pháp lý" sub="Quản lý hồ sơ theo dự án">
-        <button className="vnkr-btn vnkr-btn--primary btn-sm" style={{ background: '#7c3aed', border: 'none' }} onClick={() => setAddDrawer(true)}>+ Thêm hồ sơ</button>
+        <button className="btn btn-primary btn-sm" style={{ background: '#7c3aed', border: 'none' }} onClick={() => setAddDrawer(true)}>+ Thêm hồ sơ</button>
       </Topbar>
 
       <div className="portal-content">
@@ -48,13 +48,13 @@ export default function LegalDocs() {
                     <Badge status={d.status} />
                     <div className="doc-row__actions">
                       {!['approved','signed'].includes(d.status) && (
-                        <button className="vnkr-btn vnkr-btn--primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => actions.updateDocStatus(d.id, 'approved')}>✅</button>
+                        <button className="btn btn-primary btn-sm" style={{ background: 'var(--success)', border: 'none' }} onClick={() => actions.updateDocStatus(d.id, 'approved')}>✅</button>
                       )}
                     </div>
                   </div>
                 ))}
                 <button
-                  className="vnkr-btn vnkr-btn--outline btn-sm"
+                  className="btn btn-outline btn-sm"
                   style={{ marginTop: 8 }}
                   onClick={() => { setAddProjectId(p.id); setAddDrawer(true) }}
                 >
@@ -77,7 +77,7 @@ export default function LegalDocs() {
         </div>
         <div className="form-group">
           <label className="form-label">Loại hồ sơ</label>
-          <input className="form-text-input" placeholder="VD: Giấy phép PCCC, Hợp đồng EPC..." value={addType} onChange={e => setAddType(e.target.value)} />
+          <input className="form-input" placeholder="VD: Giấy phép PCCC, Hợp đồng EPC..." value={addType} onChange={e => setAddType(e.target.value)} />
         </div>
         <div className="form-group">
           <label className="form-label">Trạng thái</label>
@@ -89,7 +89,7 @@ export default function LegalDocs() {
             <option value="missing">Thiếu hồ sơ</option>
           </select>
         </div>
-        <button className="vnkr-btn vnkr-btn--primary" style={{ width: '100%', justifyContent: 'center', background: '#7c3aed', border: 'none', marginTop: 8 }} onClick={submitDoc}>
+        <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', background: '#7c3aed', border: 'none', marginTop: 8 }} onClick={submitDoc}>
           + Thêm hồ sơ
         </button>
       </Drawer>
