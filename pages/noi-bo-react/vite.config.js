@@ -1,16 +1,17 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   plugins: [react()],
 
-  // Build portal vào thư mục noi-bo/ ở root repo
-  // Cloudflare Pages serve static: truy cập /noi-bo/ → portal
   build: {
-    outDir: new URL('../../noi-bo', import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1'),
+    outDir: path.resolve(__dirname, '../../noi-bo'),
     emptyOutDir: true,
   },
 
-  // Base path — HashRouter
   base: '/noi-bo/',
 })
