@@ -22,3 +22,6 @@ dist/
 node_modules/
 pages/noi-bo-react/node_modules/
 workers/node_modules/
+# Wrangler local state
+.wrangler/
+scripts/node_modules/
